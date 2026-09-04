@@ -33,3 +33,6 @@ coverage/
 
 # stray backups
 *.bak
+
+# stockfish worker, copied from node_modules at build time
+apps/web/public/engine/

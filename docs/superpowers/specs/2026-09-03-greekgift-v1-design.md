@@ -379,9 +379,66 @@ sign-in 403s; the terminal-printed link verifies; verified member is still
 pending; an `ADMIN_EMAILS` address lands admin/approved. `pnpm lint`,
 `typecheck`, `env:check`, `test` and `build` all pass.
 
-## 6. Engine and scoring  (written by agent B)
+## 6. Engine and scoring
 
-_To be merged._
+> Status: **engine and scoring built and measured** (milestone 3). Wiring a
+> whole game through them and storing the result is milestone 4.
+
+### 6.1 The payload spike, and what it changed
+
+The spec's "Engine payload" row assumed Stockfish 16's 38 MB NNUE was the cost
+of running in the browser. Measured, the flavours are:
+
+| build | browser payload | notes |
+|---|---|---|
+| SF16 single + net | 0.6 MB + **38 MB** net | net fetched separately |
+| SF17.1 single | **78 MB** | six 13 MB wasm chunks |
+| `stockfish-18-single` | **107.7 MB** | net compiled in |
+| **`stockfish-18-lite-single`** | **6.9 MB / 5.4 MB gzipped** | net compiled in |
+
+**We ship `stockfish-18-lite-single`.** Upstream recommends exactly this one —
+*"still far stronger than any human will ever be"* — and being single-threaded
+it needs no `SharedArrayBuffer`, therefore no COOP/COEP headers, which is what
+makes it deployable on Vercel unchanged. There is no separate `.nnue` fetch at
+all, so the spec's caching worry disappears with it.
+
+The pair is copied from `node_modules` into `public/engine` by
+`scripts/prepare-engine.mjs` on dev and build, and gitignored: the version is
+pinned by package.json and 7 MB does not belong in git.
+
+### 6.2 Speed, and why the node budget moved
+
+Measured in Chrome on the development machine: **~240k nodes/sec**, reaching
+depth 15 at 100k nodes and depth 17 at 1M.
+
+At the spec's `NEXT_PUBLIC_ENGINE_NODES=1000000`, an 80-position game is
+**336 seconds** on one worker. Nobody waits five and a half minutes. Positions
+are independent, so `EnginePool` runs four workers pulling from a shared queue
+— pulled rather than pre-assigned, because positions vary hugely and a fixed
+slice leaves three workers idle while the fourth grinds the endgame.
+
+**Measured: 80 positions at 300k nodes across 4 workers in 34.6 seconds**, with
+live progress and an ETA, and cached afterwards so a game is paid for once.
+The default is therefore **300k**, not 1M — still depth ~15–16, far past what
+a club game needs. Both the node count and the build id are part of the eval
+cache key.
+
+Determinism is unchanged: `go nodes N`, `Threads 1`, `Hash 16`, never
+`movetime`.
+
+### 6.3 Scoring
+
+`packages/engine/src/scoring.ts`, pure and covered by 54 tests. Win% and
+accuracy are lichess's published curves; the classification ladder is
+WintrChess's; the rating estimate is ACPL-based and pulled toward a known
+rating, because one tidy game does not make a 1200 into a grandmaster.
+
+**One deliberate deviation.** The spec writes the ladder's first rung as
+`best < 0.01`, which read literally labels *any* move losing under 1% as best —
+including moves the engine did not pick, which makes `playedBest` do nothing.
+chess.com reserves Best for the engine's own choice and calls an equally good
+alternative Excellent. We do the same: finding the engine move earns `best`,
+everything else starts at `excellent`.
 
 ## 7. Coach  (written by agent C)
 

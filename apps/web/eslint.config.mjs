@@ -7,7 +7,11 @@ import typescript from 'eslint-config-next/typescript';
  * objects are circular and the compat layer throws while validating them.
  */
 const config = [
-  { ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts'] },
+  {
+    // public/ holds vendored third-party assets — the minified Stockfish
+    // worker among them. Linting somebody else's build output is noise.
+    ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'public/**'],
+  },
   ...coreWebVitals,
   ...typescript,
 ];

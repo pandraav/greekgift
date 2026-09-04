@@ -100,6 +100,9 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:png|jpg|jpeg|svg|webp|ico|woff2)$).*)',
+    // `engine` is excluded because the Stockfish worker and its wasm are
+    // static assets: routing a 7 MB download through the auth gate is both
+    // pointless and, for a Worker request, a redirect it cannot follow.
+    '/((?!_next/static|_next/image|engine/|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:png|jpg|jpeg|svg|webp|ico|woff2|wasm)$).*)',
   ],
 };
