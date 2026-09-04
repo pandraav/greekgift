@@ -333,6 +333,45 @@ your email" and never "account created" or "email already in use".
   a stale `approved` for up to its window — the one direction where lag is
   dangerous.
 
+### 5.5 Import (milestone 2)
+
+**The API, as it really is.** `GET /pub/player/{u}` , `/stats`, `/games/archives`,
+`/games/{YYYY}/{MM}`. No key, but a default user-agent gets a Cloudflare block,
+so requests identify themselves. Every response is cached: a finished month is
+immutable and gets a week, the current month five minutes.
+
+Two things the docs do not tell you. **`/stats` returns 404 with an "internal
+error" body for some accounts** — reproducibly, for `hikaru` — so ratings fall
+back to the value the player carried in their most recent game of each class,
+marked with an asterisk in the UI. And **the `eco` field is a URL, not a code**;
+the ECO code lives in the PGN's own headers.
+
+`rules === 'chess'` filters out variants, which share the endpoint.
+
+**Columns.** `players` keyed by lowercased username, carrying display spelling,
+title, ratings, `archive_count` and `imported_through`. `games` keyed by
+chess.com's numeric id from the PGN `Link` header, holding the whole PGN plus
+the fields worth querying: both usernames (lowercased, indexed by colour with
+`end_time`), ratings, results, ECO, opening, plies, and **chess.com's own
+`accuracies` where present** — about a third of games — kept purely so our
+scoring can be checked against theirs in milestone 3.
+
+**Opening names** are derived from the ECO URL slug, which appends the moves
+that reach the position, either after an ellipsis or after a move number.
+`openingName` cuts at whichever comes first; it is unit-tested against the real
+shapes, including `-5...O-O`, where naive splitting eats the castling.
+
+**Measured.** Six months of a busy account: 2,750 games fetched, 2,750 stored,
+0 skipped, 41s, 6.5MB of table. The import is serial by choice — chess.com asks
+for sequential access — and rows are chunked at 100 because each carries a PGN.
+
+**A redirect loop, found and fixed.** The proxy treated *any* session cookie as
+proof of being signed in, so a stale cookie bounced the user off `/login` to
+`/`, where the server-side guard bounced them back: `ERR_TOO_MANY_REDIRECTS`,
+escapable only by clearing cookies. A decoded cookie cache and a merely-present
+token are now different questions — the first is authoritative, the second only
+stops us redirecting to `/login`.
+
 ### 5.5 Verified
 
 From an empty `.pglite/`: boot migrates; member signs up pending; unverified

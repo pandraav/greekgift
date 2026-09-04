@@ -2,7 +2,9 @@ import { relations } from 'drizzle-orm';
 import {
   boolean,
   index,
+  integer,
   pgTable,
+  real,
   text,
   timestamp,
   uniqueIndex,
@@ -178,3 +180,100 @@ export type NewUserProfile = typeof userProfiles.$inferInsert;
 export type Role = 'admin' | 'member';
 export type Status = 'pending' | 'approved' | 'rejected';
 export type Audience = 'beginner' | 'intermediate' | 'advanced';
+
+/* ── chess.com mirror ─────────────────────────────────────────────────────
+   Reviews are keyed by chess.com username rather than by account, so these
+   tables are shared: two members looking at the same game see the same rows
+   and the engine runs once. Nothing here is per-user.
+   ------------------------------------------------------------------------ */
+
+export const players = pgTable('players', {
+  /** Lowercased. chess.com usernames are case-insensitive. */
+  username: text('username').primaryKey(),
+  /** As chess.com spells it, for display. */
+  displayName: text('display_name').notNull(),
+
+  title: text('title'),
+  realName: text('real_name'),
+  countryCode: text('country_code'),
+  avatarUrl: text('avatar_url'),
+  joinedAt: timestamp('joined_at'),
+  lastOnlineAt: timestamp('last_online_at'),
+
+  ratingRapid: integer('rating_rapid'),
+  ratingBlitz: integer('rating_blitz'),
+  ratingBullet: integer('rating_bullet'),
+
+  /** When the profile and stats were last pulled. */
+  syncedAt: timestamp('synced_at').notNull().defaultNow(),
+  /** Newest archive month imported, as `YYYY-MM`. */
+  importedThrough: text('imported_through'),
+  /** Total archives chess.com lists, so the UI can say how much is left. */
+  archiveCount: integer('archive_count'),
+});
+
+export const timeClass = ['bullet', 'blitz', 'rapid', 'daily'] as const;
+
+export const games = pgTable(
+  'games',
+  {
+    /** chess.com's numeric live-game id, from the PGN Link header. */
+    id: text('id').primaryKey(),
+    uuid: text('uuid').notNull().unique(),
+    url: text('url').notNull(),
+    /** Kept whole. Every position we analyse is derived from this. */
+    pgn: text('pgn').notNull(),
+
+    timeClass: text('time_class', { enum: timeClass }).notNull(),
+    timeControl: text('time_control').notNull(),
+    rated: boolean('rated').notNull().default(true),
+    endTime: timestamp('end_time').notNull(),
+
+    /** Lowercased for lookup; the display spelling sits beside it. */
+    whiteUsername: text('white_username').notNull(),
+    whiteName: text('white_name').notNull(),
+    whiteRating: integer('white_rating'),
+    whiteResult: text('white_result').notNull(),
+
+    blackUsername: text('black_username').notNull(),
+    blackName: text('black_name').notNull(),
+    blackRating: integer('black_rating'),
+    blackResult: text('black_result').notNull(),
+
+    /** PGN Result: `1-0`, `0-1` or `1/2-1/2`. */
+    result: text('result').notNull(),
+    /** From the PGN Termination header, e.g. "erik won on time". */
+    termination: text('termination'),
+
+    eco: text('eco'),
+    ecoUrl: text('eco_url'),
+    /** Readable opening name, derived from the ECO URL slug. */
+    opening: text('opening'),
+
+    plies: integer('plies').notNull(),
+    finalFen: text('final_fen'),
+
+    /**
+     * chess.com's own accuracy, present on roughly a third of games. Not used
+     * for anything we show — kept so our numbers can be checked against
+     * theirs when the scoring lands.
+     */
+    ccAccuracyWhite: real('cc_accuracy_white'),
+    ccAccuracyBlack: real('cc_accuracy_black'),
+
+    importedAt: timestamp('imported_at').notNull().defaultNow(),
+  },
+  (t) => [
+    // A player's games are found by either colour, so both are indexed and
+    // Postgres bitmap-ORs them.
+    index('games_white_idx').on(t.whiteUsername, t.endTime),
+    index('games_black_idx').on(t.blackUsername, t.endTime),
+    index('games_end_time_idx').on(t.endTime),
+  ],
+);
+
+export type Player = typeof players.$inferSelect;
+export type NewPlayer = typeof players.$inferInsert;
+export type Game = typeof games.$inferSelect;
+export type NewGame = typeof games.$inferInsert;
+export type TimeClass = (typeof timeClass)[number];

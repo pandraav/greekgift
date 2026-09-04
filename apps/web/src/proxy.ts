@@ -38,9 +38,21 @@ export async function proxy(request: NextRequest) {
     secret: process.env.BETTER_AUTH_SECRET,
   })) as Cached | null;
 
-  // `cached` is null both when signed out AND when the cache has simply
-  // expired, so presence is checked separately.
-  const signedIn = cached !== null || getSessionCookie(request) !== null;
+  /**
+   * Two different questions, and conflating them causes a redirect loop.
+   *
+   *   `cached`   — a *decoded, signature-checked* session. Authoritative.
+   *   `hasToken` — merely that a session cookie exists. It may be expired,
+   *                revoked, or left behind by a sign-out.
+   *
+   * A stale token is enough to stop us redirecting to /login (let the server
+   * decide), but NOT enough to assert someone is signed in. Treating it as
+   * proof used to bounce them off /login to /, where the server-side guard
+   * bounced them back — ERR_TOO_MANY_REDIRECTS, and the only way out was
+   * clearing cookies by hand.
+   */
+  const hasToken = getSessionCookie(request) !== null;
+  const signedIn = cached !== null || hasToken;
 
   if (!signedIn) {
     if (under(pathname, PUBLIC)) return NextResponse.next();
@@ -52,8 +64,12 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // Only a verified session bounces off the auth pages. With a token we
+  // cannot decode, /login is exactly where they should be able to land.
   if (under(pathname, PUBLIC)) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return cached
+      ? NextResponse.redirect(new URL('/', request.url))
+      : NextResponse.next();
   }
   if (under(pathname, ALWAYS)) return NextResponse.next();
 
