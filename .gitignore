@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# next
+.next/
+out/
+next-env.d.ts
+
+# builds
+dist/
+build/
+*.tsbuildinfo
+
+# local database (PGlite dev store)
+.pglite/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.vercel
+coverage/
+
+# react-email dev server build output
+.react-email/
+
+# stray backups
+*.bak

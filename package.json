@@ -1,0 +1,34 @@
+{
+  "name": "greekgift",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @greekgift/web dev",
+    "build": "pnpm --filter @greekgift/web build",
+    "start": "pnpm --filter @greekgift/web start",
+    "lint": "pnpm -r --parallel lint",
+    "typecheck": "pnpm -r --parallel typecheck",
+    "test": "pnpm -r --parallel test",
+    "env:check": "pnpm --filter @greekgift/web env:check",
+    "db:generate": "pnpm --filter @greekgift/db generate",
+    "db:migrate": "pnpm --filter @greekgift/db migrate",
+    "db:studio": "pnpm --filter @greekgift/db studio",
+    "email": "pnpm --filter @greekgift/email preview"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "^22.10.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ]
+  }
+}

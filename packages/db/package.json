@@ -1,0 +1,29 @@
+{
+  "name": "@greekgift/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema.ts"
+  },
+  "scripts": {
+    "generate": "tsx --env-file-if-exists=../../.env node_modules/drizzle-kit/bin.cjs generate",
+    "migrate": "tsx --env-file-if-exists=../../.env src/migrate.ts",
+    "studio": "tsx --env-file-if-exists=../../.env node_modules/drizzle-kit/bin.cjs studio",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "lint": "echo \"no lint\" && exit 0"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.2",
+    "@neondatabase/serverless": "1.1.0",
+    "@electric-sql/pglite": "0.5.8"
+  },
+  "devDependencies": {
+    "drizzle-kit": "0.31.10",
+    "tsx": "^4.19.2",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}

@@ -1,0 +1,239 @@
+/* ---------------------------------------------------------------------------
+   greekgift — wood, paper, brass, felt. Single theme, on purpose.
+   Tokens ported verbatim from docs/design/app.html.
+
+   There is no dark mode, no `.dark` class and no `@custom-variant dark`.
+   An undeclared variant means any stray `dark:` utility compiles to nothing,
+   which fails to *nothing* rather than to a half-inverted control.
+   --------------------------------------------------------------------------- */
+
+/* source("../") keeps class detection inside apps/web/src. Without it Tailwind
+   starts at the git root and crawls docs/design/, which holds a 140KB HTML
+   prototype and a vendored copy of chess.js. */
+@import 'tailwindcss' source('../');
+
+:root {
+  /* Stops the browser inverting native controls — scrollbars, select popups,
+     date pickers, autofill — when the OS is in dark mode. Without this you
+     get charcoal form controls on cream paper. */
+  color-scheme: light;
+
+  /* the table */
+  --wood-900: #1b130c;
+  --wood-800: #271b11;
+  --wood-tone: #3a2716;
+  --wood-600: #54381f;
+  --oak: #8a6641;
+
+  /* brass, felt, lacquer */
+  --brass: #be8f3e;
+  --brass-lo: #8e6a2a;
+  --brass-hi: #e0bc78;
+  --felt: #2e5c43;
+  --felt-hi: #3f7a59;
+  --lacquer: #9e2b20;
+  --lacquer-hi: #c2453a;
+
+  /* paper */
+  --paper: #f7f2e5;
+  --paper-2: #efe8d6;
+  --paper-3: #e5dcc5;
+  --ink: #1a150f;
+  --ink-2: #4e4432;
+  --ink-3: #8b8068;
+  --rule: #dbd1b9;
+  --rule-2: #e9e2cf;
+
+  /* board */
+  --sq-l: #ebdcb8;
+  --sq-d: #8a6234;
+  --frame: #2a1a0e;
+
+  /* classification ladder */
+  --c-brilliant: #0e8fa8;
+  --c-great: #3e6fa8;
+  --c-book: #8a6a2c;
+  --c-best: #2e5c43;
+  --c-excellent: #437a56;
+  --c-good: #5f7b5b;
+  --c-inaccuracy: #b9832a;
+  --c-miss: #be5a22;
+  --c-mistake: #a8402e;
+  --c-blunder: #9e2b20;
+
+  /* geometry + elevation */
+  --radius: 5px;
+  --shadow-paper-value:
+    0 1px 0 rgb(255 244 220 / 0.35) inset, 0 10px 26px -12px rgb(0 0 0 / 0.7),
+    0 2px 5px rgb(0 0 0 / 0.35);
+  --shadow-lift-value:
+    0 22px 50px -18px rgb(0 0 0 / 0.8), 0 3px 8px rgb(0 0 0 / 0.4);
+
+  /* ── shadcn's semantic layer, remapped onto the identity ──────────────────
+     --background is PAPER, not wood: every control in this design sits on a
+     cream card, so an outline button on `bg-background` must not come out
+     walnut-on-walnut. The wood ground is painted explicitly on <body>. */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--brass);
+  --primary-foreground: var(--wood-900);
+  --secondary: var(--paper-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-3);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--paper-2);
+  --accent-foreground: var(--ink);
+  --destructive: var(--lacquer);
+  --destructive-foreground: var(--paper);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--brass);
+}
+
+@theme inline {
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-display: var(--font-fraunces), Georgia, serif;
+
+  --color-wood-900: var(--wood-900);
+  --color-wood-800: var(--wood-800);
+  --color-wood-tone: var(--wood-tone);
+  --color-wood-600: var(--wood-600);
+  --color-oak: var(--oak);
+
+  --color-brass: var(--brass);
+  --color-brass-lo: var(--brass-lo);
+  --color-brass-hi: var(--brass-hi);
+  --color-felt: var(--felt);
+  --color-felt-hi: var(--felt-hi);
+  --color-lacquer: var(--lacquer);
+  --color-lacquer-hi: var(--lacquer-hi);
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-2: var(--rule-2);
+
+  --color-sq-l: var(--sq-l);
+  --color-sq-d: var(--sq-d);
+  --color-frame: var(--frame);
+
+  /* bg-cls-blunder reads better than the ambiguous bg-c-blunder */
+  --color-cls-brilliant: var(--c-brilliant);
+  --color-cls-great: var(--c-great);
+  --color-cls-book: var(--c-book);
+  --color-cls-best: var(--c-best);
+  --color-cls-excellent: var(--c-excellent);
+  --color-cls-good: var(--c-good);
+  --color-cls-inaccuracy: var(--c-inaccuracy);
+  --color-cls-miss: var(--c-miss);
+  --color-cls-mistake: var(--c-mistake);
+  --color-cls-blunder: var(--c-blunder);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+
+  --shadow-paper: var(--shadow-paper-value);
+  --shadow-lift: var(--shadow-lift-value);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* The wood ground is painted, never inherited. */
+  body {
+    background-color: var(--wood-900);
+    color: var(--paper);
+    font-family: var(--font-plex-sans), system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-variation-settings:
+      'SOFT' 20,
+      'WONK' 1;
+    margin: 0;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--brass);
+    color: var(--wood-900);
+  }
+}
+
+/* The four Fraunces optical registers the prototype uses. */
+@utility type-mark {
+  font-variation-settings:
+    'SOFT' 30,
+    'WONK' 1,
+    'opsz' 40;
+}
+@utility type-stat {
+  font-variation-settings:
+    'SOFT' 20,
+    'WONK' 0,
+    'opsz' 60;
+}
+@utility type-display {
+  font-variation-settings:
+    'SOFT' 40,
+    'WONK' 1,
+    'opsz' 120;
+}
+@utility type-hero {
+  font-variation-settings:
+    'SOFT' 46,
+    'WONK' 1,
+    'opsz' 144;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
