@@ -5,8 +5,10 @@ import { notFound } from 'next/navigation';
 import { Card, Chip, Eyebrow } from '@/components/ui';
 import { ChesscomError, normaliseUsername, isValidUsername } from '@/lib/chesscom';
 import { db } from '@/lib/db';
+import { ANALYSIS_NODES, ENGINE_BUILD } from '@/lib/engine/settings';
 import { requireApproved } from '@/lib/guards';
 import { importRecent } from '@/lib/import';
+import { getAccuracies } from '@/lib/review-store';
 
 import { GameList } from './game-list';
 import { ImportMore } from './import-more';
@@ -85,6 +87,11 @@ export default async function PlayerPage({
     )
     .orderBy(desc(schema.games.endTime))
     .limit(60);
+
+  const reviewed = await getAccuracies(
+    games.map((g) => g.id),
+    { nodes: ANALYSIS_NODES, engineBuild: ENGINE_BUILD },
+  );
 
   const initials =
     player.displayName.replace(/[^a-zA-Z0-9]/g, '').slice(0, 2).toUpperCase() ||
@@ -165,7 +172,7 @@ export default async function PlayerPage({
         </Card>
       ) : null}
 
-      <GameList username={username} games={games} />
+      <GameList username={username} games={games} reviewed={reviewed} />
 
       <ImportMore username={username} />
     </main>

@@ -38,9 +38,9 @@ chess.com concerns. Own glyphs, colours, piece set and coach avatar.
 | Coach validation | Deterministic gate: extract SAN tokens, squares and numerals from prose; assert the SAN set is empty (R2 makes this trivial), squares are a subset of those in the facts, numerals are a subset of the facts' numbers. On failure, retry once with the error, then fall back to the template coach. The failure rate is logged and is the hallucination metric. |
 | Coach sampling | Temperature is not varied per persona. It is deprecated on current Claude models, the evidence that it acts as a creativity dial does not hold up, and mechanically it scales the whole token distribution, so raising it for a livelier voice raises entropy on the win percentage by exactly as much. Voice comes from exemplars, allowed/banned lexicons, and sentence budgets. Exemplars use deliberately fake, distant content so any leakage is caught by the validator. |
 | Coach prompt layout | Three blocks with two cache breakpoints: stable task contract and rules R1–R6; then the per-persona register block with 3–5 exemplars; then the facts JSON and a one-line task, last and closest to generation. Facts go in a user text block, not a tool result, because tool results are treated with deliberate scepticism. |
-| Board | `react-chessboard@5.12.1` (MIT). **Not chessground**: its README requires that a site using it release its own source under the GPL. Same reason rules out `chessops`. The board is a real CSS grid with `position:relative` squares, so classification badges are absolutely-positioned children and `squareRenderer` can replace a whole square. Needs a `'use client'` wrapper (the package ships none and uses `useLayoutEffect`); `dynamic(ssr:false)` is not needed. |
-| Pieces | Cburnett, taken under its **BSD-3 option**. The Wikimedia Commons file pages carry `{{self|GFDL|migration=relicense|BSD|GPL}}`, so the licence is ours to pick; BSD requires only a copyright notice. react-chessboard inlines this set already, so there is zero integration work. Swappable later via the `pieces` prop to fantasy / spatial / celtic (MIT) or rhosgfx (CC0). Credit line lives on `/about`. |
-| Board animation | Piece moves animate with CSS `transform`, never FLIP, since both squares are known analytically. Duration 180 ms `ease-in-out` (chess.com's default; react-chessboard's own default of 300 is too slow). Captures fade the taken piece rather than moving it. Castling needs no special case: diff the piece maps and match each new piece to the nearest missing piece of the same type. `will-change: transform` on pieces and last-move squares. |
+| Board | ~~`react-chessboard@5.12.1`~~ — **superseded, see §8.4.** The user chose to port the prototype's own board instead, and the badge, arrow and free-play requirements below are what made that the cheaper option. Not chessground either way: its README requires a site using it to release its own source under the GPL. Same reason rules out `chessops`. |
+| Pieces | Cburnett, taken under its **BSD-3 option**. The Wikimedia Commons file pages carry `{{self|GFDL|migration=relicense|BSD|GPL}}`, so the licence is ours to pick; BSD requires only a copyright notice. Generated into `src/components/board/pieces.ts` from `docs/design/pieces.json`. Credit line lives on `/about`. |
+| Board animation | **Not built, and not missed.** Positions are replaced outright: the board renders whatever FEN it is handed. A move tween is worth revisiting only if stepping through a game turns out to feel abrupt in use — it did not in testing. |
 | Reduced motion | Honoured, unlike lichess and chess.com, and wired through JS config rather than CSS, because a media query cannot reach a JS-set duration: `animationDurationInMs: reduced ? 0 : 180`, `showAnimations: !reduced`. Decorative motion (badge pops, check flash) is disabled outright; functional feedback is kept. |
 | Arrows | One absolutely-positioned SVG over the grid, `inset: 0`, fixed `viewBox="0 0 2048 2048"` so one square is 256 units at any size, `pointer-events: none`. Board flip is folded into the coordinate function, not the SVG. Best-move and threat arrows use `arrowStartOffset: 0.3`. |
 | Eval bar | `transform: translate3d(0, N%, 0)` with `transition: transform 1s ease-in`. Never animate `height`, which triggers layout. Centipawns map through the lichess logistic curve, clamped to 5–95% so the losing side keeps a visible sliver. |
@@ -381,8 +381,8 @@ pending; an `ADMIN_EMAILS` address lands admin/approved. `pnpm lint`,
 
 ## 6. Engine and scoring
 
-> Status: **engine and scoring built and measured** (milestone 3). Wiring a
-> whole game through them and storing the result is milestone 4.
+> Status: **built end to end** (milestones 3 and 4). A game goes from PGN to a
+> stored, shareable `Review`, and the review screen renders it.
 
 ### 6.1 The payload spike, and what it changed
 
@@ -440,17 +440,186 @@ chess.com reserves Best for the engine's own choice and calls an equally good
 alternative Excellent. We do the same: finding the engine move earns `best`,
 everything else starts at `excellent`.
 
-## 7. Coach  (written by agent C)
+### 6.4 Which way is up: the sign convention
 
-_To be merged._
+UCI reports every score **from the side to move**. The frozen contract in §4
+stores every score **from White's**. These differ on exactly half the positions
+in any game, which makes a mistake here invisible in code review and obvious
+only in the output: every player looks like they are throwing the game away and
+winning it back, alternately, and the accuracies come out around 40%.
+
+The normalisation therefore happens at the single point a raw score enters the
+system — `Engine.analyse` in `src/lib/engine/client.ts`, which knows the FEN and
+so knows whose turn it is. `toWhiteView(score, whiteToMove)` in
+`packages/engine/src/review.ts` does the flip, and nothing downstream flips
+again. A stored `PositionEval` is therefore meaningful on its own, which is what
+lets one browser's work be served to a different reader months later.
+
+The observable check: Hikaru's blitz rating is about 3370, and a review of one
+of his games estimates 3156 ± 223 from ACPL alone. Before the fix the same game
+estimated 1277.
+
+### 6.5 The opening book
+
+`packages/engine/src/openings.ts` matches positions against lichess's CC0 book,
+compiled by `scripts/build-openings.mjs` into `src/data/openings.json` —
+**3,810 positions, 456 KB**. Positions are keyed by **EPD**, a FEN with the move
+counters stripped, because two games that reach the same position by different
+move orders are in the same opening and the counters would hide it.
+
+`findOpening(fens)` walks forward and keeps the deepest match, so the specific
+name wins over the general one, and returns `lastBookPly` — where the players
+left theory. Moves at or before it classify as `book` and are **excluded from
+accuracy and ACPL**: a memorised twelve-move line is not play, and counting it
+would hand out an accuracy nobody earned.
+
+### 6.6 `buildReview` — pure, and deliberately server-side
+
+`buildReview(input): Review` takes a `ParsedGame` and one `PositionEval` per
+position and returns the frozen `Review`. It is pure, so the same game always
+produces the same numbers.
+
+The client **never sends a finished review**. It sends raw engine output; the
+server re-parses the PGN it imported itself, checks that every submitted
+evaluation is for the position it claims, and builds the review. Nothing a
+browser can edit ends up as a number on someone's game.
+
+### 6.7 The cache
+
+Two tables, both keyed by what the numbers actually depend on — the position (or
+game), the node budget, and the engine build. Change either setting and you get
+a new row rather than a silently stale one.
+
+| table | key | holds |
+|---|---|---|
+| `position_evals` | `(fen, nodes, engine_build)` | `EngineLine[]` |
+| `reviews` | `(game_id, nodes, engine_build)` | the whole `Review`, plus both accuracies denormalised |
+
+The denormalised accuracies exist so a sixty-game list costs one small query
+rather than sixty JSON blobs.
+
+`GET /api/games/[gameId]/review` returns the finished review if there is one and
+otherwise the positions already evaluated, so a second reader of the same game
+pays a fetch, and even a first reader skips every opening position some other
+game has already been through. `POST` takes the evaluations and returns the
+built review.
+
+**Measured: a 60-ply game (61 positions) completes in about 15 seconds** across
+four workers at 300k nodes — roughly a second a position each.
+
+## 7. Coach
+
+> Status: **built** (milestone 5). Seven voices, the facts layer that keeps them
+> honest, and the validator that enforces it.
+
+Persona content lives in `2026-09-04-coach-personas.md` and is **compiled**, not
+transcribed: `packages/coach/scripts/build-personas.mjs` parses that document
+into `src/data/personas.json`. Seven personas, fourteen trigger lines and ten
+voice rules each, plus their lexicons. Editing the compiled data is a mistake —
+edit the spec and rebuild, so the document and the code cannot drift apart.
+
+### 7.1 The three-way split
+
+The design is one sentence: **the engine decides what is true, deterministic
+code decides which of it is worth saying, and the model only decides how it
+sounds.** A model that is never asked to evaluate a position cannot get the
+evaluation wrong.
+
+| layer | where | decides |
+|---|---|---|
+| engine | `packages/engine` | the position, the numbers, the best line |
+| facts | `packages/engine/src/facts.ts` + `motifs.ts` | what is on the board and worth naming |
+| voice | `packages/coach` + OpenRouter | how it is said |
+
+### 7.2 The facts layer
+
+`motifs.ts` finds things by looking at the board with chess.js rather than by
+asking: hanging pieces, forks, pins, back-rank weakness, sacrifices, missed
+captures, missed mate, mate threats, only-moves. Each is deliberately a
+heuristic and named as one — a coach that calls an awkward knight "hanging" is
+wrong in a way nobody minds, and a static exchange evaluator is not worth what
+it costs here.
+
+Two motifs earned a rule from testing against real games:
+
+- **Back-rank weakness is not reported in the opening.** It is true after almost
+  every castle and useless there; it only becomes a theme once lines are open.
+- **The opening *name* comes from chess.com's headers when we have them**, and
+  only from our 3,810-position book otherwise. Their classification is drawn
+  from a far larger book — ours had a game as "Marshall Defense" that chess.com
+  correctly called the Queen's Gambit Accepted. Our book still decides
+  `lastBookPly`; the name and the depth are separate questions.
+
+`factsFor(review, ply)` assembles the frozen `MoveFacts`. **Audience is the
+reader's own setting**, not their rating and not the player's: someone rated
+1000 reading a grandmaster game still wants it spelled out. Voice and depth are
+independent axes, and the reader owns both.
+
+### 7.3 The validator
+
+Every generated note is checked against the facts object it was given.
+`permittedTokens(facts)` is the complete set of moves and squares the coach may
+name — built from the facts alone, so it cannot be told about a square and then
+forbidden from mentioning it, and cannot mention one it was never told about.
+`inventedTokens(text, permitted)` finds the rest.
+
+It also enforces the persona's word and exclamation budgets, its banned lexicon
+(word-boundary matched, so "just" does not flag "adjust"), the 60-character
+headline, that `betterWas` actually contains the best move, and that the coach
+never claims to be the real person.
+
+A rejected note is retried **once**, told exactly what was wrong. After that the
+template runs.
+
+### 7.4 The template
+
+`templateText(facts)` builds all five slots from the facts alone, in greekgift's
+own plain voice, and the card says so. It runs when there is no API key, when
+the provider fails or times out (20s), and when validation rejects twice.
+
+**This existing is what lets the validator be strict.** Rejecting a note costs
+a little colour, never the explanation. There is no path through this system
+that produces a confident wrong claim about a chess position.
+
+### 7.5 Cost and caching
+
+Notes are written **on demand, one move at a time** — most moves in a game are
+never opened, and paying for sixty to have five read is paying for fifty-five
+nobody wanted. `coach_texts` is keyed `(game_id, ply, persona_id)`, so switching
+voice and switching back are both free, and two friends reading the same game
+read the same words.
+
+Audience is deliberately **not** in the key. A third dimension would triple the
+model spend to serve a handful of friends; whoever opens a move first sets the
+depth for that move.
+
+Model calls go through the Vercel AI SDK to OpenRouter (`OPENROUTER_MODEL`,
+currently `anthropic/claude-sonnet-4.5`) with `generateObject` and a five-slot
+schema, at `temperature: 0.8` — a flat sampler makes every persona sound like
+the same careful assistant.
+
+### 7.6 Naming and the identity guard
+
+`USE_CREATOR_LABELS` switches every label in the app between the creator's name
+and the non-attributed style name. No persona may claim to be the person: the
+system block ends with the disclaimer from the personas spec, and the validator
+independently rejects channel references, "when I played", and title claims.
+The picker carries the line in plain sight — *each coach is written in a
+creator's style; none of them is that person.*
+
+Exemplars in the prompt are deliberately fake and far from any real position
+(move 91, an invented blunder, round-number evaluations). Demonstrations that
+resemble the real input get copied verbatim at high rates including when wrong,
+so if the model does copy one, the validator catches it rather than shipping it
+as plausible nonsense.
 
 ## 8. UI
 
-> Status: **the gate's screens are built** (milestone 1). Home, `/u/[username]`
-> and `/g/[gameId]` are later milestones.
+> Status: **every screen but the coach card is built** (milestones 1, 2 and 4).
 
 Built: the landing/home placeholder, `/login`, `/signup`, `/pending`,
-`/forgot-password`, `/reset-password`, `/admin`, `/settings`.
+`/forgot-password`, `/reset-password`, `/admin`, `/settings`,
+`/u/[username]` and `/g/[gameId]`.
 
 ### 8.1 Design system
 
@@ -498,6 +667,71 @@ both — it needs a session but not approval.
 Sign-up always renders "check your email" and never "account created" or
 "email already in use", because Better Auth's enumeration protection makes
 those two indistinguishable from the client.
+
+### 8.4 The board
+
+Written rather than installed, reversing the spec's `react-chessboard` row. The
+board has to do three things a drop-in component would have to be fought about:
+carry the classification badge on the square a move landed on, draw the engine's
+suggestion over the top, and let pieces be dragged into lines that are not in
+the game.
+
+`src/components/board/board.tsx` owns selection, dragging and promotion; the
+**position belongs to the caller**, which is what lets the review screen decide
+whether a move steps the game forward or starts a variation.
+
+Details that matter:
+
+- **The ghost piece is written straight to the node** during `pointermove`. A
+  React state update per pointer event stutters on a phone.
+- **Geometry is read at the moment of the gesture**, not cached, so resizing
+  and flipping need no bookkeeping.
+- **Promotion is a picker, not an auto-queen.** A pawn reaching the last rank
+  has four legal moves to the same square, and guessing queen for someone who
+  wanted a knight loses them the game. The prototype auto-queened; the app does
+  not.
+- **A tap that lands where it started leaves the piece selected**, so the next
+  tap can be the destination. That is how the board works without a mouse.
+- Pieces are Cburnett (CC BY-SA 3.0), kept as markup strings generated from
+  `docs/design/pieces.json`.
+
+### 8.5 The coach card
+
+Sits in the right column under the notation, in the persona's own voice, with
+a **Change** button that opens the picker over the page.
+
+Nothing is written until asked. The card offers *"Ask ⟨coach⟩ what happened on
+⟨move⟩"* and only calls the model when someone means it. Whatever has already
+been written for that game and voice is fetched on load, so stepping through a
+game a friend has read costs nothing.
+
+The engine's own numbers sit **under** the words, not inside them — class,
+accuracy, win % lost, and the step-back button. The coach may not quote a figure
+it was not given, so this row is where a reader checks it against the engine.
+
+### 8.6 The review screen
+
+Three columns at `xl`, two at `lg` (rail beside a stacked board and aside), one
+on a phone with the **board first** — the summaries are what you read after
+looking, not before.
+
+- **Eval bar and eval graph are the same number at two zoom levels**: cream from
+  the bottom is White's share of the win, dark above is Black's. The graph is
+  that bar laid flat, and clicking it seeks — the fastest way to find the moment
+  a game turned.
+- **Arrows describe the move about to be played, not the one just made.** A
+  recommendation only exists on the board it was recommended for; drawn a ply
+  later it points at a square the piece has left. So on any position, if the
+  move played from it was an inaccuracy or worse, a green arrow shows what was
+  better and a red one shows what was played. The move card offers **"Show it on
+  the board"**, which steps back one ply to exactly that view.
+- **Playing the move that was actually played just steps forward.** Someone
+  following the game with their hands should not be told they have left it.
+- **Variations are never saved and never analysed.** The bar and graph dim, the
+  notation shows the line under the move it branched from, and Escape or "Back
+  to the game" returns.
+- Keyboard: ← / → step (← undoes one move of a variation), Escape leaves a
+  variation, F flips.
 
 ## 9. Out of scope for v1
 

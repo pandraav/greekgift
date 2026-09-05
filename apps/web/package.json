@@ -17,8 +17,11 @@
     "@greekgift/db": "workspace:*",
     "@greekgift/email": "workspace:*",
     "@greekgift/engine": "workspace:*",
+    "@openrouter/ai-sdk-provider": "^3.0.0",
     "@t3-oss/env-nextjs": "0.13.11",
+    "ai": "^7.0.92",
     "better-auth": "1.7.2",
+    "chess.js": "^1.4.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "drizzle-orm": "0.45.2",
@@ -29,7 +32,8 @@
     "server-only": "^0.0.1",
     "stockfish": "18.0.8",
     "tailwind-merge": "3.6.0",
-    "zod": "4.5.4"
+    "zod": "4.5.4",
+    "@greekgift/coach": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.3",

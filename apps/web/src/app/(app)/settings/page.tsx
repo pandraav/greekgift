@@ -1,3 +1,4 @@
+import { DEFAULT_PERSONA_ID } from '@greekgift/coach';
 import { schema } from '@greekgift/db';
 import { eq } from 'drizzle-orm';
 
@@ -6,6 +7,7 @@ import { db } from '@/lib/db';
 import { requireApproved } from '@/lib/guards';
 
 import { AccountForm } from './account-form';
+import { CoachForm } from './coach-form';
 import { DangerZone } from './danger-zone';
 
 export const metadata = { title: 'Settings · greekgift' };
@@ -48,11 +50,14 @@ export default async function SettingsPage() {
           <CardHead>
             <h2 className="text-[17px] font-semibold">Your coach</h2>
             <p className="mt-1 text-[13.5px] text-ink-2">
-              Seven voices, freely selectable. Arrives with the review screen.
+              Seven voices, freely selectable, and how much each one explains.
             </p>
           </CardHead>
           <CardBody>
-            <p className="m-0 text-[14px] text-ink-3">Not built yet.</p>
+            <CoachForm
+              personaId={profile?.personaId ?? DEFAULT_PERSONA_ID}
+              audience={profile?.audience ?? 'intermediate'}
+            />
           </CardBody>
         </Card>
 

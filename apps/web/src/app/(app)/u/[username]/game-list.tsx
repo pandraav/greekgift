@@ -17,12 +17,20 @@ function outcome(game: Game, username: string) {
 const when = (d: Date) =>
   d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 
+export interface ReviewedAccuracy {
+  white: number;
+  black: number;
+}
+
 export function GameList({
   username,
   games,
+  reviewed = {},
 }: {
   username: string;
   games: Game[];
+  /** Our own accuracies, where a review has been run. Keyed by game id. */
+  reviewed?: Record<string, ReviewedAccuracy>;
 }) {
   if (games.length === 0) {
     return (
@@ -42,6 +50,16 @@ export function GameList({
     <Card className="overflow-hidden">
       {games.map((game) => {
         const iAmWhite = game.whiteUsername === username;
+
+        // Our own number when we have one; chess.com's only as a stand-in.
+        const ours = reviewed[game.id];
+        const mine = ours ? (iAmWhite ? ours.white : ours.black) : null;
+        const theirs =
+          game.ccAccuracyWhite !== null && game.ccAccuracyBlack !== null
+            ? iAmWhite
+              ? game.ccAccuracyWhite
+              : game.ccAccuracyBlack
+            : null;
         const opponent = iAmWhite ? game.blackName : game.whiteName;
         const oppRating = iAmWhite ? game.blackRating : game.whiteRating;
         const o = outcome(game, username);
@@ -83,9 +101,13 @@ export function GameList({
             </span>
 
             <span className="justify-self-end font-mono text-[13.5px] [grid-area:acc]">
-              {game.ccAccuracyWhite !== null && game.ccAccuracyBlack !== null ? (
+              {mine !== null ? (
+                <span className="font-semibold" title="Your accuracy in this game">
+                  {mine.toFixed(1)}
+                </span>
+              ) : theirs !== null ? (
                 <span className="text-ink-3" title="chess.com's own accuracy">
-                  {(iAmWhite ? game.ccAccuracyWhite : game.ccAccuracyBlack).toFixed(1)}
+                  {theirs.toFixed(1)}
                 </span>
               ) : (
                 <span className="text-[12px] text-ink-3">not reviewed</span>
@@ -93,8 +115,12 @@ export function GameList({
             </span>
 
             <span className="justify-self-end [grid-area:go]">
-              <span className="inline-flex items-center rounded-[3px] border border-rule px-3 py-1.5 text-[13px] font-semibold">
-                Review
+              <span
+                className={`inline-flex items-center rounded-[3px] border px-3 py-1.5 text-[13px] font-semibold ${
+                  ours ? 'border-felt/45 bg-felt/8 text-felt' : 'border-rule'
+                }`}
+              >
+                {ours ? 'See review' : 'Review'}
               </span>
             </span>
           </Link>

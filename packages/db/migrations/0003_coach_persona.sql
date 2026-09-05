@@ -1,0 +1,1 @@
+ALTER TABLE "user_profiles" ADD COLUMN "persona_id" text DEFAULT 'sagar' NOT NULL;

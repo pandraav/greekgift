@@ -1,3 +1,4 @@
+import { toWhiteView } from '@greekgift/engine';
 import type { EngineLine, PositionEval, Score } from '@greekgift/engine';
 
 /**
@@ -90,6 +91,12 @@ export class Engine {
 
     const multipv = options.multipv ?? 1;
 
+    // UCI scores are relative to the side to move; everything downstream —
+    // the contract, the cache, the graph — is from White's. Normalising here,
+    // at the one place a raw score enters the system, is what keeps a stored
+    // evaluation meaningful on its own.
+    const whiteToMove = fen.split(' ')[1] === 'w';
+
     try {
       return await new Promise<PositionEval>((resolve, reject) => {
         // Keyed by multipv index: later, deeper lines replace earlier ones.
@@ -99,8 +106,9 @@ export class Engine {
           const m = INFO.exec(line);
           if (m) {
             const index = Number(m[2]) as 1 | 2 | 3;
-            const score: Score =
+            const raw: Score =
               m[3] === 'mate' ? { mate: Number(m[4]) } : { cp: Number(m[4]) };
+            const score = toWhiteView(raw, whiteToMove);
             best.set(index, {
               multipv: index,
               score,

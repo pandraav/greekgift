@@ -1,5 +1,9 @@
 /**
- * Personas and the coach pipeline land in milestone 5.
- * Definitions live in docs/superpowers/specs/2026-09-04-coach-personas.md.
+ * The coach: personas, the prompt that carries one, and the two checks that
+ * keep it honest — a validator that rejects anything the facts do not support,
+ * and a template that always has an answer when it does.
  */
-export {};
+export * from './personas.ts';
+export * from './prompt.ts';
+export * from './template.ts';
+export * from './validate.ts';

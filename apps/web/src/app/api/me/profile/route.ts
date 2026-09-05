@@ -1,3 +1,4 @@
+import { PERSONAS } from '@greekgift/coach';
 import { schema } from '@greekgift/db';
 import { eq } from 'drizzle-orm';
 
@@ -33,12 +34,25 @@ export async function GET() {
 
 /** PUT requires approval — only members with access edit their own settings. */
 export async function PUT(request: Request) {
+  return save(request);
+}
+
+/**
+ * PATCH is the same write, and exists because changing your coach mid-review
+ * is a one-field edit that should not have to send the whole settings form.
+ */
+export async function PATCH(request: Request) {
+  return save(request);
+}
+
+async function save(request: Request) {
   const guarded = await guardApproved();
   if ('response' in guarded) return guarded.response;
 
   const body = (await request.json().catch(() => ({}))) as {
     chesscomUsername?: unknown;
     audience?: unknown;
+    personaId?: unknown;
   };
 
   const username =
@@ -49,11 +63,16 @@ export async function PUT(request: Request) {
   const levels = ['beginner', 'intermediate', 'advanced'] as const;
   const audience = levels.find((l) => l === body.audience);
 
+  // Only a persona that exists: the column is plain text so the spec can gain
+  // and lose voices without a migration, which puts the check here instead.
+  const personaId = PERSONAS.find((p) => p.id === body.personaId)?.id;
+
   const [updated] = await db
     .update(schema.userProfiles)
     .set({
       ...(username !== undefined ? { chesscomUsername: username } : {}),
       ...(audience ? { audience } : {}),
+      ...(personaId ? { personaId } : {}),
     })
     .where(eq(schema.userProfiles.userId, guarded.user.id))
     .returning();

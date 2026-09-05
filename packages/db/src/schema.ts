@@ -3,7 +3,9 @@ import {
   boolean,
   index,
   integer,
+  jsonb,
   pgTable,
+  primaryKey,
   real,
   text,
   timestamp,
@@ -144,12 +146,23 @@ export const userProfiles = pgTable(
      */
     chesscomUsername: text('chesscom_username'),
 
-    /** Drives how much the coach explains. */
+    /**
+     * Drives how much the coach explains. Independent of the persona on
+     * purpose: the voice is the reader's to choose, the depth follows their
+     * rating.
+     */
     audience: text('audience', {
       enum: ['beginner', 'intermediate', 'advanced'],
     })
       .notNull()
       .default('intermediate'),
+
+    /**
+     * Which coach writes. Not an enum in the database: personas are compiled
+     * from a spec that will gain and lose entries, and a migration per edit
+     * would be absurd. An unknown id falls back to the default in code.
+     */
+    personaId: text('persona_id').notNull().default('sagar'),
 
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at')
@@ -277,3 +290,64 @@ export type NewPlayer = typeof players.$inferInsert;
 export type Game = typeof games.$inferSelect;
 export type NewGame = typeof games.$inferInsert;
 export type TimeClass = (typeof timeClass)[number];
+
+/* ── analysis cache ───────────────────────────────────────────────────────
+   Both tables are keyed by what the numbers actually depend on: the position
+   (or game), the node budget, and the engine build. Change either setting and
+   you get a different row rather than a silently stale one.
+   ------------------------------------------------------------------------ */
+
+export const positionEvals = pgTable(
+  'position_evals',
+  {
+    fen: text('fen').notNull(),
+    nodes: integer('nodes').notNull(),
+    engineBuild: text('engine_build').notNull(),
+    /** EngineLine[], multipv 1..3, best first. */
+    lines: jsonb('lines').notNull(),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.fen, t.nodes, t.engineBuild] })],
+);
+
+export const reviews = pgTable(
+  'reviews',
+  {
+    gameId: text('game_id')
+      .notNull()
+      .references(() => games.id, { onDelete: 'cascade' }),
+    nodes: integer('nodes').notNull(),
+    engineBuild: text('engine_build').notNull(),
+    /** The whole Review object from packages/engine. */
+    data: jsonb('data').notNull(),
+    /** Denormalised so the game list can show them without parsing the blob. */
+    whiteAccuracy: real('white_accuracy').notNull(),
+    blackAccuracy: real('black_accuracy').notNull(),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.gameId, t.nodes, t.engineBuild] }),
+    index('reviews_game_idx').on(t.gameId),
+  ],
+);
+
+export const coachTexts = pgTable(
+  'coach_texts',
+  {
+    gameId: text('game_id')
+      .notNull()
+      .references(() => games.id, { onDelete: 'cascade' }),
+    ply: integer('ply').notNull(),
+    personaId: text('persona_id').notNull(),
+    /** The CoachText object. */
+    data: jsonb('data').notNull(),
+    model: text('model'),
+    source: text('source', { enum: ['llm', 'template'] }).notNull(),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.gameId, t.ply, t.personaId] })],
+);
+
+export type PositionEvalRow = typeof positionEvals.$inferSelect;
+export type ReviewRow = typeof reviews.$inferSelect;
+export type CoachTextRow = typeof coachTexts.$inferSelect;
