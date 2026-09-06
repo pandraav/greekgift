@@ -127,12 +127,6 @@ importers:
       '@electric-sql/pglite':
         specifier: 0.5.8
         version: 0.5.8
-      '@greekgift/coach':
-        specifier: workspace:*
-        version: link:../coach
-      '@greekgift/engine':
-        specifier: workspace:*
-        version: link:../engine
       '@neondatabase/serverless':
         specifier: 1.1.0
         version: 1.1.0
