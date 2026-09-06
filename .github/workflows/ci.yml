@@ -117,8 +117,13 @@ jobs:
           TARGET: production
         run: bash scripts/vercel-env-sync.sh
 
+      - name: Diagnose token (temporary)
+        run: |
+          vercel whoami --token="$VERCEL_TOKEN" || true
+          vercel teams ls --token="$VERCEL_TOKEN" || true
+          vercel project ls --token="$VERCEL_TOKEN" --scope="$VERCEL_ORG_ID" || true
       - name: Pull Vercel project settings (production)
-        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN" --debug
 
       # All eleven variables come from the job env above; process env takes
       # precedence over the pulled .vercel/.env.production.local.
