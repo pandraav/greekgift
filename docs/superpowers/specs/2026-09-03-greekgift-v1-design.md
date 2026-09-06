@@ -1,8 +1,13 @@
-# greekgift v1 — design spec (skeleton and shared contracts)
+# greekgift v1 — design spec
 
-> Status: SKELETON. Sections 5–8 are written by four independent agents against
-> the contracts in section 4, verified, then merged here. Everything in sections
-> 1–4 is fixed and must not be changed by section writers.
+> **Status: v1 is built.** Sections 1–4 are the frozen contracts and stay
+> frozen. Sections 5–8 were written back as each subsystem landed and describe
+> what the code actually does, including where it departed from section 4 and
+> why. Section 10 lists what section 1 promises that is not built yet.
+>
+> Companion documents: [`docs/design/design-guide.md`](../../design/design-guide.md)
+> for the visual system, [`2026-09-04-coach-personas.md`](2026-09-04-coach-personas.md)
+> for the coach voices.
 
 ## 1. What greekgift is
 
@@ -15,8 +20,12 @@ in verified facts. Analysis runs in the browser with a fixed node budget so the
 numbers are identical on every device. Results are stored in Postgres keyed by
 username so the next viewer skips the engine and sees the same numbers.
 
-Hobby project. No accounts, no billing, no legal posture, no competing-with-
-chess.com concerns. Own glyphs, colours, piece set and coach avatar.
+Hobby project. No billing, no legal posture, no competing-with-chess.com
+concerns. Own glyphs, colours, piece set and coach avatar.
+
+There *are* accounts — the app is invite-only, one admin approving by hand (§2
+Auth, §5). An earlier draft of this paragraph said there were none, which was
+written before that decision and was simply wrong.
 
 ## 2. Decisions already made (do not reopen)
 
@@ -74,12 +83,26 @@ greekgift/
   packages/db/              Drizzle schema + client
   packages/email/           Brevo client + the three email templates
   packages/coach/           personas + the coach pipeline
-  docs/superpowers/specs/   this spec
+  docs/design/              the HTML prototype, the piece set, the design guide
+  docs/superpowers/specs/   this spec and the personas spec
   docs/graphs/              graph-engineering artifacts
 ```
 
 pnpm workspace. `packages/engine` is the only place classification logic lives.
 The web app and the coach call it; nothing else reimplements a formula.
+
+**`docs/` is not inert.** Two files in it are compiled into source and a third
+directory is the piece set:
+
+| generated | from | by |
+|---|---|---|
+| `packages/coach/src/data/personas.json` | `docs/superpowers/specs/2026-09-04-coach-personas.md` | `packages/coach/scripts/build-personas.mjs` |
+| `apps/web/src/components/board/pieces.ts` | `docs/design/pieces.json` | `apps/web/scripts/build-pieces.mjs` |
+| `packages/engine/src/data/openings.json` | lichess's book, fetched | `packages/engine/scripts/build-openings.mjs` |
+
+The first exists so the personas spec and the code cannot drift — the spec says
+`packages/coach` implements the personas verbatim, and compiling is the only way
+to make that a fact rather than a promise.
 
 ### Environment variables (all required)
 
@@ -88,21 +111,30 @@ Every entry below is required; the schema has no `.optional()` and no `.default(
 
 | Variable | Scope | Zod schema | Purpose |
 |---|---|---|---|
-| `DATABASE_URL` | server | `z.string().url()` | Neon Postgres connection string |
+| `DATABASE_URL` | server | `z.url()` | Postgres connection string. `pglite://.pglite` selects the in-process driver |
 | `BETTER_AUTH_SECRET` | server | `z.string().min(32)` | Better Auth signing secret |
-| `BETTER_AUTH_URL` | server | `z.string().url()` | Canonical app URL for auth callbacks |
+| `BETTER_AUTH_URL` | server | `z.url()` | Canonical app URL for auth callbacks |
 | `ADMIN_EMAILS` | server | `z.string().min(3)` | Comma-separated admin emails |
 | `BREVO_API_KEY` | server | `z.string().min(1)` | Brevo transactional email key |
-| `EMAIL_FROM` | server | `z.string().email()` | Sender address for all three emails |
+| `EMAIL_FROM` | server | `z.email()` | Sender address for all three emails |
 | `OPENROUTER_API_KEY` | server | `z.string().min(1)` | Coach LLM key |
 | `OPENROUTER_MODEL` | server | `z.string().min(1)` | Model slug, e.g. `anthropic/claude-sonnet-4.5` |
-| `NEXT_PUBLIC_APP_URL` | client | `z.string().url()` | Absolute URL used by the browser client |
-| `NEXT_PUBLIC_ENGINE_NODES` | client | `z.coerce.number().int().positive()` | Node budget per position; part of the eval cache key |
-| `NEXT_PUBLIC_ENGINE_BUILD` | client | `z.string().min(1)` | Engine build id, e.g. `stockfish-18-single-nn-9067e33176e8`; part of the eval cache key |
+| `NEXT_PUBLIC_APP_URL` | client | `z.url()` | Absolute URL used by the browser client |
+| `NEXT_PUBLIC_ENGINE_NODES` | client | `z.coerce.number().int().positive()` | **Validated but never read** — see §10. The live value is `ANALYSIS_NODES` in `lib/engine/settings.ts` |
+| `NEXT_PUBLIC_ENGINE_BUILD` | client | `z.string().min(1)` | **Validated but never read** — see §10. The live value is `ENGINE_BUILD` in `lib/engine/client.ts` |
+
+`z.url()` and `z.email()` are the zod 4 spellings; `z.string().url()` is
+deprecated in 4.x, which is why the schemas read shorter than the table
+originally described.
 
 `.env.example` lists all eleven with placeholder values and is committed. A
 `pnpm env:check` script imports `env.ts` and exits non-zero on a missing key,
 and runs in CI before build.
+
+Only nine of the eleven do anything. Dev works with an empty `.env`:
+`skipValidation` is gated on `NODE_ENV !== 'production'`, an unset
+`DATABASE_URL` selects PGlite, an unset `BREVO_API_KEY` prints emails to the
+terminal, and an unset `OPENROUTER_API_KEY` sends the coach to its template.
 
 ## 4. Shared contracts (frozen)
 
@@ -263,8 +295,8 @@ require `role = 'admin'`.
 
 ## 5. Import, data and auth
 
-> Status: **auth and data built** (milestone 1). chess.com import is milestone 2 and
-> is not written here yet.
+> Status: **built** (milestones 1 and 2). Auth, the schema, and the chess.com
+> import and mirror.
 
 ### 5.1 Where the schema diverges from section 4, and why
 
@@ -613,9 +645,48 @@ resemble the real input get copied verbatim at high rates including when wrong,
 so if the model does copy one, the validator catches it rather than shipping it
 as plausible nonsense.
 
+### 7.7 Choosing the model — and why chess ability is not a criterion
+
+The obvious instinct when a note reads thin is to reach for a model that is
+"better at chess". Two findings say otherwise.
+
+**No chat model is good at chess, at any price.** Testing 13 models against
+Stockfish on its *lowest* difficulty, Llama-3.1-70b and -405b, Qwen-2.5-72b,
+Gemma-2-27b, GPT-4o, GPT-4o-mini and o1-mini lost every game. Size did not
+help — the 405b lost. The single model that won every game was
+`gpt-3.5-turbo-instruct`, a **base** model, and the reported pattern was that
+instruction-tuning consistently degrades chess ability
+([dynomight.net/chess](https://dynomight.net/chess/)). There is no cheap
+chess-strong chat model to find.
+
+**It would not matter if there were.** Our model is handed a facts block and
+forbidden from adding to it. It never evaluates a position, never calculates,
+never chooses a move. The chess quality of a note is set entirely by §7.2, and
+the model only sets the prose.
+
+So the criteria are: instruction-following, voice adherence, and reliable
+structured output. Cost for our call shape (~1500 prompt, ~180 completion
+tokens) at the time of writing:
+
+| model | $/1k notes |
+|---|---|
+| `openai/gpt-oss-120b` | 0.09 |
+| `qwen/qwen3-30b-a3b-instruct-2507` | 0.11 |
+| `openai/gpt-5-nano` | 0.15 |
+| `google/gemini-2.5-flash-lite` | 0.22 |
+| `anthropic/claude-haiku-4.5` | 2.40 |
+| `anthropic/claude-sonnet-4.5` *(current)* | 7.20 |
+
+The trap in moving down this table: the validator is strict, so a weaker model
+fails it more often and falls back to the template. **Cheaper before §7.2 is
+fixed makes the output worse, not cheaper.** The validator's pass rate is an
+objective signal, so any swap should be measured rather than assumed.
+
+
 ## 8. UI
 
-> Status: **every screen but the coach card is built** (milestones 1, 2 and 4).
+> Status: **built** (milestones 1, 2, 4 and 5). Every screen, including the
+> coach card and the persona picker.
 
 Built: the landing/home placeholder, `/login`, `/signup`, `/pending`,
 `/forgot-password`, `/reset-password`, `/admin`, `/settings`,
@@ -738,3 +809,54 @@ looking, not before.
 Skills panel, share image, friends/history page, PGN paste, lichess import,
 server-side engine, OAuth providers, marketing or digest emails, feature flags,
 mobile-specific layout, i18n.
+
+## 10. Known gaps
+
+Recorded rather than quietly dropped. Section 1 describes v1 as intended;
+these are the parts of it that are not built.
+
+### From section 1
+
+- **Variation tree.** Explore mode plays a single linear line, not a tree.
+  There is no branching, no sidelines, and nothing is persisted — leaving a
+  variation discards it. The linear version covers "what if I had played X",
+  which is the case that motivated it.
+- **Key-moment walkthrough.** `keyMoments` is computed, ordered by severity,
+  and used to pick the opening ply of a review. The guided walkthrough with
+  *hint* / *show best* / *retry* is not built.
+
+### In the facts layer (§7.2)
+
+These limit coach quality more than the model does, and are the first thing to
+fix if the notes read thin.
+
+- `materialAfterBestLine` and `materialAfterPlayedLine` are computed and
+  **never sent to the model**. On a move where the best line keeps a pawn and
+  the played line gives it back, that is the single most explanatory fact
+  available, and the coach is not told it.
+- `epLoss` is computed and not sent.
+- `threatOfBestMove` is declared in the frozen §4 contract and **populated
+  nowhere** — the null-move probe was never built, so the coach can never say
+  why the better move was better.
+- Attackers and defenders are passed as bare squares (`attacked by f8, c7`)
+  rather than named pieces. This is why a note says "attacked twice" instead
+  of naming the bishop and the queen.
+- No motif describes what the *opponent* now threatens.
+
+### Elsewhere
+
+- **Audience is not part of the `coach_texts` cache key** (§7.5), so whoever
+  opens a move first sets its depth for everyone. A deliberate cost trade.
+- **`NEXT_PUBLIC_ENGINE_NODES` and `NEXT_PUBLIC_ENGINE_BUILD` are required,
+  validated, and never read.** The values that actually drive analysis and the
+  cache key are hardcoded in `lib/engine/settings.ts` and `lib/engine/client.ts`.
+  Setting the environment variable to something else changes nothing, silently.
+  Either wire them up or drop them from `env.ts` — the second is probably
+  right, since making a cache key environment-dependent invites a prod/dev
+  split that is invisible until the numbers disagree.
+- **PGlite is single-process.** A second connection corrupts the store rather
+  than blocking. Fine for one developer, documented in the README.
+- **Sagar Shah's persona is built from general knowledge, not a measured
+  transcript corpus**, unlike the other six. He is the default. The personas
+  spec flags this; it should be checked against real footage before anyone
+  outside the group sees it.

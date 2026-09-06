@@ -1,12 +1,14 @@
 /**
- * Cburnett's pieces (CC BY-SA 3.0), the set chess.com and lichess both grew
- * up with — the shapes a player already reads without thinking.
+ * Cburnett's pieces (CC BY-SA 3.0 / BSD-3 option), the set chess.com and
+ * lichess both grew up with — the shapes a player already reads without
+ * thinking.
  *
  * Kept as markup strings rather than components: they are a fixed local
  * asset with no props and no interpolation, and twelve hand-converted JSX
  * trees would be twelve chances to mistype a path.
  *
- * Generated from docs/design/pieces.json.
+ * Generated from docs/design/pieces.json by apps/web/scripts/build-pieces.mjs.
+ * Do not edit — change the source and rebuild.
  */
 
 export type PieceKey =
