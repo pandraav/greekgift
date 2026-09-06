@@ -189,7 +189,8 @@ deploy. `.vercel/` is gitignored.
 
 ### Bootstrap (once)
 
-1. `vercel login` as the personal account; `vercel whoami` to confirm.
+1. `vercel login` as the personal account; `vercel whoami` to confirm. If the
+   CLI links the Git repo automatically, run `vercel git disconnect`.
 2. From the repo root: `vercel link` → new project `greekgift`, code directory
    `apps/web`.
 3. Dashboard → Settings: Root Directory `apps/web`, Node 22.x, Git not
@@ -203,6 +204,14 @@ deploy. `.vercel/` is gitignored.
 
 ### Gotchas
 
+- **The Vercel token must have Full Account scope.** A team-scoped token can
+  upsert env vars over REST but the CLI's first request is to the account-level
+  user endpoint, which it refuses, and `vercel pull` fails with "Could not
+  retrieve Project Settings".
+- **Deployment Protection defaults to guarding the `.vercel.app` production
+  URL.** Without a custom domain every request 302s to Vercel's SSO page. Set
+  Settings → Deployment Protection → Vercel Authentication to *Only Preview
+  Deployments* (`ssoProtection.deploymentType = "preview"` via the API).
 - A `BREVO_API_KEY` that looks like a placeholder silently selects the console
   transport: sign-up appears to work and nobody receives a verification email.
   Runtime Logs show `[email] transport: brevo` when the real key is in place.
