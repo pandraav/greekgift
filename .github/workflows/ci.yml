@@ -1,0 +1,153 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# One run per ref. A newer push to a PR supersedes the older run; a production
+# deploy in flight is never cancelled — a later push to main queues behind it.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # The gate. Runs for every PR and every push to main. No secrets: env.ts
+  # demands all eleven variables at `next build` and refuses to skip validation
+  # in production mode, so the build sources the committed .env.example — the
+  # same schema-valid placeholders that let `pnpm dev` run with no accounts.
+  # The real values are validated by `vercel build` in deploy-production.
+  # ---------------------------------------------------------------------------
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+      - name: Build (placeholder env from .env.example)
+        run: |
+          set -a; . ./.env.example; set +a
+          pnpm build
+
+  # ---------------------------------------------------------------------------
+  # Deploy to Vercel via the CLI + a token (NOT Vercel's Git integration).
+  #
+  # Env model — the GitHub Environment `production` is the single source of
+  # truth. The mapping GitHub -> process env is declared ONCE, on this job, and
+  # every step inherits it:
+  #   - scripts/vercel-env-sync.sh upserts the keys it lists into the Vercel
+  #     project (runtime secrets must reach the deployed functions),
+  #   - `vercel build` reads them all (sensitive values cannot be pulled back
+  #     from Vercel, and env.ts needs every one),
+  #   - `pnpm db:migrate` reads DATABASE_URL.
+  # Adding a variable: env.ts, .env.example, the block below, the key array in
+  # scripts/vercel-env-sync.sh, and the GitHub Environment.
+  #
+  # The CLI is linked at the repo root; the project's Root Directory (apps/web)
+  # is pulled into .vercel/project.json and honoured by `vercel build`, whose
+  # output lands in <repo>/.vercel/output for `vercel deploy --prebuilt`.
+  # ---------------------------------------------------------------------------
+  deploy-production:
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    # A blocked/stuck Vercel deploy must fail fast, not hang for hours.
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://greekgift-pnd4.vercel.app
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      # --- secrets (type `sensitive` in Vercel) ---
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      # --- vars (type `encrypted` in Vercel) ---
+      BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
+      NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL }}
+      ADMIN_EMAILS: ${{ vars.ADMIN_EMAILS }}
+      EMAIL_FROM: ${{ vars.EMAIL_FROM }}
+      OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+      NEXT_PUBLIC_ENGINE_NODES: ${{ vars.NEXT_PUBLIC_ENGINE_NODES }}
+      NEXT_PUBLIC_ENGINE_BUILD: ${{ vars.NEXT_PUBLIC_ENGINE_BUILD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Fallback, normally unnecessary: commits are authored by pandraav's
+      # GitHub noreply address and the Vercel account is pandraav's own, and the
+      # project is not Git-connected, so Vercel's commit-author rule does not
+      # apply. If a deploy is ever rejected with "could not be matched to a
+      # github account", uncomment this to re-author HEAD locally (nothing is
+      # pushed).
+      # - name: Override commit author for Vercel
+      #   run: |
+      #     git config user.email "79630119+pandraav@users.noreply.github.com"
+      #     git config user.name "Ravi Pandey"
+      #     git commit --amend --no-edit --reset-author
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
+
+      # Mirror GitHub env -> Vercel project before pulling, so runtime secrets
+      # reach the deployed functions and `vercel pull` sees the latest values.
+      - name: Sync env to Vercel (production)
+        env:
+          TARGET: production
+        run: bash scripts/vercel-env-sync.sh
+
+      - name: Pull Vercel project settings (production)
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      # All eleven variables come from the job env above; process env takes
+      # precedence over the pulled .vercel/.env.production.local.
+      - name: Build
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      # After a successful build, before the deploy: a failed build leaves the
+      # database untouched, and the new code never runs against an old schema.
+      # Neon only — PGlite migrates itself from instrumentation.ts.
+      - name: Migrate the production database (Neon)
+        run: |
+          case "${DATABASE_URL:-}" in
+            ""|pglite:*|file:*)
+              echo "::error::DATABASE_URL must be a Neon connection string in the production environment."
+              exit 1 ;;
+          esac
+          pnpm db:migrate
+
+      - name: Deploy prebuilt output to production
+        run: |
+          if ! out="$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" 2>&1)"; then
+            echo "$out"
+            echo "::error::Vercel production deployment failed."
+            exit 1
+          fi
+          echo "$out"
+          # Vercel can reject a deploy and still exit 0 — fail explicitly.
+          if printf '%s' "$out" | grep -qiE "deployment was blocked|could not be matched to a github account"; then
+            echo "::error::Vercel blocked the production deployment."
+            exit 1
+          fi
+          echo "### Production: https://greekgift-pnd4.vercel.app" >> "$GITHUB_STEP_SUMMARY"

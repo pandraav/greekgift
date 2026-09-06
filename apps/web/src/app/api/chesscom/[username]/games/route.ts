@@ -10,6 +10,9 @@ import { db } from '@/lib/db';
 import { guardApproved } from '@/lib/guards';
 import { importRecent } from '@/lib/import';
 
+/** Up to twelve monthly archives, fetched serially at chess.com's request. */
+export const maxDuration = 60;
+
 /**
  * GET /api/chesscom/[username]/games?months=3&refresh=1
  *

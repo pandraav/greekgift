@@ -18,6 +18,9 @@ import { getReview } from '@/lib/review-store';
  * fifty-five nobody reads.
  */
 
+/** The coach can take two 20 s model attempts; Vercel's legacy Hobby default is 10 s. */
+export const maxDuration = 60;
+
 const PERSONA_IDS = PERSONAS.map((p) => p.id);
 
 const bodySchema = z.object({

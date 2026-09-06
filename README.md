@@ -131,6 +131,90 @@ Coach personas are written in the *style* of public chess creators. None of
 them claims to be that person, and the app says so where a reader can see it.
 See the personas spec for the reasoning.
 
+## Deployment
+
+**Vercel Hobby, driven from GitHub Actions.** Vercel is not Git-connected.
+A push to `main` runs [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
+
+1. **Gate** — typecheck, lint, test, and a `next build` against the committed
+   `.env.example` placeholders (env validation cannot be skipped in production
+   mode, so the gate builds with schema-valid stand-ins). Runs for pull
+   requests too. There are no preview deployments.
+2. **Deploy** (push to `main` only) — sync env → `vercel pull` →
+   `vercel build --prod` → `pnpm db:migrate` → `vercel deploy --prebuilt --prod`.
+
+Production: <https://greekgift-pnd4.vercel.app>.
+
+### Where values live
+
+The GitHub Environment **`production`** is the only source of truth.
+`scripts/vercel-env-sync.sh` upserts every variable into the Vercel project on
+each deploy, so **a value edited in the Vercel dashboard is overwritten on the
+next push.** `NEXT_PUBLIC_*` values are baked into the client bundle at build;
+changing one means redeploying.
+
+| GitHub secret | GitHub variable |
+|---|---|
+| `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` (both `https://greekgift-pnd4.vercel.app`) |
+| `DATABASE_URL` (Neon, pooled) | `ADMIN_EMAILS`, `EMAIL_FROM` |
+| `BETTER_AUTH_SECRET` | `OPENROUTER_MODEL` |
+| `BREVO_API_KEY`, `OPENROUTER_API_KEY` | `NEXT_PUBLIC_ENGINE_NODES`, `NEXT_PUBLIC_ENGINE_BUILD` |
+
+Secrets are stored in Vercel as `sensitive` (write-only) and the rest as
+`encrypted`. CI never reads `.env` or `.env.local`.
+
+**Adding a variable** touches five places: `apps/web/src/env.ts`,
+`.env.example`, the `deploy-production` job's `env:` block in `ci.yml`, the
+key array in `scripts/vercel-env-sync.sh`, and the GitHub Environment. Then
+push `main`.
+
+**Rotating a secret:** change it in the GitHub Environment and re-run the
+latest `main` workflow (Actions → Re-run). Rotating `BETTER_AUTH_SECRET` signs
+everyone out.
+
+### Migrations
+
+`packages/db/migrations` is applied by `pnpm db:migrate` in the deploy job —
+after the build succeeds, before the deploy — against the same Neon
+`DATABASE_URL`. The step refuses a PGlite or `file:` URL. Locally, run
+`pnpm db:generate` after a schema change and commit the SQL; the deploy applies
+it.
+
+### Monorepo on Vercel
+
+The Vercel project is linked at the **repo root** with Root Directory
+`apps/web`. Every `vercel` command runs from the repo root; `vercel build`
+honours the root directory and writes `.vercel/output` for the prebuilt
+deploy. `.vercel/` is gitignored.
+
+### Bootstrap (once)
+
+1. `vercel login` as the personal account; `vercel whoami` to confirm.
+2. From the repo root: `vercel link` → new project `greekgift`, code directory
+   `apps/web`.
+3. Dashboard → Settings: Root Directory `apps/web`, Node 22.x, Git not
+   connected.
+4. `.vercel/project.json` gives `projectId` → `VERCEL_PROJECT_ID` and `orgId`
+   → `VERCEL_ORG_ID`.
+5. Account Settings → Tokens → create one for GitHub Actions → `VERCEL_TOKEN`.
+6. GitHub → Settings → Environments → `production`, deployment branch `main`,
+   no required reviewers. Add the secrets and variables from the table above.
+7. Push `main`.
+
+### Gotchas
+
+- A `BREVO_API_KEY` that looks like a placeholder silently selects the console
+  transport: sign-up appears to work and nobody receives a verification email.
+  Runtime Logs show `[email] transport: brevo` when the real key is in place.
+- Vercel can reject a deploy for a commit author it cannot match to the account
+  and still exit 0. The deploy step greps for that and fails the job. If it
+  ever happens, enable the commented-out "Override commit author" step in
+  `ci.yml`, which re-authors HEAD locally in the runner without pushing.
+- The engine assets under `/engine/` are cached for a year as immutable. If the
+  `stockfish` package is bumped without renaming the build, rename `BUILD` in
+  `apps/web/scripts/prepare-engine.mjs` and `ENGINE_BUILD` in
+  `apps/web/src/lib/engine/client.ts` together, or readers keep the old bytes.
+
 ## Docs
 
 - [Design spec](docs/superpowers/specs/2026-09-03-greekgift-v1-design.md) — decisions, contracts, and how each subsystem actually works

@@ -29,6 +29,28 @@ const nextConfig: NextConfig = {
    * in docs/ instead.
    */
   agentRules: false,
+
+  /**
+   * The Stockfish worker and wasm are served from public/engine under the
+   * build's name (`/engine/stockfish-18-lite-single.*`). A new engine build
+   * is a new path, so the old one can be cached for a year. Caveat: bumping
+   * the `stockfish` package without changing that name keeps the same URL —
+   * rename BUILD in scripts/prepare-engine.mjs and ENGINE_BUILD in
+   * src/lib/engine/client.ts together when the engine bytes change.
+   *
+   * `:path+`, not `:path*`: `/engine` itself is a page, and a year-long
+   * immutable header on HTML would be a disaster.
+   */
+  async headers() {
+    return [
+      {
+        source: '/engine/:path+',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
