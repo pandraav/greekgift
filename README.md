@@ -11,17 +11,18 @@ Invite-only, non-commercial, one free tier and no plan.
 ## The one idea worth knowing
 
 **The engine decides what is true. Deterministic code decides which of it is
-worth saying. The model only decides how it sounds.**
+worth saying. Deterministic code also decides how it sounds.**
 
-A language model asked to explain a chess move will invent a fork that is not
-there, fluently and in the right voice. So it is never asked. Stockfish
-evaluates, `packages/engine` extracts a list of verified facts about the
-position, and the model is handed that list and a persona. Anything it says
-that names a move or a square outside the facts is rejected before it is
-stored, and a deterministic template answers instead.
+There is no language model anywhere in this pipeline. Stockfish evaluates,
+`packages/engine` extracts a list of verified facts about the position, and a
+rule-based coach in `packages/coach` turns those facts into prose in the
+reader's chosen voice — the same facts always render to the same words. The
+validator proves this in tests, not at request time: it runs over a fixture
+corpus in every persona and every audience and fails if any note
+names a move or a square outside the facts.
 
-This is also why chess ability is not a criterion when choosing a model — see
-[`docs/superpowers/specs/2026-09-03-greekgift-v1-design.md`](docs/superpowers/specs/2026-09-03-greekgift-v1-design.md) §7.
+See
+the deterministic coach design spec §1 (kept locally under `docs/superpowers/`, not in the repo).
 
 ## Analysis runs in your browser
 
@@ -43,7 +44,7 @@ packages/coach/    personas, prompt assembly, the validator, the template fallba
 packages/db/       Drizzle schema, migrations, driver selection
 packages/email/    React Email templates, Brevo and console transports
 docs/design/       the HTML prototype, the piece set, and the design guide
-docs/superpowers/  the design spec and the coach personas spec
+docs/superpowers/  design specs (local only, ignored by git)
 ```
 
 `packages/engine` and `packages/coach` have no framework and no I/O. They are
@@ -62,7 +63,7 @@ pnpm dev                    # http://localhost:3000
 
 ### Environment
 
-Eleven variables, all required in production; `pnpm env:check` exits non-zero
+Nine variables, all required in production; `pnpm env:check` exits non-zero
 if any is missing. `.env.example` documents each one. The two that decide how
 much you need:
 
@@ -70,9 +71,11 @@ much you need:
 |---|---|
 | `DATABASE_URL` | falls back to PGlite, a Postgres build that runs in-process from `.pglite/` — same schema, same migrations, no account needed |
 | `BREVO_API_KEY` | emails print to the terminal instead of sending, so the verify → approve loop is fully walkable offline |
-| `OPENROUTER_API_KEY` | the coach falls back to its deterministic template, which always has an answer |
 
-So `pnpm dev` works with an empty `.env`. Production hard-requires all eleven.
+The coach needs no key at all — it is deterministic code, not a model call,
+so it always has an answer.
+
+So `pnpm dev` works with an empty `.env`. Production hard-requires all nine.
 
 **PGlite is single-process.** Querying it from a second terminal while `pnpm dev`
 is running does not block — it corrupts `.pglite/`. Delete the directory and
@@ -157,8 +160,8 @@ changing one means redeploying.
 |---|---|
 | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` (both `https://greekgift-pnd4.vercel.app`) |
 | `DATABASE_URL` (Neon, pooled) | `ADMIN_EMAILS`, `EMAIL_FROM` |
-| `BETTER_AUTH_SECRET` | `OPENROUTER_MODEL` |
-| `BREVO_API_KEY`, `OPENROUTER_API_KEY` | `NEXT_PUBLIC_ENGINE_NODES`, `NEXT_PUBLIC_ENGINE_BUILD` |
+| `BETTER_AUTH_SECRET` | `NEXT_PUBLIC_ENGINE_NODES`, `NEXT_PUBLIC_ENGINE_BUILD` |
+| `BREVO_API_KEY` | |
 
 Secrets are stored in Vercel as `sensitive` (write-only) and the rest as
 `encrypted`. CI never reads `.env` or `.env.local`.
@@ -226,9 +229,9 @@ deploy. `.vercel/` is gitignored.
 
 ## Docs
 
-- [Design spec](docs/superpowers/specs/2026-09-03-greekgift-v1-design.md) — decisions, contracts, and how each subsystem actually works
+- Design spec (`docs/superpowers/specs/2026-09-03-greekgift-v1-design.md`, local only) — decisions, contracts, and how each subsystem actually works
 - [Design guide](docs/design/design-guide.md) — the visual system: materials, type, components, the board
-- [Coach personas](docs/superpowers/specs/2026-09-04-coach-personas.md) — the seven voices, and the source of `personas.json`
+- Coach personas (`docs/superpowers/specs/2026-09-04-coach-personas.md`, local only) — the seven voices, and the source of `personas.json`
 - [`docs/design/app.html`](docs/design/app.html) — the interactive prototype, all eleven screens. The reference the app was built against. Serve it (`cd docs/design && python3 -m http.server 8000`) rather than opening the file directly — it imports chess.js as a module, which `file://` blocks
 
 Two files under `docs/` are build inputs rather than documentation —

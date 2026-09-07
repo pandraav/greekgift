@@ -2,9 +2,9 @@ import 'server-only';
 
 import { findPersona, type Persona } from '@greekgift/coach';
 import { schema } from '@greekgift/db';
-import { factsFor, type CoachText, type Review } from '@greekgift/engine';
+import { audienceFor, factsFor, type CoachText, type Review } from '@greekgift/engine';
 import type { Audience } from '@greekgift/db';
-import { and, eq, inArray } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 
 import { writeCoachText } from '@/lib/coach';
 import { db } from '@/lib/db';
@@ -12,16 +12,17 @@ import { db } from '@/lib/db';
 /**
  * Coaching notes, written once and kept.
  *
- * A note costs a model call, so it is cached by the three things it actually
- * depends on — the game, the move, and the persona. Change the voice and you
- * get a new row; ask for the same voice again and you get the same words,
- * which also means two friends reading the same game read the same review.
+ * Rendering is free and instant, so a whole game is written in one go the
+ * first time anyone opens it in a voice, and the notes are cached by the four
+ * things they depend on — the game, the move, the persona, and the audience —
+ * so two friends reading the same game in the same voice at the same depth
+ * read the same words.
  */
 
 export async function getCoachTexts(
   gameId: string,
   personaId: string,
-  plies?: number[],
+  audience: Audience,
 ): Promise<Record<number, CoachText>> {
   const rows = await db
     .select({ ply: schema.coachTexts.ply, data: schema.coachTexts.data })
@@ -30,7 +31,7 @@ export async function getCoachTexts(
       and(
         eq(schema.coachTexts.gameId, gameId),
         eq(schema.coachTexts.personaId, personaId),
-        ...(plies && plies.length > 0 ? [inArray(schema.coachTexts.ply, plies)] : []),
+        eq(schema.coachTexts.audience, audience),
       ),
     );
 
@@ -38,53 +39,43 @@ export async function getCoachTexts(
 }
 
 /**
- * The note for one move, written if it does not exist yet.
+ * Every move's note for one voice and one depth, written where missing.
  *
- * `audience` is the reader's own setting, and it is the one thing about a
- * review that is not shared — which is also why it is not part of the cache
- * key. Two readers at different levels get whichever note was written first.
- * That is a deliberate trade: a third dimension on the key would triple the
- * model spend to serve a handful of friends.
+ * A game is a few dozen moves and a note takes well under a millisecond, so
+ * there is nothing to gain from writing them one at a time and something to
+ * lose: a reader stepping through a game should never wait on a button.
  */
-export async function ensureCoachText(
+export async function ensureCoachTexts(
   review: Review,
-  ply: number,
   personaId: string,
-  options: { audience?: Audience; playerName?: string } = {},
-): Promise<CoachText> {
+  options: { audience?: Audience; rating?: number } = {},
+): Promise<Record<number, CoachText>> {
   const persona: Persona = findPersona(personaId);
+  const audience = options.audience ?? audienceFor(options.rating);
 
-  const existing = await getCoachTexts(review.gameId, persona.id, [ply]);
-  const cached = existing[ply];
-  if (cached) return cached;
+  const texts = await getCoachTexts(review.gameId, persona.id, audience);
+  const missing = review.moves.filter((m) => !texts[m.ply]);
+  if (missing.length === 0) return texts;
 
-  const facts = factsFor(review, ply, {
-    ...(options.audience ? { audience: options.audience } : {}),
+  const written = missing.map((m) => {
+    const facts = factsFor(review, m.ply, { audience });
+    return writeCoachText({ gameId: review.gameId, persona, facts });
   });
-
-  const { text, reason } = await writeCoachText({
-    persona,
-    facts,
-    ...(options.playerName ? { playerName: options.playerName } : {}),
-  });
-
-  if (reason) {
-    // Worth knowing how often the model is refused, and why. Never shown to
-    // the reader — the card already says the note is a template.
-    console.warn(`[coach] ${review.gameId} ply ${ply} fell back: ${reason}`);
-  }
 
   await db
     .insert(schema.coachTexts)
-    .values({
-      gameId: review.gameId,
-      ply,
-      personaId: persona.id,
-      data: text,
-      source: text.source,
-      ...(text.model ? { model: text.model } : {}),
-    })
+    .values(
+      written.map((text) => ({
+        gameId: review.gameId,
+        ply: text.ply,
+        personaId: persona.id,
+        audience,
+        data: text,
+        source: text.source,
+      })),
+    )
     .onConflictDoNothing();
 
-  return text;
+  for (const text of written) texts[text.ply] = text;
+  return texts;
 }

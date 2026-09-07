@@ -18,7 +18,7 @@ concurrency:
 jobs:
   # ---------------------------------------------------------------------------
   # The gate. Runs for every PR and every push to main. No secrets: env.ts
-  # demands all eleven variables at `next build` and refuses to skip validation
+  # demands all nine variables at `next build` and refuses to skip validation
   # in production mode, so the build sources the committed .env.example — the
   # same schema-valid placeholders that let `pnpm dev` run with no accounts.
   # The real values are validated by `vercel build` in deploy-production.
@@ -77,13 +77,11 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
       BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       # --- vars (type `encrypted` in Vercel) ---
       BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
       NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL }}
       ADMIN_EMAILS: ${{ vars.ADMIN_EMAILS }}
       EMAIL_FROM: ${{ vars.EMAIL_FROM }}
-      OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
       NEXT_PUBLIC_ENGINE_NODES: ${{ vars.NEXT_PUBLIC_ENGINE_NODES }}
       NEXT_PUBLIC_ENGINE_BUILD: ${{ vars.NEXT_PUBLIC_ENGINE_BUILD }}
     steps:
@@ -120,7 +118,7 @@ jobs:
       - name: Pull Vercel project settings (production)
         run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
-      # All eleven variables come from the job env above; process env takes
+      # All nine variables come from the job env above; process env takes
       # precedence over the pulled .vercel/.env.production.local.
       - name: Build
         run: vercel build --prod --token="$VERCEL_TOKEN"

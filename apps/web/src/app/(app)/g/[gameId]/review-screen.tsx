@@ -2,6 +2,7 @@
 
 import { Chess } from 'chess.js';
 import { findPersona, type Persona } from '@greekgift/coach';
+import type { Audience } from '@greekgift/db';
 import type { PlayerSummary, Review } from '@greekgift/engine';
 import { winPercent } from '@greekgift/engine';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -36,9 +37,12 @@ interface Line {
 export function ReviewScreen({
   review,
   initialPersonaId,
+  audience,
 }: {
   review: Review;
   initialPersonaId: string;
+  /** The reader's saved depth, from their profile. */
+  audience: Audience;
 }) {
   const { moves } = review;
   const lastPly = moves.length;
@@ -283,6 +287,7 @@ export function ReviewScreen({
                   gameId={review.gameId}
                   move={played}
                   persona={persona}
+                  audience={audience}
                   onChangePersona={() => setPicking(true)}
                 />
 

@@ -339,13 +339,22 @@ export const coachTexts = pgTable(
       .references(() => games.id, { onDelete: 'cascade' }),
     ply: integer('ply').notNull(),
     personaId: text('persona_id').notNull(),
+    /**
+     * How much the note explains. Part of the key: a beginner note and an
+     * advanced note for the same move, persona, and game are different rows.
+     */
+    audience: text('audience', {
+      enum: ['beginner', 'intermediate', 'advanced'],
+    })
+      .notNull()
+      .default('intermediate'),
     /** The CoachText object. */
     data: jsonb('data').notNull(),
     model: text('model'),
-    source: text('source', { enum: ['llm', 'template'] }).notNull(),
+    source: text('source', { enum: ['rules', 'llm', 'template'] }).notNull(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
   },
-  (t) => [primaryKey({ columns: [t.gameId, t.ply, t.personaId] })],
+  (t) => [primaryKey({ columns: [t.gameId, t.ply, t.personaId, t.audience] })],
 );
 
 export type PositionEvalRow = typeof positionEvals.$inferSelect;

@@ -1,95 +1,79 @@
 'use client';
 
 import type { Persona } from '@greekgift/coach';
+import type { Audience } from '@greekgift/db';
 import type { CoachText, MoveAnalysis } from '@greekgift/engine';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Avatar, Button } from '@/components/ui';
 
 /**
  * What the coach says about the move you are looking at.
  *
- * Written on demand, one move at a time — most moves in a game are never
- * opened, and paying for sixty notes to have five read is paying for
- * fifty-five nobody wanted. Cached server-side afterwards, so stepping back to
- * a move is instant and a friend opening the same game reads the same words.
+ * The whole game is written in one request the first time a voice is opened,
+ * so stepping through the moves never waits and switching voice re-reads the
+ * game rather than one move. There is nothing to ask for: the note is simply
+ * there.
  */
 
 const SLOT_ORDER = ['whatHappened', 'whyItMatters', 'lesson'] as const;
+
+type Status = 'loading' | 'ready' | 'unreviewed' | 'error';
 
 export function CoachCard({
   gameId,
   move,
   persona,
+  audience,
   onChangePersona,
 }: {
   gameId: string;
   move: MoveAnalysis;
   persona: Persona;
+  /** The reader's saved depth, from their profile. */
+  audience: Audience;
   onChangePersona: () => void;
 }) {
   const [texts, setTexts] = useState<Record<string, CoachText>>({});
-  const [pending, setPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const inFlight = useRef<AbortController | null>(null);
+  /** Per voice and depth; absent means the read is still in flight. */
+  const [loads, setLoads] = useState<Record<string, Status>>({});
+  const [attempt, setAttempt] = useState(0);
 
-  const key = `${persona.id}:${move.ply}`;
-  const text = texts[key];
+  const prefix = `${persona.id}:${audience}:`;
+  const text = texts[`${prefix}${move.ply}`];
+  const status: Status = loads[prefix] ?? 'loading';
 
-  // Changing the voice invalidates nothing we hold — the notes are keyed by
-  // persona too, so both stay cached and switching back is free.
-  const write = useCallback(async () => {
-    inFlight.current?.abort();
-    const controller = new AbortController();
-    inFlight.current = controller;
-
-    setPending(true);
-    setError(null);
-
-    try {
-      const response = await fetch(`/api/games/${gameId}/coach`, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ ply: move.ply, personaId: persona.id }),
-        signal: controller.signal,
-      });
-
-      if (!response.ok) throw new Error('The coach could not be reached');
-      const { text: written } = (await response.json()) as { text: CoachText };
-      setTexts((current) => ({ ...current, [`${persona.id}:${move.ply}`]: written }));
-    } catch (cause) {
-      if (controller.signal.aborted) return;
-      setError(cause instanceof Error ? cause.message : 'Something went wrong');
-    } finally {
-      if (!controller.signal.aborted) setPending(false);
-    }
-  }, [gameId, move.ply, persona.id]);
-
-  // Load whatever is already written for this game and voice, so stepping
-  // through a game someone has already read costs nothing.
+  // One read per game, voice and depth. Notes are keyed by all three, so
+  // switching voice and switching back costs nothing the second time.
   useEffect(() => {
+    if (loads[prefix] === 'ready') return;
     const controller = new AbortController();
 
-    fetch(`/api/games/${gameId}/coach?persona=${persona.id}`, {
+    fetch(`/api/games/${gameId}/coach?persona=${persona.id}&audience=${audience}`, {
       signal: controller.signal,
     })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((body: { texts?: Record<string, CoachText> } | null) => {
-        if (!body?.texts) return;
+      .then(async (response) => {
+        if (response.status === 404) {
+          setLoads((current) => ({ ...current, [prefix]: 'unreviewed' }));
+          return;
+        }
+        if (!response.ok) throw new Error(`coach ${response.status}`);
+        const body = (await response.json()) as { texts: Record<string, CoachText> };
         setTexts((current) => {
           const next = { ...current };
-          for (const [ply, value] of Object.entries(body.texts!)) {
-            next[`${persona.id}:${ply}`] = value;
-          }
+          for (const [ply, value] of Object.entries(body.texts)) next[`${prefix}${ply}`] = value;
           return next;
         });
+        setLoads((current) => ({ ...current, [prefix]: 'ready' }));
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (!controller.signal.aborted) setLoads((current) => ({ ...current, [prefix]: 'error' }));
+      });
 
     return () => controller.abort();
-  }, [gameId, persona.id]);
-
-  useEffect(() => () => inFlight.current?.abort(), []);
+    // `loads` is read, not depended on: a completed read must not refetch.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameId, persona.id, audience, prefix, attempt]);
 
   return (
     <div className="border-l-[3px] border-lacquer pl-4">
@@ -124,27 +108,35 @@ export function CoachCard({
               {text.betterWas}
             </span>
           </div>
-          {text.source === 'template' ? (
-            <p className="mt-3 mb-0 text-[12px] text-ink-3">
-              Written from the engine’s own findings — the coach was unavailable, so
-              this one is in greekgift’s plain voice.
-            </p>
-          ) : null}
         </>
-      ) : (
+      ) : status === 'error' ? (
         <>
           <p className="mt-0 mb-3 max-w-[42ch] text-[14.5px] text-ink-2">
-            {pending
-              ? `${persona.label} is looking at ${move.san}…`
-              : `Ask ${persona.label} what happened on ${move.san}.`}
+            {persona.label} could not be reached.
           </p>
-          {error ? (
-            <p className="mt-0 mb-3 text-[13px] text-lacquer">{error}</p>
-          ) : null}
-          <Button variant="primary" onClick={write} disabled={pending}>
-            {pending ? 'Writing…' : error ? 'Try again' : 'Explain this move'}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              setLoads((current) => {
+                const next = { ...current };
+                delete next[prefix];
+                return next;
+              });
+              setAttempt((n) => n + 1);
+            }}
+          >
+            Try again
           </Button>
         </>
+      ) : status === 'unreviewed' ? (
+        <p className="mt-0 max-w-[42ch] text-[14.5px] text-ink-2">
+          Run the analysis and {persona.label} will read the whole game.
+        </p>
+      ) : (
+        <p className="mt-0 max-w-[42ch] text-[14.5px] text-ink-3">
+          {persona.label} is reading the game…
+        </p>
       )}
     </div>
   );

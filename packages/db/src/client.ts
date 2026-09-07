@@ -87,7 +87,17 @@ function create(url: string | undefined): Db {
   return drizzle(new PGlite(pgliteDir(url)), { schema });
 }
 
-const cache = new Map<string, Db>();
+/**
+ * One handle per process, shared across bundles. A production Next server
+ * gives every route and page its own copy of this module, and a module-level
+ * map would hand each of them its own PGlite instance on the same directory —
+ * which is the second-opener corruption described below, arriving in-process.
+ * Hanging the cache off `globalThis` makes the singleton real.
+ */
+const CACHE_KEY = Symbol.for('greekgift.db.cache');
+const cache: Map<string, Db> =
+  ((globalThis as Record<symbol, unknown>)[CACHE_KEY] as Map<string, Db> | undefined) ??
+  (((globalThis as Record<symbol, unknown>)[CACHE_KEY] = new Map<string, Db>()) as Map<string, Db>);
 
 /**
  * The database handle, created on first use and never at import time.

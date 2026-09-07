@@ -47,7 +47,10 @@ export default async function ReviewPage({
   });
 
   const [profile] = await db
-    .select({ personaId: schema.userProfiles.personaId })
+    .select({
+      personaId: schema.userProfiles.personaId,
+      audience: schema.userProfiles.audience,
+    })
     .from(schema.userProfiles)
     .where(eq(schema.userProfiles.userId, user.id))
     .limit(1);
@@ -86,6 +89,7 @@ export default async function ReviewPage({
         fens={parsed.fens}
         initialReview={review}
         personaId={profile?.personaId ?? DEFAULT_PERSONA_ID}
+        audience={profile?.audience ?? 'intermediate'}
       />
 
       <p className="mt-4 text-center text-[13px] text-paper/45">

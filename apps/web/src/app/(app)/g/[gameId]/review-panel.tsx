@@ -1,5 +1,6 @@
 'use client';
 
+import type { Audience } from '@greekgift/db';
 import type { Review } from '@greekgift/engine';
 import { useState } from 'react';
 
@@ -17,17 +18,20 @@ export function ReviewPanel({
   fens,
   initialReview,
   personaId,
+  audience,
 }: {
   gameId: string;
   fens: string[];
   initialReview: Review | null;
   /** The reader's saved coach, from their profile. */
   personaId: string;
+  /** How much the coach explains, from their profile. */
+  audience: Audience;
 }) {
   const [review, setReview] = useState(initialReview);
 
   return review ? (
-    <ReviewScreen review={review} initialPersonaId={personaId} />
+    <ReviewScreen review={review} initialPersonaId={personaId} audience={audience} />
   ) : (
     <AnalysePanel gameId={gameId} fens={fens} onReview={setReview} />
   );
