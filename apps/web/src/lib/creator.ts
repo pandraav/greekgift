@@ -23,7 +23,7 @@ export const creator = {
   blurb: 'I built this for me and a handful of friends. If you are one of them, say so below.',
 
   /** Shown in the footer. */
-  footer: 'Made by Ravi. One person, one free tier, no plan.',
+  footer: 'Made by Ravi, for a handful of friends.',
 
   /** How the emails sign off. */
   signOff: '— Ravi',

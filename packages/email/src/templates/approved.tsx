@@ -28,7 +28,7 @@ export function ApprovedEmail({ name, url, creator }: MailProps) {
       </P>
       <Signature
         creator={creator}
-        aside="It is a hobby project on a free tier — if something breaks, tell me and I will probably fix it that evening."
+        aside="If something breaks, tell me and I will probably fix it that evening."
       />
       <Fallback url={url} />
     </Shell>

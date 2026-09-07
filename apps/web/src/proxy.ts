@@ -10,7 +10,13 @@ import { NextResponse, type NextRequest } from 'next/server';
  */
 
 /** Reachable signed out. */
-const PUBLIC = ['/login', '/signup', '/forgot-password', '/reset-password'];
+const PUBLIC = [
+  '/login',
+  '/signup',
+  '/forgot-password',
+  '/reset-password',
+  '/welcome',
+];
 
 /** Reachable while signed in but not yet approved. */
 const ALWAYS = ['/pending', '/api/auth', '/api/me/profile'];
@@ -55,6 +61,11 @@ export async function proxy(request: NextRequest) {
   const signedIn = cached !== null || hasToken;
 
   if (!signedIn) {
+    // A stranger at the front door sees the landing page, at `/` — rewritten,
+    // not redirected, so the address stays clean. Members see their home.
+    if (pathname === '/') {
+      return NextResponse.rewrite(new URL('/welcome', request.url));
+    }
     if (under(pathname, PUBLIC)) return NextResponse.next();
     if (pathname.startsWith('/api/')) {
       return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
