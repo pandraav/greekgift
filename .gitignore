@@ -36,3 +36,7 @@ coverage/
 
 # stockfish worker, copied from node_modules at build time
 apps/web/public/engine/
+
+# working documents kept locally, not in the repo
+docs/graphs/
+docs/superpowers/

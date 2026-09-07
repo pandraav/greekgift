@@ -21,9 +21,32 @@ cd docs/design && python3 -m http.server 8000   # then open localhost:8000/app.h
 Everything else it needs — the pieces, the analysed game it renders — is
 inlined in the file.
 
-Eleven screens: `landing`, `home`, `login`, `request`, `pending`, `admin`,
-`games`, `review`, `settings`, `credits`, `components`. Navigate with the hash
-router in the harness at the top.
+Twelve screens: `landing`, `home`, `login`, `request`, `pending`, `admin`,
+`games`, `review`, `share`, `settings`, `credits`, `components`. Navigate with
+the hash router in the harness at the top.
+
+`home` is the signed-in front door as redesigned on 2026-09-07: a paste-a-link
+card, one card per linked chess.com account (its last ten games,
+"refreshed N ago", refresh and an inline remove confirmation), a dashed
+add-account card, and "My reviews" — every game you reviewed or opened after
+review, plus games shared with you, tagged "shared by". Requests do not live on the
+page: a bell in the topbar carries a count and opens the Notifications modal
+(requests on your shares with Approve and Decline, games shared with you, and
+earlier decisions). `games` is one linked account's page. Pill tabs above the header switch
+between linked accounts (each with its games-this-week count) and end in an
+"Add account" link to home. A week card sits under the ratings: the last seven
+days as a won-drawn-lost bar, average accuracy, most-played opening, costliest
+habit, and the reading progress in its foot. Only the last seven days are read
+automatically; a rule in the list marks older games, which are read on request. Filters are segmented controls, not
+dropdowns. Each row leads with a 58px board of the game's turning point (the
+hot square takes the classification colour), then the opponent, the coach's
+one-line verdict with a classification chip, accuracy with a small meter, and
+the rating change under the date. Unread games show a dimmed board and an
+italic "Not read yet." `share` is what a
+member sees when a share link points at a game they do not hold: the header
+only, and one button to ask. The `review` screen carries the Share button and
+the copied-link bar under the header. The CSS for all of it is the
+`home v2` block near the app root.
 
 Two of them have no route in the app:
 

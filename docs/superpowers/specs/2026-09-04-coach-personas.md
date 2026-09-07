@@ -524,3 +524,35 @@ be **deliberately fake and distant** from real positions: invented openings, abs
 move numbers, round-number evaluations. Demonstrations resembling the real input get
 copied verbatim at high rates including when wrong, so fake content means leakage is
 caught by the validator rather than shipping as plausible nonsense.
+
+## Addendum (2026-09-07): voice grammars
+
+The coach no longer prompts a model with this document — it compiles it. Each
+persona in this spec now also exists as a `PersonaGrammar` module in
+`packages/coach/src/voices/<id>.ts`, built from the same voice rules described
+above, and starting from `neutralGrammar(id)` before overriding what its voice
+demands. Nothing here changes meaning; it changes how the meaning reaches the
+page.
+
+The **14 trigger lines** for each persona are the seed of that persona's
+grammar, not the whole of it: each scripted line is extended to three or more
+variants so the same trigger does not read identically twice, and the
+`events` table in the grammar module is that expanded set.
+
+The **cross-persona disambiguation table** is the source of each grammar's
+`Lexicon` — capture verb, address, praise ceiling, profanity limit, and the
+rest map directly onto the `Lexicon` fields in
+`2026-09-07-deterministic-coach-design.md` §3. A grammar that drifts from its
+row in that table is drifting from its voice.
+
+The **rendered shared example** under each persona above remains the target:
+it is not itself a test, but the corpus report
+(`docs/graphs/2026-09-07-deterministic-coach/corpus-report.md`) renders the
+real fixtures through every persona and every audience, and that output is
+checked by eye against the quality this document's hand-written example sets.
+
+`packages/coach/scripts/build-personas.mjs` is unchanged. It still parses this
+document into `src/data/personas.json`, and that file is still the source for
+labels, descriptions, and the trigger lines a grammar module's `events` table
+starts from. Editing the compiled data is still a mistake — edit this spec,
+edit the matching voice module, and rebuild.

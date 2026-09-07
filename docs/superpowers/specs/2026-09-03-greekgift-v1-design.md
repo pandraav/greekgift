@@ -541,8 +541,9 @@ four workers at 300k nodes — roughly a second a position each.
 
 ## 7. Coach
 
-> Status: **built** (milestone 5). Seven voices, the facts layer that keeps them
-> honest, and the validator that enforces it.
+> Status: **built, then replaced by the deterministic coach (2026-09-07
+> design)**. Seven voices, the facts layer that keeps them honest, and the
+> validator that enforces it — all carried forward, the model dropped.
 
 Persona content lives in `2026-09-04-coach-personas.md` and is **compiled**, not
 transcribed: `packages/coach/scripts/build-personas.mjs` parses that document
@@ -553,15 +554,21 @@ edit the spec and rebuild, so the document and the code cannot drift apart.
 ### 7.1 The three-way split
 
 The design is one sentence: **the engine decides what is true, deterministic
-code decides which of it is worth saying, and the model only decides how it
-sounds.** A model that is never asked to evaluate a position cannot get the
-evaluation wrong.
+code decides which of it is worth saying, and deterministic code decides how
+it sounds.** There is no model anywhere in this pipeline. A stage that is
+never asked to evaluate a position cannot get the evaluation wrong, and a
+stage that only picks from sentence variants cannot invent a fact either.
 
 | layer | where | decides |
 |---|---|---|
 | engine | `packages/engine` | the position, the numbers, the best line |
 | facts | `packages/engine/src/facts.ts` + `motifs.ts` | what is on the board and worth naming |
-| voice | `packages/coach` + OpenRouter | how it is said |
+| voice | `packages/coach` | how it is said |
+
+The voice layer's contracts — `Plan`, `Lexicon`, `Syntax`, `Prosody`,
+`PersonaGrammar` — are frozen in
+[`2026-09-07-deterministic-coach-design.md`](2026-09-07-deterministic-coach-design.md)
+§§2–3, not repeated here.
 
 ### 7.2 The facts layer
 
@@ -600,55 +607,81 @@ It also enforces the persona's word and exclamation budgets, its banned lexicon
 headline, that `betterWas` actually contains the best move, and that the coach
 never claims to be the real person.
 
-A rejected note is retried **once**, told exactly what was wrong. After that the
-template runs.
+A rejected note used to be retried **once**, told exactly what was wrong;
+after that the template ran.
+
+The realiser cannot fail this check the way a model could — it only picks
+among pre-written variants of facts it was already given — but the check still
+runs, now in tests rather than at request time: `coach/scripts/corpus.mjs`
+renders every ply of every fixture through all seven personas and all three
+audiences, fails on any violation, and writes
+`docs/graphs/2026-09-07-deterministic-coach/corpus-report.md`. It is a
+hand-run script, not wired into a build or CI job.
 
 ### 7.4 The template
 
-`templateText(facts)` builds all five slots from the facts alone, in greekgift's
-own plain voice, and the card says so. It runs when there is no API key, when
-the provider fails or times out (20s), and when validation rejects twice.
+> Status: history. Superseded by the deterministic realiser (2026-09-07
+> design).
 
-**This existing is what lets the validator be strict.** Rejecting a note costs
-a little colour, never the explanation. There is no path through this system
-that produces a confident wrong claim about a chess position.
+`templateText(facts)` built all five slots from the facts alone, in
+greekgift's own plain voice, and the card said so. It ran when there was no
+API key, when the provider failed or timed out (20s), and when validation
+rejected twice.
 
-### 7.5 Cost and caching
+**This existing was what let the validator be strict.** Rejecting a note cost
+a little colour, never the explanation. There was no path through this system
+that produced a confident wrong claim about a chess position.
+
+The template's role is now served by the deterministic realiser — it is the
+only renderer, not a fallback. `coach/src/template.ts` is removed at the merge
+step, and `source: 'template'` survives only on previously stored rows
+(2026-09-07 design §3).
+
+### 7.5 Data flow and caching
 
 Notes are written **on demand, one move at a time** — most moves in a game are
-never opened, and paying for sixty to have five read is paying for fifty-five
-nobody wanted. `coach_texts` is keyed `(game_id, ply, persona_id)`, so switching
-voice and switching back are both free, and two friends reading the same game
-read the same words.
+never opened, and computing sixty to have five read is wasted work for
+fifty-five nobody wanted. `coach_texts` is keyed `(game_id, ply, persona_id,
+audience)`, so switching voice, switching depth, and switching back are all
+free, and two friends reading the same game at the same depth read the same
+words.
 
-Audience is deliberately **not** in the key. A third dimension would triple the
-model spend to serve a handful of friends; whoever opens a move first sets the
-depth for that move.
-
-Model calls go through the Vercel AI SDK to OpenRouter (`OPENROUTER_MODEL`,
-currently `anthropic/claude-sonnet-4.5`) with `generateObject` and a five-slot
-schema, at `temperature: 0.8` — a flat sampler makes every persona sound like
-the same careful assistant.
+The note is **server-rendered**, not model-generated. `renderCoachText(facts,
+persona, audience, seed)` in `packages/coach/src/render.ts` is a pure function
+— the same four inputs always produce the same text — and every row written
+this way carries `source: 'rules'`. Rendering costs nothing and returns
+instantly, which is what makes the fourth cache dimension free: audience used
+to mean tripling model spend to serve a handful of friends (§10); now it means
+computing a few more milliseconds of prose, cached like everything else.
 
 ### 7.6 Naming and the identity guard
 
 `USE_CREATOR_LABELS` switches every label in the app between the creator's name
 and the non-attributed style name. No persona may claim to be the person: the
-system block ends with the disclaimer from the personas spec, and the validator
-independently rejects channel references, "when I played", and title claims.
-The picker carries the line in plain sight — *each coach is written in a
-creator's style; none of them is that person.*
+system block used to end with the disclaimer from the personas spec, and the
+validator independently rejects channel references, "when I played", and title
+claims. The picker carries the line in plain sight — *each coach is written in
+a creator's style; none of them is that person.*
 
-Exemplars in the prompt are deliberately fake and far from any real position
+Exemplars in the prompt were deliberately fake and far from any real position
 (move 91, an invented blunder, round-number evaluations). Demonstrations that
-resemble the real input get copied verbatim at high rates including when wrong,
-so if the model does copy one, the validator catches it rather than shipping it
-as plausible nonsense.
+resemble the real input get copied verbatim at high rates including when
+wrong, so if the model copied one, the validator caught it rather than
+shipping it as plausible nonsense.
 
-### 7.7 Choosing the model — and why chess ability is not a criterion
+There is no prompt to leak from any more, but the guard itself still runs: the
+corpus test in §7.3 checks every rendered note from every persona and audience
+for identity claims, channel references, and "when I played", the same way it
+checks for invented facts.
 
-The obvious instinct when a note reads thin is to reach for a model that is
-"better at chess". Two findings say otherwise.
+### 7.7 Choosing the model — and why chess ability was not a criterion
+
+This section is history now: there is no model left to choose. It is kept
+because the finding is why replacing the model, rather than tuning it, was the
+right call.
+
+The obvious instinct when a note read thin was to reach for a model that is
+"better at chess". Two findings said otherwise.
 
 **No chat model is good at chess, at any price.** Testing 13 models against
 Stockfish on its *lowest* difficulty, Llama-3.1-70b and -405b, Qwen-2.5-72b,
@@ -656,31 +689,15 @@ Gemma-2-27b, GPT-4o, GPT-4o-mini and o1-mini lost every game. Size did not
 help — the 405b lost. The single model that won every game was
 `gpt-3.5-turbo-instruct`, a **base** model, and the reported pattern was that
 instruction-tuning consistently degrades chess ability
-([dynomight.net/chess](https://dynomight.net/chess/)). There is no cheap
+([dynomight.net/chess](https://dynomight.net/chess/)). There was no cheap
 chess-strong chat model to find.
 
-**It would not matter if there were.** Our model is handed a facts block and
-forbidden from adding to it. It never evaluates a position, never calculates,
-never chooses a move. The chess quality of a note is set entirely by §7.2, and
-the model only sets the prose.
-
-So the criteria are: instruction-following, voice adherence, and reliable
-structured output. Cost for our call shape (~1500 prompt, ~180 completion
-tokens) at the time of writing:
-
-| model | $/1k notes |
-|---|---|
-| `openai/gpt-oss-120b` | 0.09 |
-| `qwen/qwen3-30b-a3b-instruct-2507` | 0.11 |
-| `openai/gpt-5-nano` | 0.15 |
-| `google/gemini-2.5-flash-lite` | 0.22 |
-| `anthropic/claude-haiku-4.5` | 2.40 |
-| `anthropic/claude-sonnet-4.5` *(current)* | 7.20 |
-
-The trap in moving down this table: the validator is strict, so a weaker model
-fails it more often and falls back to the template. **Cheaper before §7.2 is
-fixed makes the output worse, not cheaper.** The validator's pass rate is an
-objective signal, so any swap should be measured rather than assumed.
+**It would not have mattered if there were.** The model was handed a facts
+block and forbidden from adding to it. It never evaluated a position, never
+calculated, never chose a move. The chess quality of a note was set entirely
+by §7.2, and the model only set the prose — which is exactly why it could be
+deleted and replaced by a deterministic realiser without touching chess
+quality at all.
 
 
 ## 8. UI
@@ -827,26 +844,35 @@ these are the parts of it that are not built.
 
 ### In the facts layer (§7.2)
 
-These limit coach quality more than the model does, and are the first thing to
-fix if the notes read thin.
+These limited coach quality more than the model did. All five are closed by
+the deterministic coach design
+(`2026-09-07-deterministic-coach-design.md`).
 
-- `materialAfterBestLine` and `materialAfterPlayedLine` are computed and
-  **never sent to the model**. On a move where the best line keeps a pawn and
-  the played line gives it back, that is the single most explanatory fact
-  available, and the coach is not told it.
-- `epLoss` is computed and not sent.
-- `threatOfBestMove` is declared in the frozen §4 contract and **populated
-  nowhere** — the null-move probe was never built, so the coach can never say
-  why the better move was better.
-- Attackers and defenders are passed as bare squares (`attacked by f8, c7`)
-  rather than named pieces. This is why a note says "attacked twice" instead
-  of naming the bishop and the queen.
-- No motif describes what the *opponent* now threatens.
+- **Closed.** `materialAfterBestLine` and `materialAfterPlayedLine` were
+  computed and never sent to the model. The planner now forwards both as the
+  `material_delta` proposition when |materialGain| ≥ 1, and as `epLoss`
+  below — together the single most explanatory fact a note can carry.
+- **Closed.** `epLoss` was computed and not sent. It is now a required field
+  on `Plan` and drives the `swing` proposition in every `whyItMatters` slot.
+- **Closed.** `threatOfBestMove` was declared in the frozen §4 contract and
+  populated nowhere — the null-move probe was never built. The field is
+  removed from the contract and replaced by `bestMoveEffect`, which reads the
+  best move statically (capture, check, mate, fork, material gain) instead of
+  probing with a null move.
+- **Closed.** Attackers and defenders are now `PieceRef[]` — named pieces —
+  on the `hanging_piece` motif, not bare squares. A note can say "attacked by
+  the bishop and the queen" instead of "attacked twice."
+- **Closed.** The new `opponent_threat` motif applies the engine's reply and
+  names what it wins: capture, fork, check, mate, or promotion.
 
 ### Elsewhere
 
-- **Audience is not part of the `coach_texts` cache key** (§7.5), so whoever
-  opens a move first sets its depth for everyone. A deliberate cost trade.
+- **Audience is now part of the `coach_texts` cache key**
+  (`game_id, ply, persona_id, audience`), and this became free rather than
+  costly. The old trade-off was about model spend: a fourth dimension would
+  have tripled it to serve a handful of friends. Rendering is now a
+  deterministic function with no per-call cost, so adding audience to the key
+  just means caching one more dimension of already-free computation.
 - **`NEXT_PUBLIC_ENGINE_NODES` and `NEXT_PUBLIC_ENGINE_BUILD` are required,
   validated, and never read.** The values that actually drive analysis and the
   cache key are hardcoded in `lib/engine/settings.ts` and `lib/engine/client.ts`.
