@@ -1,5 +1,6 @@
 import type { CoachText, MoveFacts } from '@greekgift/engine';
 
+import { SLOTS } from './contracts.ts';
 import type { Persona } from './personas.ts';
 
 /**
@@ -11,8 +12,9 @@ import type { Persona } from './personas.ts';
  * the facts object it was given, and anything that mentions a move or a square
  * it was not told about is rejected outright rather than softened.
  *
- * Rejection is not a failure state — `packages/coach/src/template.ts` always
- * has an answer. The worst case is a duller review, never a wrong one.
+ * The coach is deterministic now, so rejection cannot happen at runtime: this
+ * check runs in tests over a rendered corpus, and a violation fails the build
+ * of the coach rather than a reader's request.
  */
 
 /** Squares, and anything shaped like a move in algebraic notation. */
@@ -29,19 +31,25 @@ export type Violation =
   | { kind: 'missing_best_move'; detail: string }
   | { kind: 'invented_move'; detail: string }
   | { kind: 'identity_claim'; detail: string }
-  | { kind: 'empty_slot'; detail: string };
+  | { kind: 'empty_slot'; detail: string }
+  | { kind: 'sentence_too_long'; detail: string };
 
 export interface ValidationResult {
   ok: boolean;
   violations: Violation[];
 }
 
-const SLOTS = ['headline', 'whatHappened', 'whyItMatters', 'betterWas', 'lesson'] as const;
-
 const prose = (text: CoachText): string =>
   SLOTS.map((slot) => text[slot]).join(' ');
 
 const countWords = (s: string) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+
+/** Sentences of a slot: split after terminal punctuation, keeping the text. */
+export const sentencesOf = (s: string): string[] =>
+  s
+    .split(/(?<=[.!?]["')\]]?)\s+/)
+    .map((x) => x.trim())
+    .filter(Boolean);
 
 /**
  * Every move and square the coach is allowed to name.
@@ -61,31 +69,64 @@ export function permittedTokens(facts: MoveFacts): Set<string> {
   for (const san of facts.bestLine) add(san);
   for (const san of facts.playedLine) add(san);
 
+  const addRef = (ref: { square: string } | undefined) => add(ref?.square);
   for (const motif of facts.motifs) {
     switch (motif.type) {
       case 'hanging_piece':
+        addRef(motif.target);
+        motif.attackers.forEach(addRef);
+        motif.defenders.forEach(addRef);
+        break;
       case 'trapped_piece':
-        add(motif.square);
+        addRef(motif.target);
+        motif.attackers.forEach(addRef);
         break;
       case 'missed_capture':
-        add(motif.square);
+        addRef(motif.target);
         break;
       case 'fork':
-        add(motif.by);
-        for (const target of motif.targets) add(target);
+        addRef(motif.by);
+        motif.targets.forEach(addRef);
         break;
       case 'pin':
-        add(motif.pinned);
-        add(motif.pinner);
-        add(motif.against);
+        addRef(motif.pinned);
+        addRef(motif.pinner);
+        addRef(motif.against);
+        break;
+      case 'skewer':
+        addRef(motif.front);
+        addRef(motif.behind);
+        addRef(motif.by);
         break;
       case 'discovered_attack':
-        add(motif.mover);
-        add(motif.attacker);
-        add(motif.target);
+        addRef(motif.mover);
+        addRef(motif.attacker);
+        addRef(motif.target);
         break;
       case 'sacrifice':
+        addRef(motif.piece);
+        break;
+      case 'opponent_threat':
+        addRef(motif.by);
+        motif.targets.forEach(addRef);
+        for (const san of motif.line) add(san);
+        break;
+      case 'traded_while_behind':
+        addRef(motif.captured);
+        break;
+      case 'passed_pawn':
+        addRef(motif.pawn);
+        break;
+      case 'promotion':
         add(motif.square);
+        break;
+      case 'king_safety':
+        motif.attackersInZone.forEach(addRef);
+        motif.shieldMissing.forEach(add);
+        break;
+      case 'overloaded_defender':
+        addRef(motif.defender);
+        motif.duties.forEach(addRef);
         break;
       case 'mate_threat':
       case 'missed_mate':
@@ -95,6 +136,10 @@ export function permittedTokens(facts: MoveFacts): Set<string> {
         break;
     }
   }
+
+  // Squares from the best move's own effect are facts too.
+  addRef(facts.bestMoveEffect.captures);
+  facts.bestMoveEffect.forks?.forEach(addRef);
 
   // A square named inside an allowed move is itself fair game: "Nf3" makes
   // "f3" sayable, which is how anyone would actually write the sentence. The
@@ -168,6 +213,21 @@ export function validate(
       kind: 'over_budget',
       detail: `${words} words, budget ${persona.budgets.words}`,
     });
+  }
+
+  const perSentence = persona.budgets.perSentence;
+  if (perSentence && perSentence > 0) {
+    for (const slot of SLOTS) {
+      for (const sentence of sentencesOf(text[slot] ?? '')) {
+        const n = countWords(sentence);
+        if (n > perSentence) {
+          violations.push({
+            kind: 'sentence_too_long',
+            detail: `${slot}: ${n} words, limit ${perSentence}: "${sentence}"`,
+          });
+        }
+      }
+    }
   }
 
   const exclamations = (all.match(/!/g) ?? []).length;

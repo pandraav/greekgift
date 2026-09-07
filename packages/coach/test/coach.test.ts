@@ -8,34 +8,46 @@ import {
   PERSONAS,
   personaName,
 } from '../src/personas.ts';
-import { factsBlock, systemPrompt, userPrompt } from '../src/prompt.ts';
-import { templateText } from '../src/template.ts';
 import { inventedTokens, permittedTokens, validate } from '../src/validate.ts';
 
 /** The spec's shared example, as a facts object. */
 const FACTS: MoveFacts = {
   ply: 36,
+  color: 'b',
   san: 'Nd7',
   classification: 'blunder',
   epLoss: 0.34,
   winBefore: 52,
   winAfter: 18,
+  moveAccuracy: 31.7,
+  forced: false,
   bestMove: 'Be6',
   bestLine: ['Be6', 'Nxe6', 'fxe6'],
   playedLine: ['Nc5', 'Qc7', 'Nxd7'],
   motifs: [
-    { type: 'fork', by: 'c5', targets: ['d7', 'b7'] },
+    {
+      type: 'fork',
+      by: { piece: 'N', square: 'c5', color: 'w' },
+      targets: [
+        { piece: 'N', square: 'd7', color: 'b' },
+        { piece: 'B', square: 'b7', color: 'b' },
+      ],
+      byMover: false,
+    },
     {
       type: 'hanging_piece',
-      square: 'd7',
-      piece: 'knight',
-      side: 'b',
-      attackers: ['c5'],
+      target: { piece: 'N', square: 'd7', color: 'b' },
+      attackers: [{ piece: 'N', square: 'c5', color: 'w' }],
       defenders: [],
     },
   ],
   materialAfterBestLine: 0,
   materialAfterPlayedLine: -3,
+  bestMoveEffect: { check: false, materialGain: 3, line: ['Be6', 'Nxe6', 'fxe6'] },
+  situations: [
+    { kind: 'walked_into_fork', severity: 0.85 },
+    { kind: 'hung_piece', severity: 0.72 },
+  ],
   phase: 'middlegame',
   leftBook: true,
   audience: 'intermediate',
@@ -184,73 +196,5 @@ describe('validate', () => {
     expect(validate(draft({ lesson: '  ' }), FACTS, sagar).violations.map((v) => v.kind)).toContain(
       'empty_slot',
     );
-  });
-});
-
-describe('templateText', () => {
-  const text = templateText(FACTS);
-
-  it('always produces something, marked as a template', () => {
-    expect(text.source).toBe('template');
-    expect(text.headline.length).toBeLessThanOrEqual(60);
-  });
-
-  it('names what is actually on the board', () => {
-    expect(text.whatHappened).toContain('c5');
-    expect(text.whatHappened).toContain('d7');
-  });
-
-  it('names the better move, because that is the point', () => {
-    expect(text.betterWas).toContain('Be6');
-  });
-
-  it('passes its own validator against every persona', () => {
-    for (const persona of PERSONAS) {
-      const result = validate(text, FACTS, persona);
-      const fatal = result.violations.filter(
-        (v) => v.kind !== 'over_budget' && v.kind !== 'banned_word',
-      );
-      expect(fatal, `${persona.id}: ${JSON.stringify(fatal)}`).toEqual([]);
-    }
-  });
-
-  it('has something to say about a good move too', () => {
-    const good = templateText({ ...FACTS, classification: 'best', winAfter: 55 });
-    expect(good.headline).toContain('best move');
-    expect(good.betterWas).toContain('Be6');
-  });
-});
-
-describe('prompts', () => {
-  it('states only the facts, and states them all', () => {
-    const block = factsBlock(FACTS);
-    expect(block).toContain('best move: Be6');
-    expect(block).toContain('fork by the piece on c5, hitting d7 and b7');
-    expect(block).toContain('this is the move that left opening theory');
-    expect(block).not.toContain('centipawn');
-  });
-
-  it('carries the persona’s rules, lexicon and limits', () => {
-    const system = systemPrompt({ persona: sagar, facts: FACTS });
-    expect(system).toContain(sagar.voiceRules[0]!);
-    expect(system).toContain('friends');
-    expect(system).toContain('110 words');
-    expect(system).toContain('"Be6"');
-  });
-
-  it('forbids claiming to be the person', () => {
-    const system = systemPrompt({ persona: sagar, facts: FACTS });
-    expect(system).toContain('Never claim to be them');
-    expect(system).toContain("greekgift's coach");
-  });
-
-  it('keeps the exemplar far from any real position', () => {
-    const system = systemPrompt({ persona: sagar, facts: FACTS });
-    expect(system).toContain('91... Qh4');
-    expect(system).toContain('must never be reused');
-  });
-
-  it('addresses the player by name when there is one', () => {
-    expect(userPrompt({ persona: sagar, facts: FACTS, playerName: 'ravi' })).toContain('ravi');
   });
 });
