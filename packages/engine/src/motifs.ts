@@ -1,18 +1,17 @@
 import { Chess, type Color as ChessColor, type Square } from 'chess.js';
 
-import type { Color, Motif } from './types.ts';
+import type { Color, Motif, PieceRef } from './types.ts';
 
 /**
  * What is actually true about a position, found by looking rather than asking.
  *
  * The coach may only mention what appears here. That is the whole point of the
- * layer: a language model asked to explain a chess move will happily invent a
- * fork that is not there, and no amount of prompting reliably stops it. So the
- * facts are computed from the board with chess.js, and anything the coach says
- * that is not in this list is caught by the validator.
+ * layer: anything the coach says that is not in this list is caught by the
+ * validator, and the deterministic coach cannot say anything else to begin
+ * with. So the facts are computed from the board with chess.js.
  */
 
-const VALUE: Record<string, number> = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 };
+export const VALUE: Record<string, number> = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 };
 
 const FILES = 'abcdefgh';
 export const ALL_SQUARES: Square[] = [...'87654321'].flatMap((rank) =>
@@ -28,7 +27,21 @@ const NAMES: Record<string, string> = {
   k: 'king',
 };
 
-export const pieceName = (type: string): string => NAMES[type] ?? type;
+export const pieceName = (type: string): string => NAMES[type.toLowerCase()] ?? type;
+
+/** Pawn value of a piece reference. */
+export const pieceValue = (ref: PieceRef): number => VALUE[ref.piece.toLowerCase()] ?? 0;
+
+/** The piece on `square`, as the coach refers to it, or null for an empty square. */
+export function pieceRef(chess: Chess, square: Square): PieceRef | null {
+  const piece = chess.get(square);
+  if (!piece) return null;
+  return {
+    piece: piece.type.toUpperCase() as PieceRef['piece'],
+    square,
+    color: piece.color as Color,
+  };
+}
 
 /** Material on the board in pawn units, from White's side. */
 export function material(fen: string): number {
@@ -44,13 +57,18 @@ export function material(fen: string): number {
 }
 
 /**
- * Squares from which `side` attacks `square`.
+ * Pieces of `side` that attack `square`, cheapest first.
  *
  * chess.js's `attackers` ignores whose turn it is, which is what we want: a
  * piece is defended by its own side regardless of who is to move.
  */
-const attackersOf = (chess: Chess, square: Square, side: Color): string[] =>
-  chess.attackers(square, side as ChessColor);
+export function attackersOf(chess: Chess, square: Square, side: Color): PieceRef[] {
+  return chess
+    .attackers(square, side as ChessColor)
+    .map((from) => pieceRef(chess, from as Square))
+    .filter((ref): ref is PieceRef => ref !== null)
+    .sort((a, b) => pieceValue(a) - pieceValue(b));
+}
 
 /**
  * Is the piece on `square` hanging?
@@ -61,18 +79,16 @@ const attackersOf = (chess: Chess, square: Square, side: Color): string[] =>
  * when a full SEE says it is merely awkward is wrong in a way nobody minds.
  */
 function hangingAt(chess: Chess, square: Square): Motif | null {
-  const piece = chess.get(square);
-  if (!piece || piece.type === 'k') return null;
+  const target = pieceRef(chess, square);
+  if (!target || target.piece === 'K') return null;
 
-  const enemy: Color = piece.color === 'w' ? 'b' : 'w';
+  const enemy: Color = target.color === 'w' ? 'b' : 'w';
   const attackers = attackersOf(chess, square, enemy);
   if (attackers.length === 0) return null;
 
-  const defenders = attackersOf(chess, square, piece.color as Color);
-  const value = VALUE[piece.type] ?? 0;
-  const cheapest = Math.min(
-    ...attackers.map((from) => VALUE[chess.get(from as Square)?.type ?? 'p'] ?? 1),
-  );
+  const defenders = attackersOf(chess, square, target.color);
+  const value = pieceValue(target);
+  const cheapest = pieceValue(attackers[0]!);
 
   const undefended = defenders.length === 0;
   const outnumbered = attackers.length > defenders.length;
@@ -80,14 +96,7 @@ function hangingAt(chess: Chess, square: Square): Motif | null {
 
   if (!undefended && !outnumbered && !winsMaterial) return null;
 
-  return {
-    type: 'hanging_piece',
-    square,
-    piece: pieceName(piece.type),
-    side: piece.color as Color,
-    attackers,
-    defenders,
-  };
+  return { type: 'hanging_piece', target, attackers, defenders };
 }
 
 /** Everything of `side`'s that is hanging, worst first. */
@@ -102,44 +111,40 @@ export function hangingPieces(fen: string, side: Color): Motif[] {
     if (motif) found.push(motif);
   }
 
-  return found.sort(
-    (a, b) =>
-      (VALUE[b.type === 'hanging_piece' ? shortName(b.piece) : 'p'] ?? 0) -
-      (VALUE[a.type === 'hanging_piece' ? shortName(a.piece) : 'p'] ?? 0),
-  );
+  const worth = (m: Motif) => (m.type === 'hanging_piece' ? pieceValue(m.target) : 0);
+  return found.sort((a, b) => worth(b) - worth(a));
 }
-
-const shortName = (name: string): string =>
-  Object.entries(NAMES).find(([, full]) => full === name)?.[0] ?? 'p';
 
 /**
  * A fork: one piece attacking two or more things worth taking.
  *
  * Only counts targets it is actually winning — a defended pawn attacked by a
  * queen is not a fork, and calling it one teaches the reader something false.
+ * `byMover` records whether the forking piece belongs to the side that just
+ * moved (a fork created) or to their opponent (a fork walked into).
  */
-export function forkBy(fen: string, from: Square): Motif | null {
+export function forkBy(fen: string, from: Square, byMover = false): Motif | null {
   const chess = new Chess(fen);
-  const piece = chess.get(from);
-  if (!piece) return null;
+  const by = pieceRef(chess, from);
+  if (!by) return null;
 
-  const enemy: Color = piece.color === 'w' ? 'b' : 'w';
-  const value = VALUE[piece.type] ?? 0;
-  const targets: string[] = [];
+  const enemy: Color = by.color === 'w' ? 'b' : 'w';
+  const value = pieceValue(by);
+  const targets: PieceRef[] = [];
 
   for (const square of ALL_SQUARES) {
     if (square === from) continue;
-    const target = chess.get(square);
+    const target = pieceRef(chess, square);
     if (!target || target.color !== enemy) continue;
-    if (!attackersOf(chess, square, piece.color as Color).includes(from)) continue;
+    if (!attackersOf(chess, square, by.color).some((a) => a.square === from)) continue;
 
     const defended = attackersOf(chess, square, enemy).length > 0;
-    const worth = VALUE[target.type] ?? 0;
+    const worth = pieceValue(target);
     // The king always counts: a check inside a fork is what makes it work.
-    if (target.type === 'k' || !defended || worth > value) targets.push(square);
+    if (target.piece === 'K' || !defended || worth > value) targets.push(target);
   }
 
-  return targets.length >= 2 ? { type: 'fork', by: from, targets } : null;
+  return targets.length >= 2 ? { type: 'fork', by, targets, byMover } : null;
 }
 
 /**
@@ -155,13 +160,12 @@ export function pinsAgainst(fen: string, side: Color): Motif[] {
   const found: Motif[] = [];
 
   for (const square of ALL_SQUARES) {
-    const piece = chess.get(square);
-    if (!piece || piece.color !== side || piece.type === 'k') continue;
+    const pinned = pieceRef(chess, square);
+    if (!pinned || pinned.color !== side || pinned.piece === 'K') continue;
 
-    const pinners = attackersOf(chess, square, enemy).filter((from) => {
-      const attacker = chess.get(from as Square)?.type;
-      return attacker === 'b' || attacker === 'r' || attacker === 'q';
-    });
+    const pinners = attackersOf(chess, square, enemy).filter(
+      (a) => a.piece === 'B' || a.piece === 'R' || a.piece === 'Q',
+    );
     if (pinners.length === 0) continue;
 
     const behind = new Chess(fen);
@@ -170,20 +174,23 @@ export function pinsAgainst(fen: string, side: Color): Motif[] {
     for (const pinner of pinners) {
       for (const target of ALL_SQUARES) {
         if (target === square) continue;
-        const victim = behind.get(target);
+        const victim = pieceRef(behind, target);
         if (!victim || victim.color !== side) continue;
-        if (!behind.attackers(target, enemy as ChessColor).includes(pinner as Square))
+        if (
+          !behind
+            .attackers(target, enemy as ChessColor)
+            .includes(pinner.square as Square)
+        )
           continue;
         // Only interesting if what is shielded is worth more than the shield.
-        const shielded = VALUE[victim.type] ?? 0;
-        if (victim.type !== 'k' && shielded <= (VALUE[piece.type] ?? 0)) continue;
+        if (victim.piece !== 'K' && pieceValue(victim) <= pieceValue(pinned)) continue;
 
         found.push({
           type: 'pin',
-          pinned: square,
+          pinned,
           pinner,
-          against: target,
-          absolute: victim.type === 'k',
+          against: victim,
+          absolute: victim.piece === 'K',
         });
         break;
       }

@@ -1,4 +1,4 @@
-import type { Classification, Score } from './types.ts';
+import type { Classification, Color, Score } from './types.ts';
 
 /**
  * Turning engine numbers into the things a review shows.
@@ -15,13 +15,24 @@ const CP_CLAMP = 1000;
 const WIN_K = 0.00368208;
 
 /**
- * Win percentage for the side to move, 0–100.
+ * Win percentage, 0–100, from a White-relative score.
  *
  * Centipawns are not linear in anything a player feels: the difference between
  * +1 and +2 matters far more than between +8 and +9. This maps them onto the
  * only scale that behaves — the chance of winning.
+ *
+ * `forColor` says whose chance: White's by default, so every existing caller
+ * keeps meaning what it always meant; Black's is the complement. A mate score
+ * is decided, so it lands on exactly 100 or 0 — `mate: 0` counts as a mate
+ * *against* White, which is why terminal positions are stored as ±1 (see
+ * `terminalScore` in review.ts).
  */
-export function winPercent(score: Score): number {
+export function winPercent(score: Score, forColor: Color = 'w'): number {
+  const white = whiteWinPercent(score);
+  return forColor === 'w' ? white : 100 - white;
+}
+
+function whiteWinPercent(score: Score): number {
   if (score.mate !== undefined) return score.mate > 0 ? 100 : 0;
   const cp = Math.max(-CP_CLAMP, Math.min(CP_CLAMP, score.cp ?? 0));
   return 50 + 50 * (2 / (1 + Math.exp(-WIN_K * cp)) - 1);
@@ -56,6 +67,16 @@ const LADDER: [number, Classification][] = [
   [0.22, 'mistake'],
 ];
 
+/**
+ * The three labels the ladder cannot reach on its own (design §2). Each is a
+ * refinement of a rung, never a replacement for the loss behind it: a
+ * brilliant move is still a best or excellent one, a miss is still a mistake.
+ */
+/** A "great" move: the second engine line loses at least this many expected points. */
+const GREAT_MARGIN = 0.15;
+/** A "miss": the best move won at least this much material, in pawn units. */
+const MISS_MATERIAL = 3;
+
 export interface ClassifyInput {
   /** Mover's win% before their move. */
   winBefore: number;
@@ -69,6 +90,25 @@ export interface ClassifyInput {
   inBook: boolean;
   /** Did the move deliver mate? */
   isMate?: boolean;
+  /**
+   * A quiet move that left the moved piece to be taken, with the engine's own
+   * line confirming the material goes, and win% holding within two points of
+   * before. Computed by the caller; it needs the board.
+   */
+  sacrificeSound?: boolean;
+  /**
+   * Expected points between the engine's first and second lines, mover's
+   * view, ≥ 0. Undefined when there was no second line.
+   */
+  onlyMoveMargin?: number;
+  /**
+   * Pawn units the best move captured, or the material the best line ends up
+   * ahead of the played line by — whichever is larger. 0 when nothing was
+   * missed.
+   */
+  missedMaterial?: number;
+  /** The engine had a forced mate for the mover and this move was not it. */
+  missedMate?: boolean;
 }
 
 export interface Classified {
@@ -86,20 +126,55 @@ export function classify(input: ClassifyInput): Classified {
     0,
     expectedPoints(input.winBefore) - expectedPoints(input.winAfter),
   );
+  const forced = input.forced;
 
-  if (input.inBook) return { classification: 'book', epLoss, forced: input.forced };
-  if (input.isMate) return { classification: 'best', epLoss, forced: input.forced };
+  // Checkmate ends the game; it is not theory, not a sacrifice, and not one
+  // of several good moves. It is best, full stop, and the terminal score
+  // (see review.ts) makes sure it costs nothing.
+  if (input.isMate) return { classification: 'best', epLoss, forced };
+
+  if (input.inBook) return { classification: 'book', epLoss, forced };
 
   // A forced move is displayed as best with a flag, not as an eleventh class:
-  // there was nothing to get right.
-  if (input.forced) return { classification: 'best', epLoss, forced: true };
+  // there was nothing to get right — and so nothing to be great about either.
+  if (forced) return { classification: 'best', epLoss, forced: true };
 
-  if (input.playedBest) return { classification: 'best', epLoss, forced: false };
+  const base = ladder(input.playedBest, epLoss);
+  return { classification: refine(base, input), epLoss, forced: false };
+}
 
+function ladder(playedBest: boolean, epLoss: number): Classification {
+  if (playedBest) return 'best';
   for (const [threshold, name] of LADDER) {
-    if (epLoss < threshold) return { classification: name, epLoss, forced: false };
+    if (epLoss < threshold) return name;
   }
-  return { classification: 'blunder', epLoss, forced: false };
+  return 'blunder';
+}
+
+/** Design §2's three reachable outcomes, checked in the order they outrank each other. */
+function refine(base: Classification, input: ClassifyInput): Classification {
+  // Brilliant: a sound sacrifice that was also, on the numbers, best or
+  // excellent. The soundness test lives in the sacrifice itself; here we only
+  // ask whether the move earned the label on the ladder too.
+  if (input.sacrificeSound && (base === 'best' || base === 'excellent')) {
+    return 'brilliant';
+  }
+
+  // Great: the engine's move, and the alternative was materially worse. The
+  // margin is expected points so that "0.15" means the same thing at +0.5 as
+  // it does at +5.
+  if (base === 'best' && (input.onlyMoveMargin ?? 0) >= GREAT_MARGIN) {
+    return 'great';
+  }
+
+  // Miss: a mistake-sized loss with a concrete thing that was not taken — a
+  // mate, or three pawns' worth of material. A blunder stays a blunder: the
+  // label for throwing the game away is the one it already has.
+  if (base === 'inaccuracy' || base === 'mistake') {
+    if (input.missedMate || (input.missedMaterial ?? 0) >= MISS_MATERIAL) return 'miss';
+  }
+
+  return base;
 }
 
 /* ── accuracy ─────────────────────────────────────────────────────────── */

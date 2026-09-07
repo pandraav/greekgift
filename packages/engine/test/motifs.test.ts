@@ -29,10 +29,8 @@ describe('hangingPieces', () => {
     expect(found).toHaveLength(1);
     expect(found[0]).toMatchObject({
       type: 'hanging_piece',
-      square: 'e5',
-      piece: 'knight',
-      side: 'b',
-      attackers: ['e3'],
+      target: { piece: 'N', square: 'e5', color: 'b' },
+      attackers: [{ piece: 'R', square: 'e3', color: 'w' }],
       defenders: [],
     });
   });
@@ -45,13 +43,34 @@ describe('hangingPieces', () => {
     // Black knight on e5, defended by the pawn on d6, attacked by a rook.
     expect(hangingPieces('4k3/8/3p4/4n3/8/4R3/8/4K3 w - - 0 1', 'b')).toEqual([]);
   });
+
+  it('names the attackers cheapest first', () => {
+    // Black knight on e5 attacked by the rook on e3 and the pawn on d4.
+    const found = hangingPieces('4k3/8/8/4n3/3P4/4R3/8/4K3 b - - 0 1', 'b');
+    expect(found).toHaveLength(1);
+    expect(found[0]).toMatchObject({
+      type: 'hanging_piece',
+      attackers: [
+        { piece: 'P', square: 'd4', color: 'w' },
+        { piece: 'R', square: 'e3', color: 'w' },
+      ],
+    });
+  });
 });
 
 describe('forkBy', () => {
   it('finds a knight hitting the king and a rook', () => {
     const fork = forkBy('r3k3/2N5/8/8/8/8/8/4K3 b - - 0 1', 'c7');
-    expect(fork).toMatchObject({ type: 'fork', by: 'c7' });
-    expect(fork && fork.type === 'fork' ? fork.targets.sort() : []).toEqual(['a8', 'e8']);
+    expect(fork).toMatchObject({ type: 'fork', by: { piece: 'N', square: 'c7' }, byMover: false });
+    expect(fork && fork.type === 'fork' ? fork.targets.map((t) => t.square).sort() : []).toEqual([
+      'a8',
+      'e8',
+    ]);
+  });
+
+  it('records whose fork it is', () => {
+    const fork = forkBy('r3k3/2N5/8/8/8/8/8/4K3 b - - 0 1', 'c7', true);
+    expect(fork).toMatchObject({ type: 'fork', byMover: true });
   });
 
   it('will not call one target a fork', () => {
@@ -65,9 +84,9 @@ describe('pinsAgainst', () => {
     expect(pins).toHaveLength(1);
     expect(pins[0]).toMatchObject({
       type: 'pin',
-      pinned: 'e5',
-      pinner: 'e1',
-      against: 'e8',
+      pinned: { piece: 'N', square: 'e5' },
+      pinner: { piece: 'R', square: 'e1' },
+      against: { piece: 'K', square: 'e8' },
       absolute: true,
     });
   });

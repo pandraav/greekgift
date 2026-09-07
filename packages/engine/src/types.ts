@@ -1,5 +1,6 @@
 /**
- * Frozen contracts, section 4 of docs/superpowers/specs/2026-09-03-greekgift-v1-design.md.
+ * Frozen contracts, section 4 of docs/superpowers/specs/2026-09-03-greekgift-v1-design.md,
+ * extended by section 2 of docs/superpowers/specs/2026-09-07-deterministic-coach-design.md.
  *
  * Everything else codes against these. Fields may be added to a package's own
  * internal types; these must not change.
@@ -89,57 +90,137 @@ export interface Review {
   opening?: { eco: string; name: string; lastBookPly: number };
 }
 
+/** A piece on a square. `piece` is upper-case: K Q R B N P. */
+export interface PieceRef {
+  piece: 'K' | 'Q' | 'R' | 'B' | 'N' | 'P';
+  square: string;
+  color: Color;
+}
+
+export type Motif =
+  | {
+      type: 'hanging_piece';
+      target: PieceRef;
+      attackers: PieceRef[]; // named, cheapest first
+      defenders: PieceRef[];
+    }
+  | { type: 'missed_capture'; target: PieceRef; value: number }
+  | { type: 'fork'; by: PieceRef; targets: PieceRef[]; byMover: boolean }
+  | {
+      type: 'pin';
+      pinned: PieceRef;
+      pinner: PieceRef;
+      against: PieceRef;
+      absolute: boolean;
+    }
+  | { type: 'skewer'; front: PieceRef; behind: PieceRef; by: PieceRef }
+  | {
+      type: 'discovered_attack';
+      mover: PieceRef;
+      attacker: PieceRef;
+      target: PieceRef;
+      check: boolean;
+    }
+  | { type: 'mate_threat'; line: string[] }
+  | { type: 'missed_mate'; line: string[] }
+  | { type: 'back_rank_weak'; side: Color }
+  | { type: 'trapped_piece'; target: PieceRef; attackers: PieceRef[] }
+  | { type: 'sacrifice'; piece: PieceRef; netMaterial: number; sound: boolean }
+  | { type: 'only_move'; margin: number } // expected points, not centipawns
+  | {
+      type: 'opponent_threat';
+      kind: 'capture' | 'fork' | 'check' | 'mate' | 'promotion';
+      by: PieceRef;
+      targets: PieceRef[];
+      line: string[]; // SAN, the reply that carries it
+    }
+  | { type: 'traded_while_behind'; deficit: number; captured: PieceRef }
+  | { type: 'passed_pawn'; pawn: PieceRef; stepsToPromote: number; created: boolean }
+  | { type: 'promotion'; square: string; inBestLine: boolean }
+  | {
+      type: 'king_safety';
+      side: Color;
+      score: number; // 0..1, >= 0.5 is worth saying
+      openFiles: string[];
+      shieldMissing: string[];
+      attackersInZone: PieceRef[];
+    }
+  | { type: 'overloaded_defender'; defender: PieceRef; duties: PieceRef[] }
+  | { type: 'zugzwang'; side: Color }
+  | { type: 'fortress'; side: Color; deficit: number; stablePlies: number };
+
+/** What the best move would have done, from a static read plus the best line. */
+export interface BestMoveEffect {
+  captures?: PieceRef;
+  check: boolean;
+  mateIn?: number;
+  forks?: PieceRef[];
+  /** Pawn units after the best line minus after the played line, mover's view. */
+  materialGain: number;
+  line: string[]; // SAN, from bestLine
+}
+
+export type SituationKind =
+  | 'allowed_mate'
+  | 'missed_mate'
+  | 'hung_piece'
+  | 'under_defended'
+  | 'walked_into_fork'
+  | 'walked_into_pin'
+  | 'walked_into_skewer'
+  | 'missed_capture'
+  | 'ignored_threat'
+  | 'created_fork'
+  | 'created_discovered'
+  | 'trapped_piece'
+  | 'traded_behind'
+  | 'unsound_sacrifice'
+  | 'sound_sacrifice'
+  | 'only_move'
+  | 'left_book'
+  | 'book'
+  | 'best'
+  | 'good'
+  | 'quiet_loss'
+  | 'back_rank'
+  | 'passed_pawn'
+  | 'promotion'
+  | 'king_exposed'
+  | 'overloaded'
+  | 'zugzwang'
+  | 'fortress'
+  | 'mate_delivered';
+
+export interface Situation {
+  kind: SituationKind;
+  severity: number; // 0..1, ordering only
+  motif?: Motif; // the evidence, when there is one
+}
+
 /** Verified facts about one move. The coach may only mention what is here. */
 export interface MoveFacts {
   ply: number;
+  color: Color;
   san: string;
   classification: Classification;
   epLoss: number;
   winBefore: number;
   winAfter: number;
+  moveAccuracy: number;
+  forced: boolean;
   bestMove: string; // SAN
   bestLine: string[]; // SAN, max 5
   playedLine: string[]; // SAN, engine's reply line after the played move, max 5
   motifs: Motif[];
   materialAfterBestLine: number; // pawn units, mover's view
   materialAfterPlayedLine: number;
+  bestMoveEffect: BestMoveEffect;
+  situations: Situation[]; // ranked, best first
   phase: 'opening' | 'middlegame' | 'endgame';
   opening?: { eco: string; name: string };
   leftBook: boolean;
-  threatOfBestMove?: string[]; // SAN line found by null-move probe
   audience: 'beginner' | 'intermediate' | 'advanced';
 }
-
-export type Motif =
-  | {
-      type: 'hanging_piece';
-      square: string;
-      piece: string;
-      side: Color;
-      attackers: string[];
-      defenders: string[];
-    }
-  | { type: 'missed_capture'; square: string; piece: string; value: number }
-  | { type: 'fork'; by: string; targets: string[] }
-  | {
-      type: 'pin';
-      pinned: string;
-      pinner: string;
-      against: string;
-      absolute: boolean;
-    }
-  | {
-      type: 'discovered_attack';
-      mover: string;
-      attacker: string;
-      target: string;
-    }
-  | { type: 'mate_threat'; line: string[] }
-  | { type: 'missed_mate'; line: string[] }
-  | { type: 'back_rank_weak'; side: Color }
-  | { type: 'trapped_piece'; square: string; piece: string }
-  | { type: 'sacrifice'; piece: string; square: string; netMaterial: number }
-  | { type: 'only_move'; secondBestEpLoss: number };
 
 export interface CoachText {
   ply: number;
@@ -148,6 +229,6 @@ export interface CoachText {
   whyItMatters: string; // 1–2 sentences
   betterWas: string; // 1–2 sentences, must name bestMove
   lesson: string; // 1 sentence
-  source: 'llm' | 'template';
+  source: 'rules' | 'llm' | 'template';
   model?: string;
 }

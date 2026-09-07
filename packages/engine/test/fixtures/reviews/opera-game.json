@@ -1,0 +1,5046 @@
+{
+ "gameId": "opera-game",
+ "engineBuild": "stockfish-18-lite-single",
+ "nodes": 20000,
+ "moves": [
+  {
+   "ply": 1,
+   "color": "w",
+   "san": "e4",
+   "uci": "e2e4",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e2e4",
+       "e7e5",
+       "b1c3",
+       "b8c6",
+       "g1f3",
+       "f8e7"
+      ],
+      "depth": 9,
+      "nodes": 20027
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "e2e3",
+       "g8f6"
+      ],
+      "depth": 9,
+      "nodes": 20027
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "g1f3",
+       "d7d5",
+       "d2d4",
+       "a7a5"
+      ],
+      "depth": 8,
+      "nodes": 20027
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e7e5",
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 45
+      },
+      "pv": [
+       "c7c5",
+       "g1f3"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 48
+      },
+      "pv": [
+       "e7e6",
+       "b1c3",
+       "d7d5",
+       "d2d4",
+       "d5e4",
+       "c3e4",
+       "c8d7",
+       "g1f3",
+       "d7a4",
+       "f1d3",
+       "f8b4",
+       "e4c3"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 53.49228039541688,
+   "winAfter": 53.49228039541688,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e2e4",
+   "bestLine": [
+    "e2e4",
+    "e7e5",
+    "b1c3",
+    "b8c6",
+    "g1f3",
+    "f8e7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 2,
+   "color": "b",
+   "san": "e5",
+   "uci": "e7e5",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e7e5",
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 45
+      },
+      "pv": [
+       "c7c5",
+       "g1f3"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 48
+      },
+      "pv": [
+       "e7e6",
+       "b1c3",
+       "d7d5",
+       "d2d4",
+       "d5e4",
+       "c3e4",
+       "c8d7",
+       "g1f3",
+       "d7a4",
+       "f1d3",
+       "f8b4",
+       "e4c3"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b1c3",
+       "b8c6"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "d1d4",
+       "b8c6",
+       "d4d3",
+       "g8f6",
+       "b1c3"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     }
+    ]
+   },
+   "winBefore": 46.50771960458312,
+   "winAfter": 46.14150285897469,
+   "epLoss": 0.003662167456084331,
+   "moveAccuracy": 99.36794283717593,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e7e5",
+   "bestLine": [
+    "e7e5",
+    "g1f3",
+    "b8c6",
+    "d2d4",
+    "e5d4",
+    "f3d4",
+    "g8f6",
+    "d4c6",
+    "d7c6",
+    "d1d8",
+    "e8d8",
+    "f1d3",
+    "f8b4",
+    "c1d2"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 3,
+   "color": "w",
+   "san": "Nf3",
+   "uci": "g1f3",
+   "fenBefore": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+   "fenAfter": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b1c3",
+       "b8c6"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "d1d4",
+       "b8c6",
+       "d4d3",
+       "g8f6",
+       "b1c3"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b8c6",
+       "d2d4"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "g8f6",
+       "d2d4",
+       "f6e4",
+       "d4e5",
+       "d7d5",
+       "e5d6",
+       "f8d6"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 46
+      },
+      "pv": [
+       "d7d6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "b1c3",
+       "f8e7",
+       "c1e3"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     }
+    ]
+   },
+   "winBefore": 53.85849714102531,
+   "winAfter": 53.03398401818215,
+   "epLoss": 0.008245131228431513,
+   "moveAccuracy": 97.36197414652176,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g1f3",
+   "bestLine": [
+    "g1f3",
+    "b8c6",
+    "d2d4",
+    "e5d4",
+    "f3d4",
+    "g8f6",
+    "d4c6",
+    "d7c6",
+    "d1d8",
+    "e8d8",
+    "f1d3",
+    "f8b4",
+    "c1d2"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 4,
+   "color": "b",
+   "san": "d6",
+   "uci": "d7d6",
+   "fenBefore": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+   "fenAfter": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b8c6",
+       "d2d4"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "g8f6",
+       "d2d4",
+       "f6e4",
+       "d4e5",
+       "d7d5",
+       "e5d6",
+       "f8d6"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 46
+      },
+      "pv": [
+       "d7d6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "b1c3",
+       "f8e7",
+       "c1e3"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "b1c3",
+       "f8e7",
+       "f1c4",
+       "e8g8",
+       "e1g1",
+       "b8c6",
+       "f1e1",
+       "c6d4",
+       "d1d4"
+      ],
+      "depth": 10,
+      "nodes": 20000
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "f1c4",
+       "c7c5",
+       "d2d4",
+       "c5d4",
+       "c2c3",
+       "d8c7",
+       "c4b5",
+       "c8d7"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "a2a4",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     }
+    ]
+   },
+   "winBefore": 46.96601598181785,
+   "winAfter": 46.05001214877426,
+   "epLoss": 0.009160038330435938,
+   "moveAccuracy": 96.96628895705466,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "b8c6",
+   "bestLine": [
+    "b8c6",
+    "d2d4"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 5,
+   "color": "w",
+   "san": "d4",
+   "uci": "d2d4",
+   "fenBefore": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+   "fenAfter": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+   "evalBefore": {
+    "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "b1c3",
+       "f8e7",
+       "f1c4",
+       "e8g8",
+       "e1g1",
+       "b8c6",
+       "f1e1",
+       "c6d4",
+       "d1d4"
+      ],
+      "depth": 10,
+      "nodes": 20000
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "f1c4",
+       "c7c5",
+       "d2d4",
+       "c5d4",
+       "c2c3",
+       "d8c7",
+       "c4b5",
+       "c8d7"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "a2a4",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 54
+      },
+      "pv": [
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "f1d3",
+       "b8c6",
+       "d4c6",
+       "b7c6",
+       "e1g1",
+       "f8e7",
+       "h2h3"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 62
+      },
+      "pv": [
+       "b8d7",
+       "f1d3",
+       "g8f6",
+       "e1g1",
+       "c7c6",
+       "f1e1",
+       "e5d4",
+       "f3d4"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 69
+      },
+      "pv": [
+       "b8c6",
+       "f1b5"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     }
+    ]
+   },
+   "winBefore": 53.94998785122574,
+   "winAfter": 54.95449603745888,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "d2d4",
+   "bestLine": [
+    "d2d4",
+    "e5d4",
+    "f3d4",
+    "g8f6",
+    "b1c3",
+    "f8e7",
+    "f1c4",
+    "e8g8",
+    "e1g1",
+    "b8c6",
+    "f1e1",
+    "c6d4",
+    "d1d4"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 6,
+   "color": "b",
+   "san": "Bg4",
+   "uci": "c8g4",
+   "fenBefore": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+   "fenAfter": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+   "evalBefore": {
+    "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 54
+      },
+      "pv": [
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "f1d3",
+       "b8c6",
+       "d4c6",
+       "b7c6",
+       "e1g1",
+       "f8e7",
+       "h2h3"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 62
+      },
+      "pv": [
+       "b8d7",
+       "f1d3",
+       "g8f6",
+       "e1g1",
+       "c7c6",
+       "f1e1",
+       "e5d4",
+       "f3d4"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 69
+      },
+      "pv": [
+       "b8c6",
+       "f1b5"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 111
+      },
+      "pv": [
+       "d4e5",
+       "b8c6",
+       "e5d6",
+       "f8d6",
+       "f1b5",
+       "g8f6",
+       "h2h3",
+       "g4h5"
+      ],
+      "depth": 10,
+      "nodes": 20019
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 85
+      },
+      "pv": [
+       "h2h3",
+       "g4f3"
+      ],
+      "depth": 10,
+      "nodes": 20019
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 92
+      },
+      "pv": [
+       "c1e3",
+       "b8d7",
+       "h2h3",
+       "g4f3",
+       "d1f3",
+       "c7c6"
+      ],
+      "depth": 9,
+      "nodes": 20019
+     }
+    ]
+   },
+   "winBefore": 45.04550396254112,
+   "winAfter": 39.92212681882058,
+   "epLoss": 0.051233771437205367,
+   "moveAccuracy": 80.37245872453401,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "e5d4",
+   "bestLine": [
+    "e5d4",
+    "f3d4",
+    "g8f6",
+    "f1d3",
+    "b8c6",
+    "d4c6",
+    "b7c6",
+    "e1g1",
+    "f8e7",
+    "h2h3"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 7,
+   "color": "w",
+   "san": "dxe5",
+   "uci": "d4e5",
+   "fenBefore": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+   "fenAfter": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+   "evalBefore": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 111
+      },
+      "pv": [
+       "d4e5",
+       "b8c6",
+       "e5d6",
+       "f8d6",
+       "f1b5",
+       "g8f6",
+       "h2h3",
+       "g4h5"
+      ],
+      "depth": 10,
+      "nodes": 20019
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 85
+      },
+      "pv": [
+       "h2h3",
+       "g4f3"
+      ],
+      "depth": 10,
+      "nodes": 20019
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 92
+      },
+      "pv": [
+       "c1e3",
+       "b8d7",
+       "h2h3",
+       "g4f3",
+       "d1f3",
+       "c7c6"
+      ],
+      "depth": 9,
+      "nodes": 20019
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 97
+      },
+      "pv": [
+       "b8c6",
+       "e5d6",
+       "f8d6",
+       "f1b5",
+       "g8e7",
+       "h2h3",
+       "g4h5",
+       "c1e3",
+       "e8g8",
+       "g2g4"
+      ],
+      "depth": 10,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 120
+      },
+      "pv": [
+       "b8d7",
+       "h2h3",
+       "g4h5",
+       "e5d6",
+       "f8d6",
+       "g2g4",
+       "h5g6",
+       "f1g2",
+       "g6e4",
+       "e1g1",
+       "g8f6"
+      ],
+      "depth": 10,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 136
+      },
+      "pv": [
+       "g4f3",
+       "d1f3"
+      ],
+      "depth": 10,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 60.07787318117942,
+   "winAfter": 58.835320297549366,
+   "epLoss": 0.012425528836300548,
+   "moveAccuracy": 95.56679123005172,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d4e5",
+   "bestLine": [
+    "d4e5",
+    "b8c6",
+    "e5d6",
+    "f8d6",
+    "f1b5",
+    "g8f6",
+    "h2h3",
+    "g4h5"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 8,
+   "color": "b",
+   "san": "Bxf3",
+   "uci": "g4f3",
+   "fenBefore": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+   "fenAfter": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+   "evalBefore": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 97
+      },
+      "pv": [
+       "b8c6",
+       "e5d6",
+       "f8d6",
+       "f1b5",
+       "g8e7",
+       "h2h3",
+       "g4h5",
+       "c1e3",
+       "e8g8",
+       "g2g4"
+      ],
+      "depth": 10,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 120
+      },
+      "pv": [
+       "b8d7",
+       "h2h3",
+       "g4h5",
+       "e5d6",
+       "f8d6",
+       "g2g4",
+       "h5g6",
+       "f1g2",
+       "g6e4",
+       "e1g1",
+       "g8f6"
+      ],
+      "depth": 10,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 136
+      },
+      "pv": [
+       "g4f3",
+       "d1f3"
+      ],
+      "depth": 10,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 160
+      },
+      "pv": [
+       "d1f3"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 81
+      },
+      "pv": [
+       "g2f3",
+       "d6e5",
+       "d1d8",
+       "e8d8",
+       "c1e3",
+       "g8f6",
+       "b1c3",
+       "f8b4"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -66
+      },
+      "pv": [
+       "d1d5",
+       "c7c6",
+       "d5b3",
+       "f3h5",
+       "b3b7",
+       "b8d7",
+       "b7c6",
+       "d6e5"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 41.164679702450634,
+   "winAfter": 35.68338549825677,
+   "epLoss": 0.05481294204193865,
+   "moveAccuracy": 79.09615995594487,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "b8c6",
+   "bestLine": [
+    "b8c6",
+    "e5d6",
+    "f8d6",
+    "f1b5",
+    "g8e7",
+    "h2h3",
+    "g4h5",
+    "c1e3",
+    "e8g8",
+    "g2g4"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 9,
+   "color": "w",
+   "san": "Qxf3",
+   "uci": "d1f3",
+   "fenBefore": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+   "fenAfter": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+   "evalBefore": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 160
+      },
+      "pv": [
+       "d1f3"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 81
+      },
+      "pv": [
+       "g2f3",
+       "d6e5",
+       "d1d8",
+       "e8d8",
+       "c1e3",
+       "g8f6",
+       "b1c3",
+       "f8b4"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -66
+      },
+      "pv": [
+       "d1d5",
+       "c7c6",
+       "d5b3",
+       "f3h5",
+       "b3b7",
+       "b8d7",
+       "b7c6",
+       "d6e5"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 140
+      },
+      "pv": [
+       "d6e5",
+       "f3b3",
+       "f8c5",
+       "f1c4",
+       "d8f6",
+       "e1g1",
+       "b8c6",
+       "b3b7",
+       "a8b8",
+       "b7c7"
+      ],
+      "depth": 10,
+      "nodes": 20014
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 165
+      },
+      "pv": [
+       "b8c6",
+       "f3b3",
+       "d8d7",
+       "e5d6",
+       "f8d6",
+       "b3b7",
+       "a8b8",
+       "b7a6",
+       "c6d4",
+       "a6d3",
+       "g8f6",
+       "b1c3"
+      ],
+      "depth": 10,
+      "nodes": 20014
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 180
+      },
+      "pv": [
+       "d8d7",
+       "e5d6"
+      ],
+      "depth": 10,
+      "nodes": 20014
+     }
+    ]
+   },
+   "winBefore": 64.31661450174323,
+   "winAfter": 62.60928550975975,
+   "epLoss": 0.01707328991983481,
+   "moveAccuracy": 93.60889502823609,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d1f3",
+   "bestLine": [
+    "d1f3"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 10,
+   "color": "b",
+   "san": "dxe5",
+   "uci": "d6e5",
+   "fenBefore": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+   "fenAfter": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+   "evalBefore": {
+    "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 140
+      },
+      "pv": [
+       "d6e5",
+       "f3b3",
+       "f8c5",
+       "f1c4",
+       "d8f6",
+       "e1g1",
+       "b8c6",
+       "b3b7",
+       "a8b8",
+       "b7c7"
+      ],
+      "depth": 10,
+      "nodes": 20014
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 165
+      },
+      "pv": [
+       "b8c6",
+       "f3b3",
+       "d8d7",
+       "e5d6",
+       "f8d6",
+       "b3b7",
+       "a8b8",
+       "b7a6",
+       "c6d4",
+       "a6d3",
+       "g8f6",
+       "b1c3"
+      ],
+      "depth": 10,
+      "nodes": 20014
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 180
+      },
+      "pv": [
+       "d8d7",
+       "e5d6"
+      ],
+      "depth": 10,
+      "nodes": 20014
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 166
+      },
+      "pv": [
+       "f3b3",
+       "b8d7",
+       "f1c4",
+       "d8f6",
+       "b3b7",
+       "a8b8",
+       "b7c7",
+       "f8d6",
+       "c7a7"
+      ],
+      "depth": 9,
+      "nodes": 20036
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 115
+      },
+      "pv": [
+       "f1c4",
+       "d8d7",
+       "e1g1",
+       "b8c6",
+       "b1c3",
+       "g8f6",
+       "f1d1",
+       "f8d6",
+       "c3b5",
+       "e8g8",
+       "h2h3",
+       "d7e7",
+       "b5d6",
+       "c7d6"
+      ],
+      "depth": 9,
+      "nodes": 20036
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 97
+      },
+      "pv": [
+       "c1e3",
+       "b8d7"
+      ],
+      "depth": 9,
+      "nodes": 20036
+     }
+    ]
+   },
+   "winBefore": 37.39071449024025,
+   "winAfter": 35.1779745677656,
+   "epLoss": 0.02212739922474649,
+   "moveAccuracy": 91.52431232601032,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d6e5",
+   "bestLine": [
+    "d6e5",
+    "f3b3",
+    "f8c5",
+    "f1c4",
+    "d8f6",
+    "e1g1",
+    "b8c6",
+    "b3b7",
+    "a8b8",
+    "b7c7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 11,
+   "color": "w",
+   "san": "Bc4",
+   "uci": "f1c4",
+   "fenBefore": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+   "fenAfter": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+   "evalBefore": {
+    "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 166
+      },
+      "pv": [
+       "f3b3",
+       "b8d7",
+       "f1c4",
+       "d8f6",
+       "b3b7",
+       "a8b8",
+       "b7c7",
+       "f8d6",
+       "c7a7"
+      ],
+      "depth": 9,
+      "nodes": 20036
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 115
+      },
+      "pv": [
+       "f1c4",
+       "d8d7",
+       "e1g1",
+       "b8c6",
+       "b1c3",
+       "g8f6",
+       "f1d1",
+       "f8d6",
+       "c3b5",
+       "e8g8",
+       "h2h3",
+       "d7e7",
+       "b5d6",
+       "c7d6"
+      ],
+      "depth": 9,
+      "nodes": 20036
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 97
+      },
+      "pv": [
+       "c1e3",
+       "b8d7"
+      ],
+      "depth": 9,
+      "nodes": 20036
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 121
+      },
+      "pv": [
+       "d8d7",
+       "e1g1"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 130
+      },
+      "pv": [
+       "d8f6",
+       "f3b3",
+       "f8c5",
+       "e1g1",
+       "c5b6",
+       "c1e3",
+       "b8c6",
+       "b1c3"
+      ],
+      "depth": 9,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 134
+      },
+      "pv": [
+       "d8e7",
+       "c1e3",
+       "g8f6",
+       "a2a3",
+       "b8d7",
+       "c4a2",
+       "g7g6",
+       "b1d2",
+       "c7c6"
+      ],
+      "depth": 9,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 64.8220254322344,
+   "winAfter": 60.957632713112076,
+   "epLoss": 0.038643927191223226,
+   "moveAccuracy": 85.02325619513998,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f3b3",
+   "bestLine": [
+    "f3b3",
+    "b8d7",
+    "f1c4",
+    "d8f6",
+    "b3b7",
+    "a8b8",
+    "b7c7",
+    "f8d6",
+    "c7a7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 12,
+   "color": "b",
+   "san": "Nf6",
+   "uci": "g8f6",
+   "fenBefore": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+   "fenAfter": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+   "evalBefore": {
+    "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 121
+      },
+      "pv": [
+       "d8d7",
+       "e1g1"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 130
+      },
+      "pv": [
+       "d8f6",
+       "f3b3",
+       "f8c5",
+       "e1g1",
+       "c5b6",
+       "c1e3",
+       "b8c6",
+       "b1c3"
+      ],
+      "depth": 9,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 134
+      },
+      "pv": [
+       "d8e7",
+       "c1e3",
+       "g8f6",
+       "a2a3",
+       "b8d7",
+       "c4a2",
+       "g7g6",
+       "b1d2",
+       "c7c6"
+      ],
+      "depth": 9,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 201
+      },
+      "pv": [
+       "f3b3",
+       "f8c5",
+       "c4f7",
+       "e8e7",
+       "e1g1",
+       "b8c6",
+       "f7c4",
+       "c6a5",
+       "b3b5"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 100
+      },
+      "pv": [
+       "b1c3",
+       "b8c6"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 98
+      },
+      "pv": [
+       "c1g5",
+       "c7c6",
+       "b1d2",
+       "b8d7",
+       "e1c1",
+       "d8c7",
+       "c1b1"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     }
+    ]
+   },
+   "winBefore": 39.042367286887924,
+   "winAfter": 32.298269673825814,
+   "epLoss": 0.06744097613062111,
+   "moveAccuracy": 74.74872838137827,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "d8d7",
+   "bestLine": [
+    "d8d7",
+    "e1g1"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 13,
+   "color": "w",
+   "san": "Qb3",
+   "uci": "f3b3",
+   "fenBefore": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+   "fenAfter": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+   "evalBefore": {
+    "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 201
+      },
+      "pv": [
+       "f3b3",
+       "f8c5",
+       "c4f7",
+       "e8e7",
+       "e1g1",
+       "b8c6",
+       "f7c4",
+       "c6a5",
+       "b3b5"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 100
+      },
+      "pv": [
+       "b1c3",
+       "b8c6"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 98
+      },
+      "pv": [
+       "c1g5",
+       "c7c6",
+       "b1d2",
+       "b8d7",
+       "e1c1",
+       "d8c7",
+       "c1b1"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 184
+      },
+      "pv": [
+       "f8c5"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 220
+      },
+      "pv": [
+       "d8e7",
+       "b3b7",
+       "e7b4",
+       "b7b4",
+       "f8b4",
+       "c2c3",
+       "b4e7",
+       "b1d2",
+       "b8d7",
+       "b2b4",
+       "e8g8"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 223
+      },
+      "pv": [
+       "f8d6",
+       "c4f7",
+       "e8e7",
+       "b1c3",
+       "b8c6",
+       "c1g5",
+       "c6d4",
+       "g5f6",
+       "g7f6"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     }
+    ]
+   },
+   "winBefore": 67.70173032617419,
+   "winAfter": 66.31811026712697,
+   "epLoss": 0.01383620059047208,
+   "moveAccuracy": 94.96834429494432,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "f3b3",
+   "bestLine": [
+    "f3b3",
+    "f8c5",
+    "c4f7",
+    "e8e7",
+    "e1g1",
+    "b8c6",
+    "f7c4",
+    "c6a5",
+    "b3b5"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 14,
+   "color": "b",
+   "san": "Qe7",
+   "uci": "d8e7",
+   "fenBefore": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+   "fenAfter": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+   "evalBefore": {
+    "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 184
+      },
+      "pv": [
+       "f8c5"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 220
+      },
+      "pv": [
+       "d8e7",
+       "b3b7",
+       "e7b4",
+       "b7b4",
+       "f8b4",
+       "c2c3",
+       "b4e7",
+       "b1d2",
+       "b8d7",
+       "b2b4",
+       "e8g8"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 223
+      },
+      "pv": [
+       "f8d6",
+       "c4f7",
+       "e8e7",
+       "b1c3",
+       "b8c6",
+       "c1g5",
+       "c6d4",
+       "g5f6",
+       "g7f6"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 229
+      },
+      "pv": [
+       "b3b7",
+       "e7b4",
+       "b7b4",
+       "f8b4",
+       "c1d2",
+       "b4d2",
+       "b1d2",
+       "h7h6",
+       "e1c1",
+       "b8d7",
+       "c1b1"
+      ],
+      "depth": 11,
+      "nodes": 20006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 155
+      },
+      "pv": [
+       "b1c3",
+       "c7c6",
+       "c1g5",
+       "b7b5"
+      ],
+      "depth": 10,
+      "nodes": 20006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 140
+      },
+      "pv": [
+       "e1g1",
+       "c7c6",
+       "c1e3",
+       "f6g4"
+      ],
+      "depth": 10,
+      "nodes": 20006
+     }
+    ]
+   },
+   "winBefore": 33.68188973287303,
+   "winAfter": 30.08620294025279,
+   "epLoss": 0.03595686792620245,
+   "moveAccuracy": 86.04932410912923,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f8c5",
+   "bestLine": [
+    "f8c5"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 15,
+   "color": "w",
+   "san": "Nc3",
+   "uci": "b1c3",
+   "fenBefore": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+   "fenAfter": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+   "evalBefore": {
+    "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 229
+      },
+      "pv": [
+       "b3b7",
+       "e7b4",
+       "b7b4",
+       "f8b4",
+       "c1d2",
+       "b4d2",
+       "b1d2",
+       "h7h6",
+       "e1c1",
+       "b8d7",
+       "c1b1"
+      ],
+      "depth": 11,
+      "nodes": 20006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 155
+      },
+      "pv": [
+       "b1c3",
+       "c7c6",
+       "c1g5",
+       "b7b5"
+      ],
+      "depth": 10,
+      "nodes": 20006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 140
+      },
+      "pv": [
+       "e1g1",
+       "c7c6",
+       "c1e3",
+       "f6g4"
+      ],
+      "depth": 10,
+      "nodes": 20006
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 136
+      },
+      "pv": [
+       "c7c6",
+       "c1g5",
+       "b7b6",
+       "a2a4",
+       "b8d7",
+       "e1c1",
+       "d7c5",
+       "b3a2",
+       "e7c7"
+      ],
+      "depth": 10,
+      "nodes": 20000
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 181
+      },
+      "pv": [
+       "b7b6",
+       "c1e3",
+       "c7c6",
+       "e1c1",
+       "b8d7",
+       "c1b1",
+       "b6b5",
+       "c3b5",
+       "c6b5",
+       "c4b5"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 236
+      },
+      "pv": [
+       "b8d7",
+       "b3b7",
+       "a8b8",
+       "b7a7",
+       "e7b4",
+       "c4d3",
+       "f8d6",
+       "a7a4",
+       "e8g8",
+       "e1g1"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     }
+    ]
+   },
+   "winBefore": 69.91379705974721,
+   "winAfter": 62.26385940780689,
+   "epLoss": 0.0764993765194032,
+   "moveAccuracy": 71.77419853391577,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "b3b7",
+   "bestLine": [
+    "b3b7",
+    "e7b4",
+    "b7b4",
+    "f8b4",
+    "c1d2",
+    "b4d2",
+    "b1d2",
+    "h7h6",
+    "e1c1",
+    "b8d7",
+    "c1b1"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 16,
+   "color": "b",
+   "san": "c6",
+   "uci": "c7c6",
+   "fenBefore": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+   "fenAfter": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+   "evalBefore": {
+    "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 136
+      },
+      "pv": [
+       "c7c6",
+       "c1g5",
+       "b7b6",
+       "a2a4",
+       "b8d7",
+       "e1c1",
+       "d7c5",
+       "b3a2",
+       "e7c7"
+      ],
+      "depth": 10,
+      "nodes": 20000
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 181
+      },
+      "pv": [
+       "b7b6",
+       "c1e3",
+       "c7c6",
+       "e1c1",
+       "b8d7",
+       "c1b1",
+       "b6b5",
+       "c3b5",
+       "c6b5",
+       "c4b5"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 236
+      },
+      "pv": [
+       "b8d7",
+       "b3b7",
+       "a8b8",
+       "b7a7",
+       "e7b4",
+       "c4d3",
+       "f8d6",
+       "a7a4",
+       "e8g8",
+       "e1g1"
+      ],
+      "depth": 9,
+      "nodes": 20000
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 163
+      },
+      "pv": [
+       "c1g5",
+       "b7b6",
+       "e1c1",
+       "b8d7",
+       "a2a4",
+       "d7c5",
+       "b3a2",
+       "h7h6",
+       "g5e3"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 133
+      },
+      "pv": [
+       "a2a4",
+       "e7c7",
+       "c1g5",
+       "f8c5",
+       "g5f6",
+       "g7f6",
+       "e1c1",
+       "e8g8",
+       "c1b1",
+       "b8d7",
+       "a4a5",
+       "c5f2"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 123
+      },
+      "pv": [
+       "c1e3",
+       "b7b5"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 37.73614059219311,
+   "winAfter": 35.43027333120821,
+   "epLoss": 0.02305867260984895,
+   "moveAccuracy": 91.14518569529744,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c7c6",
+   "bestLine": [
+    "c7c6",
+    "c1g5",
+    "b7b6",
+    "a2a4",
+    "b8d7",
+    "e1c1",
+    "d7c5",
+    "b3a2",
+    "e7c7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 17,
+   "color": "w",
+   "san": "Bg5",
+   "uci": "c1g5",
+   "fenBefore": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+   "fenAfter": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+   "evalBefore": {
+    "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 163
+      },
+      "pv": [
+       "c1g5",
+       "b7b6",
+       "e1c1",
+       "b8d7",
+       "a2a4",
+       "d7c5",
+       "b3a2",
+       "h7h6",
+       "g5e3"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 133
+      },
+      "pv": [
+       "a2a4",
+       "e7c7",
+       "c1g5",
+       "f8c5",
+       "g5f6",
+       "g7f6",
+       "e1c1",
+       "e8g8",
+       "c1b1",
+       "b8d7",
+       "a4a5",
+       "c5f2"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 123
+      },
+      "pv": [
+       "c1e3",
+       "b7b5"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 166
+      },
+      "pv": [
+       "e7c7",
+       "e1c1",
+       "a7a5",
+       "g5f6",
+       "g7f6",
+       "c1b1",
+       "f8b4"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 198
+      },
+      "pv": [
+       "a7a5",
+       "e1c1"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 170
+      },
+      "pv": [
+       "e7d7",
+       "g5f6",
+       "g7f6",
+       "e1g1",
+       "d7c7",
+       "f1d1",
+       "f8c5"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     }
+    ]
+   },
+   "winBefore": 64.56972666879179,
+   "winAfter": 64.8220254322344,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c1g5",
+   "bestLine": [
+    "c1g5",
+    "b7b6",
+    "e1c1",
+    "b8d7",
+    "a2a4",
+    "d7c5",
+    "b3a2",
+    "h7h6",
+    "g5e3"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 18,
+   "color": "b",
+   "san": "b5",
+   "uci": "b7b5",
+   "fenBefore": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+   "fenAfter": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+   "evalBefore": {
+    "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 166
+      },
+      "pv": [
+       "e7c7",
+       "e1c1",
+       "a7a5",
+       "g5f6",
+       "g7f6",
+       "c1b1",
+       "f8b4"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 198
+      },
+      "pv": [
+       "a7a5",
+       "e1c1"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 170
+      },
+      "pv": [
+       "e7d7",
+       "g5f6",
+       "g7f6",
+       "e1g1",
+       "d7c7",
+       "f1d1",
+       "f8c5"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 238
+      },
+      "pv": [
+       "c3b5",
+       "c6b5",
+       "c4b5",
+       "e8d8",
+       "a1d1",
+       "d8c7",
+       "e1g1",
+       "e7e6",
+       "b3c3",
+       "b8c6",
+       "b5c6",
+       "e6c6",
+       "c3e5",
+       "c7b6"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 70
+      },
+      "pv": [
+       "c4b5",
+       "c6b5",
+       "c3d5",
+       "e7d6"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 69
+      },
+      "pv": [
+       "g5f6",
+       "e7f6",
+       "c3b5",
+       "c6b5",
+       "c4b5",
+       "b8c6",
+       "b3d5",
+       "a8c8",
+       "e1c1",
+       "f6e6",
+       "c1b1"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     }
+    ]
+   },
+   "winBefore": 35.1779745677656,
+   "winAfter": 29.393782392203832,
+   "epLoss": 0.0578419217556177,
+   "moveAccuracy": 78.03148428031962,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "e7c7",
+   "bestLine": [
+    "e7c7",
+    "e1c1",
+    "a7a5",
+    "g5f6",
+    "g7f6",
+    "c1b1",
+    "f8b4"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 19,
+   "color": "w",
+   "san": "Nxb5",
+   "uci": "c3b5",
+   "fenBefore": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+   "fenAfter": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+   "evalBefore": {
+    "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 238
+      },
+      "pv": [
+       "c3b5",
+       "c6b5",
+       "c4b5",
+       "e8d8",
+       "a1d1",
+       "d8c7",
+       "e1g1",
+       "e7e6",
+       "b3c3",
+       "b8c6",
+       "b5c6",
+       "e6c6",
+       "c3e5",
+       "c7b6"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 70
+      },
+      "pv": [
+       "c4b5",
+       "c6b5",
+       "c3d5",
+       "e7d6"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 69
+      },
+      "pv": [
+       "g5f6",
+       "e7f6",
+       "c3b5",
+       "c6b5",
+       "c4b5",
+       "b8c6",
+       "b3d5",
+       "a8c8",
+       "e1c1",
+       "f6e6",
+       "c1b1"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 266
+      },
+      "pv": [
+       "e7b4",
+       "b5c3",
+       "b4b3",
+       "a2b3",
+       "b8d7",
+       "f2f3",
+       "a7a5",
+       "c3a4",
+       "e8d8",
+       "c4f7",
+       "f8b4",
+       "e1e2"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 291
+      },
+      "pv": [
+       "c6b5",
+       "c4b5"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 311
+      },
+      "pv": [
+       "b8a6",
+       "e1c1",
+       "a8b8",
+       "g5e3",
+       "e7b7",
+       "e3a7",
+       "c6b5",
+       "a7b8"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     }
+    ]
+   },
+   "winBefore": 70.60621760779617,
+   "winAfter": 72.6995752233842,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c3b5",
+   "bestLine": [
+    "c3b5",
+    "c6b5",
+    "c4b5",
+    "e8d8",
+    "a1d1",
+    "d8c7",
+    "e1g1",
+    "e7e6",
+    "b3c3",
+    "b8c6",
+    "b5c6",
+    "e6c6",
+    "c3e5",
+    "c7b6"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 20,
+   "color": "b",
+   "san": "cxb5",
+   "uci": "c6b5",
+   "fenBefore": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+   "fenAfter": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+   "evalBefore": {
+    "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 266
+      },
+      "pv": [
+       "e7b4",
+       "b5c3",
+       "b4b3",
+       "a2b3",
+       "b8d7",
+       "f2f3",
+       "a7a5",
+       "c3a4",
+       "e8d8",
+       "c4f7",
+       "f8b4",
+       "e1e2"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 291
+      },
+      "pv": [
+       "c6b5",
+       "c4b5"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 311
+      },
+      "pv": [
+       "b8a6",
+       "e1c1",
+       "a8b8",
+       "g5e3",
+       "e7b7",
+       "e3a7",
+       "c6b5",
+       "a7b8"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 341
+      },
+      "pv": [
+       "c4b5",
+       "e8d8",
+       "e1c1",
+       "d8c7",
+       "d1d3",
+       "e7b4",
+       "b3f7",
+       "f8e7",
+       "d3c3",
+       "c7b7",
+       "h1d1",
+       "b4b5",
+       "f7e7",
+       "f6d7"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 94
+      },
+      "pv": [
+       "b3b5",
+       "e7d7",
+       "b5e5",
+       "f8e7",
+       "g5f6",
+       "g7f6",
+       "e5d5",
+       "b8c6",
+       "d5f7",
+       "e8d8",
+       "c2c3",
+       "d8c7"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -107
+      },
+      "pv": [
+       "c4e2",
+       "e7b4",
+       "b3b4",
+       "f8b4",
+       "c2c3",
+       "b4c5",
+       "e2b5",
+       "e8e7"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 27.3004247766158,
+   "winAfter": 22.173410747470697,
+   "epLoss": 0.05127014029145102,
+   "moveAccuracy": 80.35938965256206,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "e7b4",
+   "bestLine": [
+    "e7b4",
+    "b5c3",
+    "b4b3",
+    "a2b3",
+    "b8d7",
+    "f2f3",
+    "a7a5",
+    "c3a4",
+    "e8d8",
+    "c4f7",
+    "f8b4",
+    "e1e2"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 21,
+   "color": "w",
+   "san": "Bxb5+",
+   "uci": "c4b5",
+   "fenBefore": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+   "fenAfter": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+   "evalBefore": {
+    "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 341
+      },
+      "pv": [
+       "c4b5",
+       "e8d8",
+       "e1c1",
+       "d8c7",
+       "d1d3",
+       "e7b4",
+       "b3f7",
+       "f8e7",
+       "d3c3",
+       "c7b7",
+       "h1d1",
+       "b4b5",
+       "f7e7",
+       "f6d7"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 94
+      },
+      "pv": [
+       "b3b5",
+       "e7d7",
+       "b5e5",
+       "f8e7",
+       "g5f6",
+       "g7f6",
+       "e5d5",
+       "b8c6",
+       "d5f7",
+       "e8d8",
+       "c2c3",
+       "d8c7"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -107
+      },
+      "pv": [
+       "c4e2",
+       "e7b4",
+       "b3b4",
+       "f8b4",
+       "c2c3",
+       "b4c5",
+       "e2b5",
+       "e8e7"
+      ],
+      "depth": 11,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 348
+      },
+      "pv": [
+       "e8d8",
+       "e1c1",
+       "d8c7",
+       "d1d3",
+       "e7b4",
+       "b3f7",
+       "b4e7",
+       "d3c3",
+       "c7b6",
+       "f7c4",
+       "e7b4",
+       "c4c7",
+       "b6b5",
+       "c3b3",
+       "b8c6",
+       "b3b4",
+       "f8b4"
+      ],
+      "depth": 11,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 468
+      },
+      "pv": [
+       "b8d7",
+       "e1c1",
+       "a8b8",
+       "d1d7",
+       "e7d7",
+       "b5d7",
+       "f6d7",
+       "b3a4",
+       "b8b2",
+       "c1b2",
+       "f8c5",
+       "b2a1"
+      ],
+      "depth": 11,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 535
+      },
+      "pv": [
+       "e7d7",
+       "b5d7",
+       "b8d7",
+       "g5c1",
+       "a8b8",
+       "b3a4",
+       "f8c5",
+       "e1g1",
+       "e8g8"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     }
+    ]
+   },
+   "winBefore": 77.8265892525293,
+   "winAfter": 78.26818427327368,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "c4b5",
+   "bestLine": [
+    "c4b5",
+    "e8d8",
+    "e1c1",
+    "d8c7",
+    "d1d3",
+    "e7b4",
+    "b3f7",
+    "f8e7",
+    "d3c3",
+    "c7b7",
+    "h1d1",
+    "b4b5",
+    "f7e7",
+    "f6d7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 22,
+   "color": "b",
+   "san": "Nbd7",
+   "uci": "b8d7",
+   "fenBefore": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+   "fenAfter": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+   "evalBefore": {
+    "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 348
+      },
+      "pv": [
+       "e8d8",
+       "e1c1",
+       "d8c7",
+       "d1d3",
+       "e7b4",
+       "b3f7",
+       "b4e7",
+       "d3c3",
+       "c7b6",
+       "f7c4",
+       "e7b4",
+       "c4c7",
+       "b6b5",
+       "c3b3",
+       "b8c6",
+       "b3b4",
+       "f8b4"
+      ],
+      "depth": 11,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 468
+      },
+      "pv": [
+       "b8d7",
+       "e1c1",
+       "a8b8",
+       "d1d7",
+       "e7d7",
+       "b5d7",
+       "f6d7",
+       "b3a4",
+       "b8b2",
+       "c1b2",
+       "f8c5",
+       "b2a1"
+      ],
+      "depth": 11,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 535
+      },
+      "pv": [
+       "e7d7",
+       "b5d7",
+       "b8d7",
+       "g5c1",
+       "a8b8",
+       "b3a4",
+       "f8c5",
+       "e1g1",
+       "e8g8"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 430
+      },
+      "pv": [
+       "e1c1",
+       "e7c5",
+       "g5f6",
+       "f8d6",
+       "f6g7",
+       "h8g8",
+       "g7f6",
+       "a8b8",
+       "b5d7",
+       "e8d7",
+       "b3h3"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 248
+      },
+      "pv": [
+       "g5f6",
+       "e7b4",
+       "b3b4",
+       "f8b4",
+       "c2c3",
+       "b4c3",
+       "b2c3",
+       "g7f6",
+       "e1c1",
+       "e8c8",
+       "d1d6",
+       "c8c7",
+       "h1d1",
+       "d7c5",
+       "d6f6"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 140
+      },
+      "pv": [
+       "e1g1",
+       "e7b4"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     }
+    ]
+   },
+   "winBefore": 21.731815726726325,
+   "winAfter": 17.03294205271257,
+   "epLoss": 0.04698873674013754,
+   "moveAccuracy": 81.91220955779232,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "e8d8",
+   "bestLine": [
+    "e8d8",
+    "e1c1",
+    "d8c7",
+    "d1d3",
+    "e7b4",
+    "b3f7",
+    "b4e7",
+    "d3c3",
+    "c7b6",
+    "f7c4",
+    "e7b4",
+    "c4c7",
+    "b6b5",
+    "c3b3",
+    "b8c6",
+    "b3b4",
+    "f8b4"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 23,
+   "color": "w",
+   "san": "O-O-O",
+   "uci": "e1c1",
+   "fenBefore": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+   "fenAfter": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+   "evalBefore": {
+    "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 430
+      },
+      "pv": [
+       "e1c1",
+       "e7c5",
+       "g5f6",
+       "f8d6",
+       "f6g7",
+       "h8g8",
+       "g7f6",
+       "a8b8",
+       "b5d7",
+       "e8d7",
+       "b3h3"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 248
+      },
+      "pv": [
+       "g5f6",
+       "e7b4",
+       "b3b4",
+       "f8b4",
+       "c2c3",
+       "b4c3",
+       "b2c3",
+       "g7f6",
+       "e1c1",
+       "e8c8",
+       "d1d6",
+       "c8c7",
+       "h1d1",
+       "d7c5",
+       "d6f6"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 140
+      },
+      "pv": [
+       "e1g1",
+       "e7b4"
+      ],
+      "depth": 11,
+      "nodes": 20002
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 454
+      },
+      "pv": [
+       "e7c5",
+       "g5f6",
+       "f8d6",
+       "b5d7",
+       "e8d7",
+       "f6g7",
+       "h8b8",
+       "b3f7",
+       "d7c6",
+       "g7h6",
+       "c5b5"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 465
+      },
+      "pv": [
+       "a8b8",
+       "d1d7",
+       "e7d7",
+       "b5d7",
+       "f6d7",
+       "b3g3",
+       "b8b2",
+       "c1b2",
+       "f8c5",
+       "b2c1",
+       "e8g8"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 516
+      },
+      "pv": [
+       "g7g6",
+       "d1d7",
+       "f6d7",
+       "g5e7",
+       "e8e7",
+       "b5d7",
+       "f8h6",
+       "c1b1",
+       "h8d8"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     }
+    ]
+   },
+   "winBefore": 82.96705794728743,
+   "winAfter": 84.17975920880569,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e1c1",
+   "bestLine": [
+    "e1c1",
+    "e7c5",
+    "g5f6",
+    "f8d6",
+    "f6g7",
+    "h8g8",
+    "g7f6",
+    "a8b8",
+    "b5d7",
+    "e8d7",
+    "b3h3"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 24,
+   "color": "b",
+   "san": "Rd8",
+   "uci": "a8d8",
+   "fenBefore": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+   "fenAfter": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+   "evalBefore": {
+    "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 454
+      },
+      "pv": [
+       "e7c5",
+       "g5f6",
+       "f8d6",
+       "b5d7",
+       "e8d7",
+       "f6g7",
+       "h8b8",
+       "b3f7",
+       "d7c6",
+       "g7h6",
+       "c5b5"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 465
+      },
+      "pv": [
+       "a8b8",
+       "d1d7",
+       "e7d7",
+       "b5d7",
+       "f6d7",
+       "b3g3",
+       "b8b2",
+       "c1b2",
+       "f8c5",
+       "b2c1",
+       "e8g8"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 516
+      },
+      "pv": [
+       "g7g6",
+       "d1d7",
+       "f6d7",
+       "g5e7",
+       "e8e7",
+       "b5d7",
+       "f8h6",
+       "c1b1",
+       "h8d8"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 489
+      },
+      "pv": [
+       "d1d7",
+       "d8d7",
+       "h1d1",
+       "e7c5",
+       "g5f6",
+       "f8d6",
+       "b5d7",
+       "e8d7",
+       "f6g7",
+       "h8d8",
+       "b3f7",
+       "d7c6",
+       "f7d5",
+       "c5d5"
+      ],
+      "depth": 11,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 370
+      },
+      "pv": [
+       "d1d5",
+       "e7e6",
+       "g5f6",
+       "g7f6",
+       "h1d1",
+       "f8h6",
+       "c1b1",
+       "e8g8",
+       "d5d7",
+       "e6b3",
+       "a2b3",
+       "d8d7",
+       "b5d7"
+      ],
+      "depth": 11,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 239
+      },
+      "pv": [
+       "g5f6",
+       "e7f6",
+       "b5d7",
+       "d8d7",
+       "d1d7",
+       "e8d7",
+       "b3b7",
+       "d7e8",
+       "h1d1",
+       "f8e7"
+      ],
+      "depth": 11,
+      "nodes": 20020
+     }
+    ]
+   },
+   "winBefore": 15.820240791194308,
+   "winAfter": 14.17856942140952,
+   "epLoss": 0.01641671369784789,
+   "moveAccuracy": 93.8830841717123,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "e7c5",
+   "bestLine": [
+    "e7c5",
+    "g5f6",
+    "f8d6",
+    "b5d7",
+    "e8d7",
+    "f6g7",
+    "h8b8",
+    "b3f7",
+    "d7c6",
+    "g7h6",
+    "c5b5"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 25,
+   "color": "w",
+   "san": "Rxd7",
+   "uci": "d1d7",
+   "fenBefore": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+   "fenAfter": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+   "evalBefore": {
+    "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 489
+      },
+      "pv": [
+       "d1d7",
+       "d8d7",
+       "h1d1",
+       "e7c5",
+       "g5f6",
+       "f8d6",
+       "b5d7",
+       "e8d7",
+       "f6g7",
+       "h8d8",
+       "b3f7",
+       "d7c6",
+       "f7d5",
+       "c5d5"
+      ],
+      "depth": 11,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 370
+      },
+      "pv": [
+       "d1d5",
+       "e7e6",
+       "g5f6",
+       "g7f6",
+       "h1d1",
+       "f8h6",
+       "c1b1",
+       "e8g8",
+       "d5d7",
+       "e6b3",
+       "a2b3",
+       "d8d7",
+       "b5d7"
+      ],
+      "depth": 11,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 239
+      },
+      "pv": [
+       "g5f6",
+       "e7f6",
+       "b5d7",
+       "d8d7",
+       "d1d7",
+       "e8d7",
+       "b3b7",
+       "d7e8",
+       "h1d1",
+       "f8e7"
+      ],
+      "depth": 11,
+      "nodes": 20020
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 477
+      },
+      "pv": [
+       "d8d7",
+       "h1d1",
+       "e7b4",
+       "g5f6",
+       "g7f6",
+       "b3b4",
+       "f8b4",
+       "d1d7",
+       "e8g8",
+       "d7a7",
+       "f8d8",
+       "c2c3",
+       "b4c5",
+       "a7d7",
+       "d8d7",
+       "b5d7"
+      ],
+      "depth": 13,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 518
+      },
+      "pv": [
+       "f6d7",
+       "g5e7",
+       "f8e7",
+       "b3d5",
+       "e7g5",
+       "c1b1",
+       "e8e7",
+       "b5d7",
+       "g5f4",
+       "d5c5",
+       "e7d7",
+       "c5d5"
+      ],
+      "depth": 13,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 570
+      },
+      "pv": [
+       "e7d7",
+       "b5d7",
+       "f6d7",
+       "g5d8",
+       "g7g6",
+       "d8h4",
+       "f8h6",
+       "c1b1",
+       "e8g8",
+       "b3h3",
+       "d7c5",
+       "a2a4",
+       "c5a4",
+       "b1a2",
+       "h6f4"
+      ],
+      "depth": 13,
+      "nodes": 20010
+     }
+    ]
+   },
+   "winBefore": 85.82143057859048,
+   "winAfter": 85.27522051053597,
+   "epLoss": 0.00546210068054509,
+   "moveAccuracy": 98.57533334817215,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d1d7",
+   "bestLine": [
+    "d1d7",
+    "d8d7",
+    "h1d1",
+    "e7c5",
+    "g5f6",
+    "f8d6",
+    "b5d7",
+    "e8d7",
+    "f6g7",
+    "h8d8",
+    "b3f7",
+    "d7c6",
+    "f7d5",
+    "c5d5"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 26,
+   "color": "b",
+   "san": "Rxd7",
+   "uci": "d8d7",
+   "fenBefore": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+   "fenAfter": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+   "evalBefore": {
+    "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 477
+      },
+      "pv": [
+       "d8d7",
+       "h1d1",
+       "e7b4",
+       "g5f6",
+       "g7f6",
+       "b3b4",
+       "f8b4",
+       "d1d7",
+       "e8g8",
+       "d7a7",
+       "f8d8",
+       "c2c3",
+       "b4c5",
+       "a7d7",
+       "d8d7",
+       "b5d7"
+      ],
+      "depth": 13,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 518
+      },
+      "pv": [
+       "f6d7",
+       "g5e7",
+       "f8e7",
+       "b3d5",
+       "e7g5",
+       "c1b1",
+       "e8e7",
+       "b5d7",
+       "g5f4",
+       "d5c5",
+       "e7d7",
+       "c5d5"
+      ],
+      "depth": 13,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 570
+      },
+      "pv": [
+       "e7d7",
+       "b5d7",
+       "f6d7",
+       "g5d8",
+       "g7g6",
+       "d8h4",
+       "f8h6",
+       "c1b1",
+       "e8g8",
+       "b3h3",
+       "d7c5",
+       "a2a4",
+       "c5a4",
+       "b1a2",
+       "h6f4"
+      ],
+      "depth": 13,
+      "nodes": 20010
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 447
+      },
+      "pv": [
+       "h1d1",
+       "e7b4",
+       "g5f6",
+       "g7f6",
+       "b3b4",
+       "f8b4",
+       "d1d7",
+       "e8g8",
+       "d7a7",
+       "b4e1",
+       "a7d7",
+       "e1f2"
+      ],
+      "depth": 10,
+      "nodes": 20029
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 128
+      },
+      "pv": [
+       "b3a4",
+       "e7e6"
+      ],
+      "depth": 10,
+      "nodes": 20029
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 158
+      },
+      "pv": [
+       "g5f6",
+       "e7f6",
+       "h1d1",
+       "f8d6",
+       "a2a3",
+       "e8e7",
+       "b5d7",
+       "e7d7",
+       "b3b7",
+       "d7e6"
+      ],
+      "depth": 9,
+      "nodes": 20029
+     }
+    ]
+   },
+   "winBefore": 14.724779489464026,
+   "winAfter": 16.16652343301709,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d8d7",
+   "bestLine": [
+    "d8d7",
+    "h1d1",
+    "e7b4",
+    "g5f6",
+    "g7f6",
+    "b3b4",
+    "f8b4",
+    "d1d7",
+    "e8g8",
+    "d7a7",
+    "f8d8",
+    "c2c3",
+    "b4c5",
+    "a7d7",
+    "d8d7",
+    "b5d7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 27,
+   "color": "w",
+   "san": "Rd1",
+   "uci": "h1d1",
+   "fenBefore": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+   "fenAfter": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+   "evalBefore": {
+    "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 447
+      },
+      "pv": [
+       "h1d1",
+       "e7b4",
+       "g5f6",
+       "g7f6",
+       "b3b4",
+       "f8b4",
+       "d1d7",
+       "e8g8",
+       "d7a7",
+       "b4e1",
+       "a7d7",
+       "e1f2"
+      ],
+      "depth": 10,
+      "nodes": 20029
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 128
+      },
+      "pv": [
+       "b3a4",
+       "e7e6"
+      ],
+      "depth": 10,
+      "nodes": 20029
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 158
+      },
+      "pv": [
+       "g5f6",
+       "e7f6",
+       "h1d1",
+       "f8d6",
+       "a2a3",
+       "e8e7",
+       "b5d7",
+       "e7d7",
+       "b3b7",
+       "d7e6"
+      ],
+      "depth": 9,
+      "nodes": 20029
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 520
+      },
+      "pv": [
+       "e7b4",
+       "g5f6",
+       "g7f6",
+       "b5d7",
+       "e8d8",
+       "b3f7",
+       "f8h6",
+       "c1b1",
+       "d8c7",
+       "d7e6",
+       "c7b8",
+       "f7d7",
+       "b4e4",
+       "d7d6",
+       "b8b7"
+      ],
+      "depth": 12,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 542
+      },
+      "pv": [
+       "e7e6",
+       "g5f6",
+       "f8d6",
+       "b3e6",
+       "f7e6",
+       "b5d7",
+       "e8d7",
+       "f6e5",
+       "h7h5",
+       "d1d6",
+       "d7e8"
+      ],
+      "depth": 12,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 580
+      },
+      "pv": [
+       "e7d6",
+       "b5d7",
+       "f6d7",
+       "d1d6",
+       "f8d6",
+       "g5e3"
+      ],
+      "depth": 12,
+      "nodes": 20010
+     }
+    ]
+   },
+   "winBefore": 83.83347656698291,
+   "winAfter": 87.15441882967353,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "h1d1",
+   "bestLine": [
+    "h1d1",
+    "e7b4",
+    "g5f6",
+    "g7f6",
+    "b3b4",
+    "f8b4",
+    "d1d7",
+    "e8g8",
+    "d7a7",
+    "b4e1",
+    "a7d7",
+    "e1f2"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 28,
+   "color": "b",
+   "san": "Qe6",
+   "uci": "e7e6",
+   "fenBefore": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+   "fenAfter": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+   "evalBefore": {
+    "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 520
+      },
+      "pv": [
+       "e7b4",
+       "g5f6",
+       "g7f6",
+       "b5d7",
+       "e8d8",
+       "b3f7",
+       "f8h6",
+       "c1b1",
+       "d8c7",
+       "d7e6",
+       "c7b8",
+       "f7d7",
+       "b4e4",
+       "d7d6",
+       "b8b7"
+      ],
+      "depth": 12,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 542
+      },
+      "pv": [
+       "e7e6",
+       "g5f6",
+       "f8d6",
+       "b3e6",
+       "f7e6",
+       "b5d7",
+       "e8d7",
+       "f6e5",
+       "h7h5",
+       "d1d6",
+       "d7e8"
+      ],
+      "depth": 12,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 580
+      },
+      "pv": [
+       "e7d6",
+       "b5d7",
+       "f6d7",
+       "d1d6",
+       "f8d6",
+       "g5e3"
+      ],
+      "depth": 12,
+      "nodes": 20010
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 568
+      },
+      "pv": [
+       "g5f6",
+       "f8d6",
+       "b3e6",
+       "f7e6",
+       "d1d6",
+       "e8g8",
+       "b5d7",
+       "f8f6",
+       "d7e6",
+       "g8f8",
+       "d6d1",
+       "f6e6",
+       "c1b1",
+       "e6h6"
+      ],
+      "depth": 13,
+      "nodes": 20037
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 410
+      },
+      "pv": [
+       "b3e6",
+       "f7e6",
+       "g5f6",
+       "e8f7",
+       "d1d7",
+       "f7f6",
+       "d7a7",
+       "f8c5",
+       "a7d7",
+       "c5f2",
+       "c2c3",
+       "h7h5",
+       "c1c2",
+       "h5h4",
+       "a2a4"
+      ],
+      "depth": 13,
+      "nodes": 20037
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 266
+      },
+      "pv": [
+       "b3c3",
+       "f8d6",
+       "c3c8",
+       "e8e7",
+       "c8h8",
+       "e6a2",
+       "g5f6",
+       "e7f6",
+       "b5d7",
+       "a2a1",
+       "c1d2",
+       "a1b2",
+       "h8d8",
+       "d6e7",
+       "d8c7",
+       "b2b4",
+       "d2d3"
+      ],
+      "depth": 13,
+      "nodes": 20037
+     }
+    ]
+   },
+   "winBefore": 12.845581170326469,
+   "winAfter": 10.993341208440881,
+   "epLoss": 0.018522399618855878,
+   "moveAccuracy": 93.00650732192234,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "e7b4",
+   "bestLine": [
+    "e7b4",
+    "g5f6",
+    "g7f6",
+    "b5d7",
+    "e8d8",
+    "b3f7",
+    "f8h6",
+    "c1b1",
+    "d8c7",
+    "d7e6",
+    "c7b8",
+    "f7d7",
+    "b4e4",
+    "d7d6",
+    "b8b7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 29,
+   "color": "w",
+   "san": "Bxd7+",
+   "uci": "b5d7",
+   "fenBefore": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+   "fenAfter": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+   "evalBefore": {
+    "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 568
+      },
+      "pv": [
+       "g5f6",
+       "f8d6",
+       "b3e6",
+       "f7e6",
+       "d1d6",
+       "e8g8",
+       "b5d7",
+       "f8f6",
+       "d7e6",
+       "g8f8",
+       "d6d1",
+       "f6e6",
+       "c1b1",
+       "e6h6"
+      ],
+      "depth": 13,
+      "nodes": 20037
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 410
+      },
+      "pv": [
+       "b3e6",
+       "f7e6",
+       "g5f6",
+       "e8f7",
+       "d1d7",
+       "f7f6",
+       "d7a7",
+       "f8c5",
+       "a7d7",
+       "c5f2",
+       "c2c3",
+       "h7h5",
+       "c1c2",
+       "h5h4",
+       "a2a4"
+      ],
+      "depth": 13,
+      "nodes": 20037
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 266
+      },
+      "pv": [
+       "b3c3",
+       "f8d6",
+       "c3c8",
+       "e8e7",
+       "c8h8",
+       "e6a2",
+       "g5f6",
+       "e7f6",
+       "b5d7",
+       "a2a1",
+       "c1d2",
+       "a1b2",
+       "h8d8",
+       "d6e7",
+       "d8c7",
+       "b2b4",
+       "d2d3"
+      ],
+      "depth": 13,
+      "nodes": 20037
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 193
+      },
+      "pv": [
+       "f6d7",
+       "b3b7"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 626
+      },
+      "pv": [
+       "e6d7",
+       "b3b8",
+       "e8e7",
+       "g5f6",
+       "g7f6",
+       "d1d7",
+       "e7d7",
+       "b8b7",
+       "d7d6"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 1136
+      },
+      "pv": [
+       "e8e7",
+       "b3a3",
+       "e7d8",
+       "d7e6",
+       "d8c7",
+       "a3a7",
+       "c7c6",
+       "e6d7",
+       "f6d7",
+       "a7d7",
+       "c6c5"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     }
+    ]
+   },
+   "winBefore": 89.00665879155912,
+   "winAfter": 67.05428791057813,
+   "epLoss": 0.21952370880980998,
+   "moveAccuracy": 37.50094332682382,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "g5f6",
+   "bestLine": [
+    "g5f6",
+    "f8d6",
+    "b3e6",
+    "f7e6",
+    "d1d6",
+    "e8g8",
+    "b5d7",
+    "f8f6",
+    "d7e6",
+    "g8f8",
+    "d6d1",
+    "f6e6",
+    "c1b1",
+    "e6h6"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 30,
+   "color": "b",
+   "san": "Nxd7",
+   "uci": "f6d7",
+   "fenBefore": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+   "fenAfter": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+   "evalBefore": {
+    "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 193
+      },
+      "pv": [
+       "f6d7",
+       "b3b7"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 626
+      },
+      "pv": [
+       "e6d7",
+       "b3b8",
+       "e8e7",
+       "g5f6",
+       "g7f6",
+       "d1d7",
+       "e7d7",
+       "b8b7",
+       "d7d6"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 1136
+      },
+      "pv": [
+       "e8e7",
+       "b3a3",
+       "e7d8",
+       "d7e6",
+       "d8c7",
+       "a3a7",
+       "c7c6",
+       "e6d7",
+       "f6d7",
+       "a7d7",
+       "c6c5"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 2
+      },
+      "pv": [
+       "b3b8",
+       "d7b8",
+       "d1d8"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 199
+      },
+      "pv": [
+       "b3c3",
+       "f7f6",
+       "c3c8",
+       "e8e7",
+       "g5e3",
+       "a7a6",
+       "a2a4",
+       "g7g6",
+       "a4a5",
+       "f8g7",
+       "c8c7"
+      ],
+      "depth": 12,
+      "nodes": 20009
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 191
+      },
+      "pv": [
+       "b3b7",
+       "f7f6",
+       "b7c8",
+       "e8e7",
+       "g5e3",
+       "h7h5",
+       "c1b1",
+       "g7g5",
+       "a2a4",
+       "a7a6",
+       "a4a5",
+       "h5h4",
+       "d1d5"
+      ],
+      "depth": 12,
+      "nodes": 20009
+     }
+    ]
+   },
+   "winBefore": 32.945712089421875,
+   "winAfter": 0,
+   "epLoss": 0.32945712089421875,
+   "moveAccuracy": 22.412059977103013,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "f6d7",
+   "bestLine": [
+    "f6d7",
+    "b3b7"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 31,
+   "color": "w",
+   "san": "Qb8+",
+   "uci": "b3b8",
+   "fenBefore": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+   "fenAfter": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+   "evalBefore": {
+    "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 2
+      },
+      "pv": [
+       "b3b8",
+       "d7b8",
+       "d1d8"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 199
+      },
+      "pv": [
+       "b3c3",
+       "f7f6",
+       "c3c8",
+       "e8e7",
+       "g5e3",
+       "a7a6",
+       "a2a4",
+       "g7g6",
+       "a4a5",
+       "f8g7",
+       "c8c7"
+      ],
+      "depth": 12,
+      "nodes": 20009
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 191
+      },
+      "pv": [
+       "b3b7",
+       "f7f6",
+       "b7c8",
+       "e8e7",
+       "g5e3",
+       "h7h5",
+       "c1b1",
+       "g7g5",
+       "a2a4",
+       "a7a6",
+       "a4a5",
+       "h5h4",
+       "d1d5"
+      ],
+      "depth": 12,
+      "nodes": 20009
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "d7b8",
+       "d1d8"
+      ],
+      "depth": 245,
+      "nodes": 490
+     }
+    ]
+   },
+   "winBefore": 100,
+   "winAfter": 100,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "brilliant",
+   "forced": false,
+   "bestMove": "b3b8",
+   "bestLine": [
+    "b3b8",
+    "d7b8",
+    "d1d8"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 32,
+   "color": "b",
+   "san": "Nxb8",
+   "uci": "d7b8",
+   "fenBefore": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+   "fenAfter": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+   "evalBefore": {
+    "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "d7b8",
+       "d1d8"
+      ],
+      "depth": 245,
+      "nodes": 490
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "d1d8"
+      ],
+      "depth": 13,
+      "nodes": 20022
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -445
+      },
+      "pv": [
+       "f2f4",
+       "f7f6",
+       "g5h4",
+       "e6c8"
+      ],
+      "depth": 12,
+      "nodes": 20022
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -449
+      },
+      "pv": [
+       "c2c4",
+       "f7f6",
+       "g5e3",
+       "e6c4",
+       "c1b1",
+       "c4e4",
+       "b1a1"
+      ],
+      "depth": 12,
+      "nodes": 20022
+     }
+    ]
+   },
+   "winBefore": 0,
+   "winAfter": 0,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": true,
+   "bestMove": "d7b8",
+   "bestLine": [
+    "d7b8",
+    "d1d8"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  },
+  {
+   "ply": 33,
+   "color": "w",
+   "san": "Rd8#",
+   "uci": "d1d8",
+   "fenBefore": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+   "fenAfter": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+   "evalBefore": {
+    "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "d1d8"
+      ],
+      "depth": 13,
+      "nodes": 20022
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -445
+      },
+      "pv": [
+       "f2f4",
+       "f7f6",
+       "g5h4",
+       "e6c8"
+      ],
+      "depth": 12,
+      "nodes": 20022
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -449
+      },
+      "pv": [
+       "c2c4",
+       "f7f6",
+       "g5e3",
+       "e6c4",
+       "c1b1",
+       "c4e4",
+       "b1a1"
+      ],
+      "depth": 12,
+      "nodes": 20022
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": []
+   },
+   "winBefore": 100,
+   "winAfter": 100,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d1d8",
+   "bestLine": [
+    "d1d8"
+   ],
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense"
+   }
+  }
+ ],
+ "keyMoments": [
+  {
+   "ply": 31,
+   "kind": "brilliant",
+   "severity": 0.75
+  },
+  {
+   "ply": 29,
+   "kind": "miss",
+   "severity": 0.5488092720245249
+  },
+  {
+   "ply": 21,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 27,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 30,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 6,
+   "kind": "left_book",
+   "severity": 0.2
+  }
+ ],
+ "white": {
+  "username": "Paul Morphy",
+  "color": "w",
+  "accuracy": 83.11504655425051,
+  "acpl": 41.142857142857146,
+  "estimatedRating": 2054,
+  "estimatedRatingBand": 250,
+  "counts": {
+   "brilliant": 1,
+   "great": 2,
+   "best": 8,
+   "excellent": 1,
+   "good": 1,
+   "book": 3,
+   "inaccuracy": 0,
+   "mistake": 0,
+   "miss": 1,
+   "blunder": 0
+  }
+ },
+ "black": {
+  "username": "Duke Karl / Count Isouard",
+  "color": "b",
+  "accuracy": 74.48743077271783,
+  "acpl": 101.21428571428571,
+  "estimatedRating": 1127,
+  "estimatedRatingBand": 250,
+  "counts": {
+   "brilliant": 0,
+   "great": 1,
+   "best": 4,
+   "excellent": 3,
+   "good": 6,
+   "book": 2,
+   "inaccuracy": 0,
+   "mistake": 0,
+   "miss": 0,
+   "blunder": 0
+  }
+ },
+ "opening": {
+  "eco": "C41",
+  "name": "Philidor Defense",
+  "lastBookPly": 5
+ }
+}

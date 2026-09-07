@@ -1,0 +1,7204 @@
+{
+ "gameId": "review-json-game",
+ "engineBuild": "stockfish-18-lite-single",
+ "nodes": 20000,
+ "moves": [
+  {
+   "ply": 1,
+   "color": "w",
+   "san": "d4",
+   "uci": "d2d4",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e2e4",
+       "e7e5",
+       "b1c3",
+       "b8c6",
+       "g1f3",
+       "f8e7"
+      ],
+      "depth": 9,
+      "nodes": 20027
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "e2e3",
+       "g8f6"
+      ],
+      "depth": 9,
+      "nodes": 20027
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "g1f3",
+       "d7d5",
+       "d2d4",
+       "a7a5"
+      ],
+      "depth": 8,
+      "nodes": 20027
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 18
+      },
+      "pv": [
+       "d7d5",
+       "g1f3"
+      ],
+      "depth": 10,
+      "nodes": 20040
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "g8f6",
+       "g2g3",
+       "d7d5",
+       "f1g2",
+       "g7g6",
+       "g1f3",
+       "f8g7",
+       "e1g1",
+       "e8g8",
+       "c2c4",
+       "d5c4",
+       "f3e5"
+      ],
+      "depth": 9,
+      "nodes": 20040
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "e7e6",
+       "e2e4",
+       "d7d5",
+       "b1c3",
+       "d5e4",
+       "c3e4",
+       "g8f6",
+       "e4f6",
+       "d8f6",
+       "g1f3"
+      ],
+      "depth": 9,
+      "nodes": 20040
+     }
+    ]
+   },
+   "winBefore": 53.49228039541688,
+   "winAfter": 51.65632973121441,
+   "epLoss": 0.01835950664202468,
+   "moveAccuracy": 93.0740316731687,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e2e4",
+   "bestLine": [
+    "e2e4",
+    "e7e5",
+    "b1c3",
+    "b8c6",
+    "g1f3",
+    "f8e7"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 2,
+   "color": "b",
+   "san": "d5",
+   "uci": "d7d5",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 18
+      },
+      "pv": [
+       "d7d5",
+       "g1f3"
+      ],
+      "depth": 10,
+      "nodes": 20040
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "g8f6",
+       "g2g3",
+       "d7d5",
+       "f1g2",
+       "g7g6",
+       "g1f3",
+       "f8g7",
+       "e1g1",
+       "e8g8",
+       "c2c4",
+       "d5c4",
+       "f3e5"
+      ],
+      "depth": 9,
+      "nodes": 20040
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "e7e6",
+       "e2e4",
+       "d7d5",
+       "b1c3",
+       "d5e4",
+       "c3e4",
+       "g8f6",
+       "e4f6",
+       "d8f6",
+       "g1f3"
+      ],
+      "depth": 9,
+      "nodes": 20040
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "g2g3",
+       "g8f6",
+       "f1g2",
+       "c8f5",
+       "c2c4",
+       "e7e6",
+       "b1c3",
+       "f8e7",
+       "d1b3"
+      ],
+      "depth": 10,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 16
+      },
+      "pv": [
+       "e2e3",
+       "g8f6",
+       "c2c4",
+       "e7e6",
+       "b1c3",
+       "f8e7",
+       "g1f3",
+       "c7c6"
+      ],
+      "depth": 10,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 12
+      },
+      "pv": [
+       "c1g5",
+       "c8g4",
+       "g5h4",
+       "d8d7",
+       "g1f3",
+       "g4f3",
+       "g2f3",
+       "e7e6"
+      ],
+      "depth": 10,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 48.34367026878559,
+   "winAfter": 48.43562675785791,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "d7d5",
+   "bestLine": [
+    "d7d5",
+    "g1f3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 3,
+   "color": "w",
+   "san": "Bf4",
+   "uci": "c1f4",
+   "fenBefore": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+   "fenAfter": "rnbqkbnr/ppp1pppp/8/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR b KQkq - 1 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "g2g3",
+       "g8f6",
+       "f1g2",
+       "c8f5",
+       "c2c4",
+       "e7e6",
+       "b1c3",
+       "f8e7",
+       "d1b3"
+      ],
+      "depth": 10,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 16
+      },
+      "pv": [
+       "e2e3",
+       "g8f6",
+       "c2c4",
+       "e7e6",
+       "b1c3",
+       "f8e7",
+       "g1f3",
+       "c7c6"
+      ],
+      "depth": 10,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 12
+      },
+      "pv": [
+       "c1g5",
+       "c8g4",
+       "g5h4",
+       "d8d7",
+       "g1f3",
+       "g4f3",
+       "g2f3",
+       "e7e6"
+      ],
+      "depth": 10,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR b KQkq - 1 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "g8f6",
+       "c2c3"
+      ],
+      "depth": 9,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 22
+      },
+      "pv": [
+       "c8f5",
+       "e2e3",
+       "e7e6",
+       "c2c3",
+       "b8d7"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "e7e6",
+       "e2e3",
+       "c8d7",
+       "f1e2"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 51.56437324214209,
+   "winAfter": 52.115931524066205,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g2g3",
+   "bestLine": [
+    "g2g3",
+    "g8f6",
+    "f1g2",
+    "c8f5",
+    "c2c4",
+    "e7e6",
+    "b1c3",
+    "f8e7",
+    "d1b3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 4,
+   "color": "b",
+   "san": "Nf6",
+   "uci": "g8f6",
+   "fenBefore": "rnbqkbnr/ppp1pppp/8/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR b KQkq - 1 2",
+   "fenAfter": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq - 2 3",
+   "evalBefore": {
+    "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR b KQkq - 1 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "g8f6",
+       "c2c3"
+      ],
+      "depth": 9,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 22
+      },
+      "pv": [
+       "c8f5",
+       "e2e3",
+       "e7e6",
+       "c2c3",
+       "b8d7"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "e7e6",
+       "e2e3",
+       "c8d7",
+       "f1e2"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq - 2 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "e2e3",
+       "c8f5",
+       "g1f3",
+       "e7e6",
+       "f1d3",
+       "f8d6",
+       "f4d6",
+       "f5d3"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 20
+      },
+      "pv": [
+       "g1f3"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "c2c3",
+       "c8f5",
+       "d1b3",
+       "b8d7",
+       "g1f3"
+      ],
+      "depth": 9,
+      "nodes": 20008
+     }
+    ]
+   },
+   "winBefore": 47.884068475933795,
+   "winAfter": 47.792188590970895,
+   "epLoss": 0.0009187988496289767,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "g8f6",
+   "bestLine": [
+    "g8f6",
+    "c2c3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 5,
+   "color": "w",
+   "san": "e3",
+   "uci": "e2e3",
+   "fenBefore": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq - 2 3",
+   "fenAfter": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR b KQkq - 0 3",
+   "evalBefore": {
+    "fen": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq - 2 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "e2e3",
+       "c8f5",
+       "g1f3",
+       "e7e6",
+       "f1d3",
+       "f8d6",
+       "f4d6",
+       "f5d3"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 20
+      },
+      "pv": [
+       "g1f3"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "c2c3",
+       "c8f5",
+       "d1b3",
+       "b8d7",
+       "g1f3"
+      ],
+      "depth": 9,
+      "nodes": 20008
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR b KQkq - 0 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "c8f5",
+       "f1d3",
+       "f5d3",
+       "c2d3",
+       "b8c6",
+       "g1f3",
+       "e7e6",
+       "d1b3",
+       "f8b4",
+       "b1c3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 29
+      },
+      "pv": [
+       "c7c5",
+       "g1f3",
+       "c5d4",
+       "e3d4",
+       "b8c6",
+       "f1e2",
+       "d8b6",
+       "e1g1"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 29
+      },
+      "pv": [
+       "c8g4",
+       "f1e2",
+       "g4e2",
+       "d1e2",
+       "c7c5",
+       "b1c3",
+       "c5d4",
+       "e3d4",
+       "a7a6",
+       "g2g3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 52.207811409029105,
+   "winAfter": 52.29967635676993,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e2e3",
+   "bestLine": [
+    "e2e3",
+    "c8f5",
+    "g1f3",
+    "e7e6",
+    "f1d3",
+    "f8d6",
+    "f4d6",
+    "f5d3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 6,
+   "color": "b",
+   "san": "e6",
+   "uci": "e7e6",
+   "fenBefore": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR b KQkq - 0 3",
+   "fenAfter": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 0 4",
+   "evalBefore": {
+    "fen": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR b KQkq - 0 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "c8f5",
+       "f1d3",
+       "f5d3",
+       "c2d3",
+       "b8c6",
+       "g1f3",
+       "e7e6",
+       "d1b3",
+       "f8b4",
+       "b1c3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 29
+      },
+      "pv": [
+       "c7c5",
+       "g1f3",
+       "c5d4",
+       "e3d4",
+       "b8c6",
+       "f1e2",
+       "d8b6",
+       "e1g1"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 29
+      },
+      "pv": [
+       "c8g4",
+       "f1e2",
+       "g4e2",
+       "d1e2",
+       "c7c5",
+       "b1c3",
+       "c5d4",
+       "e3d4",
+       "a7a6",
+       "g2g3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 0 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "g1f3",
+       "f8d6",
+       "f1e2",
+       "e8g8",
+       "e1g1",
+       "h7h6",
+       "b1d2",
+       "c7c5",
+       "d4c5",
+       "d6c5"
+      ],
+      "depth": 8,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "f1d3",
+       "c7c5",
+       "c2c3",
+       "f8d6",
+       "f4d6"
+      ],
+      "depth": 8,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "f1e2",
+       "f8d6"
+      ],
+      "depth": 8,
+      "nodes": 20005
+     }
+    ]
+   },
+   "winBefore": 47.70032364323007,
+   "winAfter": 47.70032364323007,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c8f5",
+   "bestLine": [
+    "c8f5",
+    "f1d3",
+    "f5d3",
+    "c2d3",
+    "b8c6",
+    "g1f3",
+    "e7e6",
+    "d1b3",
+    "f8b4",
+    "b1c3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 7,
+   "color": "w",
+   "san": "Nf3",
+   "uci": "g1f3",
+   "fenBefore": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 0 4",
+   "fenAfter": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R b KQkq - 1 4",
+   "evalBefore": {
+    "fen": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 0 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "g1f3",
+       "f8d6",
+       "f1e2",
+       "e8g8",
+       "e1g1",
+       "h7h6",
+       "b1d2",
+       "c7c5",
+       "d4c5",
+       "d6c5"
+      ],
+      "depth": 8,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "f1d3",
+       "c7c5",
+       "c2c3",
+       "f8d6",
+       "f4d6"
+      ],
+      "depth": 8,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "f1e2",
+       "f8d6"
+      ],
+      "depth": 8,
+      "nodes": 20005
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R b KQkq - 1 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 20
+      },
+      "pv": [
+       "f8d6",
+       "f3e5"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f8e7",
+       "f1e2",
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "h5g3",
+       "h2g3",
+       "c7c5",
+       "d4c5",
+       "e7c5"
+      ],
+      "depth": 8,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "c7c5",
+       "f1e2",
+       "b8c6",
+       "e1g1",
+       "c5d4",
+       "e3d4",
+       "f8e7"
+      ],
+      "depth": 8,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 52.29967635676993,
+   "winAfter": 51.84020844121936,
+   "epLoss": 0.00459467915550571,
+   "moveAccuracy": 98.95653130464716,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "g1f3",
+   "bestLine": [
+    "g1f3",
+    "f8d6",
+    "f1e2",
+    "e8g8",
+    "e1g1",
+    "h7h6",
+    "b1d2",
+    "c7c5",
+    "d4c5",
+    "d6c5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 8,
+   "color": "b",
+   "san": "Be7",
+   "uci": "f8e7",
+   "fenBefore": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R b KQkq - 1 4",
+   "fenAfter": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq - 2 5",
+   "evalBefore": {
+    "fen": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R b KQkq - 1 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 20
+      },
+      "pv": [
+       "f8d6",
+       "f3e5"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f8e7",
+       "f1e2",
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "h5g3",
+       "h2g3",
+       "c7c5",
+       "d4c5",
+       "e7c5"
+      ],
+      "depth": 8,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "c7c5",
+       "f1e2",
+       "b8c6",
+       "e1g1",
+       "c5d4",
+       "e3d4",
+       "f8e7"
+      ],
+      "depth": 8,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq - 2 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "b1d2",
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "h5g3",
+       "h2g3",
+       "c7c5"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "c2c3",
+       "b8d7"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f1e2",
+       "e8g8",
+       "c2c4",
+       "d5c4",
+       "e2c4",
+       "c7c5",
+       "e1g1",
+       "c5d4",
+       "f3d4",
+       "f6d5",
+       "c4d5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 48.15979155878064,
+   "winAfter": 47.24124461074959,
+   "epLoss": 0.009185469480310515,
+   "moveAccuracy": 96.95531282167173,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f8d6",
+   "bestLine": [
+    "f8d6",
+    "f3e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 9,
+   "color": "w",
+   "san": "Bd3",
+   "uci": "f1d3",
+   "fenBefore": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq - 2 5",
+   "fenAfter": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R b KQkq - 3 5",
+   "evalBefore": {
+    "fen": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq - 2 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "b1d2",
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "h5g3",
+       "h2g3",
+       "c7c5"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "c2c3",
+       "b8d7"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f1e2",
+       "e8g8",
+       "c2c4",
+       "d5c4",
+       "e2c4",
+       "c7c5",
+       "e1g1",
+       "c5d4",
+       "f3d4",
+       "f6d5",
+       "c4d5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R b KQkq - 3 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "c7c5",
+       "d4c5",
+       "e7c5",
+       "e1g1",
+       "e8g8",
+       "d1e2",
+       "b8c6",
+       "c2c3"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "e7d6",
+       "e1g1",
+       "d6f4",
+       "e3f4",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "e8g8",
+       "b1d2",
+       "c8d7",
+       "c2c4",
+       "d5c4",
+       "d2c4"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 52.75875538925041,
+   "winAfter": 52.207811409029105,
+   "epLoss": 0.005509439802213079,
+   "moveAccuracy": 98.55457104929523,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "b1d2",
+   "bestLine": [
+    "b1d2",
+    "f6h5",
+    "f4e5",
+    "f7f6",
+    "e5g3",
+    "h5g3",
+    "h2g3",
+    "c7c5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 10,
+   "color": "b",
+   "san": "O-O",
+   "uci": "e8g8",
+   "fenBefore": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R b KQkq - 3 5",
+   "fenAfter": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQ - 4 6",
+   "evalBefore": {
+    "fen": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R b KQkq - 3 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "c7c5",
+       "d4c5",
+       "e7c5",
+       "e1g1",
+       "e8g8",
+       "d1e2",
+       "b8c6",
+       "c2c3"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "e7d6",
+       "e1g1",
+       "d6f4",
+       "e3f4",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "e8g8",
+       "b1d2",
+       "c8d7",
+       "c2c4",
+       "d5c4",
+       "d2c4"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQ - 4 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "c2c3",
+       "c7c5",
+       "b1d2",
+       "b8c6",
+       "h2h3",
+       "b7b6",
+       "e1g1",
+       "c8b7",
+       "d3c2"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "b1d2",
+       "c8d7",
+       "c2c3",
+       "c7c5",
+       "d1e2",
+       "f6h5",
+       "f4g3",
+       "c5c4"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "h2h3",
+       "c7c5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 47.792188590970895,
+   "winAfter": 46.23301956955016,
+   "epLoss": 0.015591690214207365,
+   "moveAccuracy": 94.22873077419058,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c7c5",
+   "bestLine": [
+    "c7c5",
+    "d4c5",
+    "e7c5",
+    "e1g1",
+    "e8g8",
+    "d1e2",
+    "b8c6",
+    "c2c3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 11,
+   "color": "w",
+   "san": "Nbd2",
+   "uci": "b1d2",
+   "fenBefore": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQ - 4 6",
+   "fenAfter": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPPN1PPP/R2QK2R b KQ - 5 6",
+   "evalBefore": {
+    "fen": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQ - 4 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "c2c3",
+       "c7c5",
+       "b1d2",
+       "b8c6",
+       "h2h3",
+       "b7b6",
+       "e1g1",
+       "c8b7",
+       "d3c2"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "b1d2",
+       "c8d7",
+       "c2c3",
+       "c7c5",
+       "d1e2",
+       "f6h5",
+       "f4g3",
+       "c5c4"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "h2h3",
+       "c7c5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPPN1PPP/R2QK2R b KQ - 5 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "b8d7",
+       "c2c4",
+       "c7c5",
+       "e1g1",
+       "h5g3"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "c7c5",
+       "c2c3",
+       "f6h5",
+       "f4e5",
+       "b8c6",
+       "d1e2",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "d4c5",
+       "e7c5"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "b7b6",
+       "c2c3"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     }
+    ]
+   },
+   "winBefore": 53.76698043044984,
+   "winAfter": 52.75875538925041,
+   "epLoss": 0.010082250411994287,
+   "moveAccuracy": 96.56903641307676,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c2c3",
+   "bestLine": [
+    "c2c3",
+    "c7c5",
+    "b1d2",
+    "b8c6",
+    "h2h3",
+    "b7b6",
+    "e1g1",
+    "c8b7",
+    "d3c2"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 12,
+   "color": "b",
+   "san": "c5",
+   "uci": "c7c5",
+   "fenBefore": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPPN1PPP/R2QK2R b KQ - 5 6",
+   "fenAfter": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/3BPN2/PPPN1PPP/R2QK2R w KQ - 0 7",
+   "evalBefore": {
+    "fen": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/3BPN2/PPPN1PPP/R2QK2R b KQ - 5 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "b8d7",
+       "c2c4",
+       "c7c5",
+       "e1g1",
+       "h5g3"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "c7c5",
+       "c2c3",
+       "f6h5",
+       "f4e5",
+       "b8c6",
+       "d1e2",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "d4c5",
+       "e7c5"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "b7b6",
+       "c2c3"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/3BPN2/PPPN1PPP/R2QK2R w KQ - 0 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "c2c3",
+       "f6h5",
+       "f4e5",
+       "b8c6",
+       "d4c5",
+       "c6e5",
+       "f3e5",
+       "h5f6",
+       "d2b3",
+       "f6d7",
+       "e5d7",
+       "c8d7",
+       "e1g1"
+      ],
+      "depth": 9,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "e1g1",
+       "c5c4"
+      ],
+      "depth": 9,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "d4c5",
+       "e7c5",
+       "e1g1",
+       "b8c6",
+       "d1e2",
+       "c5d6",
+       "f4d6",
+       "d8d6",
+       "c2c4",
+       "c6b4"
+      ],
+      "depth": 8,
+      "nodes": 20016
+     }
+    ]
+   },
+   "winBefore": 47.24124461074959,
+   "winAfter": 47.05773918729125,
+   "epLoss": 0.0018350542345834109,
+   "moveAccuracy": 100,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f6h5",
+   "bestLine": [
+    "f6h5",
+    "f4e5",
+    "f7f6",
+    "e5g3",
+    "b8d7",
+    "c2c4",
+    "c7c5",
+    "e1g1",
+    "h5g3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 13,
+   "color": "w",
+   "san": "c3",
+   "uci": "c2c3",
+   "fenBefore": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/3BPN2/PPPN1PPP/R2QK2R w KQ - 0 7",
+   "fenAfter": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R b KQ - 0 7",
+   "evalBefore": {
+    "fen": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/3BPN2/PPPN1PPP/R2QK2R w KQ - 0 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "c2c3",
+       "f6h5",
+       "f4e5",
+       "b8c6",
+       "d4c5",
+       "c6e5",
+       "f3e5",
+       "h5f6",
+       "d2b3",
+       "f6d7",
+       "e5d7",
+       "c8d7",
+       "e1g1"
+      ],
+      "depth": 9,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "e1g1",
+       "c5c4"
+      ],
+      "depth": 9,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "d4c5",
+       "e7c5",
+       "e1g1",
+       "b8c6",
+       "d1e2",
+       "c5d6",
+       "f4d6",
+       "d8d6",
+       "c2c4",
+       "c6b4"
+      ],
+      "depth": 8,
+      "nodes": 20016
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R b KQ - 0 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "f6h5",
+       "f4e5",
+       "b8c6",
+       "d1c2"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "c8d7",
+       "h2h3"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "d8b6",
+       "a1b1",
+       "c8d7",
+       "a2a4",
+       "b8c6",
+       "h2h4",
+       "d7e8",
+       "h4h5"
+      ],
+      "depth": 8,
+      "nodes": 20020
+     }
+    ]
+   },
+   "winBefore": 52.94226081270875,
+   "winAfter": 52.57517538936253,
+   "epLoss": 0.0036708542334622507,
+   "moveAccuracy": 99.36410263575172,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c2c3",
+   "bestLine": [
+    "c2c3",
+    "f6h5",
+    "f4e5",
+    "b8c6",
+    "d4c5",
+    "c6e5",
+    "f3e5",
+    "h5f6",
+    "d2b3",
+    "f6d7",
+    "e5d7",
+    "c8d7",
+    "e1g1"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 14,
+   "color": "b",
+   "san": "Nc6",
+   "uci": "b8c6",
+   "fenBefore": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R b KQ - 0 7",
+   "fenAfter": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R w KQ - 1 8",
+   "evalBefore": {
+    "fen": "rnbq1rk1/pp2bppp/4pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R b KQ - 0 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "f6h5",
+       "f4e5",
+       "b8c6",
+       "d1c2"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "c8d7",
+       "h2h3"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "d8b6",
+       "a1b1",
+       "c8d7",
+       "a2a4",
+       "b8c6",
+       "h2h4",
+       "d7e8",
+       "h4h5"
+      ],
+      "depth": 8,
+      "nodes": 20020
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R w KQ - 1 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 47
+      },
+      "pv": [
+       "h2h4",
+       "c8d7"
+      ],
+      "depth": 9,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "h2h3",
+       "d8b6",
+       "a1b1",
+       "c8d7",
+       "e1g1",
+       "f8c8",
+       "d1e2"
+      ],
+      "depth": 8,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "f3e5",
+       "d8b6",
+       "a1b1",
+       "c8d7",
+       "e1g1",
+       "f8c8",
+       "d1e2"
+      ],
+      "depth": 8,
+      "nodes": 20016
+     }
+    ]
+   },
+   "winBefore": 47.42482461063747,
+   "winAfter": 45.684321478024955,
+   "epLoss": 0.017405031326125198,
+   "moveAccuracy": 93.47065613070718,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f6h5",
+   "bestLine": [
+    "f6h5",
+    "f4e5",
+    "b8c6",
+    "d1c2"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 15,
+   "color": "w",
+   "san": "O-O",
+   "uci": "e1g1",
+   "fenBefore": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R w KQ - 1 8",
+   "fenAfter": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 b - - 2 8",
+   "evalBefore": {
+    "fen": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R w KQ - 1 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 47
+      },
+      "pv": [
+       "h2h4",
+       "c8d7"
+      ],
+      "depth": 9,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "h2h3",
+       "d8b6",
+       "a1b1",
+       "c8d7",
+       "e1g1",
+       "f8c8",
+       "d1e2"
+      ],
+      "depth": 8,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "f3e5",
+       "d8b6",
+       "a1b1",
+       "c8d7",
+       "e1g1",
+       "f8c8",
+       "d1e2"
+      ],
+      "depth": 8,
+      "nodes": 20016
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 b - - 2 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -4
+      },
+      "pv": [
+       "f6h5",
+       "d4c5"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 8
+      },
+      "pv": [
+       "c5c4",
+       "d3c2",
+       "f6h5",
+       "f3e5",
+       "h5f4",
+       "e3f4",
+       "d8b6",
+       "a1b1"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "a7a5",
+       "h2h3",
+       "a5a4",
+       "d4c5",
+       "e7c5",
+       "b2b4",
+       "c5d6",
+       "b4b5",
+       "d6f4",
+       "e3f4"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     }
+    ]
+   },
+   "winBefore": 54.315678521975045,
+   "winAfter": 49.63179865593352,
+   "epLoss": 0.04683879866041518,
+   "moveAccuracy": 81.96711687707534,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "h2h4",
+   "bestLine": [
+    "h2h4",
+    "c8d7"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 16,
+   "color": "b",
+   "san": "b6",
+   "uci": "b7b6",
+   "fenBefore": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 b - - 2 8",
+   "fenAfter": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 w - - 0 9",
+   "evalBefore": {
+    "fen": "r1bq1rk1/pp2bppp/2n1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 b - - 2 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -4
+      },
+      "pv": [
+       "f6h5",
+       "d4c5"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 8
+      },
+      "pv": [
+       "c5c4",
+       "d3c2",
+       "f6h5",
+       "f3e5",
+       "h5f4",
+       "e3f4",
+       "d8b6",
+       "a1b1"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "a7a5",
+       "h2h3",
+       "a5a4",
+       "d4c5",
+       "e7c5",
+       "b2b4",
+       "c5d6",
+       "b4b5",
+       "d6f4",
+       "e3f4"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 w - - 0 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 50
+      },
+      "pv": [
+       "h2h3",
+       "c8b7",
+       "f1e1",
+       "e7d6",
+       "f3e5",
+       "a7a5",
+       "e5c6",
+       "b7c6"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "f1e1",
+       "c8b7",
+       "h2h3",
+       "e7d6",
+       "f3e5",
+       "a8c8",
+       "f4g3"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 40
+      },
+      "pv": [
+       "f3e5",
+       "c8b7"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 50.36820134406648,
+   "winAfter": 45.4103562397001,
+   "epLoss": 0.04957845104366376,
+   "moveAccuracy": 80.96949065453495,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "f6h5",
+   "bestLine": [
+    "f6h5",
+    "d4c5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 17,
+   "color": "w",
+   "san": "Qe2",
+   "uci": "d1e2",
+   "fenBefore": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 w - - 0 9",
+   "fenAfter": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 b - - 1 9",
+   "evalBefore": {
+    "fen": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1N1PPP/R2Q1RK1 w - - 0 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 50
+      },
+      "pv": [
+       "h2h3",
+       "c8b7",
+       "f1e1",
+       "e7d6",
+       "f3e5",
+       "a7a5",
+       "e5c6",
+       "b7c6"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 43
+      },
+      "pv": [
+       "f1e1",
+       "c8b7",
+       "h2h3",
+       "e7d6",
+       "f3e5",
+       "a8c8",
+       "f4g3"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 40
+      },
+      "pv": [
+       "f3e5",
+       "c8b7"
+      ],
+      "depth": 8,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 b - - 1 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 7
+      },
+      "pv": [
+       "f6h5",
+       "f3e5"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "c5c4",
+       "d3c2",
+       "f6h5",
+       "f3e5",
+       "h5f4",
+       "e3f4",
+       "d8c7",
+       "f1e1",
+       "b6b5",
+       "e5c6",
+       "c7c6"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "a7a5",
+       "h2h3",
+       "a5a4",
+       "f1d1",
+       "c8b7",
+       "f4g3",
+       "e7d6",
+       "g3h4",
+       "a4a3"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     }
+    ]
+   },
+   "winBefore": 54.5896437602999,
+   "winAfter": 50.644328329952096,
+   "epLoss": 0.039453154303478066,
+   "moveAccuracy": 84.7165931535879,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "h2h3",
+   "bestLine": [
+    "h2h3",
+    "c8b7",
+    "f1e1",
+    "e7d6",
+    "f3e5",
+    "a7a5",
+    "e5c6",
+    "b7c6"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 18,
+   "color": "b",
+   "san": "Bb7",
+   "uci": "c8b7",
+   "fenBefore": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 b - - 1 9",
+   "fenAfter": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 w - - 2 10",
+   "evalBefore": {
+    "fen": "r1bq1rk1/p3bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 b - - 1 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 7
+      },
+      "pv": [
+       "f6h5",
+       "f3e5"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "c5c4",
+       "d3c2",
+       "f6h5",
+       "f3e5",
+       "h5f4",
+       "e3f4",
+       "d8c7",
+       "f1e1",
+       "b6b5",
+       "e5c6",
+       "c7c6"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "a7a5",
+       "h2h3",
+       "a5a4",
+       "f1d1",
+       "c8b7",
+       "f4g3",
+       "e7d6",
+       "g3h4",
+       "a4a3"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 w - - 2 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "h2h3"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "f3e5",
+       "c6e5",
+       "f4e5",
+       "f6d7",
+       "e5g3",
+       "c5c4",
+       "d3c2",
+       "f7f5",
+       "f1e1"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f4g5",
+       "f6e8",
+       "g5f4",
+       "e7d6"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     }
+    ]
+   },
+   "winBefore": 49.355671670047904,
+   "winAfter": 45.95854804780486,
+   "epLoss": 0.03397123622243048,
+   "moveAccuracy": 86.81529854254981,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f6h5",
+   "bestLine": [
+    "f6h5",
+    "f3e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 19,
+   "color": "w",
+   "san": "Rae1",
+   "uci": "a1e1",
+   "fenBefore": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 w - - 2 10",
+   "fenAfter": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/4RRK1 b - - 3 10",
+   "evalBefore": {
+    "fen": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1 w - - 2 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "h2h3"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "f3e5",
+       "c6e5",
+       "f4e5",
+       "f6d7",
+       "e5g3",
+       "c5c4",
+       "d3c2",
+       "f7f5",
+       "f1e1"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f4g5",
+       "f6e8",
+       "g5f4",
+       "e7d6"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/4RRK1 b - - 3 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -26
+      },
+      "pv": [
+       "f6h5",
+       "f3e5",
+       "h5f4",
+       "e3f4",
+       "a8c8"
+      ],
+      "depth": 8,
+      "nodes": 20000
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "a8c8",
+       "h2h3"
+      ],
+      "depth": 8,
+      "nodes": 20000
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "a7a5",
+       "h2h3",
+       "e7d6",
+       "f3e5",
+       "a5a4"
+      ],
+      "depth": 7,
+      "nodes": 20000
+     }
+    ]
+   },
+   "winBefore": 54.04145195219514,
+   "winAfter": 47.60847425165294,
+   "epLoss": 0.06432977700542197,
+   "moveAccuracy": 75.7977287895876,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "h2h3",
+   "bestLine": [
+    "h2h3"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 20,
+   "color": "b",
+   "san": "Ne5",
+   "uci": "c6e5",
+   "fenBefore": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/4RRK1 b - - 3 10",
+   "fenAfter": "r2q1rk1/pb2bppp/1p2pn2/2ppn3/3P1B2/2PBPN2/PP1NQPPP/4RRK1 w - - 4 11",
+   "evalBefore": {
+    "fen": "r2q1rk1/pb2bppp/1pn1pn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/4RRK1 b - - 3 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -26
+      },
+      "pv": [
+       "f6h5",
+       "f3e5",
+       "h5f4",
+       "e3f4",
+       "a8c8"
+      ],
+      "depth": 8,
+      "nodes": 20000
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "a8c8",
+       "h2h3"
+      ],
+      "depth": 8,
+      "nodes": 20000
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "a7a5",
+       "h2h3",
+       "e7d6",
+       "f3e5",
+       "a5a4"
+      ],
+      "depth": 7,
+      "nodes": 20000
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1rk1/pb2bppp/1p2pn2/2ppn3/3P1B2/2PBPN2/PP1NQPPP/4RRK1 w - - 4 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 444
+      },
+      "pv": [
+       "f3e5",
+       "f6e4",
+       "e5g4",
+       "h7h5",
+       "g4e5",
+       "c5c4",
+       "d3b1",
+       "f7f6",
+       "d2e4",
+       "f6e5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 427
+      },
+      "pv": [
+       "f4e5",
+       "f6e4",
+       "d3b1",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "e1c1",
+       "c5c4",
+       "f1e1",
+       "e4g3",
+       "h2g3"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 418
+      },
+      "pv": [
+       "d4e5",
+       "f6e4",
+       "f4g3",
+       "g7g5",
+       "h2h3",
+       "c5c4",
+       "d3b1",
+       "b7a6",
+       "f3d4",
+       "f7f5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     }
+    ]
+   },
+   "winBefore": 52.39152574834706,
+   "winAfter": 16.316792744377253,
+   "epLoss": 0.36074733003969806,
+   "moveAccuracy": 19.281567999099828,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "f6h5",
+   "bestLine": [
+    "f6h5",
+    "f3e5",
+    "h5f4",
+    "e3f4",
+    "a8c8"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 21,
+   "color": "w",
+   "san": "Bxh7+",
+   "uci": "d3h7",
+   "fenBefore": "r2q1rk1/pb2bppp/1p2pn2/2ppn3/3P1B2/2PBPN2/PP1NQPPP/4RRK1 w - - 4 11",
+   "fenAfter": "r2q1rk1/pb2bppB/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 b - - 0 11",
+   "evalBefore": {
+    "fen": "r2q1rk1/pb2bppp/1p2pn2/2ppn3/3P1B2/2PBPN2/PP1NQPPP/4RRK1 w - - 4 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 444
+      },
+      "pv": [
+       "f3e5",
+       "f6e4",
+       "e5g4",
+       "h7h5",
+       "g4e5",
+       "c5c4",
+       "d3b1",
+       "f7f6",
+       "d2e4",
+       "f6e5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 427
+      },
+      "pv": [
+       "f4e5",
+       "f6e4",
+       "d3b1",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "e1c1",
+       "c5c4",
+       "f1e1",
+       "e4g3",
+       "h2g3"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 418
+      },
+      "pv": [
+       "d4e5",
+       "f6e4",
+       "f4g3",
+       "g7g5",
+       "h2h3",
+       "c5c4",
+       "d3b1",
+       "b7a6",
+       "f3d4",
+       "f7f5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1rk1/pb2bppB/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 b - - 0 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 84
+      },
+      "pv": [
+       "f6h7",
+       "f3e5",
+       "a7a5",
+       "e1c1",
+       "b7a6",
+       "e5d3",
+       "f7f6",
+       "e3e4",
+       "d8d7",
+       "f1d1",
+       "c5c4"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 109
+      },
+      "pv": [
+       "g8h7",
+       "f3e5"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 228
+      },
+      "pv": [
+       "g8h8",
+       "h7b1",
+       "e5f3",
+       "d2f3",
+       "h8g8",
+       "f3g5",
+       "g7g6",
+       "h2h3",
+       "a7a5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 83.68320725562275,
+   "winAfter": 57.6713100955946,
+   "epLoss": 0.2601189716002815,
+   "moveAccuracy": 31.07426752657247,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "f3e5",
+   "bestLine": [
+    "f3e5",
+    "f6e4",
+    "e5g4",
+    "h7h5",
+    "g4e5",
+    "c5c4",
+    "d3b1",
+    "f7f6",
+    "d2e4",
+    "f6e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 22,
+   "color": "b",
+   "san": "Kxh7",
+   "uci": "g8h7",
+   "fenBefore": "r2q1rk1/pb2bppB/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 b - - 0 11",
+   "fenAfter": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 w - - 0 12",
+   "evalBefore": {
+    "fen": "r2q1rk1/pb2bppB/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 b - - 0 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 84
+      },
+      "pv": [
+       "f6h7",
+       "f3e5",
+       "a7a5",
+       "e1c1",
+       "b7a6",
+       "e5d3",
+       "f7f6",
+       "e3e4",
+       "d8d7",
+       "f1d1",
+       "c5c4"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 109
+      },
+      "pv": [
+       "g8h7",
+       "f3e5"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 228
+      },
+      "pv": [
+       "g8h8",
+       "h7b1",
+       "e5f3",
+       "d2f3",
+       "h8g8",
+       "f3g5",
+       "g7g6",
+       "h2h3",
+       "a7a5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 w - - 0 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 157
+      },
+      "pv": [
+       "d4e5",
+       "f6e4",
+       "d2e4",
+       "d5e4",
+       "e1d1",
+       "d8c7",
+       "f3g5",
+       "e7g5",
+       "f4g5",
+       "c7e5"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 150
+      },
+      "pv": [
+       "f3g5",
+       "h7g8",
+       "d4e5",
+       "f6h7",
+       "g5h7",
+       "g8h7",
+       "e2h5",
+       "h7g8",
+       "e3e4",
+       "d5e4",
+       "e1e3",
+       "d8d2"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 106
+      },
+      "pv": [
+       "f3e5",
+       "a7a5"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     }
+    ]
+   },
+   "winBefore": 42.3286899044054,
+   "winAfter": 35.93729949245686,
+   "epLoss": 0.06391390411948544,
+   "moveAccuracy": 75.93902805252915,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "f6h7",
+   "bestLine": [
+    "f6h7",
+    "f3e5",
+    "a7a5",
+    "e1c1",
+    "b7a6",
+    "e5d3",
+    "f7f6",
+    "e3e4",
+    "d8d7",
+    "f1d1",
+    "c5c4"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 23,
+   "color": "w",
+   "san": "Ra1",
+   "uci": "e1a1",
+   "fenBefore": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 w - - 0 12",
+   "fenAfter": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/R4RK1 b - - 1 12",
+   "evalBefore": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/4RRK1 w - - 0 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 157
+      },
+      "pv": [
+       "d4e5",
+       "f6e4",
+       "d2e4",
+       "d5e4",
+       "e1d1",
+       "d8c7",
+       "f3g5",
+       "e7g5",
+       "f4g5",
+       "c7e5"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 150
+      },
+      "pv": [
+       "f3g5",
+       "h7g8",
+       "d4e5",
+       "f6h7",
+       "g5h7",
+       "g8h7",
+       "e2h5",
+       "h7g8",
+       "e3e4",
+       "d5e4",
+       "e1e3",
+       "d8d2"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 106
+      },
+      "pv": [
+       "f3e5",
+       "a7a5"
+      ],
+      "depth": 10,
+      "nodes": 20008
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/R4RK1 b - - 1 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -369
+      },
+      "pv": [
+       "e5f3",
+       "d2f3",
+       "f8h8",
+       "f1e1",
+       "a7a5",
+       "a1d1",
+       "h7g8",
+       "f3e5",
+       "a5a4",
+       "a2a3",
+       "e7f8",
+       "d1d3",
+       "f8d6"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -318
+      },
+      "pv": [
+       "e5g6",
+       "f3g5",
+       "h7g8",
+       "d2f3",
+       "c5d4",
+       "c3d4",
+       "f6h5",
+       "f3e5",
+       "e7g5",
+       "e2h5",
+       "g5f4",
+       "e5g6",
+       "f7g6"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -314
+      },
+      "pv": [
+       "e5d7",
+       "f3g5",
+       "h7g8",
+       "a1e1",
+       "a7a5",
+       "e3e4",
+       "d5e4"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     }
+    ]
+   },
+   "winBefore": 64.06270050754314,
+   "winAfter": 20.445369747748522,
+   "epLoss": 0.43617330759794626,
+   "moveAccuracy": 13.277531452380671,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "d4e5",
+   "bestLine": [
+    "d4e5",
+    "f6e4",
+    "d2e4",
+    "d5e4",
+    "e1d1",
+    "d8c7",
+    "f3g5",
+    "e7g5",
+    "f4g5",
+    "c7e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 24,
+   "color": "b",
+   "san": "Nxf3+",
+   "uci": "e5f3",
+   "fenBefore": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/R4RK1 b - - 1 12",
+   "fenAfter": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1Pn2/PP1NQPPP/R4RK1 w - - 0 13",
+   "evalBefore": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2ppn3/3P1B2/2P1PN2/PP1NQPPP/R4RK1 b - - 1 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -369
+      },
+      "pv": [
+       "e5f3",
+       "d2f3",
+       "f8h8",
+       "f1e1",
+       "a7a5",
+       "a1d1",
+       "h7g8",
+       "f3e5",
+       "a5a4",
+       "a2a3",
+       "e7f8",
+       "d1d3",
+       "f8d6"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -318
+      },
+      "pv": [
+       "e5g6",
+       "f3g5",
+       "h7g8",
+       "d2f3",
+       "c5d4",
+       "c3d4",
+       "f6h5",
+       "f3e5",
+       "e7g5",
+       "e2h5",
+       "g5f4",
+       "e5g6",
+       "f7g6"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -314
+      },
+      "pv": [
+       "e5d7",
+       "f3g5",
+       "h7g8",
+       "a1e1",
+       "a7a5",
+       "e3e4",
+       "d5e4"
+      ],
+      "depth": 13,
+      "nodes": 20009
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1Pn2/PP1NQPPP/R4RK1 w - - 0 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -386
+      },
+      "pv": [
+       "d2f3",
+       "f8h8",
+       "f3e5",
+       "d8e8",
+       "h2h3",
+       "h7g8",
+       "f1e1",
+       "a8c8"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -420
+      },
+      "pv": [
+       "e2f3",
+       "f8h8",
+       "h2h3",
+       "h7g8",
+       "f4h2",
+       "c5c4",
+       "g2g4"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -456
+      },
+      "pv": [
+       "g2f3",
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "f1g1",
+       "g8f8",
+       "f4e5",
+       "f6e8",
+       "f3f4",
+       "f7f6"
+      ],
+      "depth": 11,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 79.55463025225148,
+   "winAfter": 80.5539452743411,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e5f3",
+   "bestLine": [
+    "e5f3",
+    "d2f3",
+    "f8h8",
+    "f1e1",
+    "a7a5",
+    "a1d1",
+    "h7g8",
+    "f3e5",
+    "a5a4",
+    "a2a3",
+    "e7f8",
+    "d1d3",
+    "f8d6"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 25,
+   "color": "w",
+   "san": "gxf3",
+   "uci": "g2f3",
+   "fenBefore": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1Pn2/PP1NQPPP/R4RK1 w - - 0 13",
+   "fenAfter": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 b - - 0 13",
+   "evalBefore": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1Pn2/PP1NQPPP/R4RK1 w - - 0 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -386
+      },
+      "pv": [
+       "d2f3",
+       "f8h8",
+       "f3e5",
+       "d8e8",
+       "h2h3",
+       "h7g8",
+       "f1e1",
+       "a8c8"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -420
+      },
+      "pv": [
+       "e2f3",
+       "f8h8",
+       "h2h3",
+       "h7g8",
+       "f4h2",
+       "c5c4",
+       "g2g4"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -456
+      },
+      "pv": [
+       "g2f3",
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "f1g1",
+       "g8f8",
+       "f4e5",
+       "f6e8",
+       "f3f4",
+       "f7f6"
+      ],
+      "depth": 11,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 b - - 0 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -458
+      },
+      "pv": [
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "f1g1",
+       "g8f8",
+       "f4e5",
+       "g7g6",
+       "f3f4",
+       "a7a5",
+       "d2f3",
+       "b7a6",
+       "e2c2",
+       "h8h5"
+      ],
+      "depth": 14,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -456
+      },
+      "pv": [
+       "g7g6",
+       "f4e5",
+       "f8h8",
+       "g1h1",
+       "h7g7",
+       "f1g1",
+       "g7f8",
+       "g1g3",
+       "a7a5",
+       "a1g1",
+       "b7a6",
+       "e2d1"
+      ],
+      "depth": 14,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -443
+      },
+      "pv": [
+       "a7a5",
+       "g1h1",
+       "b7a6",
+       "e2d1",
+       "f8h8",
+       "f1g1",
+       "h7g8",
+       "f4e5"
+      ],
+      "depth": 14,
+      "nodes": 20020
+     }
+    ]
+   },
+   "winBefore": 19.4460547256589,
+   "winAfter": 15.625083235725654,
+   "epLoss": 0.038209714899332475,
+   "moveAccuracy": 85.18825036120838,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "d2f3",
+   "bestLine": [
+    "d2f3",
+    "f8h8",
+    "f3e5",
+    "d8e8",
+    "h2h3",
+    "h7g8",
+    "f1e1",
+    "a8c8"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 26,
+   "color": "b",
+   "san": "Kh8",
+   "uci": "h7h8",
+   "fenBefore": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 b - - 0 13",
+   "fenAfter": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 w - - 1 14",
+   "evalBefore": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 b - - 0 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -458
+      },
+      "pv": [
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "f1g1",
+       "g8f8",
+       "f4e5",
+       "g7g6",
+       "f3f4",
+       "a7a5",
+       "d2f3",
+       "b7a6",
+       "e2c2",
+       "h8h5"
+      ],
+      "depth": 14,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -456
+      },
+      "pv": [
+       "g7g6",
+       "f4e5",
+       "f8h8",
+       "g1h1",
+       "h7g7",
+       "f1g1",
+       "g7f8",
+       "g1g3",
+       "a7a5",
+       "a1g1",
+       "b7a6",
+       "e2d1"
+      ],
+      "depth": 14,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -443
+      },
+      "pv": [
+       "a7a5",
+       "g1h1",
+       "b7a6",
+       "e2d1",
+       "f8h8",
+       "f1g1",
+       "h7g8",
+       "f4e5"
+      ],
+      "depth": 14,
+      "nodes": 20020
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 w - - 1 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -324
+      },
+      "pv": [
+       "g1h1",
+       "f6h7",
+       "f1g1",
+       "b7c6",
+       "g1g3",
+       "f7f6",
+       "g3h3",
+       "g7g5",
+       "f4g3",
+       "c6e8",
+       "h3h6"
+      ],
+      "depth": 12,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -355
+      },
+      "pv": [
+       "a2a3",
+       "d8e8",
+       "g1h1",
+       "f6h7",
+       "f1g1",
+       "f7f6",
+       "g1g3",
+       "g7g5",
+       "a1g1"
+      ],
+      "depth": 12,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -364
+      },
+      "pv": [
+       "a1d1",
+       "b7c6",
+       "g1h1",
+       "f6h7",
+       "f1g1",
+       "f7f6"
+      ],
+      "depth": 12,
+      "nodes": 20003
+     }
+    ]
+   },
+   "winBefore": 84.37491676427435,
+   "winAfter": 76.72760967619577,
+   "epLoss": 0.0764730708807857,
+   "moveAccuracy": 71.78266784419694,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "f8h8",
+   "bestLine": [
+    "f8h8",
+    "g1h1",
+    "h7g8",
+    "f1g1",
+    "g8f8",
+    "f4e5",
+    "g7g6",
+    "f3f4",
+    "a7a5",
+    "d2f3",
+    "b7a6",
+    "e2c2",
+    "h8h5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 27,
+   "color": "w",
+   "san": "Rfc1",
+   "uci": "f1c1",
+   "fenBefore": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 w - - 1 14",
+   "fenAfter": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 b - - 2 14",
+   "evalBefore": {
+    "fen": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R4RK1 w - - 1 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -324
+      },
+      "pv": [
+       "g1h1",
+       "f6h7",
+       "f1g1",
+       "b7c6",
+       "g1g3",
+       "f7f6",
+       "g3h3",
+       "g7g5",
+       "f4g3",
+       "c6e8",
+       "h3h6"
+      ],
+      "depth": 12,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -355
+      },
+      "pv": [
+       "a2a3",
+       "d8e8",
+       "g1h1",
+       "f6h7",
+       "f1g1",
+       "f7f6",
+       "g1g3",
+       "g7g5",
+       "a1g1"
+      ],
+      "depth": 12,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -364
+      },
+      "pv": [
+       "a1d1",
+       "b7c6",
+       "g1h1",
+       "f6h7",
+       "f1g1",
+       "f7f6"
+      ],
+      "depth": 12,
+      "nodes": 20003
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 b - - 2 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -406
+      },
+      "pv": [
+       "g7g6",
+       "g1h1",
+       "h8g7",
+       "c1g1",
+       "f8h8",
+       "f4e5",
+       "g7f8",
+       "f3f4",
+       "a7a5"
+      ],
+      "depth": 12,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -385
+      },
+      "pv": [
+       "h8h7",
+       "f4e5",
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "c1g1",
+       "g8f8",
+       "g1g3",
+       "g7g6",
+       "f3f4",
+       "d8d7"
+      ],
+      "depth": 12,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -369
+      },
+      "pv": [
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "f3f4",
+       "d8e8",
+       "e2g4",
+       "f6e5"
+      ],
+      "depth": 11,
+      "nodes": 20028
+     }
+    ]
+   },
+   "winBefore": 23.272390323804228,
+   "winAfter": 18.31837401142804,
+   "epLoss": 0.04954016312376186,
+   "moveAccuracy": 80.98335111196715,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "g1h1",
+   "bestLine": [
+    "g1h1",
+    "f6h7",
+    "f1g1",
+    "b7c6",
+    "g1g3",
+    "f7f6",
+    "g3h3",
+    "g7g5",
+    "f4g3",
+    "c6e8",
+    "h3h6"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 28,
+   "color": "b",
+   "san": "Kh7",
+   "uci": "h8h7",
+   "fenBefore": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 b - - 2 14",
+   "fenAfter": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 w - - 3 15",
+   "evalBefore": {
+    "fen": "r2q1r1k/pb2bpp1/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 b - - 2 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -406
+      },
+      "pv": [
+       "g7g6",
+       "g1h1",
+       "h8g7",
+       "c1g1",
+       "f8h8",
+       "f4e5",
+       "g7f8",
+       "f3f4",
+       "a7a5"
+      ],
+      "depth": 12,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -385
+      },
+      "pv": [
+       "h8h7",
+       "f4e5",
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "c1g1",
+       "g8f8",
+       "g1g3",
+       "g7g6",
+       "f3f4",
+       "d8d7"
+      ],
+      "depth": 12,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -369
+      },
+      "pv": [
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "f3f4",
+       "d8e8",
+       "e2g4",
+       "f6e5"
+      ],
+      "depth": 11,
+      "nodes": 20028
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 w - - 3 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -381
+      },
+      "pv": [
+       "f4e5",
+       "f8h8",
+       "f3f4",
+       "h7g8",
+       "g1h1",
+       "g8f8",
+       "c1g1",
+       "g7g6",
+       "g1g3",
+       "d8c8"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -385
+      },
+      "pv": [
+       "c3c4",
+       "f8h8",
+       "d4c5",
+       "b6c5",
+       "c4d5",
+       "b7d5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -388
+      },
+      "pv": [
+       "g1h1",
+       "f8h8",
+       "f4e5",
+       "h7g8",
+       "c1g1",
+       "g8f8",
+       "g1g3",
+       "f6h5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     }
+    ]
+   },
+   "winBefore": 81.68162598857197,
+   "winAfter": 80.26393121243154,
+   "epLoss": 0.014176947761404324,
+   "moveAccuracy": 94.82434001578594,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "g7g6",
+   "bestLine": [
+    "g7g6",
+    "g1h1",
+    "h8g7",
+    "c1g1",
+    "f8h8",
+    "f4e5",
+    "g7f8",
+    "f3f4",
+    "a7a5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 29,
+   "color": "w",
+   "san": "Nf1",
+   "uci": "d2f1",
+   "fenBefore": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 w - - 3 15",
+   "fenAfter": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 b - - 4 15",
+   "evalBefore": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP1NQP1P/R1R3K1 w - - 3 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -381
+      },
+      "pv": [
+       "f4e5",
+       "f8h8",
+       "f3f4",
+       "h7g8",
+       "g1h1",
+       "g8f8",
+       "c1g1",
+       "g7g6",
+       "g1g3",
+       "d8c8"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -385
+      },
+      "pv": [
+       "c3c4",
+       "f8h8",
+       "d4c5",
+       "b6c5",
+       "c4d5",
+       "b7d5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -388
+      },
+      "pv": [
+       "g1h1",
+       "f8h8",
+       "f4e5",
+       "h7g8",
+       "c1g1",
+       "g8f8",
+       "g1g3",
+       "f6h5"
+      ],
+      "depth": 12,
+      "nodes": 20008
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 b - - 4 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -444
+      },
+      "pv": [
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "f1g3",
+       "f6e8"
+      ],
+      "depth": 12,
+      "nodes": 20006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -428
+      },
+      "pv": [
+       "a8c8",
+       "f1g3",
+       "f8h8",
+       "f4e5",
+       "h7g8",
+       "g1h1",
+       "f6e8",
+       "f3f4",
+       "f7f6"
+      ],
+      "depth": 12,
+      "nodes": 20006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -416
+      },
+      "pv": [
+       "a7a5",
+       "f4e5",
+       "f8h8",
+       "f3f4",
+       "h7g8",
+       "f1g3",
+       "f6d7",
+       "g3h5",
+       "d7e5",
+       "f4e5"
+      ],
+      "depth": 12,
+      "nodes": 20006
+     }
+    ]
+   },
+   "winBefore": 19.736068787568456,
+   "winAfter": 16.316792744377253,
+   "epLoss": 0.03419276043191202,
+   "moveAccuracy": 86.72951512843376,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f4e5",
+   "bestLine": [
+    "f4e5",
+    "f8h8",
+    "f3f4",
+    "h7g8",
+    "g1h1",
+    "g8f8",
+    "c1g1",
+    "g7g6",
+    "g1g3",
+    "d8c8"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 30,
+   "color": "b",
+   "san": "Rg8",
+   "uci": "f8g8",
+   "fenBefore": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 b - - 4 15",
+   "fenAfter": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 w - - 5 16",
+   "evalBefore": {
+    "fen": "r2q1r2/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 b - - 4 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -444
+      },
+      "pv": [
+       "f8h8",
+       "g1h1",
+       "h7g8",
+       "f1g3",
+       "f6e8"
+      ],
+      "depth": 12,
+      "nodes": 20006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -428
+      },
+      "pv": [
+       "a8c8",
+       "f1g3",
+       "f8h8",
+       "f4e5",
+       "h7g8",
+       "g1h1",
+       "f6e8",
+       "f3f4",
+       "f7f6"
+      ],
+      "depth": 12,
+      "nodes": 20006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -416
+      },
+      "pv": [
+       "a7a5",
+       "f4e5",
+       "f8h8",
+       "f3f4",
+       "h7g8",
+       "f1g3",
+       "f6d7",
+       "g3h5",
+       "d7e5",
+       "f4e5"
+      ],
+      "depth": 12,
+      "nodes": 20006
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 w - - 5 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -400
+      },
+      "pv": [
+       "g1h1",
+       "g8h8",
+       "f4e5",
+       "h7g8",
+       "f1g3",
+       "g7g6",
+       "c1g1",
+       "g8f8",
+       "f3f4",
+       "a7a5",
+       "h2h4",
+       "b7a6",
+       "e2f3",
+       "h8h4",
+       "h1g2"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -413
+      },
+      "pv": [
+       "f1g3",
+       "g8h8",
+       "f4e5",
+       "h7g8",
+       "g1h1",
+       "g8f8",
+       "f3f4",
+       "g7g6",
+       "h2h4",
+       "c5d4",
+       "e5f6",
+       "e7f6",
+       "c3d4",
+       "f6e7"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -410
+      },
+      "pv": [
+       "f4e5",
+       "g8h8",
+       "g1h1",
+       "h7g8",
+       "f1g3",
+       "f6d7",
+       "f3f4",
+       "f7f6"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     }
+    ]
+   },
+   "winBefore": 83.68320725562275,
+   "winAfter": 81.34874545019301,
+   "epLoss": 0.02334461805429744,
+   "moveAccuracy": 91.02908383411295,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f8h8",
+   "bestLine": [
+    "f8h8",
+    "g1h1",
+    "h7g8",
+    "f1g3",
+    "f6e8"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 31,
+   "color": "w",
+   "san": "a3",
+   "uci": "a2a3",
+   "fenBefore": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 w - - 5 16",
+   "fenAfter": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 b - - 0 16",
+   "evalBefore": {
+    "fen": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/2P1PP2/PP2QP1P/R1R2NK1 w - - 5 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -400
+      },
+      "pv": [
+       "g1h1",
+       "g8h8",
+       "f4e5",
+       "h7g8",
+       "f1g3",
+       "g7g6",
+       "c1g1",
+       "g8f8",
+       "f3f4",
+       "a7a5",
+       "h2h4",
+       "b7a6",
+       "e2f3",
+       "h8h4",
+       "h1g2"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -413
+      },
+      "pv": [
+       "f1g3",
+       "g8h8",
+       "f4e5",
+       "h7g8",
+       "g1h1",
+       "g8f8",
+       "f3f4",
+       "g7g6",
+       "h2h4",
+       "c5d4",
+       "e5f6",
+       "e7f6",
+       "c3d4",
+       "f6e7"
+      ],
+      "depth": 12,
+      "nodes": 20005
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -410
+      },
+      "pv": [
+       "f4e5",
+       "g8h8",
+       "g1h1",
+       "h7g8",
+       "f1g3",
+       "f6d7",
+       "f3f4",
+       "f7f6"
+      ],
+      "depth": 11,
+      "nodes": 20005
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 b - - 0 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -443
+      },
+      "pv": [
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "f4e5",
+       "f6d7",
+       "f3f4",
+       "h8h7",
+       "g1h1",
+       "f7f6",
+       "c1g1",
+       "f6e5"
+      ],
+      "depth": 13,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -422
+      },
+      "pv": [
+       "a7a5",
+       "f4e5",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "f3f4",
+       "h8h7",
+       "h2h4",
+       "h7h4",
+       "f4f5",
+       "e6f5",
+       "g3f5",
+       "h4g4",
+       "e2g4",
+       "f6g4"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -421
+      },
+      "pv": [
+       "a8c8",
+       "f4e5",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "f3f4",
+       "f6d7",
+       "e2g4",
+       "d7e5",
+       "d4e5",
+       "g8f8",
+       "f4f5"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     }
+    ]
+   },
+   "winBefore": 18.651254549806996,
+   "winAfter": 16.367131770296538,
+   "epLoss": 0.022841227795104557,
+   "moveAccuracy": 91.23357118626804,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "g1h1",
+   "bestLine": [
+    "g1h1",
+    "g8h8",
+    "f4e5",
+    "h7g8",
+    "f1g3",
+    "g7g6",
+    "c1g1",
+    "g8f8",
+    "f3f4",
+    "a7a5",
+    "h2h4",
+    "b7a6",
+    "e2f3",
+    "h8h4",
+    "h1g2"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 32,
+   "color": "b",
+   "san": "a6",
+   "uci": "a7a6",
+   "fenBefore": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 b - - 0 16",
+   "fenAfter": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 w - - 0 17",
+   "evalBefore": {
+    "fen": "r2q2r1/pb2bppk/1p2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 b - - 0 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -443
+      },
+      "pv": [
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "f4e5",
+       "f6d7",
+       "f3f4",
+       "h8h7",
+       "g1h1",
+       "f7f6",
+       "c1g1",
+       "f6e5"
+      ],
+      "depth": 13,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -422
+      },
+      "pv": [
+       "a7a5",
+       "f4e5",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "f3f4",
+       "h8h7",
+       "h2h4",
+       "h7h4",
+       "f4f5",
+       "e6f5",
+       "g3f5",
+       "h4g4",
+       "e2g4",
+       "f6g4"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -421
+      },
+      "pv": [
+       "a8c8",
+       "f4e5",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "f3f4",
+       "f6d7",
+       "e2g4",
+       "d7e5",
+       "d4e5",
+       "g8f8",
+       "f4f5"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 w - - 0 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -386
+      },
+      "pv": [
+       "f4e5",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "g1h1",
+       "a6a5",
+       "c1g1"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -413
+      },
+      "pv": [
+       "f1g3",
+       "a6a5",
+       "f4e5",
+       "g8h8",
+       "f3f4",
+       "h7g8",
+       "f4f5",
+       "e6f5",
+       "g3f5",
+       "g7g6"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -401
+      },
+      "pv": [
+       "g1h1",
+       "g8h8",
+       "f4e5",
+       "a6a5",
+       "f3f4",
+       "b7a6",
+       "e2f3",
+       "h7g8"
+      ],
+      "depth": 11,
+      "nodes": 20017
+     }
+    ]
+   },
+   "winBefore": 83.63286822970346,
+   "winAfter": 80.5539452743411,
+   "epLoss": 0.03078922955362362,
+   "moveAccuracy": 88.05667805234664,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "g8h8",
+   "bestLine": [
+    "g8h8",
+    "f1g3",
+    "h7g8",
+    "f4e5",
+    "f6d7",
+    "f3f4",
+    "h8h7",
+    "g1h1",
+    "f7f6",
+    "c1g1",
+    "f6e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 33,
+   "color": "w",
+   "san": "Qc2+",
+   "uci": "e2c2",
+   "fenBefore": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 w - - 0 17",
+   "fenAfter": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 1 17",
+   "evalBefore": {
+    "fen": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1P2QP1P/R1R2NK1 w - - 0 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -386
+      },
+      "pv": [
+       "f4e5",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "g1h1",
+       "a6a5",
+       "c1g1"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -413
+      },
+      "pv": [
+       "f1g3",
+       "a6a5",
+       "f4e5",
+       "g8h8",
+       "f3f4",
+       "h7g8",
+       "f4f5",
+       "e6f5",
+       "g3f5",
+       "g7g6"
+      ],
+      "depth": 12,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -401
+      },
+      "pv": [
+       "g1h1",
+       "g8h8",
+       "f4e5",
+       "a6a5",
+       "f3f4",
+       "b7a6",
+       "e2f3",
+       "h7g8"
+      ],
+      "depth": 11,
+      "nodes": 20017
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 1 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -381
+      },
+      "pv": [
+       "g7g6",
+       "h2h4",
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "f1g3",
+       "f6e5"
+      ],
+      "depth": 13,
+      "nodes": 20022
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -366
+      },
+      "pv": [
+       "h7h8",
+       "g1h1",
+       "b7c6",
+       "f1d2",
+       "g7g5"
+      ],
+      "depth": 13,
+      "nodes": 20022
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "f6e4",
+       "f3e4",
+       "d5e4",
+       "f2f3",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "g3e4"
+      ],
+      "depth": 12,
+      "nodes": 20022
+     }
+    ]
+   },
+   "winBefore": 19.4460547256589,
+   "winAfter": 19.736068787568456,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f4e5",
+   "bestLine": [
+    "f4e5",
+    "g8h8",
+    "f1g3",
+    "h7g8",
+    "g1h1",
+    "a6a5",
+    "c1g1"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 34,
+   "color": "b",
+   "san": "Ne4",
+   "uci": "f6e4",
+   "fenBefore": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 1 17",
+   "fenAfter": "r2q2r1/1b2bppk/pp2p3/2pp4/3PnB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 2 18",
+   "evalBefore": {
+    "fen": "r2q2r1/1b2bppk/pp2pn2/2pp4/3P1B2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 1 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -381
+      },
+      "pv": [
+       "g7g6",
+       "h2h4",
+       "f6h5",
+       "f4e5",
+       "f7f6",
+       "f1g3",
+       "f6e5"
+      ],
+      "depth": 13,
+      "nodes": 20022
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -366
+      },
+      "pv": [
+       "h7h8",
+       "g1h1",
+       "b7c6",
+       "f1d2",
+       "g7g5"
+      ],
+      "depth": 13,
+      "nodes": 20022
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "f6e4",
+       "f3e4",
+       "d5e4",
+       "f2f3",
+       "g8h8",
+       "f1g3",
+       "h7g8",
+       "g3e4"
+      ],
+      "depth": 12,
+      "nodes": 20022
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/1b2bppk/pp2p3/2pp4/3PnB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 2 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -65
+      },
+      "pv": [
+       "f3e4",
+       "d5e4",
+       "c2d1",
+       "g8h8",
+       "d1g4",
+       "f7f5",
+       "g4h5",
+       "h7g8",
+       "h5g6",
+       "b7d5"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -92
+      },
+      "pv": [
+       "f4g3",
+       "a8c8"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -97
+      },
+      "pv": [
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "f3e4",
+       "d5e4",
+       "d4c5",
+       "b6c5"
+      ],
+      "depth": 8,
+      "nodes": 20002
+     }
+    ]
+   },
+   "winBefore": 80.26393121243154,
+   "winAfter": 55.95498132599206,
+   "epLoss": 0.2430894988643948,
+   "moveAccuracy": 33.63265337632687,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "g7g6",
+   "bestLine": [
+    "g7g6",
+    "h2h4",
+    "f6h5",
+    "f4e5",
+    "f7f6",
+    "f1g3",
+    "f6e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 35,
+   "color": "w",
+   "san": "dxc5",
+   "uci": "d4c5",
+   "fenBefore": "r2q2r1/1b2bppk/pp2p3/2pp4/3PnB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 2 18",
+   "fenAfter": "r2q2r1/1b2bppk/pp2p3/2Pp4/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 0 18",
+   "evalBefore": {
+    "fen": "r2q2r1/1b2bppk/pp2p3/2pp4/3PnB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 2 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -65
+      },
+      "pv": [
+       "f3e4",
+       "d5e4",
+       "c2d1",
+       "g8h8",
+       "d1g4",
+       "f7f5",
+       "g4h5",
+       "h7g8",
+       "h5g6",
+       "b7d5"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -92
+      },
+      "pv": [
+       "f4g3",
+       "a8c8"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -97
+      },
+      "pv": [
+       "f4e5",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "f3e4",
+       "d5e4",
+       "d4c5",
+       "b6c5"
+      ],
+      "depth": 8,
+      "nodes": 20002
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/1b2bppk/pp2p3/2Pp4/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 0 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -81
+      },
+      "pv": [
+       "g7g5",
+       "f4e5"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -71
+      },
+      "pv": [
+       "e7c5",
+       "f3e4",
+       "d5e4",
+       "f4g3"
+      ],
+      "depth": 7,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -66
+      },
+      "pv": [
+       "b6c5",
+       "f3e4",
+       "d5e4",
+       "c1d1",
+       "d8e8",
+       "f2f3",
+       "g7g5"
+      ],
+      "depth": 7,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 44.04501867400794,
+   "winAfter": 42.59857125367345,
+   "epLoss": 0.014464474203344901,
+   "moveAccuracy": 94.70299361191802,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f3e4",
+   "bestLine": [
+    "f3e4",
+    "d5e4",
+    "c2d1",
+    "g8h8",
+    "d1g4",
+    "f7f5",
+    "g4h5",
+    "h7g8",
+    "h5g6",
+    "b7d5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 36,
+   "color": "b",
+   "san": "g5",
+   "uci": "g7g5",
+   "fenBefore": "r2q2r1/1b2bppk/pp2p3/2Pp4/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 0 18",
+   "fenAfter": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 0 19",
+   "evalBefore": {
+    "fen": "r2q2r1/1b2bppk/pp2p3/2Pp4/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 b - - 0 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -81
+      },
+      "pv": [
+       "g7g5",
+       "f4e5"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -71
+      },
+      "pv": [
+       "e7c5",
+       "f3e4",
+       "d5e4",
+       "f4g3"
+      ],
+      "depth": 7,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -66
+      },
+      "pv": [
+       "b6c5",
+       "f3e4",
+       "d5e4",
+       "c1d1",
+       "d8e8",
+       "f2f3",
+       "g7g5"
+      ],
+      "depth": 7,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 0 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -55
+      },
+      "pv": [
+       "f4e5"
+      ],
+      "depth": 10,
+      "nodes": 20024
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -59
+      },
+      "pv": [
+       "f4g3",
+       "b6c5",
+       "f3e4",
+       "d5e4",
+       "c1d1",
+       "d8e8",
+       "f1d2",
+       "f7f5"
+      ],
+      "depth": 10,
+      "nodes": 20024
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -62
+      },
+      "pv": [
+       "f4d6",
+       "b6c5",
+       "d6e7",
+       "d8e7",
+       "f3e4",
+       "d5e4",
+       "c1d1",
+       "b7c6"
+      ],
+      "depth": 10,
+      "nodes": 20024
+     }
+    ]
+   },
+   "winBefore": 57.40142874632655,
+   "winAfter": 55.04562746820834,
+   "epLoss": 0.02355801278118219,
+   "moveAccuracy": 90.94253373585548,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "g7g5",
+   "bestLine": [
+    "g7g5",
+    "f4e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 37,
+   "color": "w",
+   "san": "Nd2",
+   "uci": "f1d2",
+   "fenBefore": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 0 19",
+   "fenAfter": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 b - - 1 19",
+   "evalBefore": {
+    "fen": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQ2P1P/R1R2NK1 w - - 0 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -55
+      },
+      "pv": [
+       "f4e5"
+      ],
+      "depth": 10,
+      "nodes": 20024
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -59
+      },
+      "pv": [
+       "f4g3",
+       "b6c5",
+       "f3e4",
+       "d5e4",
+       "c1d1",
+       "d8e8",
+       "f1d2",
+       "f7f5"
+      ],
+      "depth": 10,
+      "nodes": 20024
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -62
+      },
+      "pv": [
+       "f4d6",
+       "b6c5",
+       "d6e7",
+       "d8e7",
+       "f3e4",
+       "d5e4",
+       "c1d1",
+       "b7c6"
+      ],
+      "depth": 10,
+      "nodes": 20024
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 b - - 1 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -443
+      },
+      "pv": [
+       "g5f4",
+       "g1h1",
+       "h7h6",
+       "f3e4",
+       "d5e4",
+       "c1g1",
+       "d8d3",
+       "c2d3",
+       "e4d3",
+       "e3e4"
+      ],
+      "depth": 13,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -419
+      },
+      "pv": [
+       "g8g6",
+       "f3e4",
+       "g5f4",
+       "g1h1",
+       "d5e4",
+       "c5c6",
+       "b7c6",
+       "f2f3",
+       "d8d5",
+       "f3e4",
+       "d5h5",
+       "c1g1",
+       "e6e5",
+       "g1g6",
+       "h5g6"
+      ],
+      "depth": 13,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -393
+      },
+      "pv": [
+       "h7h6",
+       "f4e5",
+       "e4c5",
+       "f3f4",
+       "g5f4",
+       "g1h1",
+       "d5d4",
+       "f2f3"
+      ],
+      "depth": 13,
+      "nodes": 20013
+     }
+    ]
+   },
+   "winBefore": 44.95437253179166,
+   "winAfter": 16.367131770296538,
+   "epLoss": 0.28587240761495125,
+   "moveAccuracy": 27.548298029998364,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "f4e5",
+   "bestLine": [
+    "f4e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 38,
+   "color": "b",
+   "san": "Ra7",
+   "uci": "a8a7",
+   "fenBefore": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 b - - 1 19",
+   "fenAfter": "3q2r1/rb2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 w - - 2 20",
+   "evalBefore": {
+    "fen": "r2q2r1/1b2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 b - - 1 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -443
+      },
+      "pv": [
+       "g5f4",
+       "g1h1",
+       "h7h6",
+       "f3e4",
+       "d5e4",
+       "c1g1",
+       "d8d3",
+       "c2d3",
+       "e4d3",
+       "e3e4"
+      ],
+      "depth": 13,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -419
+      },
+      "pv": [
+       "g8g6",
+       "f3e4",
+       "g5f4",
+       "g1h1",
+       "d5e4",
+       "c5c6",
+       "b7c6",
+       "f2f3",
+       "d8d5",
+       "f3e4",
+       "d5h5",
+       "c1g1",
+       "e6e5",
+       "g1g6",
+       "h5g6"
+      ],
+      "depth": 13,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -393
+      },
+      "pv": [
+       "h7h6",
+       "f4e5",
+       "e4c5",
+       "f3f4",
+       "g5f4",
+       "g1h1",
+       "d5d4",
+       "f2f3"
+      ],
+      "depth": 13,
+      "nodes": 20013
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3q2r1/rb2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 w - - 2 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -23
+      },
+      "pv": [
+       "f4e5",
+       "f7f6",
+       "c5b6"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -44
+      },
+      "pv": [
+       "f4g3",
+       "b6c5",
+       "f3e4",
+       "d5e4",
+       "c2d1"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -82
+      },
+      "pv": [
+       "f4d6",
+       "b6c5",
+       "d6e7",
+       "d8e7",
+       "f3e4",
+       "d5e4",
+       "d2c4",
+       "g8g6"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 83.63286822970346,
+   "winAfter": 52.115931524066205,
+   "epLoss": 0.31516936705637255,
+   "moveAccuracy": 23.9896509034824,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "g5f4",
+   "bestLine": [
+    "g5f4",
+    "g1h1",
+    "h7h6",
+    "f3e4",
+    "d5e4",
+    "c1g1",
+    "d8d3",
+    "c2d3",
+    "e4d3",
+    "e3e4"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 39,
+   "color": "w",
+   "san": "Bc7",
+   "uci": "f4c7",
+   "fenBefore": "3q2r1/rb2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 w - - 2 20",
+   "fenAfter": "3q2r1/rbB1bp1k/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 3 20",
+   "evalBefore": {
+    "fen": "3q2r1/rb2bp1k/pp2p3/2Pp2p1/4nB2/P1P1PP2/1PQN1P1P/R1R3K1 w - - 2 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -23
+      },
+      "pv": [
+       "f4e5",
+       "f7f6",
+       "c5b6"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -44
+      },
+      "pv": [
+       "f4g3",
+       "b6c5",
+       "f3e4",
+       "d5e4",
+       "c2d1"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -82
+      },
+      "pv": [
+       "f4d6",
+       "b6c5",
+       "d6e7",
+       "d8e7",
+       "f3e4",
+       "d5e4",
+       "d2c4",
+       "g8g6"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3q2r1/rbB1bp1k/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 3 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -329
+      },
+      "pv": [
+       "d8c7",
+       "f3e4",
+       "d5e4",
+       "c5b6",
+       "c7b6",
+       "c3c4",
+       "b6c6"
+      ],
+      "depth": 11,
+      "nodes": 20022
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -50
+      },
+      "pv": [
+       "d8d7",
+       "c5b6"
+      ],
+      "depth": 11,
+      "nodes": 20022
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 112
+      },
+      "pv": [
+       "d8e8",
+       "c5b6",
+       "a7a8",
+       "f3e4",
+       "d5e4",
+       "d2c4",
+       "e8b5",
+       "c2e2",
+       "b5f5"
+      ],
+      "depth": 10,
+      "nodes": 20022
+     }
+    ]
+   },
+   "winBefore": 47.884068475933795,
+   "winAfter": 22.945266703370383,
+   "epLoss": 0.24938801772563413,
+   "moveAccuracy": 32.66423486025808,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "f4e5",
+   "bestLine": [
+    "f4e5",
+    "f7f6",
+    "c5b6"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 40,
+   "color": "b",
+   "san": "Kg7",
+   "uci": "h7g7",
+   "fenBefore": "3q2r1/rbB1bp1k/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 3 20",
+   "fenAfter": "3q2r1/rbB1bpk1/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 4 21",
+   "evalBefore": {
+    "fen": "3q2r1/rbB1bp1k/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 3 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -329
+      },
+      "pv": [
+       "d8c7",
+       "f3e4",
+       "d5e4",
+       "c5b6",
+       "c7b6",
+       "c3c4",
+       "b6c6"
+      ],
+      "depth": 11,
+      "nodes": 20022
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -50
+      },
+      "pv": [
+       "d8d7",
+       "c5b6"
+      ],
+      "depth": 11,
+      "nodes": 20022
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 112
+      },
+      "pv": [
+       "d8e8",
+       "c5b6",
+       "a7a8",
+       "f3e4",
+       "d5e4",
+       "d2c4",
+       "e8b5",
+       "c2e2",
+       "b5f5"
+      ],
+      "depth": 10,
+      "nodes": 20022
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3q2r1/rbB1bpk1/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 4 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 414
+      },
+      "pv": [
+       "c7d8",
+       "e4d2",
+       "c2d2",
+       "e7d8",
+       "d2d4",
+       "d8f6",
+       "d4g4",
+       "e6e5",
+       "c5b6",
+       "a7a8",
+       "c3c4"
+      ],
+      "depth": 12,
+      "nodes": 20027
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 239
+      },
+      "pv": [
+       "c5b6",
+       "d8d7",
+       "f3e4",
+       "a7a8",
+       "c3c4",
+       "g8h8",
+       "c4c5",
+       "b7c6",
+       "b2b4",
+       "h8h4",
+       "c2b2",
+       "f7f6"
+      ],
+      "depth": 12,
+      "nodes": 20027
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 16
+      },
+      "pv": [
+       "c7b6",
+       "e4d2"
+      ],
+      "depth": 12,
+      "nodes": 20027
+     }
+    ]
+   },
+   "winBefore": 77.05473329662962,
+   "winAfter": 17.88172829634729,
+   "epLoss": 0.5917300500028233,
+   "moveAccuracy": 5.678712498478714,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "d8c7",
+   "bestLine": [
+    "d8c7",
+    "f3e4",
+    "d5e4",
+    "c5b6",
+    "c7b6",
+    "c3c4",
+    "b6c6"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 41,
+   "color": "w",
+   "san": "cxb6",
+   "uci": "c5b6",
+   "fenBefore": "3q2r1/rbB1bpk1/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 4 21",
+   "fenAfter": "3q2r1/rbB1bpk1/pP2p3/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 0 21",
+   "evalBefore": {
+    "fen": "3q2r1/rbB1bpk1/pp2p3/2Pp2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 4 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 414
+      },
+      "pv": [
+       "c7d8",
+       "e4d2",
+       "c2d2",
+       "e7d8",
+       "d2d4",
+       "d8f6",
+       "d4g4",
+       "e6e5",
+       "c5b6",
+       "a7a8",
+       "c3c4"
+      ],
+      "depth": 12,
+      "nodes": 20027
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 239
+      },
+      "pv": [
+       "c5b6",
+       "d8d7",
+       "f3e4",
+       "a7a8",
+       "c3c4",
+       "g8h8",
+       "c4c5",
+       "b7c6",
+       "b2b4",
+       "h8h4",
+       "c2b2",
+       "f7f6"
+      ],
+      "depth": 12,
+      "nodes": 20027
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 16
+      },
+      "pv": [
+       "c7b6",
+       "e4d2"
+      ],
+      "depth": 12,
+      "nodes": 20027
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3q2r1/rbB1bpk1/pP2p3/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 0 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 220
+      },
+      "pv": [
+       "d8d7",
+       "f3e4",
+       "a7a8",
+       "c3c4",
+       "g8h8",
+       "c4c5",
+       "b7c6",
+       "b2b4",
+       "d5e4",
+       "c7e5",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "d2c4"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 265
+      },
+      "pv": [
+       "d8c8",
+       "f3e4"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 279
+      },
+      "pv": [
+       "d8e8",
+       "b6a7",
+       "e4d2",
+       "c2d2",
+       "g8h8",
+       "d2d4",
+       "f7f6",
+       "d4b6",
+       "e8h5",
+       "b6b7"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     }
+    ]
+   },
+   "winBefore": 82.11827170365271,
+   "winAfter": 69.21217783768152,
+   "epLoss": 0.1290609386597119,
+   "moveAccuracy": 56.64920835124124,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "c7d8",
+   "bestLine": [
+    "c7d8",
+    "e4d2",
+    "c2d2",
+    "e7d8",
+    "d2d4",
+    "d8f6",
+    "d4g4",
+    "e6e5",
+    "c5b6",
+    "a7a8",
+    "c3c4"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 42,
+   "color": "b",
+   "san": "Bf6",
+   "uci": "e7f6",
+   "fenBefore": "3q2r1/rbB1bpk1/pP2p3/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 0 21",
+   "fenAfter": "3q2r1/rbB2pk1/pP2pb2/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 1 22",
+   "evalBefore": {
+    "fen": "3q2r1/rbB1bpk1/pP2p3/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 b - - 0 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 220
+      },
+      "pv": [
+       "d8d7",
+       "f3e4",
+       "a7a8",
+       "c3c4",
+       "g8h8",
+       "c4c5",
+       "b7c6",
+       "b2b4",
+       "d5e4",
+       "c7e5",
+       "f7f6",
+       "e5g3",
+       "f6f5",
+       "d2c4"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 265
+      },
+      "pv": [
+       "d8c8",
+       "f3e4"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 279
+      },
+      "pv": [
+       "d8e8",
+       "b6a7",
+       "e4d2",
+       "c2d2",
+       "g8h8",
+       "d2d4",
+       "f7f6",
+       "d4b6",
+       "e8h5",
+       "b6b7"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3q2r1/rbB2pk1/pP2pb2/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 1 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 531
+      },
+      "pv": [
+       "c7d8",
+       "g8d8",
+       "b6a7",
+       "e4d2",
+       "c2d2",
+       "d8h8",
+       "d2e2"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 321
+      },
+      "pv": [
+       "d2e4",
+       "d8d7"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 248
+      },
+      "pv": [
+       "f3e4",
+       "d8d7",
+       "e4e5",
+       "f6e7",
+       "b6a7",
+       "d7c7",
+       "c2a4",
+       "g8h8",
+       "d2f3",
+       "d5d4",
+       "c3d4"
+      ],
+      "depth": 11,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 30.787822162318477,
+   "winAfter": 12.398914293212272,
+   "epLoss": 0.18388907869106208,
+   "moveAccuracy": 44.15866864613129,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "d8d7",
+   "bestLine": [
+    "d8d7",
+    "f3e4",
+    "a7a8",
+    "c3c4",
+    "g8h8",
+    "c4c5",
+    "b7c6",
+    "b2b4",
+    "d5e4",
+    "c7e5",
+    "f7f6",
+    "e5g3",
+    "f6f5",
+    "d2c4"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 43,
+   "color": "w",
+   "san": "b4",
+   "uci": "b2b4",
+   "fenBefore": "3q2r1/rbB2pk1/pP2pb2/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 1 22",
+   "fenAfter": "3q2r1/rbB2pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 b - - 0 22",
+   "evalBefore": {
+    "fen": "3q2r1/rbB2pk1/pP2pb2/3p2p1/4n3/P1P1PP2/1PQN1P1P/R1R3K1 w - - 1 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 531
+      },
+      "pv": [
+       "c7d8",
+       "g8d8",
+       "b6a7",
+       "e4d2",
+       "c2d2",
+       "d8h8",
+       "d2e2"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 321
+      },
+      "pv": [
+       "d2e4",
+       "d8d7"
+      ],
+      "depth": 12,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 248
+      },
+      "pv": [
+       "f3e4",
+       "d8d7",
+       "e4e5",
+       "f6e7",
+       "b6a7",
+       "d7c7",
+       "c2a4",
+       "g8h8",
+       "d2f3",
+       "d5d4",
+       "c3d4"
+      ],
+      "depth": 11,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "3q2r1/rbB2pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 b - - 0 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 190
+      },
+      "pv": [
+       "d8d7",
+       "f3e4"
+      ],
+      "depth": 11,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 210
+      },
+      "pv": [
+       "d8c8",
+       "f3e4",
+       "a7a8",
+       "e4e5",
+       "f6d8",
+       "c7d8",
+       "g8d8"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 213
+      },
+      "pv": [
+       "d8e8",
+       "f3e4",
+       "a7a8",
+       "e4e5",
+       "f6e7",
+       "d2b3",
+       "g8h8",
+       "f2f3",
+       "h8h3",
+       "c2g2",
+       "e8h8"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 87.60108570678773,
+   "winAfter": 66.80980166875132,
+   "epLoss": 0.20791284038036406,
+   "moveAccuracy": 39.557854628464334,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "c7d8",
+   "bestLine": [
+    "c7d8",
+    "g8d8",
+    "b6a7",
+    "e4d2",
+    "c2d2",
+    "d8h8",
+    "d2e2"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 44,
+   "color": "b",
+   "san": "Qd7",
+   "uci": "d8d7",
+   "fenBefore": "3q2r1/rbB2pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 b - - 0 22",
+   "fenAfter": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 w - - 1 23",
+   "evalBefore": {
+    "fen": "3q2r1/rbB2pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 b - - 0 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 190
+      },
+      "pv": [
+       "d8d7",
+       "f3e4"
+      ],
+      "depth": 11,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 210
+      },
+      "pv": [
+       "d8c8",
+       "f3e4",
+       "a7a8",
+       "e4e5",
+       "f6d8",
+       "c7d8",
+       "g8d8"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 213
+      },
+      "pv": [
+       "d8e8",
+       "f3e4",
+       "a7a8",
+       "e4e5",
+       "f6e7",
+       "d2b3",
+       "g8h8",
+       "f2f3",
+       "h8h3",
+       "c2g2",
+       "e8h8"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 w - - 1 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 226
+      },
+      "pv": [
+       "f3e4"
+      ],
+      "depth": 12,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 125
+      },
+      "pv": [
+       "d2b3",
+       "e4c3",
+       "c2d3",
+       "c3b5",
+       "b6a7",
+       "f6a1",
+       "b3a1",
+       "g8c8",
+       "c7e5",
+       "f7f6",
+       "c1c8",
+       "d7c8"
+      ],
+      "depth": 12,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "d2e4",
+       "d5e4",
+       "c1d1",
+       "d7c6",
+       "d1d6",
+       "c6c4",
+       "b6a7",
+       "c4c7",
+       "a1d1",
+       "g8h8",
+       "f3e4",
+       "f6e5",
+       "d6d7",
+       "e5h2",
+       "g1f1",
+       "c7c4",
+       "c2d3"
+      ],
+      "depth": 12,
+      "nodes": 20021
+     }
+    ]
+   },
+   "winBefore": 33.19019833124868,
+   "winAfter": 30.31906390925255,
+   "epLoss": 0.028711344219961354,
+   "moveAccuracy": 88.87664450665673,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d8d7",
+   "bestLine": [
+    "d8d7",
+    "f3e4"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 45,
+   "color": "w",
+   "san": "Nb3",
+   "uci": "d2b3",
+   "fenBefore": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 w - - 1 23",
+   "fenAfter": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/PNP1PP2/2Q2P1P/R1R3K1 b - - 2 23",
+   "evalBefore": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/P1P1PP2/2QN1P1P/R1R3K1 w - - 1 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 226
+      },
+      "pv": [
+       "f3e4"
+      ],
+      "depth": 12,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 125
+      },
+      "pv": [
+       "d2b3",
+       "e4c3",
+       "c2d3",
+       "c3b5",
+       "b6a7",
+       "f6a1",
+       "b3a1",
+       "g8c8",
+       "c7e5",
+       "f7f6",
+       "c1c8",
+       "d7c8"
+      ],
+      "depth": 12,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "d2e4",
+       "d5e4",
+       "c1d1",
+       "d7c6",
+       "d1d6",
+       "c6c4",
+       "b6a7",
+       "c4c7",
+       "a1d1",
+       "g8h8",
+       "f3e4",
+       "f6e5",
+       "d6d7",
+       "e5h2",
+       "g1f1",
+       "c7c4",
+       "c2d3"
+      ],
+      "depth": 12,
+      "nodes": 20021
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/PNP1PP2/2Q2P1P/R1R3K1 b - - 2 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 81
+      },
+      "pv": [
+       "e4c3",
+       "c2d3",
+       "c3b5",
+       "b6a7",
+       "f6a1",
+       "b3a1",
+       "g8c8",
+       "c7e5",
+       "f7f6",
+       "c1c8"
+      ],
+      "depth": 9,
+      "nodes": 20025
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 145
+      },
+      "pv": [
+       "b7a8",
+       "f3e4",
+       "a7c7",
+       "b6c7",
+       "d7c7",
+       "e4e5",
+       "c7e5",
+       "c2d3"
+      ],
+      "depth": 9,
+      "nodes": 20025
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 148
+      },
+      "pv": [
+       "e6e5",
+       "f3e4"
+      ],
+      "depth": 9,
+      "nodes": 20025
+     }
+    ]
+   },
+   "winBefore": 69.68093609074745,
+   "winAfter": 57.401428746326545,
+   "epLoss": 0.12279507344420904,
+   "moveAccuracy": 58.27589291727952,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "f3e4",
+   "bestLine": [
+    "f3e4"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 46,
+   "color": "b",
+   "san": "Nxf2",
+   "uci": "e4f2",
+   "fenBefore": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/PNP1PP2/2Q2P1P/R1R3K1 b - - 2 23",
+   "fenAfter": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P6/PNP1PP2/2Q2n1P/R1R3K1 w - - 0 24",
+   "evalBefore": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P2n3/PNP1PP2/2Q2P1P/R1R3K1 b - - 2 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 81
+      },
+      "pv": [
+       "e4c3",
+       "c2d3",
+       "c3b5",
+       "b6a7",
+       "f6a1",
+       "b3a1",
+       "g8c8",
+       "c7e5",
+       "f7f6",
+       "c1c8"
+      ],
+      "depth": 9,
+      "nodes": 20025
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 145
+      },
+      "pv": [
+       "b7a8",
+       "f3e4",
+       "a7c7",
+       "b6c7",
+       "d7c7",
+       "e4e5",
+       "c7e5",
+       "c2d3"
+      ],
+      "depth": 9,
+      "nodes": 20025
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 148
+      },
+      "pv": [
+       "e6e5",
+       "f3e4"
+      ],
+      "depth": 9,
+      "nodes": 20025
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P6/PNP1PP2/2Q2n1P/R1R3K1 w - - 0 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 259
+      },
+      "pv": [
+       "c2f2",
+       "a7a8",
+       "f2g2"
+      ],
+      "depth": 10,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 198
+      },
+      "pv": [
+       "g1f2",
+       "g8h8",
+       "f2g1",
+       "a7a8",
+       "c2g2",
+       "h8h6",
+       "b3c5"
+      ],
+      "depth": 10,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 88
+      },
+      "pv": [
+       "b3c5",
+       "f2h3",
+       "g1g2",
+       "d7e7",
+       "g2h3",
+       "d5d4",
+       "c5b7",
+       "d4e3",
+       "b6a7",
+       "e7c7",
+       "h3g2",
+       "c7b7",
+       "g2g1"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     }
+    ]
+   },
+   "winBefore": 42.598571253673455,
+   "winAfter": 27.814961942773124,
+   "epLoss": 0.1478360931090033,
+   "moveAccuracy": 52.03244082472568,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "e4c3",
+   "bestLine": [
+    "e4c3",
+    "c2d3",
+    "c3b5",
+    "b6a7",
+    "f6a1",
+    "b3a1",
+    "g8c8",
+    "c7e5",
+    "f7f6",
+    "c1c8"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 47,
+   "color": "w",
+   "san": "Nc5",
+   "uci": "b3c5",
+   "fenBefore": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P6/PNP1PP2/2Q2n1P/R1R3K1 w - - 0 24",
+   "fenAfter": "6r1/rbBq1pk1/pP2pb2/2Np2p1/1P6/P1P1PP2/2Q2n1P/R1R3K1 b - - 1 24",
+   "evalBefore": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/3p2p1/1P6/PNP1PP2/2Q2n1P/R1R3K1 w - - 0 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 259
+      },
+      "pv": [
+       "c2f2",
+       "a7a8",
+       "f2g2"
+      ],
+      "depth": 10,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 198
+      },
+      "pv": [
+       "g1f2",
+       "g8h8",
+       "f2g1",
+       "a7a8",
+       "c2g2",
+       "h8h6",
+       "b3c5"
+      ],
+      "depth": 10,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 88
+      },
+      "pv": [
+       "b3c5",
+       "f2h3",
+       "g1g2",
+       "d7e7",
+       "g2h3",
+       "d5d4",
+       "c5b7",
+       "d4e3",
+       "b6a7",
+       "e7c7",
+       "h3g2",
+       "c7b7",
+       "g2g1"
+      ],
+      "depth": 9,
+      "nodes": 20021
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/2Np2p1/1P6/P1P1PP2/2Q2n1P/R1R3K1 b - - 1 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 124
+      },
+      "pv": [
+       "f2h3",
+       "g1g2",
+       "d7c6",
+       "g2h3",
+       "b7a8",
+       "h3g2",
+       "a7c7",
+       "b6c7",
+       "c6c7",
+       "c2f2",
+       "g8h8",
+       "f2g3",
+       "e6e5"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 242
+      },
+      "pv": [
+       "d7c6",
+       "c2f2"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 294
+      },
+      "pv": [
+       "d7e7",
+       "c2f2",
+       "b7c6",
+       "f2g3",
+       "e6e5",
+       "b6a7",
+       "e7c7",
+       "a1a2",
+       "c7a7",
+       "a2g2",
+       "g8h8"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 72.18503805722688,
+   "winAfter": 61.22020503513589,
+   "epLoss": 0.10964833022090992,
+   "moveAccuracy": 61.83663179160929,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "c2f2",
+   "bestLine": [
+    "c2f2",
+    "a7a8",
+    "f2g2"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  },
+  {
+   "ply": 48,
+   "color": "b",
+   "san": "Qe7",
+   "uci": "d7e7",
+   "fenBefore": "6r1/rbBq1pk1/pP2pb2/2Np2p1/1P6/P1P1PP2/2Q2n1P/R1R3K1 b - - 1 24",
+   "fenAfter": "6r1/rbB1qpk1/pP2pb2/2Np2p1/1P6/P1P1PP2/2Q2n1P/R1R3K1 w - - 2 25",
+   "evalBefore": {
+    "fen": "6r1/rbBq1pk1/pP2pb2/2Np2p1/1P6/P1P1PP2/2Q2n1P/R1R3K1 b - - 1 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 124
+      },
+      "pv": [
+       "f2h3",
+       "g1g2",
+       "d7c6",
+       "g2h3",
+       "b7a8",
+       "h3g2",
+       "a7c7",
+       "b6c7",
+       "c6c7",
+       "c2f2",
+       "g8h8",
+       "f2g3",
+       "e6e5"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 242
+      },
+      "pv": [
+       "d7c6",
+       "c2f2"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 294
+      },
+      "pv": [
+       "d7e7",
+       "c2f2",
+       "b7c6",
+       "f2g3",
+       "e6e5",
+       "b6a7",
+       "e7c7",
+       "a1a2",
+       "c7a7",
+       "a2g2",
+       "g8h8"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6r1/rbB1qpk1/pP2pb2/2Np2p1/1P6/P1P1PP2/2Q2n1P/R1R3K1 w - - 2 25",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 271
+      },
+      "pv": [
+       "c2f2",
+       "b7c6",
+       "f2g3",
+       "e6e5",
+       "b6a7",
+       "e7c7",
+       "a1a2",
+       "c7a7"
+      ],
+      "depth": 11,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 211
+      },
+      "pv": [
+       "g1f2",
+       "b7c6",
+       "c7g3",
+       "a7a8",
+       "c1g1",
+       "a8d8",
+       "g1g2"
+      ],
+      "depth": 11,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 161
+      },
+      "pv": [
+       "g1g2",
+       "f2h3",
+       "g2h3",
+       "d5d4",
+       "c5b7",
+       "d4e3",
+       "b7c5",
+       "a7c7",
+       "b6c7",
+       "g8h8",
+       "h3g2",
+       "e7c7",
+       "c1h1",
+       "c7f4",
+       "a1g1"
+      ],
+      "depth": 11,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 38.77979496486411,
+   "winAfter": 26.936559078609932,
+   "epLoss": 0.11843235886254178,
+   "moveAccuracy": 59.434993294982235,
+   "classification": "miss",
+   "forced": false,
+   "bestMove": "f2h3",
+   "bestLine": [
+    "f2h3",
+    "g1g2",
+    "d7c6",
+    "g2h3",
+    "b7a8",
+    "h3g2",
+    "a7c7",
+    "b6c7",
+    "c6c7",
+    "c2f2",
+    "g8h8",
+    "f2g3",
+    "e6e5"
+   ],
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System"
+   }
+  }
+ ],
+ "keyMoments": [
+  {
+   "ply": 23,
+   "kind": "blunder",
+   "severity": 1
+  },
+  {
+   "ply": 40,
+   "kind": "blunder",
+   "severity": 1
+  },
+  {
+   "ply": 20,
+   "kind": "blunder",
+   "severity": 0.9018683250992451
+  },
+  {
+   "ply": 38,
+   "kind": "blunder",
+   "severity": 0.7879234176409313
+  },
+  {
+   "ply": 37,
+   "kind": "blunder",
+   "severity": 0.7146810190373781
+  },
+  {
+   "ply": 21,
+   "kind": "blunder",
+   "severity": 0.6502974290007038
+  },
+  {
+   "ply": 39,
+   "kind": "blunder",
+   "severity": 0.6234700443140853
+  },
+  {
+   "ply": 34,
+   "kind": "blunder",
+   "severity": 0.607723747160987
+  },
+  {
+   "ply": 43,
+   "kind": "miss",
+   "severity": 0.5197821009509102
+  },
+  {
+   "ply": 42,
+   "kind": "miss",
+   "severity": 0.4597226967276552
+  },
+  {
+   "ply": 46,
+   "kind": "miss",
+   "severity": 0.36959023277250824
+  },
+  {
+   "ply": 41,
+   "kind": "miss",
+   "severity": 0.3226523466492798
+  },
+  {
+   "ply": 45,
+   "kind": "miss",
+   "severity": 0.3069876836105226
+  },
+  {
+   "ply": 48,
+   "kind": "miss",
+   "severity": 0.29608089715635444
+  },
+  {
+   "ply": 47,
+   "kind": "miss",
+   "severity": 0.2741208255522748
+  },
+  {
+   "ply": 4,
+   "kind": "left_book",
+   "severity": 0.2
+  }
+ ],
+ "white": {
+  "username": "white",
+  "color": "w",
+  "rating": 1100,
+  "accuracy": 56.029621336539826,
+  "acpl": 130.04545454545453,
+  "estimatedRating": 964,
+  "estimatedRatingBand": 162,
+  "counts": {
+   "brilliant": 0,
+   "great": 0,
+   "best": 3,
+   "excellent": 8,
+   "good": 3,
+   "book": 2,
+   "inaccuracy": 0,
+   "mistake": 0,
+   "miss": 4,
+   "blunder": 4
+  }
+ },
+ "black": {
+  "username": "black",
+  "color": "b",
+  "rating": 1100,
+  "accuracy": 56.77434070300481,
+  "acpl": 135.65217391304347,
+  "estimatedRating": 937,
+  "estimatedRatingBand": 178,
+  "counts": {
+   "brilliant": 0,
+   "great": 0,
+   "best": 4,
+   "excellent": 9,
+   "good": 3,
+   "book": 1,
+   "inaccuracy": 0,
+   "mistake": 0,
+   "miss": 3,
+   "blunder": 4
+  }
+ },
+ "opening": {
+  "eco": "D00",
+  "name": "Queen's Pawn Game: Accelerated London System",
+  "lastBookPly": 3
+ }
+}

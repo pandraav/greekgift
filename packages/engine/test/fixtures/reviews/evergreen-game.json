@@ -1,0 +1,6515 @@
+{
+ "gameId": "evergreen-game",
+ "engineBuild": "stockfish-18-lite-single",
+ "nodes": 20000,
+ "moves": [
+  {
+   "ply": 1,
+   "color": "w",
+   "san": "e4",
+   "uci": "e2e4",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e2e4",
+       "e7e5",
+       "b1c3",
+       "b8c6",
+       "g1f3",
+       "f8e7"
+      ],
+      "depth": 9,
+      "nodes": 20027
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "e2e3",
+       "g8f6"
+      ],
+      "depth": 9,
+      "nodes": 20027
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "g1f3",
+       "d7d5",
+       "d2d4",
+       "a7a5"
+      ],
+      "depth": 8,
+      "nodes": 20027
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e7e5",
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 45
+      },
+      "pv": [
+       "c7c5",
+       "g1f3"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 48
+      },
+      "pv": [
+       "e7e6",
+       "b1c3",
+       "d7d5",
+       "d2d4",
+       "d5e4",
+       "c3e4",
+       "c8d7",
+       "g1f3",
+       "d7a4",
+       "f1d3",
+       "f8b4",
+       "e4c3"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 53.49228039541688,
+   "winAfter": 53.49228039541688,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e2e4",
+   "bestLine": [
+    "e2e4",
+    "e7e5",
+    "b1c3",
+    "b8c6",
+    "g1f3",
+    "f8e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 2,
+   "color": "b",
+   "san": "e5",
+   "uci": "e7e5",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "e7e5",
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 45
+      },
+      "pv": [
+       "c7c5",
+       "g1f3"
+      ],
+      "depth": 11,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 48
+      },
+      "pv": [
+       "e7e6",
+       "b1c3",
+       "d7d5",
+       "d2d4",
+       "d5e4",
+       "c3e4",
+       "c8d7",
+       "g1f3",
+       "d7a4",
+       "f1d3",
+       "f8b4",
+       "e4c3"
+      ],
+      "depth": 10,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b1c3",
+       "b8c6"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "d1d4",
+       "b8c6",
+       "d4d3",
+       "g8f6",
+       "b1c3"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     }
+    ]
+   },
+   "winBefore": 46.50771960458312,
+   "winAfter": 46.14150285897469,
+   "epLoss": 0.003662167456084331,
+   "moveAccuracy": 99.36794283717593,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e7e5",
+   "bestLine": [
+    "e7e5",
+    "g1f3",
+    "b8c6",
+    "d2d4",
+    "e5d4",
+    "f3d4",
+    "g8f6",
+    "d4c6",
+    "d7c6",
+    "d1d8",
+    "e8d8",
+    "f1d3",
+    "f8b4",
+    "c1d2"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 3,
+   "color": "w",
+   "san": "Nf3",
+   "uci": "g1f3",
+   "fenBefore": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+   "fenAfter": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "g1f3",
+       "b8c6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "f1d3",
+       "f8b4",
+       "c1d2"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b1c3",
+       "b8c6"
+      ],
+      "depth": 10,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "d1d4",
+       "b8c6",
+       "d4d3",
+       "g8f6",
+       "b1c3"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b8c6",
+       "d2d4"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "g8f6",
+       "d2d4",
+       "f6e4",
+       "d4e5",
+       "d7d5",
+       "e5d6",
+       "f8d6"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 46
+      },
+      "pv": [
+       "d7d6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "b1c3",
+       "f8e7",
+       "c1e3"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     }
+    ]
+   },
+   "winBefore": 53.85849714102531,
+   "winAfter": 53.03398401818215,
+   "epLoss": 0.008245131228431513,
+   "moveAccuracy": 97.36197414652176,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g1f3",
+   "bestLine": [
+    "g1f3",
+    "b8c6",
+    "d2d4",
+    "e5d4",
+    "f3d4",
+    "g8f6",
+    "d4c6",
+    "d7c6",
+    "d1d8",
+    "e8d8",
+    "f1d3",
+    "f8b4",
+    "c1d2"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 4,
+   "color": "b",
+   "san": "Nc6",
+   "uci": "b8c6",
+   "fenBefore": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+   "fenAfter": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "b8c6",
+       "d2d4"
+      ],
+      "depth": 10,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 39
+      },
+      "pv": [
+       "g8f6",
+       "d2d4",
+       "f6e4",
+       "d4e5",
+       "d7d5",
+       "e5d6",
+       "f8d6"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 46
+      },
+      "pv": [
+       "d7d6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "b1c3",
+       "f8e7",
+       "c1e3"
+      ],
+      "depth": 9,
+      "nodes": 20028
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "f1b5",
+       "c6d4",
+       "f3d4",
+       "e5d4",
+       "e1g1",
+       "f8e7"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "b1c3",
+       "c8e6"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "b1c3",
+       "g8f6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "f8b4",
+       "d4f5"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     }
+    ]
+   },
+   "winBefore": 46.96601598181785,
+   "winAfter": 46.69097177008695,
+   "epLoss": 0.00275044211730896,
+   "moveAccuracy": 99.77180190146655,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "b8c6",
+   "bestLine": [
+    "b8c6",
+    "d2d4"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 5,
+   "color": "w",
+   "san": "Bc4",
+   "uci": "f1c4",
+   "fenBefore": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+   "fenAfter": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+   "evalBefore": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "f1b5",
+       "c6d4",
+       "f3d4",
+       "e5d4",
+       "e1g1",
+       "f8e7"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "d4c6",
+       "d7c6",
+       "d1d8",
+       "e8d8",
+       "b1c3",
+       "c8e6"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "b1c3",
+       "g8f6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "f8b4",
+       "d4f5"
+      ],
+      "depth": 9,
+      "nodes": 20017
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 9
+      },
+      "pv": [
+       "g8f6",
+       "d2d3",
+       "d7d5",
+       "e4d5",
+       "f6d5",
+       "b1c3",
+       "d5c3",
+       "b2c3",
+       "f8e7",
+       "e1g1",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 56
+      },
+      "pv": [
+       "f8c5",
+       "c2c3"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 58
+      },
+      "pv": [
+       "d7d6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "e1g1",
+       "f8e7"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 53.30902822991305,
+   "winAfter": 50.82839219143761,
+   "epLoss": 0.024806360384754367,
+   "moveAccuracy": 90.43782837815664,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "f1b5",
+   "bestLine": [
+    "f1b5",
+    "c6d4",
+    "f3d4",
+    "e5d4",
+    "e1g1",
+    "f8e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 6,
+   "color": "b",
+   "san": "Bc5",
+   "uci": "f8c5",
+   "fenBefore": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+   "evalBefore": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 9
+      },
+      "pv": [
+       "g8f6",
+       "d2d3",
+       "d7d5",
+       "e4d5",
+       "f6d5",
+       "b1c3",
+       "d5c3",
+       "b2c3",
+       "f8e7",
+       "e1g1",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 56
+      },
+      "pv": [
+       "f8c5",
+       "c2c3"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 58
+      },
+      "pv": [
+       "d7d6",
+       "d2d4",
+       "e5d4",
+       "f3d4",
+       "g8f6",
+       "e1g1",
+       "f8e7"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 57
+      },
+      "pv": [
+       "c2c3"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "d2d4",
+       "c5d4",
+       "f3d4",
+       "c6d4",
+       "c1e3",
+       "g8f6",
+       "e3d4",
+       "e5d4",
+       "d1d4",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "c5d4",
+       "f3d4",
+       "c6d4",
+       "c1e3",
+       "d7d6",
+       "e3d4",
+       "e5d4",
+       "d1d4"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 49.17160780856239,
+   "winAfter": 44.772211834228585,
+   "epLoss": 0.04399395974333803,
+   "moveAccuracy": 83.01571767658388,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g8f6",
+   "bestLine": [
+    "g8f6",
+    "d2d3",
+    "d7d5",
+    "e4d5",
+    "f6d5",
+    "b1c3",
+    "d5c3",
+    "b2c3",
+    "f8e7",
+    "e1g1",
+    "e8g8"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 7,
+   "color": "w",
+   "san": "b4",
+   "uci": "b2b4",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq - 0 4",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 57
+      },
+      "pv": [
+       "c2c3"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "d2d4",
+       "c5d4",
+       "f3d4",
+       "c6d4",
+       "c1e3",
+       "g8f6",
+       "e3d4",
+       "e5d4",
+       "d1d4",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 24
+      },
+      "pv": [
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "c5d4",
+       "f3d4",
+       "c6d4",
+       "c1e3",
+       "d7d6",
+       "e3d4",
+       "e5d4",
+       "d1d4"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq - 0 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -28
+      },
+      "pv": [
+       "c5b4",
+       "c2c3",
+       "b4e7",
+       "d2d4",
+       "d7d6",
+       "e1g1"
+      ],
+      "depth": 10,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "c6b4",
+       "c2c3"
+      ],
+      "depth": 10,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 50
+      },
+      "pv": [
+       "c5e7",
+       "b4b5",
+       "c6a5",
+       "c4e2",
+       "d7d6",
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "f6e4",
+       "d4e5",
+       "d6e5",
+       "f3e5",
+       "d8d1",
+       "f1d1"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     }
+    ]
+   },
+   "winBefore": 55.227788165771415,
+   "winAfter": 47.42482461063748,
+   "epLoss": 0.0780296355513394,
+   "moveAccuracy": 71.28318520589794,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "c2c3",
+   "bestLine": [
+    "c2c3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 8,
+   "color": "b",
+   "san": "Bxb4",
+   "uci": "c5b4",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq - 0 4",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq - 0 4",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -28
+      },
+      "pv": [
+       "c5b4",
+       "c2c3",
+       "b4e7",
+       "d2d4",
+       "d7d6",
+       "e1g1"
+      ],
+      "depth": 10,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "c6b4",
+       "c2c3"
+      ],
+      "depth": 10,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 50
+      },
+      "pv": [
+       "c5e7",
+       "b4b5",
+       "c6a5",
+       "c4e2",
+       "d7d6",
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "f6e4",
+       "d4e5",
+       "d6e5",
+       "f3e5",
+       "d8d1",
+       "f1d1"
+      ],
+      "depth": 9,
+      "nodes": 20010
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "c2c3",
+       "b4e7",
+       "d2d4",
+       "g8f6",
+       "d4e5"
+      ],
+      "depth": 8,
+      "nodes": 20006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -69
+      },
+      "pv": [
+       "e1g1",
+       "g8f6"
+      ],
+      "depth": 8,
+      "nodes": 20006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -94
+      },
+      "pv": [
+       "c1b2",
+       "d7d6",
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "e8g8",
+       "d4e5",
+       "d6e5",
+       "f3e5",
+       "c6e5",
+       "b2e5",
+       "f6e4",
+       "a2a3"
+      ],
+      "depth": 7,
+      "nodes": 20006
+     }
+    ]
+   },
+   "winBefore": 52.57517538936252,
+   "winAfter": 53.675438329054,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "c5b4",
+   "bestLine": [
+    "c5b4",
+    "c2c3",
+    "b4e7",
+    "d2d4",
+    "d7d6",
+    "e1g1"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 9,
+   "color": "w",
+   "san": "c3",
+   "uci": "c2c3",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 5",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "c2c3",
+       "b4e7",
+       "d2d4",
+       "g8f6",
+       "d4e5"
+      ],
+      "depth": 8,
+      "nodes": 20006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -69
+      },
+      "pv": [
+       "e1g1",
+       "g8f6"
+      ],
+      "depth": 8,
+      "nodes": 20006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -94
+      },
+      "pv": [
+       "c1b2",
+       "d7d6",
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "e8g8",
+       "d4e5",
+       "d6e5",
+       "f3e5",
+       "c6e5",
+       "b2e5",
+       "f6e4",
+       "a2a3"
+      ],
+      "depth": 7,
+      "nodes": 20006
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -36
+      },
+      "pv": [
+       "b4e7",
+       "d2d4",
+       "g8f6",
+       "d4e5",
+       "f6e4",
+       "c4f7",
+       "e8f7",
+       "d1d5",
+       "f7e8",
+       "d5e4",
+       "d7d6"
+      ],
+      "depth": 8,
+      "nodes": 20014
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -30
+      },
+      "pv": [
+       "b4a5",
+       "d2d4",
+       "e5d4",
+       "e1g1",
+       "g8f6",
+       "c3d4",
+       "d7d6",
+       "d4d5",
+       "c6b8",
+       "d1a4",
+       "c7c6"
+      ],
+      "depth": 8,
+      "nodes": 20014
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -7
+      },
+      "pv": [
+       "b4d6",
+       "d2d4"
+      ],
+      "depth": 8,
+      "nodes": 20014
+     }
+    ]
+   },
+   "winBefore": 46.324561670946,
+   "winAfter": 46.69097177008696,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "c2c3",
+   "bestLine": [
+    "c2c3",
+    "b4e7",
+    "d2d4",
+    "g8f6",
+    "d4e5"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 10,
+   "color": "b",
+   "san": "Ba5",
+   "uci": "b4a5",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 5",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 5",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -36
+      },
+      "pv": [
+       "b4e7",
+       "d2d4",
+       "g8f6",
+       "d4e5",
+       "f6e4",
+       "c4f7",
+       "e8f7",
+       "d1d5",
+       "f7e8",
+       "d5e4",
+       "d7d6"
+      ],
+      "depth": 8,
+      "nodes": 20014
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -30
+      },
+      "pv": [
+       "b4a5",
+       "d2d4",
+       "e5d4",
+       "e1g1",
+       "g8f6",
+       "c3d4",
+       "d7d6",
+       "d4d5",
+       "c6b8",
+       "d1a4",
+       "c7c6"
+      ],
+      "depth": 8,
+      "nodes": 20014
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -7
+      },
+      "pv": [
+       "b4d6",
+       "d2d4"
+      ],
+      "depth": 8,
+      "nodes": 20014
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -27
+      },
+      "pv": [
+       "d2d4",
+       "e5d4"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -35
+      },
+      "pv": [
+       "d1b3",
+       "d8f6",
+       "e1g1",
+       "d7d6",
+       "d2d4",
+       "h7h6",
+       "b1a3"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -64
+      },
+      "pv": [
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "d7d6",
+       "d4e5",
+       "d6e5",
+       "d1b3",
+       "e8g8",
+       "b1d2"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     }
+    ]
+   },
+   "winBefore": 53.30902822991304,
+   "winAfter": 52.48335896523928,
+   "epLoss": 0.008256692646737562,
+   "moveAccuracy": 97.35696414681898,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "b4e7",
+   "bestLine": [
+    "b4e7",
+    "d2d4",
+    "g8f6",
+    "d4e5",
+    "f6e4",
+    "c4f7",
+    "e8f7",
+    "d1d5",
+    "f7e8",
+    "d5e4",
+    "d7d6"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 11,
+   "color": "w",
+   "san": "d4",
+   "uci": "d2d4",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/b3p3/2BPP3/2P2N2/P4PPP/RNBQK2R b KQkq - 0 6",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -27
+      },
+      "pv": [
+       "d2d4",
+       "e5d4"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -35
+      },
+      "pv": [
+       "d1b3",
+       "d8f6",
+       "e1g1",
+       "d7d6",
+       "d2d4",
+       "h7h6",
+       "b1a3"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -64
+      },
+      "pv": [
+       "e1g1",
+       "g8f6",
+       "d2d4",
+       "d7d6",
+       "d4e5",
+       "d6e5",
+       "d1b3",
+       "e8g8",
+       "b1d2"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b3p3/2BPP3/2P2N2/P4PPP/RNBQK2R b KQkq - 0 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -22
+      },
+      "pv": [
+       "e5d4",
+       "f3g5",
+       "d7d5",
+       "c4d5",
+       "g8h6",
+       "e1g1",
+       "d4c3",
+       "d1b3"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 1
+      },
+      "pv": [
+       "d7d6",
+       "d1b3"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 4
+      },
+      "pv": [
+       "d8f6",
+       "e1g1",
+       "h7h6",
+       "d4e5",
+       "c6e5",
+       "f3e5",
+       "f6e5"
+      ],
+      "depth": 8,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 47.51664103476072,
+   "winAfter": 47.97596267877326,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "d2d4",
+   "bestLine": [
+    "d2d4",
+    "e5d4"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 12,
+   "color": "b",
+   "san": "exd4",
+   "uci": "e5d4",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/b3p3/2BPP3/2P2N2/P4PPP/RNBQK2R b KQkq - 0 6",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQK2R w KQkq - 0 7",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b3p3/2BPP3/2P2N2/P4PPP/RNBQK2R b KQkq - 0 6",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -22
+      },
+      "pv": [
+       "e5d4",
+       "f3g5",
+       "d7d5",
+       "c4d5",
+       "g8h6",
+       "e1g1",
+       "d4c3",
+       "d1b3"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 1
+      },
+      "pv": [
+       "d7d6",
+       "d1b3"
+      ],
+      "depth": 9,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 4
+      },
+      "pv": [
+       "d8f6",
+       "e1g1",
+       "h7h6",
+       "d4e5",
+       "c6e5",
+       "f3e5",
+       "f6e5"
+      ],
+      "depth": 8,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQK2R w KQkq - 0 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -7
+      },
+      "pv": [
+       "d1b3",
+       "d8f6",
+       "e1g1",
+       "d4c3",
+       "c1g5"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -39
+      },
+      "pv": [
+       "e1g1",
+       "g8f6"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -49
+      },
+      "pv": [
+       "c1b2",
+       "g8f6",
+       "e1g1",
+       "d4c3",
+       "b1c3",
+       "e8g8"
+      ],
+      "depth": 7,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 52.02403732122674,
+   "winAfter": 50.644328329952096,
+   "epLoss": 0.01379708991274653,
+   "moveAccuracy": 94.98488665926156,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e5d4",
+   "bestLine": [
+    "e5d4",
+    "f3g5",
+    "d7d5",
+    "c4d5",
+    "g8h6",
+    "e1g1",
+    "d4c3",
+    "d1b3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 13,
+   "color": "w",
+   "san": "O-O",
+   "uci": "e1g1",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQK2R w KQkq - 0 7",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQ1RK1 b kq - 1 7",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQK2R w KQkq - 0 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -7
+      },
+      "pv": [
+       "d1b3",
+       "d8f6",
+       "e1g1",
+       "d4c3",
+       "c1g5"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -39
+      },
+      "pv": [
+       "e1g1",
+       "g8f6"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -49
+      },
+      "pv": [
+       "c1b2",
+       "g8f6",
+       "e1g1",
+       "d4c3",
+       "b1c3",
+       "e8g8"
+      ],
+      "depth": 7,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQ1RK1 b kq - 1 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -32
+      },
+      "pv": [
+       "g8f6",
+       "e4e5",
+       "d7d5",
+       "e5f6",
+       "d5c4",
+       "f6g7",
+       "h8g8",
+       "f1e1",
+       "c8e6",
+       "c1g5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -28
+      },
+      "pv": [
+       "g8e7",
+       "d1b3"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -9
+      },
+      "pv": [
+       "d4d3",
+       "d1b3",
+       "d8e7",
+       "e4e5",
+       "c6e5",
+       "f3e5",
+       "e7e5",
+       "c4f7",
+       "e8f8",
+       "f7g8",
+       "h8g8"
+      ],
+      "depth": 8,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 49.355671670047904,
+   "winAfter": 47.05773918729125,
+   "epLoss": 0.022979324827566594,
+   "moveAccuracy": 91.17742874678493,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "d1b3",
+   "bestLine": [
+    "d1b3",
+    "d8f6",
+    "e1g1",
+    "d4c3",
+    "c1g5"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 14,
+   "color": "b",
+   "san": "d3",
+   "uci": "d4d3",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQ1RK1 b kq - 1 7",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/2Pp1N2/P4PPP/RNBQ1RK1 w kq - 0 8",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQ1RK1 b kq - 1 7",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -32
+      },
+      "pv": [
+       "g8f6",
+       "e4e5",
+       "d7d5",
+       "e5f6",
+       "d5c4",
+       "f6g7",
+       "h8g8",
+       "f1e1",
+       "c8e6",
+       "c1g5"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -28
+      },
+      "pv": [
+       "g8e7",
+       "d1b3"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -9
+      },
+      "pv": [
+       "d4d3",
+       "d1b3",
+       "d8e7",
+       "e4e5",
+       "c6e5",
+       "f3e5",
+       "e7e5",
+       "c4f7",
+       "e8f8",
+       "f7g8",
+       "h8g8"
+      ],
+      "depth": 8,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/2Pp1N2/P4PPP/RNBQ1RK1 w kq - 0 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -7
+      },
+      "pv": [
+       "d1b3",
+       "d8e7",
+       "e4e5",
+       "c6e5",
+       "f3e5",
+       "e7e5",
+       "c4f7",
+       "e8f8"
+      ],
+      "depth": 8,
+      "nodes": 20009
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -31
+      },
+      "pv": [
+       "f3g5",
+       "g8h6"
+      ],
+      "depth": 8,
+      "nodes": 20009
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -46
+      },
+      "pv": [
+       "c1g5",
+       "g8e7",
+       "d1d3",
+       "d7d6",
+       "b1d2",
+       "h7h6",
+       "g5h4",
+       "g7g5"
+      ],
+      "depth": 7,
+      "nodes": 20009
+     }
+    ]
+   },
+   "winBefore": 52.94226081270875,
+   "winAfter": 50.644328329952096,
+   "epLoss": 0.022979324827566594,
+   "moveAccuracy": 91.17742874678493,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g8f6",
+   "bestLine": [
+    "g8f6",
+    "e4e5",
+    "d7d5",
+    "e5f6",
+    "d5c4",
+    "f6g7",
+    "h8g8",
+    "f1e1",
+    "c8e6",
+    "c1g5"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 15,
+   "color": "w",
+   "san": "Qb3",
+   "uci": "d1b3",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/2Pp1N2/P4PPP/RNBQ1RK1 w kq - 0 8",
+   "fenAfter": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 b kq - 1 8",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/2Pp1N2/P4PPP/RNBQ1RK1 w kq - 0 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -7
+      },
+      "pv": [
+       "d1b3",
+       "d8e7",
+       "e4e5",
+       "c6e5",
+       "f3e5",
+       "e7e5",
+       "c4f7",
+       "e8f8"
+      ],
+      "depth": 8,
+      "nodes": 20009
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -31
+      },
+      "pv": [
+       "f3g5",
+       "g8h6"
+      ],
+      "depth": 8,
+      "nodes": 20009
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -46
+      },
+      "pv": [
+       "c1g5",
+       "g8e7",
+       "d1d3",
+       "d7d6",
+       "b1d2",
+       "h7h6",
+       "g5h4",
+       "g7g5"
+      ],
+      "depth": 7,
+      "nodes": 20009
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 b kq - 1 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -29
+      },
+      "pv": [
+       "d8f6",
+       "f1e1",
+       "g8e7",
+       "c4d3",
+       "d7d6",
+       "c1g5",
+       "f6g6",
+       "g5e7",
+       "e8e7"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -1
+      },
+      "pv": [
+       "d8e7",
+       "e4e5"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 122
+      },
+      "pv": [
+       "g8f6",
+       "c4f7",
+       "e8f8",
+       "f7c4"
+      ],
+      "depth": 8,
+      "nodes": 20003
+     }
+    ]
+   },
+   "winBefore": 49.355671670047904,
+   "winAfter": 47.33302559691369,
+   "epLoss": 0.020226460731342155,
+   "moveAccuracy": 92.30298305164513,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d1b3",
+   "bestLine": [
+    "d1b3",
+    "d8e7",
+    "e4e5",
+    "c6e5",
+    "f3e5",
+    "e7e5",
+    "c4f7",
+    "e8f8"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 16,
+   "color": "b",
+   "san": "Qf6",
+   "uci": "d8f6",
+   "fenBefore": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 b kq - 1 8",
+   "fenAfter": "r1b1k1nr/pppp1ppp/2n2q2/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 w kq - 2 9",
+   "evalBefore": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 b kq - 1 8",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -29
+      },
+      "pv": [
+       "d8f6",
+       "f1e1",
+       "g8e7",
+       "c4d3",
+       "d7d6",
+       "c1g5",
+       "f6g6",
+       "g5e7",
+       "e8e7"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -1
+      },
+      "pv": [
+       "d8e7",
+       "e4e5"
+      ],
+      "depth": 9,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 122
+      },
+      "pv": [
+       "g8f6",
+       "c4f7",
+       "e8f8",
+       "f7c4"
+      ],
+      "depth": 8,
+      "nodes": 20003
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k1nr/pppp1ppp/2n2q2/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 w kq - 2 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 13
+      },
+      "pv": [
+       "e4e5"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -34
+      },
+      "pv": [
+       "c1g5",
+       "f6g6",
+       "f1d1",
+       "d7d6",
+       "c4d3",
+       "g8f6"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -38
+      },
+      "pv": [
+       "f1d1",
+       "d7d6",
+       "c1g5",
+       "f6g6",
+       "c4d3",
+       "h7h6"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     }
+    ]
+   },
+   "winBefore": 52.66697440308631,
+   "winAfter": 48.80355243833374,
+   "epLoss": 0.03863421964752567,
+   "moveAccuracy": 85.02694150842433,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d8f6",
+   "bestLine": [
+    "d8f6",
+    "f1e1",
+    "g8e7",
+    "c4d3",
+    "d7d6",
+    "c1g5",
+    "f6g6",
+    "g5e7",
+    "e8e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 17,
+   "color": "w",
+   "san": "e5",
+   "uci": "e4e5",
+   "fenBefore": "r1b1k1nr/pppp1ppp/2n2q2/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 w kq - 2 9",
+   "fenAfter": "r1b1k1nr/pppp1ppp/2n2q2/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 b kq - 0 9",
+   "evalBefore": {
+    "fen": "r1b1k1nr/pppp1ppp/2n2q2/b7/2B1P3/1QPp1N2/P4PPP/RNB2RK1 w kq - 2 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 13
+      },
+      "pv": [
+       "e4e5"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -34
+      },
+      "pv": [
+       "c1g5",
+       "f6g6",
+       "f1d1",
+       "d7d6",
+       "c4d3",
+       "g8f6"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -38
+      },
+      "pv": [
+       "f1d1",
+       "d7d6",
+       "c1g5",
+       "f6g6",
+       "c4d3",
+       "h7h6"
+      ],
+      "depth": 9,
+      "nodes": 20012
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k1nr/pppp1ppp/2n2q2/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 b kq - 0 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "f6f5",
+       "f1d1",
+       "g8e7",
+       "c4d3",
+       "f5h5",
+       "b1d2",
+       "e8g8",
+       "d2c4",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d6"
+      ],
+      "depth": 9,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "f6g6",
+       "f1d1"
+      ],
+      "depth": 9,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 13
+      },
+      "pv": [
+       "c6e5",
+       "f1e1"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     }
+    ]
+   },
+   "winBefore": 51.19644756166626,
+   "winAfter": 52.57517538936253,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e4e5",
+   "bestLine": [
+    "e4e5"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 18,
+   "color": "b",
+   "san": "Qg6",
+   "uci": "f6g6",
+   "fenBefore": "r1b1k1nr/pppp1ppp/2n2q2/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 b kq - 0 9",
+   "fenAfter": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 w kq - 1 10",
+   "evalBefore": {
+    "fen": "r1b1k1nr/pppp1ppp/2n2q2/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 b kq - 0 9",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "f6f5",
+       "f1d1",
+       "g8e7",
+       "c4d3",
+       "f5h5",
+       "b1d2",
+       "e8g8",
+       "d2c4",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d6"
+      ],
+      "depth": 9,
+      "nodes": 20004
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "f6g6",
+       "f1d1"
+      ],
+      "depth": 9,
+      "nodes": 20004
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 13
+      },
+      "pv": [
+       "c6e5",
+       "f1e1"
+      ],
+      "depth": 8,
+      "nodes": 20004
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 w kq - 1 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "f1d1",
+       "g8e7",
+       "c4d3",
+       "g6h5",
+       "b1d2",
+       "e8g8",
+       "d2c4",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c1a3",
+       "c8g4",
+       "a3d6",
+       "f8e8"
+      ],
+      "depth": 8,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "b1a3",
+       "g8e7",
+       "f1d1",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3",
+       "g6h5",
+       "a3c4",
+       "e8g8",
+       "c1a3",
+       "c8g4",
+       "a3d6",
+       "f8e8"
+      ],
+      "depth": 8,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 15
+      },
+      "pv": [
+       "c1a3",
+       "g8e7"
+      ],
+      "depth": 8,
+      "nodes": 20018
+     }
+    ]
+   },
+   "winBefore": 47.42482461063747,
+   "winAfter": 47.42482461063747,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f6f5",
+   "bestLine": [
+    "f6f5",
+    "f1d1",
+    "g8e7",
+    "c4d3",
+    "f5h5",
+    "b1d2",
+    "e8g8",
+    "d2c4",
+    "d7d5",
+    "e5d6",
+    "c7d6",
+    "c4d6"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 19,
+   "color": "w",
+   "san": "Re1",
+   "uci": "f1e1",
+   "fenBefore": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 w kq - 1 10",
+   "fenAfter": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 b kq - 2 10",
+   "evalBefore": {
+    "fen": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB2RK1 w kq - 1 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "f1d1",
+       "g8e7",
+       "c4d3",
+       "g6h5",
+       "b1d2",
+       "e8g8",
+       "d2c4",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c1a3",
+       "c8g4",
+       "a3d6",
+       "f8e8"
+      ],
+      "depth": 8,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "b1a3",
+       "g8e7",
+       "f1d1",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3",
+       "g6h5",
+       "a3c4",
+       "e8g8",
+       "c1a3",
+       "c8g4",
+       "a3d6",
+       "f8e8"
+      ],
+      "depth": 8,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 15
+      },
+      "pv": [
+       "c1a3",
+       "g8e7"
+      ],
+      "depth": 8,
+      "nodes": 20018
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 b kq - 2 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -34
+      },
+      "pv": [
+       "g8e7",
+       "e1e3",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "h7h6",
+       "c1a3",
+       "g8e7",
+       "e1e3"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "b7b5",
+       "b3b5"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 52.57517538936253,
+   "winAfter": 46.8743132675129,
+   "epLoss": 0.05700862121849626,
+   "moveAccuracy": 78.32298779475153,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "f1d1",
+   "bestLine": [
+    "f1d1",
+    "g8e7",
+    "c4d3",
+    "g6h5",
+    "b1d2",
+    "e8g8",
+    "d2c4",
+    "d7d5",
+    "e5d6",
+    "c7d6",
+    "c1a3",
+    "c8g4",
+    "a3d6",
+    "f8e8"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 20,
+   "color": "b",
+   "san": "Nge7",
+   "uci": "g8e7",
+   "fenBefore": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 b kq - 2 10",
+   "fenAfter": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 w kq - 3 11",
+   "evalBefore": {
+    "fen": "r1b1k1nr/pppp1ppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 b kq - 2 10",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -34
+      },
+      "pv": [
+       "g8e7",
+       "e1e3",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "h7h6",
+       "c1a3",
+       "g8e7",
+       "e1e3"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "b7b5",
+       "b3b5"
+      ],
+      "depth": 8,
+      "nodes": 20015
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 w kq - 3 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -38
+      },
+      "pv": [
+       "c1a3",
+       "e8g8",
+       "e1e3",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3",
+       "e7f5",
+       "b1d2"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "e1e3",
+       "e8g8"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -41
+      },
+      "pv": [
+       "e1d1",
+       "e8g8",
+       "c4d3",
+       "g6h5",
+       "b1d2",
+       "f8e8"
+      ],
+      "depth": 8,
+      "nodes": 20013
+     }
+    ]
+   },
+   "winBefore": 53.1256867324871,
+   "winAfter": 53.49228039541687,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "g8e7",
+   "bestLine": [
+    "g8e7",
+    "e1e3",
+    "d7d5",
+    "e5d6",
+    "c7d6",
+    "c4d3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 21,
+   "color": "w",
+   "san": "Ba3",
+   "uci": "c1a3",
+   "fenBefore": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 w kq - 3 11",
+   "fenAfter": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/BQPp1N2/P4PPP/RN2R1K1 b kq - 4 11",
+   "evalBefore": {
+    "fen": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/1QPp1N2/P4PPP/RNB1R1K1 w kq - 3 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -38
+      },
+      "pv": [
+       "c1a3",
+       "e8g8",
+       "e1e3",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3",
+       "e7f5",
+       "b1d2"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "e1e3",
+       "e8g8"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -41
+      },
+      "pv": [
+       "e1d1",
+       "e8g8",
+       "c4d3",
+       "g6h5",
+       "b1d2",
+       "f8e8"
+      ],
+      "depth": 8,
+      "nodes": 20013
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/BQPp1N2/P4PPP/RN2R1K1 b kq - 4 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -59
+      },
+      "pv": [
+       "e8g8",
+       "e1e3",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -55
+      },
+      "pv": [
+       "d7d5",
+       "e5d6"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "d7d6",
+       "f3h4",
+       "g6h5",
+       "e5d6",
+       "c7d6",
+       "b1d2"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 46.50771960458313,
+   "winAfter": 44.590191339485116,
+   "epLoss": 0.01917528265098012,
+   "moveAccuracy": 92.73634654510633,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c1a3",
+   "bestLine": [
+    "c1a3",
+    "e8g8",
+    "e1e3",
+    "d7d5",
+    "e5d6",
+    "c7d6",
+    "c4d3",
+    "e7f5",
+    "b1d2"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 22,
+   "color": "b",
+   "san": "b5",
+   "uci": "b7b5",
+   "fenBefore": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/BQPp1N2/P4PPP/RN2R1K1 b kq - 4 11",
+   "fenAfter": "r1b1k2r/p1ppnppp/2n3q1/bp2P3/2B5/BQPp1N2/P4PPP/RN2R1K1 w kq - 0 12",
+   "evalBefore": {
+    "fen": "r1b1k2r/ppppnppp/2n3q1/b3P3/2B5/BQPp1N2/P4PPP/RN2R1K1 b kq - 4 11",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -59
+      },
+      "pv": [
+       "e8g8",
+       "e1e3",
+       "d7d5",
+       "e5d6",
+       "c7d6",
+       "c4d3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -55
+      },
+      "pv": [
+       "d7d5",
+       "e5d6"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "d7d6",
+       "f3h4",
+       "g6h5",
+       "e5d6",
+       "c7d6",
+       "b1d2"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k2r/p1ppnppp/2n3q1/bp2P3/2B5/BQPp1N2/P4PPP/RN2R1K1 w kq - 0 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "b3b5",
+       "a7a6",
+       "b5a4",
+       "c8b7",
+       "e1e3"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 11
+      },
+      "pv": [
+       "c4b5"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -126
+      },
+      "pv": [
+       "c4d5",
+       "e7d5",
+       "b3d5",
+       "c8b7",
+       "d5b5",
+       "a8b8",
+       "b5c4",
+       "b7a8"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     }
+    ]
+   },
+   "winBefore": 55.409808660514884,
+   "winAfter": 47.05773918729125,
+   "epLoss": 0.08352069473223633,
+   "moveAccuracy": 69.54796089114156,
+   "classification": "inaccuracy",
+   "forced": false,
+   "bestMove": "e8g8",
+   "bestLine": [
+    "e8g8",
+    "e1e3",
+    "d7d5",
+    "e5d6",
+    "c7d6",
+    "c4d3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 23,
+   "color": "w",
+   "san": "Qxb5",
+   "uci": "b3b5",
+   "fenBefore": "r1b1k2r/p1ppnppp/2n3q1/bp2P3/2B5/BQPp1N2/P4PPP/RN2R1K1 w kq - 0 12",
+   "fenAfter": "r1b1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 b kq - 0 12",
+   "evalBefore": {
+    "fen": "r1b1k2r/p1ppnppp/2n3q1/bp2P3/2B5/BQPp1N2/P4PPP/RN2R1K1 w kq - 0 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "b3b5",
+       "a7a6",
+       "b5a4",
+       "c8b7",
+       "e1e3"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 11
+      },
+      "pv": [
+       "c4b5"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -126
+      },
+      "pv": [
+       "c4d5",
+       "e7d5",
+       "b3d5",
+       "c8b7",
+       "d5b5",
+       "a8b8",
+       "b5c4",
+       "b7a8"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 b kq - 0 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "a8b8",
+       "b5a4",
+       "c8b7",
+       "f3h4",
+       "g6h5",
+       "c4d3"
+      ],
+      "depth": 8,
+      "nodes": 20019
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 87
+      },
+      "pv": [
+       "d3d2",
+       "b1d2",
+       "a8b8",
+       "b5a4",
+       "a5c3",
+       "a1c1",
+       "c3d2",
+       "f3d2",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20019
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 92
+      },
+      "pv": [
+       "a7a6",
+       "b5a4"
+      ],
+      "depth": 7,
+      "nodes": 20019
+     }
+    ]
+   },
+   "winBefore": 52.94226081270875,
+   "winAfter": 53.21736834106171,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "b3b5",
+   "bestLine": [
+    "b3b5",
+    "a7a6",
+    "b5a4",
+    "c8b7",
+    "e1e3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 24,
+   "color": "b",
+   "san": "Rb8",
+   "uci": "a8b8",
+   "fenBefore": "r1b1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 b kq - 0 12",
+   "fenAfter": "1rb1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 1 13",
+   "evalBefore": {
+    "fen": "r1b1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 b kq - 0 12",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "a8b8",
+       "b5a4",
+       "c8b7",
+       "f3h4",
+       "g6h5",
+       "c4d3"
+      ],
+      "depth": 8,
+      "nodes": 20019
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 87
+      },
+      "pv": [
+       "d3d2",
+       "b1d2",
+       "a8b8",
+       "b5a4",
+       "a5c3",
+       "a1c1",
+       "c3d2",
+       "f3d2",
+       "e8g8"
+      ],
+      "depth": 8,
+      "nodes": 20019
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 92
+      },
+      "pv": [
+       "a7a6",
+       "b5a4"
+      ],
+      "depth": 7,
+      "nodes": 20019
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1rb1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 1 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 57
+      },
+      "pv": [
+       "b5a4",
+       "b8b6",
+       "e1e3",
+       "c8a6",
+       "b1d2",
+       "a5c3",
+       "c4a6",
+       "c3a1",
+       "a6d3"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -115
+      },
+      "pv": [
+       "f3h4",
+       "g6h5",
+       "b5a4",
+       "b8b1",
+       "e1b1",
+       "h5h4",
+       "b1b5"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -266
+      },
+      "pv": [
+       "b5c5",
+       "a5b6",
+       "c5b5",
+       "b6f2",
+       "g1f2",
+       "b8b5",
+       "c4b5",
+       "e8d8",
+       "b1d2",
+       "e7f5"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     }
+    ]
+   },
+   "winBefore": 46.78263165893829,
+   "winAfter": 44.772211834228585,
+   "epLoss": 0.020104198247097083,
+   "moveAccuracy": 92.35328567302517,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "a8b8",
+   "bestLine": [
+    "a8b8",
+    "b5a4",
+    "c8b7",
+    "f3h4",
+    "g6h5",
+    "c4d3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 25,
+   "color": "w",
+   "san": "Qa4",
+   "uci": "b5a4",
+   "fenBefore": "1rb1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 1 13",
+   "fenAfter": "1rb1k2r/p1ppnppp/2n3q1/b3P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 b k - 2 13",
+   "evalBefore": {
+    "fen": "1rb1k2r/p1ppnppp/2n3q1/bQ2P3/2B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 1 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 57
+      },
+      "pv": [
+       "b5a4",
+       "b8b6",
+       "e1e3",
+       "c8a6",
+       "b1d2",
+       "a5c3",
+       "c4a6",
+       "c3a1",
+       "a6d3"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -115
+      },
+      "pv": [
+       "f3h4",
+       "g6h5",
+       "b5a4",
+       "b8b1",
+       "e1b1",
+       "h5h4",
+       "b1b5"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -266
+      },
+      "pv": [
+       "b5c5",
+       "a5b6",
+       "c5b5",
+       "b6f2",
+       "g1f2",
+       "b8b5",
+       "c4b5",
+       "e8d8",
+       "b1d2",
+       "e7f5"
+      ],
+      "depth": 10,
+      "nodes": 20012
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1rb1k2r/p1ppnppp/2n3q1/b3P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 b k - 2 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 54
+      },
+      "pv": [
+       "c8b7",
+       "e1e3",
+       "a5b6",
+       "c4d3",
+       "g6h5",
+       "e3e1",
+       "e8g8",
+       "b1d2"
+      ],
+      "depth": 8,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "b8b6",
+       "e1e3"
+      ],
+      "depth": 8,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 74
+      },
+      "pv": [
+       "a5b6",
+       "a4d1",
+       "g6h5",
+       "d1d3",
+       "e8g8",
+       "b1d2",
+       "f8e8",
+       "c4b3"
+      ],
+      "depth": 7,
+      "nodes": 20010
+     }
+    ]
+   },
+   "winBefore": 55.227788165771415,
+   "winAfter": 54.95449603745888,
+   "epLoss": 0.0027329212831254113,
+   "moveAccuracy": 99.77957866454925,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "b5a4",
+   "bestLine": [
+    "b5a4",
+    "b8b6",
+    "e1e3",
+    "c8a6",
+    "b1d2",
+    "a5c3",
+    "c4a6",
+    "c3a1",
+    "a6d3"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 26,
+   "color": "b",
+   "san": "Bb6",
+   "uci": "a5b6",
+   "fenBefore": "1rb1k2r/p1ppnppp/2n3q1/b3P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 b k - 2 13",
+   "fenAfter": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 3 14",
+   "evalBefore": {
+    "fen": "1rb1k2r/p1ppnppp/2n3q1/b3P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 b k - 2 13",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 54
+      },
+      "pv": [
+       "c8b7",
+       "e1e3",
+       "a5b6",
+       "c4d3",
+       "g6h5",
+       "e3e1",
+       "e8g8",
+       "b1d2"
+      ],
+      "depth": 8,
+      "nodes": 20010
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "b8b6",
+       "e1e3"
+      ],
+      "depth": 8,
+      "nodes": 20010
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 74
+      },
+      "pv": [
+       "a5b6",
+       "a4d1",
+       "g6h5",
+       "d1d3",
+       "e8g8",
+       "b1d2",
+       "f8e8",
+       "c4b3"
+      ],
+      "depth": 7,
+      "nodes": 20010
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 3 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 115
+      },
+      "pv": [
+       "b1d2",
+       "c8b7",
+       "a1d1",
+       "e8g8",
+       "d2e4",
+       "b7a8"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 76
+      },
+      "pv": [
+       "a4d1",
+       "e8g8"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "a3e7",
+       "c6e7",
+       "e5e6",
+       "f7e6",
+       "e1e6",
+       "g6h5",
+       "e6e7",
+       "e8e7"
+      ],
+      "depth": 8,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 45.04550396254112,
+   "winAfter": 39.56940733829889,
+   "epLoss": 0.05476096624242227,
+   "moveAccuracy": 79.11455208123834,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "c8b7",
+   "bestLine": [
+    "c8b7",
+    "e1e3",
+    "a5b6",
+    "c4d3",
+    "g6h5",
+    "e3e1",
+    "e8g8",
+    "b1d2"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 27,
+   "color": "w",
+   "san": "Nbd2",
+   "uci": "b1d2",
+   "fenBefore": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 3 14",
+   "fenAfter": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 b k - 4 14",
+   "evalBefore": {
+    "fen": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P4PPP/RN2R1K1 w k - 3 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 115
+      },
+      "pv": [
+       "b1d2",
+       "c8b7",
+       "a1d1",
+       "e8g8",
+       "d2e4",
+       "b7a8"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 76
+      },
+      "pv": [
+       "a4d1",
+       "e8g8"
+      ],
+      "depth": 9,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "a3e7",
+       "c6e7",
+       "e5e6",
+       "f7e6",
+       "e1e6",
+       "g6h5",
+       "e6e7",
+       "e8e7"
+      ],
+      "depth": 8,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 b k - 4 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 96
+      },
+      "pv": [
+       "e8g8",
+       "d2e4",
+       "d3d2",
+       "f3d2",
+       "f8d8",
+       "e4g3",
+       "d7d5",
+       "e5d6",
+       "c7d6"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 122
+      },
+      "pv": [
+       "h7h6",
+       "a3e7",
+       "e8e7",
+       "f3h4",
+       "g6h5",
+       "c4d3",
+       "h8e8",
+       "d2f3"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 124
+      },
+      "pv": [
+       "c8b7"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     }
+    ]
+   },
+   "winBefore": 60.43059266170111,
+   "winAfter": 58.746113715199876,
+   "epLoss": 0.016844789465012333,
+   "moveAccuracy": 93.70422891839065,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "b1d2",
+   "bestLine": [
+    "b1d2",
+    "c8b7",
+    "a1d1",
+    "e8g8",
+    "d2e4",
+    "b7a8"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 28,
+   "color": "b",
+   "san": "Bb7",
+   "uci": "c8b7",
+   "fenBefore": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 b k - 4 14",
+   "fenAfter": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 w k - 5 15",
+   "evalBefore": {
+    "fen": "1rb1k2r/p1ppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 b k - 4 14",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 96
+      },
+      "pv": [
+       "e8g8",
+       "d2e4",
+       "d3d2",
+       "f3d2",
+       "f8d8",
+       "e4g3",
+       "d7d5",
+       "e5d6",
+       "c7d6"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 122
+      },
+      "pv": [
+       "h7h6",
+       "a3e7",
+       "e8e7",
+       "f3h4",
+       "g6h5",
+       "c4d3",
+       "h8e8",
+       "d2f3"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 124
+      },
+      "pv": [
+       "c8b7"
+      ],
+      "depth": 9,
+      "nodes": 20018
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 w k - 5 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 164
+      },
+      "pv": [
+       "d2e4",
+       "e8g8",
+       "c4d3",
+       "g6h5",
+       "e4g3",
+       "h5h6",
+       "a1d1",
+       "f8e8",
+       "a3c1",
+       "h6e6"
+      ],
+      "depth": 8,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 113
+      },
+      "pv": [
+       "a1d1",
+       "c6d8"
+      ],
+      "depth": 8,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 80
+      },
+      "pv": [
+       "a3e7",
+       "c6e7",
+       "e5e6",
+       "f7e6",
+       "e1e6",
+       "b7c6",
+       "e6g6",
+       "c6a4",
+       "g6g7",
+       "b6a5"
+      ],
+      "depth": 7,
+      "nodes": 20020
+     }
+    ]
+   },
+   "winBefore": 41.253886284800124,
+   "winAfter": 35.346082798513365,
+   "epLoss": 0.05907803486286756,
+   "moveAccuracy": 77.60101309627301,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "e8g8",
+   "bestLine": [
+    "e8g8",
+    "d2e4",
+    "d3d2",
+    "f3d2",
+    "f8d8",
+    "e4g3",
+    "d7d5",
+    "e5d6",
+    "c7d6"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 29,
+   "color": "w",
+   "san": "Ne4",
+   "uci": "d2e4",
+   "fenBefore": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 w k - 5 15",
+   "fenAfter": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 b k - 6 15",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B5/B1Pp1N2/P2N1PPP/R3R1K1 w k - 5 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 164
+      },
+      "pv": [
+       "d2e4",
+       "e8g8",
+       "c4d3",
+       "g6h5",
+       "e4g3",
+       "h5h6",
+       "a1d1",
+       "f8e8",
+       "a3c1",
+       "h6e6"
+      ],
+      "depth": 8,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 113
+      },
+      "pv": [
+       "a1d1",
+       "c6d8"
+      ],
+      "depth": 8,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 80
+      },
+      "pv": [
+       "a3e7",
+       "c6e7",
+       "e5e6",
+       "f7e6",
+       "e1e6",
+       "b7c6",
+       "e6g6",
+       "c6a4",
+       "g6g7",
+       "b6a5"
+      ],
+      "depth": 7,
+      "nodes": 20020
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 b k - 6 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 102
+      },
+      "pv": [
+       "d3d2"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 115
+      },
+      "pv": [
+       "c6d4",
+       "c3d4"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 203
+      },
+      "pv": [
+       "h7h6",
+       "c4d3",
+       "g6e6",
+       "d3c4",
+       "e6f5",
+       "a1d1"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     }
+    ]
+   },
+   "winBefore": 64.65391720148664,
+   "winAfter": 59.280471943277114,
+   "epLoss": 0.053734452582095193,
+   "moveAccuracy": 79.47864773904544,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d2e4",
+   "bestLine": [
+    "d2e4",
+    "e8g8",
+    "c4d3",
+    "g6h5",
+    "e4g3",
+    "h5h6",
+    "a1d1",
+    "f8e8",
+    "a3c1",
+    "h6e6"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 30,
+   "color": "b",
+   "san": "Qf5",
+   "uci": "g6f5",
+   "fenBefore": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 b k - 6 15",
+   "fenAfter": "1r2k2r/pbppnppp/1bn5/4Pq2/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 w k - 7 16",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnppp/1bn3q1/4P3/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 b k - 6 15",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 102
+      },
+      "pv": [
+       "d3d2"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 115
+      },
+      "pv": [
+       "c6d4",
+       "c3d4"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 203
+      },
+      "pv": [
+       "h7h6",
+       "c4d3",
+       "g6e6",
+       "d3c4",
+       "e6f5",
+       "a1d1"
+      ],
+      "depth": 8,
+      "nodes": 20021
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnppp/1bn5/4Pq2/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 w k - 7 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 264
+      },
+      "pv": [
+       "c4d3",
+       "f5e6",
+       "e4g5",
+       "e6h6",
+       "a4g4",
+       "c6d8",
+       "h2h4",
+       "h6c6"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 234
+      },
+      "pv": [
+       "e4g3",
+       "f5g6",
+       "a1d1",
+       "c6d8",
+       "d1d3"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 221
+      },
+      "pv": [
+       "a1d1",
+       "c6e5",
+       "f3e5",
+       "f5e5",
+       "e4g3",
+       "b7c6",
+       "e1e5",
+       "c6a4",
+       "e5e7",
+       "e8d8",
+       "d1d3"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     }
+    ]
+   },
+   "winBefore": 40.719528056722886,
+   "winAfter": 27.44682748668538,
+   "epLoss": 0.1327270057003751,
+   "moveAccuracy": 55.717835430595244,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "d3d2",
+   "bestLine": [
+    "d3d2"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 31,
+   "color": "w",
+   "san": "Bxd3",
+   "uci": "c4d3",
+   "fenBefore": "1r2k2r/pbppnppp/1bn5/4Pq2/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 w k - 7 16",
+   "fenAfter": "1r2k2r/pbppnppp/1bn5/4Pq2/Q3N3/B1PB1N2/P4PPP/R3R1K1 b k - 0 16",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnppp/1bn5/4Pq2/Q1B1N3/B1Pp1N2/P4PPP/R3R1K1 w k - 7 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 264
+      },
+      "pv": [
+       "c4d3",
+       "f5e6",
+       "e4g5",
+       "e6h6",
+       "a4g4",
+       "c6d8",
+       "h2h4",
+       "h6c6"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 234
+      },
+      "pv": [
+       "e4g3",
+       "f5g6",
+       "a1d1",
+       "c6d8",
+       "d1d3"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 221
+      },
+      "pv": [
+       "a1d1",
+       "c6e5",
+       "f3e5",
+       "f5e5",
+       "e4g3",
+       "b7c6",
+       "e1e5",
+       "c6a4",
+       "e5e7",
+       "e8d8",
+       "d1d3"
+      ],
+      "depth": 10,
+      "nodes": 20011
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnppp/1bn5/4Pq2/Q3N3/B1PB1N2/P4PPP/R3R1K1 b k - 0 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 287
+      },
+      "pv": [
+       "f5e6",
+       "e4g5",
+       "e6h6",
+       "a1d1",
+       "h6h5",
+       "g5e4",
+       "b7a8",
+       "e4g3",
+       "h5h6",
+       "a4g4"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 324
+      },
+      "pv": [
+       "e8d8",
+       "a1d1"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 287
+      },
+      "pv": [
+       "f5h5",
+       "e4g3",
+       "h5h6",
+       "a1d1",
+       "b7a8",
+       "a4g4",
+       "c6d8",
+       "a3e7",
+       "e8e7"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     }
+    ]
+   },
+   "winBefore": 72.55317251331462,
+   "winAfter": 74.20703085283178,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c4d3",
+   "bestLine": [
+    "c4d3",
+    "f5e6",
+    "e4g5",
+    "e6h6",
+    "a4g4",
+    "c6d8",
+    "h2h4",
+    "h6c6"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 32,
+   "color": "b",
+   "san": "Qh5",
+   "uci": "f5h5",
+   "fenBefore": "1r2k2r/pbppnppp/1bn5/4Pq2/Q3N3/B1PB1N2/P4PPP/R3R1K1 b k - 0 16",
+   "fenAfter": "1r2k2r/pbppnppp/1bn5/4P2q/Q3N3/B1PB1N2/P4PPP/R3R1K1 w k - 1 17",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnppp/1bn5/4Pq2/Q3N3/B1PB1N2/P4PPP/R3R1K1 b k - 0 16",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 287
+      },
+      "pv": [
+       "f5e6",
+       "e4g5",
+       "e6h6",
+       "a1d1",
+       "h6h5",
+       "g5e4",
+       "b7a8",
+       "e4g3",
+       "h5h6",
+       "a4g4"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 324
+      },
+      "pv": [
+       "e8d8",
+       "a1d1"
+      ],
+      "depth": 10,
+      "nodes": 20013
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 287
+      },
+      "pv": [
+       "f5h5",
+       "e4g3",
+       "h5h6",
+       "a1d1",
+       "b7a8",
+       "a4g4",
+       "c6d8",
+       "a3e7",
+       "e8e7"
+      ],
+      "depth": 9,
+      "nodes": 20013
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnppp/1bn5/4P2q/Q3N3/B1PB1N2/P4PPP/R3R1K1 w k - 1 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 299
+      },
+      "pv": [
+       "e4g3",
+       "h5h6",
+       "a1d1",
+       "b8d8",
+       "a3c1",
+       "h6e6",
+       "f3g5",
+       "e6d5",
+       "d3c4"
+      ],
+      "depth": 10,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 257
+      },
+      "pv": [
+       "a1d1",
+       "e7d5",
+       "e4g3",
+       "d5c3",
+       "g3h5",
+       "c3a4",
+       "h5g7",
+       "e8d8",
+       "f3g5",
+       "d8c8",
+       "g5f7",
+       "h8g8"
+      ],
+      "depth": 10,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 236
+      },
+      "pv": [
+       "h2h4",
+       "e7f5"
+      ],
+      "depth": 10,
+      "nodes": 20003
+     }
+    ]
+   },
+   "winBefore": 25.792969147168222,
+   "winAfter": 24.95634485736778,
+   "epLoss": 0.008366242898004389,
+   "moveAccuracy": 97.3095043951694,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "f5e6",
+   "bestLine": [
+    "f5e6",
+    "e4g5",
+    "e6h6",
+    "a1d1",
+    "h6h5",
+    "g5e4",
+    "b7a8",
+    "e4g3",
+    "h5h6",
+    "a4g4"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 33,
+   "color": "w",
+   "san": "Nf6+",
+   "uci": "e4f6",
+   "fenBefore": "1r2k2r/pbppnppp/1bn5/4P2q/Q3N3/B1PB1N2/P4PPP/R3R1K1 w k - 1 17",
+   "fenAfter": "1r2k2r/pbppnppp/1bn2N2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 2 17",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnppp/1bn5/4P2q/Q3N3/B1PB1N2/P4PPP/R3R1K1 w k - 1 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 299
+      },
+      "pv": [
+       "e4g3",
+       "h5h6",
+       "a1d1",
+       "b8d8",
+       "a3c1",
+       "h6e6",
+       "f3g5",
+       "e6d5",
+       "d3c4"
+      ],
+      "depth": 10,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 257
+      },
+      "pv": [
+       "a1d1",
+       "e7d5",
+       "e4g3",
+       "d5c3",
+       "g3h5",
+       "c3a4",
+       "h5g7",
+       "e8d8",
+       "f3g5",
+       "d8c8",
+       "g5f7",
+       "h8g8"
+      ],
+      "depth": 10,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 236
+      },
+      "pv": [
+       "h2h4",
+       "e7f5"
+      ],
+      "depth": 10,
+      "nodes": 20003
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnppp/1bn2N2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 2 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 45
+      },
+      "pv": [
+       "g7f6",
+       "e5f6"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 669
+      },
+      "pv": [
+       "e8d8",
+       "f6h5",
+       "b6a5",
+       "a3e7",
+       "d8e7"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 705
+      },
+      "pv": [
+       "e8f8",
+       "f6h5",
+       "f8g8",
+       "h5f6",
+       "g7f6",
+       "e5f6",
+       "e7g6",
+       "d3e4"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     }
+    ]
+   },
+   "winBefore": 75.04365514263222,
+   "winAfter": 54.132888835792336,
+   "epLoss": 0.20910766306839879,
+   "moveAccuracy": 39.341355321473124,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "e4g3",
+   "bestLine": [
+    "e4g3",
+    "h5h6",
+    "a1d1",
+    "b8d8",
+    "a3c1",
+    "h6e6",
+    "f3g5",
+    "e6d5",
+    "d3c4"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 34,
+   "color": "b",
+   "san": "gxf6",
+   "uci": "g7f6",
+   "fenBefore": "1r2k2r/pbppnppp/1bn2N2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 2 17",
+   "fenAfter": "1r2k2r/pbppnp1p/1bn2p2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 w k - 0 18",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnppp/1bn2N2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 2 17",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 45
+      },
+      "pv": [
+       "g7f6",
+       "e5f6"
+      ],
+      "depth": 11,
+      "nodes": 20016
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 669
+      },
+      "pv": [
+       "e8d8",
+       "f6h5",
+       "b6a5",
+       "a3e7",
+       "d8e7"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 705
+      },
+      "pv": [
+       "e8f8",
+       "f6h5",
+       "f8g8",
+       "h5f6",
+       "g7f6",
+       "e5f6",
+       "e7g6",
+       "d3e4"
+      ],
+      "depth": 10,
+      "nodes": 20016
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnp1p/1bn2p2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 w k - 0 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 53
+      },
+      "pv": [
+       "e5f6",
+       "h8g8",
+       "d3e4",
+       "h5h3",
+       "g2g3",
+       "g8g3",
+       "h2g3",
+       "h3g3",
+       "g1h1"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -124
+      },
+      "pv": [
+       "a3e7",
+       "e8e7",
+       "e5f6",
+       "e7d8",
+       "a4f4",
+       "h8g8",
+       "a1d1",
+       "h5g4"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -225
+      },
+      "pv": [
+       "a4f4",
+       "f6f5"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     }
+    ]
+   },
+   "winBefore": 45.867111164207664,
+   "winAfter": 45.13666864926168,
+   "epLoss": 0.007304425149459837,
+   "moveAccuracy": 97.77046390199648,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "g7f6",
+   "bestLine": [
+    "g7f6",
+    "e5f6"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 35,
+   "color": "w",
+   "san": "exf6",
+   "uci": "e5f6",
+   "fenBefore": "1r2k2r/pbppnp1p/1bn2p2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 w k - 0 18",
+   "fenAfter": "1r2k2r/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 0 18",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnp1p/1bn2p2/4P2q/Q7/B1PB1N2/P4PPP/R3R1K1 w k - 0 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 53
+      },
+      "pv": [
+       "e5f6",
+       "h8g8",
+       "d3e4",
+       "h5h3",
+       "g2g3",
+       "g8g3",
+       "h2g3",
+       "h3g3",
+       "g1h1"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -124
+      },
+      "pv": [
+       "a3e7",
+       "e8e7",
+       "e5f6",
+       "e7d8",
+       "a4f4",
+       "h8g8",
+       "a1d1",
+       "h5g4"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -225
+      },
+      "pv": [
+       "a4f4",
+       "f6f5"
+      ],
+      "depth": 9,
+      "nodes": 20020
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k2r/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 0 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 54
+      },
+      "pv": [
+       "h8g8",
+       "a4f4",
+       "h5h3",
+       "f3g5",
+       "h3d3",
+       "a3e7",
+       "c6e7",
+       "e1e7",
+       "e8d8",
+       "a1e1"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 131
+      },
+      "pv": [
+       "h5a5",
+       "a4b3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 212
+      },
+      "pv": [
+       "b6c5",
+       "a3c5",
+       "h5c5",
+       "f6e7",
+       "c6e7",
+       "a1b1"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     }
+    ]
+   },
+   "winBefore": 54.86333135073832,
+   "winAfter": 54.95449603745888,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "e5f6",
+   "bestLine": [
+    "e5f6",
+    "h8g8",
+    "d3e4",
+    "h5h3",
+    "g2g3",
+    "g8g3",
+    "h2g3",
+    "h3g3",
+    "g1h1"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 36,
+   "color": "b",
+   "san": "Rg8",
+   "uci": "h8g8",
+   "fenBefore": "1r2k2r/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 0 18",
+   "fenAfter": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 w - - 1 19",
+   "evalBefore": {
+    "fen": "1r2k2r/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 b k - 0 18",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 54
+      },
+      "pv": [
+       "h8g8",
+       "a4f4",
+       "h5h3",
+       "f3g5",
+       "h3d3",
+       "a3e7",
+       "c6e7",
+       "e1e7",
+       "e8d8",
+       "a1e1"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 131
+      },
+      "pv": [
+       "h5a5",
+       "a4b3"
+      ],
+      "depth": 10,
+      "nodes": 20015
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 212
+      },
+      "pv": [
+       "b6c5",
+       "a3c5",
+       "h5c5",
+       "f6e7",
+       "c6e7",
+       "a1b1"
+      ],
+      "depth": 9,
+      "nodes": 20015
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 w - - 1 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 56
+      },
+      "pv": [
+       "d3e4",
+       "h5h3",
+       "g2g3",
+       "g8g3",
+       "h2g3",
+       "h3g3",
+       "g1h1",
+       "b6f2"
+      ],
+      "depth": 8,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "a4d1",
+       "g8g2",
+       "g1g2",
+       "c6e5"
+      ],
+      "depth": 8,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "a4f4",
+       "g8g4",
+       "f4f5",
+       "h5h3",
+       "g2g3",
+       "g4g3",
+       "h2g3",
+       "h3g3",
+       "g1h1",
+       "b6f2",
+       "a3e7"
+      ],
+      "depth": 7,
+      "nodes": 20028
+     }
+    ]
+   },
+   "winBefore": 45.04550396254112,
+   "winAfter": 44.86327495624492,
+   "epLoss": 0.0018222900629619732,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "h8g8",
+   "bestLine": [
+    "h8g8",
+    "a4f4",
+    "h5h3",
+    "f3g5",
+    "h3d3",
+    "a3e7",
+    "c6e7",
+    "e1e7",
+    "e8d8",
+    "a1e1"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 37,
+   "color": "w",
+   "san": "Rad1",
+   "uci": "a1d1",
+   "fenBefore": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 w - - 1 19",
+   "fenAfter": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/3RR1K1 b - - 2 19",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/R3R1K1 w - - 1 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 56
+      },
+      "pv": [
+       "d3e4",
+       "h5h3",
+       "g2g3",
+       "g8g3",
+       "h2g3",
+       "h3g3",
+       "g1h1",
+       "b6f2"
+      ],
+      "depth": 8,
+      "nodes": 20028
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "a4d1",
+       "g8g2",
+       "g1g2",
+       "c6e5"
+      ],
+      "depth": 8,
+      "nodes": 20028
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "a4f4",
+       "g8g4",
+       "f4f5",
+       "h5h3",
+       "g2g3",
+       "g4g3",
+       "h2g3",
+       "h3g3",
+       "g1h1",
+       "b6f2",
+       "a3e7"
+      ],
+      "depth": 7,
+      "nodes": 20028
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/3RR1K1 b - - 2 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -245
+      },
+      "pv": [
+       "c6e5",
+       "d3e4",
+       "b7e4",
+       "a4e4",
+       "e5f3",
+       "g1f1",
+       "f3h2",
+       "f1g1",
+       "h2f3",
+       "e4f3",
+       "h5f3",
+       "e1e7",
+       "e8f8"
+      ],
+      "depth": 10,
+      "nodes": 20032
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -179
+      },
+      "pv": [
+       "h5f3",
+       "e1e7"
+      ],
+      "depth": 10,
+      "nodes": 20032
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -6
+      },
+      "pv": [
+       "h5h3",
+       "d3f1",
+       "h3f3",
+       "e1e7",
+       "e8d8",
+       "d1d7",
+       "d8c8"
+      ],
+      "depth": 9,
+      "nodes": 20032
+     }
+    ]
+   },
+   "winBefore": 55.13672504375508,
+   "winAfter": 28.861716692764805,
+   "epLoss": 0.2627500835099027,
+   "moveAccuracy": 30.695634249469734,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "d3e4",
+   "bestLine": [
+    "d3e4",
+    "h5h3",
+    "g2g3",
+    "g8g3",
+    "h2g3",
+    "h3g3",
+    "g1h1",
+    "b6f2"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 38,
+   "color": "b",
+   "san": "Qxf3",
+   "uci": "h5f3",
+   "fenBefore": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/3RR1K1 b - - 2 19",
+   "fenAfter": "1r2k1r1/pbppnp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3RR1K1 w - - 0 20",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbppnp1p/1bn2P2/7q/Q7/B1PB1N2/P4PPP/3RR1K1 b - - 2 19",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -245
+      },
+      "pv": [
+       "c6e5",
+       "d3e4",
+       "b7e4",
+       "a4e4",
+       "e5f3",
+       "g1f1",
+       "f3h2",
+       "f1g1",
+       "h2f3",
+       "e4f3",
+       "h5f3",
+       "e1e7",
+       "e8f8"
+      ],
+      "depth": 10,
+      "nodes": 20032
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -179
+      },
+      "pv": [
+       "h5f3",
+       "e1e7"
+      ],
+      "depth": 10,
+      "nodes": 20032
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -6
+      },
+      "pv": [
+       "h5h3",
+       "d3f1",
+       "h3f3",
+       "e1e7",
+       "e8d8",
+       "d1d7",
+       "d8c8"
+      ],
+      "depth": 9,
+      "nodes": 20032
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbppnp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3RR1K1 w - - 0 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "e1e7",
+       "e8d8",
+       "e7d7",
+       "d8c8",
+       "d7d8",
+       "c8d8",
+       "d3e4",
+       "f3d1",
+       "a4d1",
+       "d8c8"
+      ],
+      "depth": 11,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -432
+      },
+      "pv": [
+       "d3e4",
+       "f3f6",
+       "a3e7",
+       "c6e7",
+       "a4d7",
+       "e8f8",
+       "e4b7",
+       "b6f2",
+       "g1h1",
+       "f2e1"
+      ],
+      "depth": 11,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -452
+      },
+      "pv": [
+       "a4e4",
+       "f3f2"
+      ],
+      "depth": 11,
+      "nodes": 20003
+     }
+    ]
+   },
+   "winBefore": 71.1382833072352,
+   "winAfter": 48.43562675785791,
+   "epLoss": 0.22702656549377287,
+   "moveAccuracy": 36.22603390240157,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "c6e5",
+   "bestLine": [
+    "c6e5",
+    "d3e4",
+    "b7e4",
+    "a4e4",
+    "e5f3",
+    "g1f1",
+    "f3h2",
+    "f1g1",
+    "h2f3",
+    "e4f3",
+    "h5f3",
+    "e1e7",
+    "e8f8"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 39,
+   "color": "w",
+   "san": "Rxe7+",
+   "uci": "e1e7",
+   "fenBefore": "1r2k1r1/pbppnp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3RR1K1 w - - 0 20",
+   "fenAfter": "1r2k1r1/pbppRp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3R2K1 b - - 0 20",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbppnp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3RR1K1 w - - 0 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 17
+      },
+      "pv": [
+       "e1e7",
+       "e8d8",
+       "e7d7",
+       "d8c8",
+       "d7d8",
+       "c8d8",
+       "d3e4",
+       "f3d1",
+       "a4d1",
+       "d8c8"
+      ],
+      "depth": 11,
+      "nodes": 20003
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -432
+      },
+      "pv": [
+       "d3e4",
+       "f3f6",
+       "a3e7",
+       "c6e7",
+       "a4d7",
+       "e8f8",
+       "e4b7",
+       "b6f2",
+       "g1h1",
+       "f2e1"
+      ],
+      "depth": 11,
+      "nodes": 20003
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -452
+      },
+      "pv": [
+       "a4e4",
+       "f3f2"
+      ],
+      "depth": 11,
+      "nodes": 20003
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbppRp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3R2K1 b - - 0 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 244
+      },
+      "pv": [
+       "e8d8",
+       "e7d7"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 340
+      },
+      "pv": [
+       "e8f8",
+       "e7e3",
+       "c6b4",
+       "e3f3",
+       "b7f3",
+       "g2g3",
+       "d7d6",
+       "a4b4",
+       "f3d1",
+       "d3e4"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "mate": 4
+      },
+      "pv": [
+       "c6e7",
+       "a4d7",
+       "e8d7",
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     }
+    ]
+   },
+   "winBefore": 51.56437324214209,
+   "winAfter": 71.06262503410557,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "e1e7",
+   "bestLine": [
+    "e1e7",
+    "e8d8",
+    "e7d7",
+    "d8c8",
+    "d7d8",
+    "c8d8",
+    "d3e4",
+    "f3d1",
+    "a4d1",
+    "d8c8"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 40,
+   "color": "b",
+   "san": "Nxe7",
+   "uci": "c6e7",
+   "fenBefore": "1r2k1r1/pbppRp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3R2K1 b - - 0 20",
+   "fenAfter": "1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbppRp1p/1bn2P2/8/Q7/B1PB1q2/P4PPP/3R2K1 b - - 0 20",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 244
+      },
+      "pv": [
+       "e8d8",
+       "e7d7"
+      ],
+      "depth": 10,
+      "nodes": 20002
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 340
+      },
+      "pv": [
+       "e8f8",
+       "e7e3",
+       "c6b4",
+       "e3f3",
+       "b7f3",
+       "g2g3",
+       "d7d6",
+       "a4b4",
+       "f3d1",
+       "d3e4"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "mate": 4
+      },
+      "pv": [
+       "c6e7",
+       "a4d7",
+       "e8d7",
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 9,
+      "nodes": 20002
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 4
+      },
+      "pv": [
+       "a4d7",
+       "e8d7",
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 32,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": -3
+      },
+      "pv": [
+       "d3e4",
+       "g8g2",
+       "g1h1",
+       "g2g8",
+       "e4f3",
+       "b7f3"
+      ],
+      "depth": 32,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "mate": -3
+      },
+      "pv": [
+       "a4e4",
+       "f3f2",
+       "g1h1",
+       "f2g2",
+       "e4g2",
+       "b7g2"
+      ],
+      "depth": 32,
+      "nodes": 20001
+     }
+    ]
+   },
+   "winBefore": 28.937374965894435,
+   "winAfter": 0,
+   "epLoss": 0.28937374965894436,
+   "moveAccuracy": 27.098729997496704,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "e8d8",
+   "bestLine": [
+    "e8d8",
+    "e7d7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 41,
+   "color": "w",
+   "san": "Qxd7+",
+   "uci": "a4d7",
+   "fenBefore": "1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21",
+   "fenAfter": "1r2k1r1/pbpQnp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 b - - 0 21",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 4
+      },
+      "pv": [
+       "a4d7",
+       "e8d7",
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 32,
+      "nodes": 20001
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": -3
+      },
+      "pv": [
+       "d3e4",
+       "g8g2",
+       "g1h1",
+       "g2g8",
+       "e4f3",
+       "b7f3"
+      ],
+      "depth": 32,
+      "nodes": 20001
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "mate": -3
+      },
+      "pv": [
+       "a4e4",
+       "f3f2",
+       "g1h1",
+       "f2g2",
+       "e4g2",
+       "b7g2"
+      ],
+      "depth": 32,
+      "nodes": 20001
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbpQnp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 b - - 0 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 3
+      },
+      "pv": [
+       "e8d7",
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 98,
+      "nodes": 19986
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "e8f8",
+       "d7e7"
+      ],
+      "depth": 98,
+      "nodes": 19986
+     }
+    ]
+   },
+   "winBefore": 100,
+   "winAfter": 100,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "a4d7",
+   "bestLine": [
+    "a4d7",
+    "e8d7",
+    "d3f5",
+    "d7e8",
+    "f5d7",
+    "e8f8",
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 42,
+   "color": "b",
+   "san": "Kxd7",
+   "uci": "e8d7",
+   "fenBefore": "1r2k1r1/pbpQnp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 b - - 0 21",
+   "fenAfter": "1r4r1/pbpknp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 w - - 0 22",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbpQnp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 b - - 0 21",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 3
+      },
+      "pv": [
+       "e8d7",
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 98,
+      "nodes": 19986
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "e8f8",
+       "d7e7"
+      ],
+      "depth": 98,
+      "nodes": 19986
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r4r1/pbpknp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 w - - 0 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 3
+      },
+      "pv": [
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 14,
+      "nodes": 20014
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -463
+      },
+      "pv": [
+       "d3e2",
+       "d7c8",
+       "e2f3",
+       "b7f3",
+       "f6e7",
+       "f3d1",
+       "c3c4",
+       "d1a4",
+       "e7e8q",
+       "g8e8",
+       "g1f1",
+       "a4c6"
+      ],
+      "depth": 14,
+      "nodes": 20014
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -896
+      },
+      "pv": [
+       "d3b5",
+       "d7e6",
+       "d1e1",
+       "b7e4",
+       "e1e4",
+       "f3e4",
+       "b5c4",
+       "e4c4",
+       "g2g3",
+       "e7g6",
+       "h2h3"
+      ],
+      "depth": 13,
+      "nodes": 20014
+     }
+    ]
+   },
+   "winBefore": 0,
+   "winAfter": 0,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e8d7",
+   "bestLine": [
+    "e8d7",
+    "d3f5",
+    "d7e8",
+    "f5d7",
+    "e8f8",
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 43,
+   "color": "w",
+   "san": "Bf5+",
+   "uci": "d3f5",
+   "fenBefore": "1r4r1/pbpknp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 w - - 0 22",
+   "fenAfter": "1r4r1/pbpknp1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 b - - 1 22",
+   "evalBefore": {
+    "fen": "1r4r1/pbpknp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 w - - 0 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 3
+      },
+      "pv": [
+       "d3f5",
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 14,
+      "nodes": 20014
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -463
+      },
+      "pv": [
+       "d3e2",
+       "d7c8",
+       "e2f3",
+       "b7f3",
+       "f6e7",
+       "f3d1",
+       "c3c4",
+       "d1a4",
+       "e7e8q",
+       "g8e8",
+       "g1f1",
+       "a4c6"
+      ],
+      "depth": 14,
+      "nodes": 20014
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -896
+      },
+      "pv": [
+       "d3b5",
+       "d7e6",
+       "d1e1",
+       "b7e4",
+       "e1e4",
+       "f3e4",
+       "b5c4",
+       "e4c4",
+       "g2g3",
+       "e7g6",
+       "h2h3"
+      ],
+      "depth": 13,
+      "nodes": 20014
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r4r1/pbpknp1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 b - - 1 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 2
+      },
+      "pv": [
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 245,
+      "nodes": 13915
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "d7c6",
+       "f5d7"
+      ],
+      "depth": 245,
+      "nodes": 13915
+     }
+    ]
+   },
+   "winBefore": 100,
+   "winAfter": 100,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "d3f5",
+   "bestLine": [
+    "d3f5",
+    "d7e8",
+    "f5d7",
+    "e8f8",
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 44,
+   "color": "b",
+   "san": "Ke8",
+   "uci": "d7e8",
+   "fenBefore": "1r4r1/pbpknp1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 b - - 1 22",
+   "fenAfter": "1r2k1r1/pbp1np1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 w - - 2 23",
+   "evalBefore": {
+    "fen": "1r4r1/pbpknp1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 b - - 1 22",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 2
+      },
+      "pv": [
+       "d7e8",
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 245,
+      "nodes": 13915
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "d7c6",
+       "f5d7"
+      ],
+      "depth": 245,
+      "nodes": 13915
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbp1np1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 w - - 2 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 2
+      },
+      "pv": [
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 51,
+      "nodes": 20026
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "d1d8",
+       "b8d8"
+      ],
+      "depth": 51,
+      "nodes": 20026
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "mate": -1
+      },
+      "pv": [
+       "g2g3",
+       "f3d1"
+      ],
+      "depth": 50,
+      "nodes": 20026
+     }
+    ]
+   },
+   "winBefore": 0,
+   "winAfter": 0,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "d7e8",
+   "bestLine": [
+    "d7e8",
+    "f5d7",
+    "e8f8",
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 45,
+   "color": "w",
+   "san": "Bd7+",
+   "uci": "f5d7",
+   "fenBefore": "1r2k1r1/pbp1np1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 w - - 2 23",
+   "fenAfter": "1r2k1r1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 b - - 3 23",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbp1np1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 w - - 2 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 2
+      },
+      "pv": [
+       "f5d7",
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 51,
+      "nodes": 20026
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "d1d8",
+       "b8d8"
+      ],
+      "depth": 51,
+      "nodes": 20026
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "mate": -1
+      },
+      "pv": [
+       "g2g3",
+       "f3d1"
+      ],
+      "depth": 50,
+      "nodes": 20026
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r2k1r1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 b - - 3 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 245,
+      "nodes": 1469
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "e8d8",
+       "a3e7"
+      ],
+      "depth": 245,
+      "nodes": 1469
+     }
+    ]
+   },
+   "winBefore": 100,
+   "winAfter": 100,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "f5d7",
+   "bestLine": [
+    "f5d7",
+    "e8f8",
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 46,
+   "color": "b",
+   "san": "Kf8",
+   "uci": "e8f8",
+   "fenBefore": "1r2k1r1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 b - - 3 23",
+   "fenAfter": "1r3kr1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 w - - 4 24",
+   "evalBefore": {
+    "fen": "1r2k1r1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 b - - 3 23",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "e8f8",
+       "a3e7"
+      ],
+      "depth": 245,
+      "nodes": 1469
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "e8d8",
+       "a3e7"
+      ],
+      "depth": 245,
+      "nodes": 1469
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r3kr1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 w - - 4 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "a3e7"
+      ],
+      "depth": 12,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -251
+      },
+      "pv": [
+       "f6e7",
+       "f8g7",
+       "g2f3",
+       "g7f6",
+       "g1f1",
+       "b7a6",
+       "f1e1",
+       "a6c4",
+       "d7c6",
+       "c4e6",
+       "c6a4",
+       "b6a5",
+       "a3c5",
+       "a5c3",
+       "e1e2"
+      ],
+      "depth": 12,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -919
+      },
+      "pv": [
+       "g2g3",
+       "b6f2"
+      ],
+      "depth": 12,
+      "nodes": 20007
+     }
+    ]
+   },
+   "winBefore": 0,
+   "winAfter": 0,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e8f8",
+   "bestLine": [
+    "e8f8",
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  },
+  {
+   "ply": 47,
+   "color": "w",
+   "san": "Bxe7#",
+   "uci": "a3e7",
+   "fenBefore": "1r3kr1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 w - - 4 24",
+   "fenAfter": "1r3kr1/pbpBBp1p/1b3P2/8/8/2P2q2/P4PPP/3R2K1 b - - 0 24",
+   "evalBefore": {
+    "fen": "1r3kr1/pbpBnp1p/1b3P2/8/8/B1P2q2/P4PPP/3R2K1 w - - 4 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "mate": 1
+      },
+      "pv": [
+       "a3e7"
+      ],
+      "depth": 12,
+      "nodes": 20007
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -251
+      },
+      "pv": [
+       "f6e7",
+       "f8g7",
+       "g2f3",
+       "g7f6",
+       "g1f1",
+       "b7a6",
+       "f1e1",
+       "a6c4",
+       "d7c6",
+       "c4e6",
+       "c6a4",
+       "b6a5",
+       "a3c5",
+       "a5c3",
+       "e1e2"
+      ],
+      "depth": 12,
+      "nodes": 20007
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -919
+      },
+      "pv": [
+       "g2g3",
+       "b6f2"
+      ],
+      "depth": 12,
+      "nodes": 20007
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "1r3kr1/pbpBBp1p/1b3P2/8/8/2P2q2/P4PPP/3R2K1 b - - 0 24",
+    "nodes": 20000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": []
+   },
+   "winBefore": 100,
+   "winAfter": 100,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "a3e7",
+   "bestLine": [
+    "a3e7"
+   ],
+   "opening": {
+    "eco": "C52",
+    "name": "Italian Game: Evans Gambit, Dufresne Defense"
+   }
+  }
+ ],
+ "keyMoments": [
+  {
+   "ply": 40,
+   "kind": "blunder",
+   "severity": 0.7234343741473609
+  },
+  {
+   "ply": 37,
+   "kind": "blunder",
+   "severity": 0.6568752087747567
+  },
+  {
+   "ply": 38,
+   "kind": "blunder",
+   "severity": 0.5675664137344322
+  },
+  {
+   "ply": 33,
+   "kind": "mistake",
+   "severity": 0.522769157670997
+  },
+  {
+   "ply": 25,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 34,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 35,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 39,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 41,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 43,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 45,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 30,
+   "kind": "mistake",
+   "severity": 0.33181751425093775
+  },
+  {
+   "ply": 15,
+   "kind": "left_book",
+   "severity": 0.2
+  }
+ ],
+ "white": {
+  "username": "Adolf Anderssen",
+  "color": "w",
+  "accuracy": 79.01639091980152,
+  "acpl": 43.76470588235294,
+  "estimatedRating": 2001,
+  "estimatedRatingBand": 250,
+  "counts": {
+   "brilliant": 0,
+   "great": 6,
+   "best": 8,
+   "excellent": 0,
+   "good": 1,
+   "book": 7,
+   "inaccuracy": 0,
+   "mistake": 1,
+   "miss": 0,
+   "blunder": 1
+  }
+ },
+ "black": {
+  "username": "Jean Dufresne",
+  "color": "b",
+  "accuracy": 73.53796389174985,
+  "acpl": 92.875,
+  "estimatedRating": 1225,
+  "estimatedRatingBand": 250,
+  "counts": {
+   "brilliant": 0,
+   "great": 1,
+   "best": 7,
+   "excellent": 2,
+   "good": 2,
+   "book": 7,
+   "inaccuracy": 1,
+   "mistake": 1,
+   "miss": 0,
+   "blunder": 2
+  }
+ },
+ "opening": {
+  "eco": "C52",
+  "name": "Italian Game: Evans Gambit, Dufresne Defense",
+  "lastBookPly": 14
+ }
+}

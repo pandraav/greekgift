@@ -1,15 +1,34 @@
 import { Chess, type Square } from 'chess.js';
 
+import { discoveredAttack } from './detect/discovered.ts';
+import { fortress } from './detect/fortress.ts';
+import { kingSafety } from './detect/king-safety.ts';
+import { opponentThreat } from './detect/opponent-threat.ts';
+import { overloadedDefenders } from './detect/overload.ts';
+import { pawnMotifs } from './detect/pawns.ts';
+import { skewers } from './detect/skewer.ts';
+import { tradedWhileBehind } from './detect/trade.ts';
+import { trappedPieces } from './detect/trapped.ts';
+import { zugzwang } from './detect/zugzwang.ts';
 import {
   backRankWeak,
   captureValue,
   forkBy,
   hangingPieces,
   material,
-  pieceName,
+  pieceRef,
   pinsAgainst,
 } from './motifs.ts';
-import type { Color, Motif, MoveAnalysis, MoveFacts, Review } from './types.ts';
+import { expectedPoints, fromMoverView, winPercent } from './scoring.ts';
+import { rankSituations } from './situations.ts';
+import type {
+  BestMoveEffect,
+  Color,
+  Motif,
+  MoveAnalysis,
+  MoveFacts,
+  Review,
+} from './types.ts';
 
 /**
  * Everything true about one move, and nothing else.
@@ -44,7 +63,7 @@ export function toSan(fen: string, uciLine: string[], limit = MAX_LINE): string[
 }
 
 /** The position at the end of a line, for weighing one against the other. */
-function fenAfterLine(fen: string, uciLine: string[], limit = MAX_LINE): string {
+export function fenAfterLine(fen: string, uciLine: string[], limit = MAX_LINE): string {
   const chess = new Chess(fen);
   for (const uci of uciLine.slice(0, limit)) {
     try {
@@ -107,13 +126,24 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
   const opponent: Color = mover === 'w' ? 'b' : 'w';
   const found: Motif[] = [];
 
+  const landedOn = move.uci.slice(2, 4) as Square;
+  const phase = phaseOf(move.fenAfter, move.ply);
+  const replyLine = move.evalAfter.lines[0]?.pv ?? [];
+  const moverView = (whiteView: number): number => (mover === 'w' ? whiteView : -whiteView);
+
+  // A fork the mover just created, from the square the piece landed on.
+  const own = forkBy(move.fenAfter, landedOn, true);
+  if (own) found.push(own);
+
   // What the opponent can now do with the piece that just arrived, and with
   // whatever else they have — computed on the position the move created.
-  const landedOn = move.uci.slice(2, 4) as Square;
-
   const bestReply = move.evalAfter.lines[0]?.pv[0];
   if (bestReply) {
-    const fork = forkBy(fenAfterUci(move.fenAfter, bestReply), bestReply.slice(2, 4) as Square);
+    const fork = forkBy(
+      fenAfterUci(move.fenAfter, bestReply),
+      bestReply.slice(2, 4) as Square,
+      false,
+    );
     if (fork) found.push(fork);
   }
 
@@ -122,25 +152,31 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
 
   // True on move 10 of almost every castled game, and useless there: the back
   // rank only becomes a theme once there are lines open to reach it.
-  if (phaseOf(move.fenAfter, move.ply) !== 'opening') {
+  if (phase !== 'opening') {
     const weak = backRankWeak(move.fenAfter, mover);
     if (weak) found.push(weak);
   }
 
-  // Did the move give something away for nothing? A sacrifice the engine likes
-  // is a different fact from one it does not, and the eval already says which.
+  // Did the move give something away? A sacrifice is the moved piece left
+  // where it can be taken for less than it is worth, with the engine's own
+  // line confirming the material really goes. Whether it was a good idea is a
+  // different fact, and the eval already says which: sound when the win% did
+  // not drop by more than two points (design §2). A piece dropped for nothing
+  // with no capture and no check behind it, and a worse eval, is not a
+  // sacrifice — it is a hung piece, and `hanging_piece` already says so.
   const gave = captureValue(move.fenBefore, move.uci);
-  const swing = material(move.fenAfter) - material(move.fenBefore);
-  const fromMover = mover === 'w' ? swing : -swing;
-  if (gave === 0 && fromMover < 0) {
-    const piece = new Chess(move.fenBefore).get(move.uci.slice(0, 2) as Square);
-    if (piece) {
-      found.push({
-        type: 'sacrifice',
-        piece: pieceName(piece.type),
-        square: landedOn,
-        netMaterial: fromMover,
-      });
+  const materialBefore = moverView(material(move.fenBefore));
+  const materialAfterPlayedLine = moverView(material(fenAfterLine(move.fenAfter, replyLine)));
+  const netMaterial = materialAfterPlayedLine - materialBefore;
+  const moved = pieceRef(new Chess(move.fenAfter), landedOn);
+  const enPrise = hangingPieces(move.fenAfter, mover).some(
+    (m) => m.type === 'hanging_piece' && m.target.square === landedOn,
+  );
+  if (moved && enPrise && netMaterial <= -1) {
+    const sound = move.winAfter >= move.winBefore - 2;
+    const hasPoint = gave > 0 || new Chess(move.fenAfter).inCheck();
+    if (sound || hasPoint) {
+      found.push({ type: 'sacrifice', piece: moved, netMaterial, sound });
     }
   }
 
@@ -149,16 +185,8 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
   if (bestMove && bestMove !== move.uci) {
     const missed = captureValue(move.fenBefore, bestMove);
     if (missed > 0) {
-      const square = bestMove.slice(2, 4);
-      const target = new Chess(move.fenBefore).get(square as Square);
-      if (target) {
-        found.push({
-          type: 'missed_capture',
-          square,
-          piece: pieceName(target.type),
-          value: missed,
-        });
-      }
+      const target = pieceRef(new Chess(move.fenBefore), bestMove.slice(2, 4) as Square);
+      if (target) found.push({ type: 'missed_capture', target, value: missed });
     }
   }
 
@@ -183,19 +211,46 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
     }
   }
 
-  // "Only move" earns its place only when the alternative was genuinely worse.
+  // "Only move" earns its place only when the alternative was genuinely worse,
+  // measured in expected points from the mover's side.
+  const first = move.evalBefore.lines[0];
   const second = move.evalBefore.lines[1];
-  if (move.classification === 'best' && second) {
-    const gap = Math.abs((move.evalBefore.lines[0]?.score.cp ?? 0) - (second.score.cp ?? 0));
-    if (gap > 150) {
-      found.push({ type: 'only_move', secondBestEpLoss: gap / 1000 });
-    }
+  if ((move.classification === 'best' || move.classification === 'great') && first && second) {
+    const moverIsWhite = mover === 'w';
+    const epFirst = expectedPoints(winPercent(fromMoverView(first.score, moverIsWhite)));
+    const epSecond = expectedPoints(winPercent(fromMoverView(second.score, moverIsWhite)));
+    const margin = Math.max(0, epFirst - epSecond);
+    if (margin >= 0.15) found.push({ type: 'only_move', margin });
   }
+
+  // The detectors under ./detect, in the order the coach should meet them.
+  if (bestReply) {
+    const threat = opponentThreat(move.fenAfter, bestReply, toSan(move.fenAfter, replyLine));
+    if (threat) found.push(threat);
+  }
+
+  const discovered = discoveredAttack(move.fenBefore, move.uci);
+  if (discovered) found.push(discovered);
+
+  found.push(...skewers(move.fenAfter, mover).slice(0, 1));
+  found.push(...trappedPieces(move.fenAfter, mover).slice(0, 1));
+
+  const traded = tradedWhileBehind(move.fenBefore, move.uci, materialBefore);
+  if (traded) found.push(traded);
+
+  found.push(...pawnMotifs(move.fenBefore, move.fenAfter, move.bestLine));
+
+  if (phase !== 'opening') {
+    const exposed = kingSafety(move.fenAfter, mover);
+    if (exposed) found.push(exposed);
+  }
+
+  found.push(...overloadedDefenders(move.fenAfter, mover).slice(0, 1));
 
   return found;
 }
 
-function fenAfterUci(fen: string, uci: string): string {
+export function fenAfterUci(fen: string, uci: string): string {
   const chess = new Chess(fen);
   try {
     chess.move({
@@ -207,6 +262,43 @@ function fenAfterUci(fen: string, uci: string): string {
     return fen;
   }
   return chess.fen();
+}
+
+/**
+ * What the best move would have done: a static read of the move itself plus
+ * the material the engine's line ends with. This is the fact the coach needs
+ * to say *why* the better move was better, not merely that it was.
+ */
+export function bestMoveEffect(
+  move: MoveAnalysis,
+  materialAfterBestLine: number,
+  materialAfterPlayedLine: number,
+): BestMoveEffect {
+  const bestUci = move.bestLine[0] ?? move.evalBefore.lines[0]?.pv[0] ?? move.uci;
+  const before = new Chess(move.fenBefore);
+  const landing = bestUci.slice(2, 4) as Square;
+
+  const captured = pieceRef(before, landing);
+  const effect: BestMoveEffect = {
+    check: false,
+    materialGain: materialAfterBestLine - materialAfterPlayedLine,
+    line: toSan(move.fenBefore, move.bestLine),
+  };
+  if (captured && captured.color !== move.color) effect.captures = captured;
+
+  const after = new Chess(fenAfterUci(move.fenBefore, bestUci));
+  effect.check = after.inCheck();
+
+  const fork = forkBy(after.fen(), landing, true);
+  if (fork && fork.type === 'fork') effect.forks = fork.targets;
+
+  const mate = move.evalBefore.lines[0]?.score.mate;
+  if (mate !== undefined) {
+    const forMover = move.color === 'w' ? mate > 0 : mate < 0;
+    if (forMover) effect.mateIn = Math.abs(mate);
+  }
+
+  return effect;
 }
 
 export interface FactsOptions {
@@ -236,23 +328,40 @@ export function factsFor(
 
   const afterBest = material(fenAfterLine(move.fenBefore, move.bestLine));
   const afterPlayed = material(fenAfterLine(move.fenAfter, playedLineUci));
+  const materialAfterBestLine = moverIsWhite ? afterBest : -afterBest;
+  const materialAfterPlayedLine = moverIsWhite ? afterPlayed : -afterPlayed;
 
-  return {
+  const motifs = motifsFor(move);
+  // Both need the game around the move, not just the move: zugzwang is judged
+  // against the mover's standing before the opponent's last move, a fortress
+  // against how long the evaluation has held still.
+  const stuck = zugzwang(review, ply);
+  if (stuck) motifs.push(stuck);
+  const held = fortress(review, ply);
+  if (held) motifs.push(held);
+
+  const base: Omit<MoveFacts, 'situations'> = {
     ply: move.ply,
+    color: move.color,
     san: move.san,
     classification: move.classification,
     epLoss: move.epLoss,
     winBefore: move.winBefore,
     winAfter: move.winAfter,
+    moveAccuracy: move.moveAccuracy,
+    forced: move.forced,
     bestMove: bestSan,
     bestLine: toSan(move.fenBefore, move.bestLine),
     playedLine: toSan(move.fenAfter, playedLineUci),
-    motifs: motifsFor(move),
-    materialAfterBestLine: moverIsWhite ? afterBest : -afterBest,
-    materialAfterPlayedLine: moverIsWhite ? afterPlayed : -afterPlayed,
+    motifs,
+    materialAfterBestLine,
+    materialAfterPlayedLine,
+    bestMoveEffect: bestMoveEffect(move, materialAfterBestLine, materialAfterPlayedLine),
     phase: phaseOf(move.fenBefore, move.ply),
     ...(move.opening ? { opening: move.opening } : {}),
     leftBook: review.opening ? move.ply === review.opening.lastBookPly + 1 : false,
     audience: options.audience ?? audienceFor(options.rating),
   };
+
+  return { ...base, situations: rankSituations(base) };
 }

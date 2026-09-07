@@ -1,5 +1,6 @@
-import { Chess } from 'chess.js';
+import { Chess, type Square } from 'chess.js';
 
+import { captureValue, hangingPieces, material } from './motifs.ts';
 import { findOpening } from './openings.ts';
 import type { ParsedGame } from './pgn.ts';
 import {
@@ -7,6 +8,7 @@ import {
   centipawnLoss,
   classify,
   estimateRating,
+  expectedPoints,
   fromMoverView,
   gameAccuracy,
   moveAccuracy,
@@ -43,13 +45,52 @@ import type {
 export const toWhiteView = (score: Score, sideToMoveIsWhite: boolean): Score =>
   fromMoverView(score, sideToMoveIsWhite);
 
-/** Win percentage for one player, from a White-relative score. */
-const winFor = (scoreWhite: Score, moverIsWhite: boolean): number =>
-  moverIsWhite ? winPercent(scoreWhite) : 100 - winPercent(scoreWhite);
+/**
+ * The score of a position the engine had nothing to say about.
+ *
+ * The client resolves a finished position as `lines: []` — there is no move
+ * to search. The board still knows the result: checkmate is a decided game
+ * for the side that delivered it, stalemate is a draw. The design writes
+ * checkmate as `{ mate: 0 }` for the loser; a bare zero has no sign, and the
+ * sign is the whole fact, so it is stored as `mate: 1` when Black is mated and
+ * `mate: -1` when White is — the same values `winPercent` already reads as
+ * 100 and 0. Anything else without lines is treated as level, which is the
+ * placeholder it always was.
+ */
+export function terminalScore(fen: string): Score {
+  let chess: Chess;
+  try {
+    chess = new Chess(fen);
+  } catch {
+    return { cp: 0 };
+  }
+  if (chess.isCheckmate()) return { mate: chess.turn() === 'w' ? -1 : 1 };
+  return { cp: 0 };
+}
 
-/** The best line's score, or a dead-equal placeholder for a finished position. */
-const topScore = (evaluation: PositionEval): Score =>
-  evaluation.lines[0]?.score ?? { cp: 0 };
+/** The best line's score, White-relative, or what the board says when there is no line. */
+const scoreOf = (evaluation: PositionEval): Score =>
+  evaluation.lines[0]?.score ?? terminalScore(evaluation.fen);
+
+/** How far each engine line is followed when weighing one against another. */
+const MAX_LINE = 5;
+
+/** The position at the end of a line, stopping at the first move that does not play. */
+function fenAfterLine(fen: string, uciLine: string[]): string {
+  const chess = new Chess(fen);
+  for (const uci of uciLine.slice(0, MAX_LINE)) {
+    try {
+      chess.move({
+        from: uci.slice(0, 2),
+        to: uci.slice(2, 4),
+        ...(uci.length > 4 ? { promotion: uci[4] } : {}),
+      });
+    } catch {
+      break;
+    }
+  }
+  return chess.fen();
+}
 
 const EMPTY_COUNTS = (): Record<Classification, number> => ({
   brilliant: 0,
@@ -79,6 +120,16 @@ const NOTABLE = new Set<Classification>([
  * a moment gets, so everything at or past it sits at the top together.
  */
 const severityOf = (epLoss: number) => Math.min(1, epLoss / 0.4);
+
+/**
+ * A move worth praising lost nothing, so its loss says nothing about how much
+ * it matters. A brilliancy is the moment of the game short of a decisive
+ * blunder; a great move sits with a solid mistake.
+ */
+const PRAISE_SEVERITY: Partial<Record<Classification, number>> = {
+  brilliant: 0.75,
+  great: 0.45,
+};
 
 export interface BuildReviewInput {
   gameId: string;
@@ -119,8 +170,8 @@ export function buildReview(input: BuildReviewInput): Review {
     const after = evals[i + 1]!;
     const moverIsWhite = move.color === 'w';
 
-    const winBefore = winFor(topScore(before), moverIsWhite);
-    const winAfter = winFor(topScore(after), moverIsWhite);
+    const winBefore = winPercent(scoreOf(before), move.color);
+    const winAfter = winPercent(scoreOf(after), move.color);
 
     // Both sides write promotions the same way (`e7e8q`), so this compares.
     const bestMove = before.lines[0]?.pv[0] ?? '';
@@ -130,6 +181,51 @@ export function buildReview(input: BuildReviewInput): Review {
     const forced = new Chess(move.fenBefore).moves().length === 1;
     const isMate = new Chess(move.fenAfter).isCheckmate();
 
+    // Material at the end of each line, mover's view, the way facts.ts reads
+    // it, so a "miss" here and a `materialGain` there agree on the number.
+    const moverView = (whiteView: number) => (moverIsWhite ? whiteView : -whiteView);
+    const bestLine = before.lines[0]?.pv ?? [];
+    const playedLine = after.lines[0]?.pv ?? [];
+    const materialBefore = moverView(material(move.fenBefore));
+    const materialAfterBestLine = moverView(material(fenAfterLine(move.fenBefore, bestLine)));
+    const materialAfterPlayedLine = moverView(material(fenAfterLine(move.fenAfter, playedLine)));
+
+    // A sacrifice: a quiet move that leaves the moved piece to be taken, the
+    // engine's reply line confirming the material really goes. Sound when the
+    // win% held within two points (design §2) — the same reading as facts.ts,
+    // so `brilliant` and the `sacrifice` motif never disagree.
+    const landedOn = move.uci.slice(2, 4) as Square;
+    const quiet = captureValue(move.fenBefore, move.uci) === 0;
+    const enPrise =
+      quiet &&
+      hangingPieces(move.fenAfter, move.color).some(
+        (m) => m.type === 'hanging_piece' && m.target.square === landedOn,
+      );
+    const sacrificeSound =
+      enPrise && materialAfterPlayedLine - materialBefore <= -1 && winAfter >= winBefore - 2;
+
+    // How much better the engine's own move was than its runner-up, in
+    // expected points from the mover's side. Only meaningful when they played it.
+    const second = before.lines[1];
+    const onlyMoveMargin =
+      playedBest && second
+        ? Math.max(
+            0,
+            expectedPoints(winPercent(before.lines[0]!.score, move.color)) -
+              expectedPoints(winPercent(second.score, move.color)),
+          )
+        : undefined;
+
+    // What the best move would have taken, or what its line ends up ahead by.
+    const mateBefore = before.lines[0]?.score.mate;
+    const missedMate = !playedBest && mateBefore !== undefined && moverView(mateBefore) > 0;
+    const missedMaterial = playedBest
+      ? 0
+      : Math.max(
+          bestMove === '' ? 0 : captureValue(move.fenBefore, bestMove),
+          materialAfterBestLine - materialAfterPlayedLine,
+        );
+
     const { classification, epLoss } = classify({
       winBefore,
       winAfter,
@@ -137,6 +233,10 @@ export function buildReview(input: BuildReviewInput): Review {
       forced,
       inBook: move.ply <= lastBookPly,
       isMate,
+      sacrificeSound,
+      ...(onlyMoveMargin !== undefined ? { onlyMoveMargin } : {}),
+      missedMaterial,
+      missedMate,
     });
 
     return {
@@ -173,8 +273,8 @@ export function buildReview(input: BuildReviewInput): Review {
     const averageLoss = acpl(
       scored.map((m) =>
         centipawnLoss(
-          fromMoverView(topScore(m.evalBefore), isWhite),
-          fromMoverView(topScore(m.evalAfter), isWhite),
+          fromMoverView(scoreOf(m.evalBefore), isWhite),
+          fromMoverView(scoreOf(m.evalAfter), isWhite),
         ),
       ),
     );
@@ -199,7 +299,7 @@ export function buildReview(input: BuildReviewInput): Review {
     .map((m) => ({
       ply: m.ply,
       kind: m.classification as KeyMoment['kind'],
-      severity: severityOf(m.epLoss),
+      severity: PRAISE_SEVERITY[m.classification] ?? severityOf(m.epLoss),
     }));
 
   // Leaving theory is never an error, but it is where the game became the

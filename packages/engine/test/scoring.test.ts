@@ -39,6 +39,17 @@ describe('winPercent', () => {
     // +200cp is a clear but not winning edge: about 68%.
     expect(winPercent({ cp: 200 })).toBeCloseTo(67.6, 1);
   });
+
+  it("means White's chance unless told otherwise, so old callers are unchanged", () => {
+    expect(winPercent({ cp: 200 })).toBe(winPercent({ cp: 200 }, 'w'));
+  });
+
+  it("gives Black the complement of White's", () => {
+    expect(winPercent({ cp: 200 }, 'b')).toBeCloseTo(100 - winPercent({ cp: 200 }), 9);
+    expect(winPercent({ cp: 0 }, 'b')).toBe(50);
+    expect(winPercent({ mate: 1 }, 'b')).toBe(0);
+    expect(winPercent({ mate: -1 }, 'b')).toBe(100);
+  });
 });
 
 describe('fromMoverView', () => {
@@ -93,6 +104,143 @@ describe('classify', () => {
       classify({ ...base, isMate: true, winBefore: 90, winAfter: 100 })
         .classification,
     ).toBe('best');
+  });
+
+  it('mate is best even when the book happens to contain it', () => {
+    // Fool's mate is in the opening book. Checkmate is the end of the game,
+    // not theory.
+    expect(
+      classify({ ...base, isMate: true, inBook: true, winBefore: 100, winAfter: 100 })
+        .classification,
+    ).toBe('best');
+  });
+
+  it('mate is best, not brilliant or great, whatever else was true of it', () => {
+    const r = classify({
+      ...base,
+      isMate: true,
+      playedBest: true,
+      sacrificeSound: true,
+      onlyMoveMargin: 0.9,
+      winBefore: 100,
+      winAfter: 100,
+    });
+    expect(r.classification).toBe('best');
+    expect(r.epLoss).toBe(0);
+  });
+
+  describe('brilliant', () => {
+    it('is a sound sacrifice that was also the engine move', () => {
+      expect(
+        classify({ ...base, playedBest: true, sacrificeSound: true, winBefore: 54, winAfter: 53 })
+          .classification,
+      ).toBe('brilliant');
+    });
+
+    it('or a sound sacrifice that was excellent', () => {
+      expect(
+        classify({ ...base, sacrificeSound: true, winBefore: 54, winAfter: 52 })
+          .classification,
+      ).toBe('brilliant');
+    });
+
+    it('but not a sacrifice that was merely good', () => {
+      // 5 points is 0.05 EP: past the excellent rung. A sacrifice that gives
+      // that much away is not brilliant, whatever the caller says about it.
+      expect(
+        classify({ ...base, sacrificeSound: true, winBefore: 55, winAfter: 50 })
+          .classification,
+      ).toBe('good');
+    });
+
+    it('never fires without a sacrifice', () => {
+      expect(
+        classify({ ...base, playedBest: true, winBefore: 54, winAfter: 54 }).classification,
+      ).toBe('best');
+    });
+
+    it('outranks great', () => {
+      expect(
+        classify({
+          ...base,
+          playedBest: true,
+          sacrificeSound: true,
+          onlyMoveMargin: 0.5,
+          winBefore: 54,
+          winAfter: 54,
+        }).classification,
+      ).toBe('brilliant');
+    });
+
+    it('is not awarded to a forced move', () => {
+      expect(
+        classify({ ...base, forced: true, sacrificeSound: true, winBefore: 54, winAfter: 54 })
+          .classification,
+      ).toBe('best');
+    });
+  });
+
+  describe('great', () => {
+    it('is the engine move when the second line loses at least 0.15 expected points', () => {
+      expect(
+        classify({ ...base, playedBest: true, onlyMoveMargin: 0.15, winBefore: 60, winAfter: 60 })
+          .classification,
+      ).toBe('great');
+    });
+
+    it('is just best when the alternative was nearly as good', () => {
+      expect(
+        classify({ ...base, playedBest: true, onlyMoveMargin: 0.149, winBefore: 60, winAfter: 60 })
+          .classification,
+      ).toBe('best');
+    });
+
+    it('needs the engine move: a wide margin the player did not find is nothing', () => {
+      expect(
+        classify({ ...base, onlyMoveMargin: 0.5, winBefore: 60, winAfter: 59 }).classification,
+      ).toBe('excellent');
+    });
+
+    it('is not awarded to a forced move', () => {
+      expect(
+        classify({ ...base, forced: true, onlyMoveMargin: 0.5, winBefore: 60, winAfter: 60 })
+          .classification,
+      ).toBe('best');
+    });
+  });
+
+  describe('miss', () => {
+    // 55 → 45 is 0.10 EP: an inaccuracy. 55 → 38 is 0.17: a mistake.
+    it('is a mistake that left three pawns of material on the board', () => {
+      expect(
+        classify({ ...base, missedMaterial: 3, winBefore: 55, winAfter: 38 }).classification,
+      ).toBe('miss');
+    });
+
+    it('is an inaccuracy that missed a mate', () => {
+      expect(
+        classify({ ...base, missedMate: true, winBefore: 55, winAfter: 45 }).classification,
+      ).toBe('miss');
+    });
+
+    it('is not a mistake that missed only a pawn or two', () => {
+      expect(
+        classify({ ...base, missedMaterial: 2.9, winBefore: 55, winAfter: 38 }).classification,
+      ).toBe('mistake');
+    });
+
+    it('does not rename a blunder', () => {
+      expect(
+        classify({ ...base, missedMate: true, missedMaterial: 9, winBefore: 55, winAfter: 20 })
+          .classification,
+      ).toBe('blunder');
+    });
+
+    it('does not touch a move that lost nothing, even if the engine saw a capture', () => {
+      expect(
+        classify({ ...base, missedMaterial: 5, winBefore: 55, winAfter: 54 }).classification,
+      ).toBe('excellent');
+    });
   });
 });
 
