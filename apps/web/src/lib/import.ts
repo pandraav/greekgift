@@ -1,11 +1,10 @@
 import 'server-only';
 
-import { schema, type NewGame } from '@greekgift/db';
+import { schema, type Db, type NewGame } from '@greekgift/db';
 import { gameIdFromLink, openingName, parsePgn } from '@greekgift/engine';
 import { sql } from 'drizzle-orm';
 
 import * as cc from '@/lib/chesscom';
-import { db } from '@/lib/db';
 
 /**
  * Pulls games from chess.com into our own tables.
@@ -38,7 +37,7 @@ export interface PlayerSnapshot {
  * Profiles are refetched at most once an hour; chess.com caches its own
  * responses anyway, and a rating that is sixty minutes stale costs nothing.
  */
-export async function ensurePlayer(rawUsername: string): Promise<PlayerSnapshot> {
+export async function ensurePlayer(db: Db, rawUsername: string): Promise<PlayerSnapshot> {
   const username = cc.normaliseUsername(rawUsername);
 
   const [profile, stats, archives] = await Promise.all([
@@ -82,7 +81,7 @@ export async function ensurePlayer(rawUsername: string): Promise<PlayerSnapshot>
 }
 
 /** Turns one API game into a row, or null if it cannot be reviewed. */
-function toRow(game: cc.ChesscomGame): NewGame | null {
+export function gameToRow(game: cc.ChesscomGame): NewGame | null {
   if (!game.pgn) return null;
 
   let parsed;
@@ -140,11 +139,12 @@ export interface ImportResult {
 
 /** Imports one archive month. Idempotent — re-running updates in place. */
 export async function importMonth(
+  db: Db,
   username: string,
   month: cc.ArchiveMonth,
 ): Promise<ImportResult> {
   const games = await cc.monthGames(username, month);
-  const rows = games.map(toRow).filter((r): r is NewGame => r !== null);
+  const rows = games.map(gameToRow).filter((r): r is NewGame => r !== null);
   const label = `${month.year}-${String(month.month).padStart(2, '0')}`;
 
   if (rows.length > 0) {
@@ -182,17 +182,18 @@ export async function importMonth(
  * has no reason to be the one that gets rate-limited.
  */
 export async function importRecent(
+  db: Db,
   rawUsername: string,
   months = 1,
 ): Promise<{ player: PlayerSnapshot; imported: ImportResult[] }> {
   const username = cc.normaliseUsername(rawUsername);
-  const player = await ensurePlayer(username);
+  const player = await ensurePlayer(db, username);
   const all = await cc.archives(username);
   const recent = all.slice(-Math.max(1, months)).reverse();
 
   const imported: ImportResult[] = [];
   for (const url of recent) {
-    imported.push(await importMonth(username, cc.monthOf(url)));
+    imported.push(await importMonth(db, username, cc.monthOf(url)));
   }
 
   if (imported[0]) {

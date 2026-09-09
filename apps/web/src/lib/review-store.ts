@@ -183,6 +183,25 @@ export async function saveReview(
  * Denormalised onto the review row precisely so a list of sixty games costs
  * one small query rather than sixty JSON blobs.
  */
+/** Whole reviews for a batch of games, keyed by id. The week card needs the blobs, not just the accuracies. */
+export async function getReviews(
+  gameIds: string[],
+  key: CacheKey,
+): Promise<Record<string, Review>> {
+  if (gameIds.length === 0) return {};
+  const rows = await db
+    .select({ gameId: schema.reviews.gameId, data: schema.reviews.data })
+    .from(schema.reviews)
+    .where(
+      and(
+        inArray(schema.reviews.gameId, gameIds),
+        eq(schema.reviews.nodes, key.nodes),
+        eq(schema.reviews.engineBuild, key.engineBuild),
+      ),
+    );
+  return Object.fromEntries(rows.map((r) => [r.gameId, r.data as Review]));
+}
+
 export async function getAccuracies(
   gameIds: string[],
   key: CacheKey,
