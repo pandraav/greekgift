@@ -2,8 +2,9 @@ import { DEFAULT_PERSONA_ID } from '@greekgift/coach';
 import { schema } from '@greekgift/db';
 import { eq } from 'drizzle-orm';
 
-import { Card, CardBody, CardHead, Eyebrow } from '@/components/ui';
+import { Card, CardBody, CardHead, Chip, Eyebrow } from '@/components/ui';
 import { db } from '@/lib/db';
+import { listAccounts } from '@/lib/library';
 import { requireApproved } from '@/lib/guards';
 
 import { AccountForm } from './account-form';
@@ -22,6 +23,8 @@ export default async function SettingsPage() {
     .where(eq(schema.userProfiles.userId, user.id))
     .limit(1);
 
+  const accounts = await listAccounts(db, user.id);
+
   return (
     <main className="mx-auto max-w-[760px] px-5 py-10 sm:px-6">
       <Eyebrow onWood>Settings</Eyebrow>
@@ -34,15 +37,28 @@ export default async function SettingsPage() {
           <CardHead>
             <h2 className="text-[17px] font-semibold">Account</h2>
             <p className="mt-1 text-[13.5px] text-ink-2">
-              Reviews are keyed by chess.com username, not by your account —
-              this is just a shortcut to your own games.
+              Reviews are shared and keyed to the chess.com username; these are
+              the accounts whose week is read for you.
             </p>
           </CardHead>
           <CardBody>
-            <AccountForm
-              email={user.email}
-              chesscomUsername={profile?.chesscomUsername ?? ''}
-            />
+            <AccountForm email={user.email} />
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {accounts.length === 0 ? (
+                <span className="text-[13.5px] text-ink-3">
+                  No linked accounts.
+                </span>
+              ) : (
+                accounts.map((a) => (
+                  <Chip key={a.username} tone="quiet">
+                    chess.com/{a.username}
+                  </Chip>
+                ))
+              )}
+            </div>
+            <p className="mt-2 text-[12.5px] text-ink-3">
+              Add or remove accounts on the home page.
+            </p>
           </CardBody>
         </Card>
 
