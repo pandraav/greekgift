@@ -4,11 +4,13 @@ import type { RenderedEmail } from '../types.ts';
 import { ApprovedEmail } from './approved.tsx';
 import type { Creator } from './layout.tsx';
 import { ResetEmail } from './reset.tsx';
+import { ShareApprovedEmail, type ShareApprovedProps } from './share-approved.tsx';
+import { ShareRequestedEmail, type ShareRequestedProps } from './share-requested.tsx';
 import { VerifyEmail } from './verify.tsx';
 import type { MailProps } from './verify.tsx';
 
-export type { Creator, MailProps };
-export { ApprovedEmail, ResetEmail, VerifyEmail };
+export type { Creator, MailProps, ShareApprovedProps, ShareRequestedProps };
+export { ApprovedEmail, ResetEmail, ShareApprovedEmail, ShareRequestedEmail, VerifyEmail };
 
 /**
  * Renders a template to both parts.
@@ -36,3 +38,9 @@ export const approvedEmail = (p: MailProps) =>
 
 export const resetEmail = (p: MailProps) =>
   renderBoth(ResetEmail(p), 'Reset your greekgift password');
+
+export const shareRequestedEmail = (p: ShareRequestedProps) =>
+  renderBoth(ShareRequestedEmail(p), `${p.requesterName} asked to see ${p.gameTitle}`);
+
+export const shareApprovedEmail = (p: ShareApprovedProps) =>
+  renderBoth(ShareApprovedEmail(p), `${p.ownerName} shared ${p.gameTitle} with you`);

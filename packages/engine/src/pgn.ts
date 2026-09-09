@@ -59,10 +59,11 @@ export class PgnError extends Error {
   }
 }
 
-/** `https://www.chess.com/game/live/97878070965` → `97878070965`. */
+/** `https://www.chess.com/game/live/97878070965?tab=review` → `97878070965`. */
 export function gameIdFromLink(link: string | undefined): string | undefined {
   if (!link) return undefined;
-  const m = /\/(\d{6,})\/?$/.exec(link.trim());
+  const path = link.trim().split(/[?#]/)[0]!;
+  const m = /\/(\d{6,})\/?$/.exec(path);
   return m?.[1];
 }
 

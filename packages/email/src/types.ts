@@ -1,5 +1,5 @@
-/** The three emails greekgift sends. Rejections deliberately send nothing. */
-export type TemplateName = 'verify' | 'approved' | 'reset';
+/** The five emails greekgift sends. Rejections deliberately send nothing. */
+export type TemplateName = 'verify' | 'approved' | 'reset' | 'share-requested' | 'share-approved';
 
 export interface RenderedEmail {
   subject: string;
