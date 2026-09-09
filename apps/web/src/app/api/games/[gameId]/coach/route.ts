@@ -7,6 +7,7 @@ import { eq } from 'drizzle-orm';
 import { ensureCoachTexts } from '@/lib/coach-store';
 import { ANALYSIS_NODES, ENGINE_BUILD } from '@/lib/engine/settings';
 import { guardApproved } from '@/lib/guards';
+import { canSeeGame } from '@/lib/library';
 import { getReview } from '@/lib/review-store';
 
 /**
@@ -38,6 +39,11 @@ export async function GET(
   if ('response' in guarded) return guarded.response;
 
   const { gameId } = await params;
+
+  if (!(await canSeeGame(db, guarded.user, gameId))) {
+    return Response.json({ error: 'forbidden' }, { status: 403 });
+  }
+
   const url = new URL(request.url);
   const requested = url.searchParams.get('persona') ?? DEFAULT_PERSONA_ID;
   const personaId = PERSONA_IDS.has(requested) ? requested : DEFAULT_PERSONA_ID;

@@ -71,7 +71,7 @@ export async function proxy(request: NextRequest) {
       return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
     }
     const url = new URL('/login', request.url);
-    if (pathname !== '/') url.searchParams.set('next', pathname);
+    if (pathname !== '/') url.searchParams.set('next', pathname + request.nextUrl.search);
     return NextResponse.redirect(url);
   }
 

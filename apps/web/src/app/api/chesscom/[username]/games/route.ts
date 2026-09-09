@@ -50,7 +50,7 @@ export async function GET(
 
   if (refresh || existing.length === 0) {
     try {
-      ({ imported } = await importRecent(username, months));
+      ({ imported } = await importRecent(db, username, months));
     } catch (error) {
       if (error instanceof ChesscomError) {
         return Response.json(

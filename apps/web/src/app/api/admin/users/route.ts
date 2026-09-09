@@ -25,7 +25,6 @@ export async function GET(request: Request) {
       approvedAt: schema.user.approvedAt,
       occupation: schema.userProfiles.occupation,
       note: schema.userProfiles.note,
-      chesscomUsername: schema.userProfiles.chesscomUsername,
     })
     .from(schema.user)
     .leftJoin(

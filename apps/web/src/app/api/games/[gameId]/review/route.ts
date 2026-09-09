@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { db } from '@/lib/db';
 import { ANALYSIS_NODES, ENGINE_BUILD } from '@/lib/engine/settings';
 import { guardApproved } from '@/lib/guards';
+import { canSeeGame, touchOpened } from '@/lib/library';
 import {
   getCachedEvals,
   getReview,
@@ -81,6 +82,10 @@ export async function GET(
   const game = await loadGame(gameId);
   if (!game) return Response.json({ error: 'not_found' }, { status: 404 });
 
+  if (!(await canSeeGame(db, guarded.user, gameId))) {
+    return Response.json({ error: 'forbidden' }, { status: 403 });
+  }
+
   const review = await getReview(gameId, key);
   if (review) return Response.json({ review, cached: {}, ...key });
 
@@ -111,11 +116,16 @@ export async function POST(
   const game = await loadGame(gameId);
   if (!game) return Response.json({ error: 'not_found' }, { status: 404 });
 
+  if (!(await canSeeGame(db, guarded.user, gameId))) {
+    return Response.json({ error: 'forbidden' }, { status: 403 });
+  }
+
   try {
     const review = await saveReview(game, evals as PositionEval[], {
       nodes,
       engineBuild,
     });
+    await touchOpened(db, guarded.user, gameId);
     return Response.json({ review, nodes, engineBuild });
   } catch (error) {
     if (error instanceof ReviewInputError) {
