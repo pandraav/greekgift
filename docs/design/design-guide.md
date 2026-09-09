@@ -29,8 +29,10 @@ the hash router in the harness at the top.
 card, one card per linked chess.com account (its last ten games,
 "refreshed N ago", refresh and an inline remove confirmation), a dashed
 add-account card, and "My reviews" — every game you reviewed or opened after
-review, plus games shared with you, tagged "shared by". Requests do not live on the
-page: a bell in the topbar carries a count and opens the Notifications modal
+review, plus games shared with you, tagged "shared by". With no games opened yet,
+'My reviews' shows a single line, 'Nothing yet. Open a game, or paste a link above.'
+Rows for games the member did not play carry the result chip, both accuracies, and how the game arrived.
+Requests do not live on the page: a bell in the topbar carries a count and opens the Notifications modal
 (requests on your shares with Approve and Decline, games shared with you, and
 earlier decisions). `games` is one linked account's page. Pill tabs above the header switch
 between linked accounts (each with its games-this-week count) and end in an
@@ -360,6 +362,9 @@ Rules that keep it honest:
   scrolls inside its own `overflow-x: auto` container. **The page body never
   scrolls sideways.**
 - Every flex child that holds text carries `min-w-0`.
+- The app's `max-[N]`/`min-[N+1]` pairs compile to `width < N`, so the exact-N
+  pixel belongs to the wider layout — unlike the prototype's `max-width:N`,
+  which still matches at N.
 - Font sizes and grid templates live in classes, never inline. An inline
   `font-size` cannot be overridden by a media query, which broke the home
   grid and the landing headings once each.

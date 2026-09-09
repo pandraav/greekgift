@@ -119,6 +119,17 @@ An email listed in `ADMIN_EMAILS` is promoted to admin on first sign-in.
 re-checks the session server-side** — the proxy is a convenience, the handler
 is the security boundary.
 
+Once in, what a member can open is decided by their **library**: a game is
+visible when one of their linked chess.com accounts played it, when they
+opened it from a player page or a pasted link, or when another member shared
+it with them. Admins see everything. `canSeeGame` in `apps/web/src/lib/library.ts`
+is the one place that rule lives, and every game route and the game page ask it.
+
+Sharing is a link. The owner presses Share on a review, sends the URL, and the
+recipient — who sees only the header — asks to see it. The owner approves or
+declines from the bell in the topbar; both sides get an email. Nothing is
+revoked afterwards.
+
 ## Third-party
 
 | | licence | note |

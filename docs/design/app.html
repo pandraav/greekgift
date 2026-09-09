@@ -187,6 +187,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .chip--felt{color:var(--felt);border-color:rgba(46,92,67,.45);background:rgba(46,92,67,.10)}
 .chip--lacquer{color:var(--lacquer);border-color:rgba(158,43,32,.4);background:rgba(158,43,32,.09)}
 .chip--quiet{color:var(--ink-3);border-color:var(--rule);background:var(--paper-2)}
+.chip--result{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:3px 10px}
 .gl{width:17px;height:17px;border-radius:3px;display:inline-grid;place-items:center;font-size:9px;font-weight:700;
   color:#fff;font-family:"IBM Plex Mono",monospace;line-height:1;flex:none}
 .gl--lg{width:22px;height:22px;font-size:11px;border-radius:4px}
@@ -408,10 +409,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .phead .rate .v small{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;margin-left:6px;letter-spacing:0;vertical-align:3px;color:rgba(247,242,229,.45)}
 .up{color:var(--felt-hi)} .dn{color:var(--lacquer-hi)}
 .acct-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
-.acct-tabs [role=tab]{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 6px;border-radius:99px;text-decoration:none;color:rgba(247,242,229,.7);
+.acct-tabs a:not(.acct-tabs__add){display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 6px;border-radius:99px;text-decoration:none;color:rgba(247,242,229,.7);
   border:1px solid rgba(224,188,120,.25);background:rgba(0,0,0,.18)}
-.acct-tabs [role=tab]:hover{color:var(--paper);background:rgba(0,0,0,.3)}
-.acct-tabs [role=tab][aria-selected=true]{color:var(--paper);background:rgba(0,0,0,.4);border-color:var(--brass);box-shadow:0 0 0 1px rgba(190,143,62,.35)}
+.acct-tabs a:not(.acct-tabs__add):hover{color:var(--paper);background:rgba(0,0,0,.3)}
+.acct-tabs a:not(.acct-tabs__add)[aria-current=page]{color:var(--paper);background:rgba(0,0,0,.4);border-color:var(--brass);box-shadow:0 0 0 1px rgba(190,143,62,.35)}
 .acct-tabs .nm{font-weight:600;font-size:14px}
 .acct-tabs .n{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:rgba(247,242,229,.5)}
 .acct-tabs__add{font-size:13.5px;color:var(--brass-hi);text-decoration:none;padding:6px 10px;border-radius:99px;border:1px dashed rgba(224,188,120,.35)}
@@ -1125,16 +1126,24 @@ img,svg{max-width:100%}
         </a>
         <a class="gamerow gamerow--compact" href="#/review">
           <span class="when">yesterday</span>
-          <span class="opp"><span class="res w">W</span><span><span class="nm">Hikaru vs Magnus_Carlsen</span>
+          <span class="opp"><span class="chip chip--quiet chip--result">1-0</span><span><span class="nm">Hikaru vs Magnus_Carlsen</span>
             <span class="sub">Berlin · blitz 3+0 · pasted link</span></span></span>
-          <span class="accs"><span class="you">94.1</span><span class="go done">Open</span></span>
+          <span class="accs"><span class="you">94.1<span class="muted"> · 88.0</span></span><span class="go done">Open</span></span>
         </a>
         <a class="gamerow gamerow--compact" href="#/review">
           <span class="when">3 Sep</span>
-          <span class="opp"><span class="res w">W</span><span><span class="nm">rookandroll</span>
+          <span class="opp"><span class="chip chip--quiet chip--result">1-0</span><span><span class="nm">rookandroll</span>
             <span class="sub">Caro-Kann · blitz 5+0 · <span class="chip chip--brass" style="font-size:11px;padding:1px 7px">shared by Ravi</span></span></span></span>
-          <span class="accs"><span class="you">78.4</span><span class="go done">Open</span></span>
+          <span class="accs"><span class="you">78.4<span class="muted"> · 74.2</span></span><span class="go done">Open</span></span>
         </a>
+        <a class="gamerow gamerow--compact" href="#/review">
+          <span class="when">2 Sep</span>
+          <span class="opp"><span class="chip chip--quiet chip--result">&#189;-&#189;</span><span><span class="nm">GothamChess vs Feel_Special</span>
+            <span class="sub">Italian Game · blitz 5+0 · opened from chess.com/gothamchess</span></span></span>
+          <span class="accs"><span class="you">72.6<span class="muted"> · 69.3</span></span><span class="go done">Open</span></span>
+        </a>
+        <!-- empty state -->
+        <!-- <div style="padding:22px 20px;text-align:center"><p style="margin:0;font-size:14px;color:var(--ink-2)">Nothing yet. Open a game, or paste a link above.</p></div> -->
         <div class="card__foot" style="justify-content:center">
           <a class="btn btn--ghost btn--sm" href="#/games">Show more</a>
         </div>
@@ -1356,11 +1365,11 @@ img,svg{max-width:100%}
 
 <!-- ══ GAMES ═════════════════════════════════════════════ -->
 <section class="screen" id="s-games"><div class="page">
-  <div class="acct-tabs" role="tablist" aria-label="Linked chess.com accounts">
-    <a role="tab" aria-selected="true" href="#/games"><span class="av av--sm">KF</span><span class="nm">kafka_f0</span><span class="n">12 this week</span></a>
-    <a role="tab" href="#/games"><span class="av av--sm">SC</span><span class="nm">samk_chess</span><span class="n">1 this week</span></a>
+  <nav class="acct-tabs" aria-label="Linked chess.com accounts">
+    <a aria-current="page" href="#/games"><span class="av av--sm">KF</span><span class="nm">kafka_f0</span><span class="n">12 this week</span></a>
+    <a href="#/games"><span class="av av--sm">SC</span><span class="nm">samk_chess</span><span class="n">1 this week</span></a>
     <a class="acct-tabs__add" href="#/home">+ Add account</a>
-  </div>
+  </nav>
   <div class="phead" style="margin-bottom:22px">
     <span class="av av--xl">KF</span>
     <div>
