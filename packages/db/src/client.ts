@@ -84,7 +84,15 @@ function create(url: string | undefined): Db {
   const { drizzle } = req(
     'drizzle-orm/pglite',
   ) as typeof import('drizzle-orm/pglite');
-  return drizzle(new PGlite(pgliteDir(url)), { schema });
+  const client = new PGlite(pgliteDir(url));
+  // Neon sessions default to UTC; PGlite inherits the host's local zone, and
+  // every `defaultNow()` column would otherwise disagree with the JS `Date`s
+  // the app writes for the same rows. PGlite serialises queries on its single
+  // connection, so this runs before any query the rest of the app issues.
+  // If the client fails to open (the second-opener corruption described
+  // above), that surfaces on the first real query, not here.
+  void client.exec("SET TIME ZONE 'UTC'").catch(() => undefined);
+  return drizzle(client, { schema });
 }
 
 /**
@@ -117,6 +125,27 @@ export function getDb(url: string | undefined): Db {
     cache.set(key, db);
   }
   return db;
+}
+
+/**
+ * Closes the cached PGlite handle and forgets it.
+ *
+ * PGlite buffers writes in wasm memory and flushes them on close; a process
+ * that exits without closing loses the tail of them and leaves a store that
+ * aborts the runtime when it is next opened. Neon needs nothing of the sort —
+ * its pool dies with the process — so this is a no-op there, and a no-op for
+ * a url nothing ever opened.
+ */
+export async function closeDb(url: string | undefined): Promise<void> {
+  if (driverFor(url) !== 'pglite') return;
+  const key = url ?? '';
+  const db = cache.get(key);
+  if (!db) return;
+  cache.delete(key);
+  // drizzle hangs the raw PGlite client off `$client` on the value `drizzle()`
+  // returns, not on the `PgliteDatabase` type this module stores.
+  const { $client } = db as unknown as { $client: { close: () => Promise<void> } };
+  await $client.close();
 }
 
 /**
