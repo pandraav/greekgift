@@ -42,8 +42,10 @@ export const CLASS_ORDER: Classification[] = [
   'blunder',
 ];
 
-/** The classes worth drawing an arrow for: something was actually missed. */
-export const WORTH_AN_ARROW = new Set<Classification>([
+/** The classes that get a dot on the evaluation graph: the moves worth a second look. */
+export const MARKED_ON_GRAPH: ReadonlySet<Classification> = new Set([
+  'brilliant',
+  'great',
   'inaccuracy',
   'miss',
   'mistake',

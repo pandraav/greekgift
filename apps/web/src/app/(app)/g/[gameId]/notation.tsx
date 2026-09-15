@@ -27,17 +27,37 @@ export function Notation({ moves, ply, onSeek, variation = null }: NotationProps
   for (let i = 0; i < moves.length; i += 2) pairs.push(moves.slice(i, i + 2));
 
   // Jumping by graph or by arrow key has to bring the move list with it, or
-  // the reader ends up looking at move 3 while playing move 40.
+  // the reader ends up looking at move 3 while playing move 40. Scroll only
+  // this box: scrollIntoView would drag the whole page along on first load.
   useEffect(() => {
-    const current = box.current?.querySelector('[aria-current="true"], [data-branch]');
-    current?.scrollIntoView({ block: 'nearest' });
+    const el = box.current;
+    const current = el?.querySelector<HTMLElement>('[aria-current="true"], [data-branch]');
+    if (!el || !current) return;
+    const top = current.offsetTop;
+    const bottom = top + current.offsetHeight;
+    if (top < el.scrollTop) el.scrollTop = top;
+    else if (bottom > el.scrollTop + el.clientHeight) el.scrollTop = bottom - el.clientHeight;
   }, [ply, variation]);
 
+  // A line branched from the starting position precedes move 1, so it has no
+  // pair to hang under: it goes above the list instead of inside it.
+  const branch = variation ? (
+    <div
+      data-branch
+      className="border-t border-ink/5 py-1.5 pr-[7px] pl-[33px] font-mono text-[12px] leading-normal text-lacquer first:border-t-0"
+    >
+      <b className="font-semibold">your line</b> &nbsp;{variation.sans.join(' ')}
+    </div>
+  ) : null;
+
   return (
-    <div ref={box} className="-mx-1.5 max-h-[236px] overflow-auto px-1.5">
+    <div ref={box} className="relative -mx-1.5 max-h-[236px] overflow-auto px-1.5">
+      {variation?.fromPly === 0 ? branch : null}
       {pairs.map((pair, index) => {
         const branchedHere =
-          variation && Math.floor((variation.fromPly - 1) / 2) === index;
+          variation !== null &&
+          variation.fromPly > 0 &&
+          Math.floor((variation.fromPly - 1) / 2) === index;
 
         return (
           <div key={index}>
@@ -71,14 +91,7 @@ export function Notation({ moves, ply, onSeek, variation = null }: NotationProps
               })}
             </div>
 
-            {branchedHere ? (
-              <div
-                data-branch
-                className="border-t border-ink/5 py-1.5 pr-[7px] pl-[33px] font-mono text-[12px] leading-normal text-lacquer"
-              >
-                <b className="font-semibold">your line</b> &nbsp;{variation.sans.join(' ')}
-              </div>
-            ) : null}
+            {branchedHere ? branch : null}
           </div>
         );
       })}

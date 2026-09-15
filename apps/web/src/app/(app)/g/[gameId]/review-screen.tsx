@@ -8,10 +8,12 @@ import { winPercent } from '@greekgift/engine';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Board, type BoardArrow, type BoardMove } from '@/components/board/board';
-import { CLASS_STYLE, WORTH_AN_ARROW } from '@/components/classification';
+import { CLASS_STYLE, MARKED_ON_GRAPH } from '@/components/classification';
+import { arrowsFor } from '@/lib/lines';
 import { Button, Card, CardBody, Eyebrow } from '@/components/ui';
 
 import { CoachCard } from './coach-card';
+import { EngineLines } from './engine-lines';
 import { EvalGraph } from './eval-graph';
 import { PersonaPicker } from './persona-picker';
 import { Notation } from './notation';
@@ -47,7 +49,8 @@ export function ReviewScreen({
   const { moves } = review;
   const lastPly = moves.length;
 
-  const [ply, setPly] = useState(() => review.keyMoments[0]?.ply ?? 0);
+  const [ply, setPly] = useState(0);
+  const [showBest, setShowBest] = useState(true);
   const [flipped, setFlipped] = useState(false);
   const [line, setLine] = useState<Line | null>(null);
   const [persona, setPersona] = useState<Persona>(() => findPersona(initialPersonaId));
@@ -61,7 +64,7 @@ export function ReviewScreen({
   );
 
   const fen = exploring ? line.fen : fenAt(ply);
-  const played = ply > 0 ? moves[ply - 1] : null;
+  const played = ply > 0 ? (moves[ply - 1] ?? null) : null;
   const next = moves[ply];
 
   /** White's chances at every position — the graph, and the bar beside the board. */
@@ -74,6 +77,14 @@ export function ReviewScreen({
       winPercent(scoreOf(i) ?? { cp: 0 }),
     );
   }, [moves]);
+
+  const marks = useMemo(
+    () =>
+      moves
+        .filter((m) => MARKED_ON_GRAPH.has(m.classification))
+        .map((m) => ({ ply: m.ply, color: CLASS_STYLE[m.classification].color })),
+    [moves],
+  );
 
   const goTo = useCallback(
     (at: number) => {
@@ -97,6 +108,24 @@ export function ReviewScreen({
       return { ...current, sans: current.sans.slice(0, -1), fen: board.fen() };
     });
   }, [fenAt]);
+
+  const playLine = useCallback(
+    (sans: string[]) => {
+      const board = new Chess(fenAt(ply));
+      const applied: string[] = [];
+      for (const san of sans) {
+        try {
+          board.move(san);
+          applied.push(san);
+        } catch {
+          break;
+        }
+      }
+      if (applied.length === 0) return;
+      setLine({ fromPly: ply, sans: applied, fen: board.fen() });
+    },
+    [fenAt, ply],
+  );
 
   const onMove = useCallback(
     (move: BoardMove) => {
@@ -149,18 +178,11 @@ export function ReviewScreen({
     return () => window.removeEventListener('keydown', onKey);
   }, [backToGame, exploring, goTo, ply, undoLine]);
 
-  const arrows: BoardArrow[] = useMemo(() => {
-    // Arrows describe the move about to be played, not the one just made:
-    // the recommendation only exists on the board it was recommended for.
-    // Drawing it a ply later would point at a square the piece has left.
-    if (exploring || !next || !WORTH_AN_ARROW.has(next.classification)) return [];
-    if (!next.bestMove || next.bestMove === next.uci) return [];
-
-    return [
-      { from: next.bestMove.slice(0, 2), to: next.bestMove.slice(2, 4), color: 'var(--felt)' },
-      { from: next.uci.slice(0, 2), to: next.uci.slice(2, 4), color: 'var(--lacquer)' },
-    ];
-  }, [exploring, next]);
+  // The engine's move and the played move, on the board the badge is on.
+  const arrows: BoardArrow[] = useMemo(
+    () => (exploring ? [] : arrowsFor(played, showBest)),
+    [exploring, played, showBest],
+  );
 
   const badge =
     !exploring && played
@@ -211,9 +233,19 @@ export function ReviewScreen({
             </Button>
           </div>
         ) : (
-          <p className="mb-3 w-full max-w-[600px] text-center font-mono text-[13px] tracking-[0.02em] text-ink-3">
-            drag a piece to play a different line
-          </p>
+          <div className="mb-3 flex w-full max-w-[600px] items-center gap-3">
+            <p className="m-0 flex-1 text-center font-mono text-[13px] tracking-[0.02em] text-ink-3">
+              drag a piece to play a different line
+            </p>
+            <Button
+              variant="ghost"
+              size="sm"
+              aria-pressed={showBest}
+              onClick={() => setShowBest((s) => !s)}
+            >
+              {showBest ? 'Hide best move' : 'Show best move'}
+            </Button>
+          </div>
         )}
 
         <div className="w-full max-w-[556px]">
@@ -251,7 +283,12 @@ export function ReviewScreen({
             ply={exploring ? line.fromPly : ply}
             onSeek={goTo}
             idle={exploring}
+            marks={marks}
           />
+        </div>
+
+        <div className="w-full max-w-[556px]">
+          <EngineLines moves={moves} ply={ply} exploring={exploring} onPlayLine={playLine} />
         </div>
       </section>
 
@@ -302,18 +339,6 @@ export function ReviewScreen({
                     k="Win % lost"
                     v={Math.max(0, played.winBefore - played.winAfter).toFixed(1)}
                   />
-                  {WORTH_AN_ARROW.has(played.classification) &&
-                  played.bestMove &&
-                  played.bestMove !== played.uci ? (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="ml-auto"
-                      onClick={() => goTo(ply - 1)}
-                    >
-                      Show it on the board
-                    </Button>
-                  ) : null}
                 </dl>
               </>
             ) : (
@@ -322,6 +347,14 @@ export function ReviewScreen({
                 <p className="mt-3 mb-0 text-[15px] leading-relaxed text-ink-2">
                   Step forward, or drag a piece to try a line of your own.
                 </p>
+                {review.opening ? (
+                  <p className="mt-2 mb-0 font-mono text-[12.5px] text-ink-3">
+                    {review.opening.name}
+                    {review.opening.lastBookPly > 0
+                      ? ` · book through move ${Math.ceil(review.opening.lastBookPly / 2)}`
+                      : ''}
+                  </p>
+                ) : null}
               </>
             )}
           </CardBody>

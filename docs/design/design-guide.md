@@ -47,8 +47,14 @@ the rating change under the date. Unread games show a dimmed board and an
 italic "Not read yet." `share` is what a
 member sees when a share link points at a game they do not hold: the header
 only, and one button to ask. The `review` screen carries the Share button and
-the copied-link bar under the header. The CSS for all of it is the
-`home v2` block near the app root.
+the copied-link bar under the header, and its CSS is the `home v2` block near
+the app root. Under the evaluation graph, a flush Engine block
+lists the three stored lines for the shown position with their evals; the first
+line's eval doubles as the numeric readout, and its CSS is the `/* engine
+lines */` block beside the graph's. Best-move arrows are drawn on the
+same board as the verdict badge, for every move where the engine disagreed,
+behind a Show best move toggle. Coloured dots on the graph mark great,
+brilliant, inaccuracy, miss, mistake and blunder.
 
 Two of them have no route in the app:
 
@@ -61,12 +67,11 @@ Two of them have no route in the app:
 
 ### `app.html` is the reference for *look*, not behaviour
 
-The app moved on in five places, each on purpose:
+The app moved on in four places, each on purpose:
 
 | | prototype | app |
 |---|---|---|
 | promotion | auto-queens | a picker — guessing a queen loses games |
-| engine arrows | drawn on the position *after* the move | on the position *before*, where the recommendation actually applies |
 | coach text | one hardcoded paragraph for one move | generated per move, per persona, from verified facts |
 | board | rebuilt with `innerHTML` on every change | React, with the ghost piece written straight to the node |
 | the game | a fixed fixture, `data/review.json` | whatever chess.com returns |
@@ -334,10 +339,12 @@ Details that were arrived at, not assumed:
 
 ### Arrows
 
-Green (`--felt`) is what should have been played, red (`--lacquer`) is what
-was. Both are drawn on the position **before** the move — a recommendation
-only exists on the board it was recommended for, and drawn a ply later it
-points at a square the piece has already left.
+Green (`--felt`) is the engine's move, red (`--lacquer`) is what was played.
+Both are drawn on the position **after** the move — the same board the verdict
+badge is on, so the judgement and the evidence for it are read together. They
+appear for every classification where the two moves differ, the Show best move
+toggle hides them, and there are none at the starting position or while
+exploring a line of your own.
 
 ## Layout and responsiveness
 
