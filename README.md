@@ -77,6 +77,14 @@ so it always has an answer.
 
 So `pnpm dev` works with an empty `.env`. Production hard-requires all nine.
 
+**In practice local dev and the deploy share one database.** `apps/web/.env.local`
+carries the production Neon `DATABASE_URL`, so `pnpm dev` reads and writes real
+rows, and a new migration has to be applied with `pnpm db:migrate` before the
+dev server can serve the pages that need it (the deploy runs the same command
+and finds it already applied). For throwaway work, run
+`DATABASE_URL=pglite://.pglite pnpm dev`: instrumentation migrates the store at
+boot and closes it on SIGINT, SIGTERM and exit, so it survives restarts.
+
 **PGlite is single-process.** Querying it from a second terminal while `pnpm dev`
 is running does not block — it corrupts `.pglite/`. Delete the directory and
 re-migrate if that happens.
