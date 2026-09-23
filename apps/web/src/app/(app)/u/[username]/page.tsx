@@ -9,7 +9,7 @@ import { CLASS_STYLE } from '@/components/classification';
 import { Avatar, Card, Chip, Eyebrow } from '@/components/ui';
 import { ChesscomError, isValidUsername, normaliseUsername } from '@/lib/chesscom';
 import { getCoachHeadlines } from '@/lib/coach-headlines';
-import { ensureCoachTexts } from '@/lib/coach-store';
+import { ensureCoachTexts, reviewKeyOf } from '@/lib/coach-store';
 import { db } from '@/lib/db';
 import { ANALYSIS_NODES, ENGINE_BUILD } from '@/lib/engine/settings';
 import { openingFamily, outcomeFor, terminationLabel } from '@/lib/game-labels';
@@ -123,13 +123,15 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
   // The turning point per reviewed game, and the ply whose headline the row
   // shows. Both come from the slim projection — no blob is read for this.
   const momentOf = new Map<string, Moment>();
-  const wanted: { gameId: string; ply: number }[] = [];
+  // The row reads the game from this player's side, so its headline does too.
+  const wanted: { gameId: string; ply: number; perspective: 'w' | 'b' }[] = [];
   for (const game of games) {
     const slim = moments[game.id];
     if (!slim) continue;
-    const moment = gameMoment(slim, game.whiteUsername === username ? 'w' : 'b');
+    const side = game.whiteUsername === username ? 'w' : 'b';
+    const moment = gameMoment(slim, side);
     momentOf.set(game.id, moment);
-    wanted.push({ gameId: game.id, ply: moment.ply ?? slim.moves.length });
+    wanted.push({ gameId: game.id, ply: moment.ply ?? slim.moves.length, perspective: side });
   }
 
   // One query for every headline already written. Only the misses cost a
@@ -138,15 +140,15 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
   // would otherwise be a hundred review blobs held at once and a hundred
   // concurrent connections on every force-dynamic render. Each chunk reads
   // its own reviews and lets go of them.
-  const headlines = await getCoachHeadlines(db, wanted, personaId, audience);
+  const headlines = await getCoachHeadlines(db, wanted, personaId, audience, reviewKeyOf(KEY));
   const missing = wanted.filter((w) => headlines[w.gameId] === undefined);
   await mapChunked(missing, 8, async (chunk) => {
     const full = await getReviews(chunk.map((m) => m.gameId), KEY);
     await Promise.all(
-      chunk.map(async ({ gameId, ply }) => {
+      chunk.map(async ({ gameId, ply, perspective }) => {
         const review = full[gameId];
         if (!review) return;
-        const texts = await ensureCoachTexts(review, personaId, { audience });
+        const texts = await ensureCoachTexts(review, personaId, { audience, perspective });
         const headline = texts[ply]?.headline;
         if (headline) headlines[gameId] = headline;
       }),
@@ -169,7 +171,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
     const month = `${game.endTime.getUTCFullYear()}-${String(game.endTime.getUTCMonth() + 1).padStart(2, '0')}`;
     const base = {
       gameId: game.id,
-      href: `/g/${game.id}` as Route,
+      href: `/g/${game.id}?from=${encodeURIComponent(username)}` as Route,
       when: whenLabel(game.endTime),
       delta: w?.ratingDelta ?? null,
       outcome: outcomeFor(game, username),

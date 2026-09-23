@@ -4,6 +4,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 
 import { makeGame, makeUser, testDb } from '../../test/db';
 import { ChesscomError } from './chesscom';
+import { reviewCacheKey } from './engine/settings';
 import {
   AccountError,
   addAccount,
@@ -16,10 +17,11 @@ import {
   materialiseAccount,
   membership,
   removeAccount,
+  sideOf,
   STALE_AFTER_MS,
   touchOpened,
+  userSideFor,
 } from './library';
-import { monthsToRefresh } from './refresh-account';
 
 const KEY = { nodes: 300_000, engineBuild: 'stockfish-18-lite-single' };
 const fakeEnsure = async (raw: string) => ({
@@ -155,7 +157,7 @@ describe('touchOpened and libraryReviews', () => {
     await addToLibrary(db, u.id, shared.id, { source: 'share', sharedBy: sharer.id });
 
     await db.insert(schema.reviews).values({
-      gameId: played.id, nodes: KEY.nodes, engineBuild: KEY.engineBuild,
+      gameId: played.id, nodes: KEY.nodes, engineBuild: reviewCacheKey(KEY).engineBuild,
       data: {}, whiteAccuracy: 70, blackAccuracy: 61.8,
     });
 
@@ -177,7 +179,7 @@ describe('touchOpened and libraryReviews', () => {
     const stranger = await makeGame(db, { id: '402', whiteUsername: 'ivan', blackUsername: 'jill' });
     await addToLibrary(db, u.id, stranger.id, { source: 'link' });
     await db.insert(schema.reviews).values({
-      gameId: stranger.id, nodes: KEY.nodes, engineBuild: KEY.engineBuild,
+      gameId: stranger.id, nodes: KEY.nodes, engineBuild: reviewCacheKey(KEY).engineBuild,
       data: {}, whiteAccuracy: 88, blackAccuracy: 42,
     });
     // A pasted link only surfaces in "My reviews" once opened.
@@ -225,10 +227,34 @@ describe('touchOpened and libraryReviews', () => {
   });
 });
 
-describe('monthsToRefresh', () => {
-  it('adds the previous month during the first week', () => {
-    expect(monthsToRefresh(new Date('2026-09-07T00:00:00Z'))).toEqual([{ year: 2026, month: 9 }, { year: 2026, month: 8 }]);
-    expect(monthsToRefresh(new Date('2026-09-08T00:00:00Z'))).toEqual([{ year: 2026, month: 9 }]);
-    expect(monthsToRefresh(new Date('2026-01-03T00:00:00Z'))).toEqual([{ year: 2026, month: 1 }, { year: 2025, month: 12 }]);
+describe('sideOf and userSideFor', () => {
+  const linked = new Set(['kafka_f0', 'alt_acc']);
+
+  it('White, Black, or neither', () => {
+    expect(sideOf(linked, 'kafka_f0', 'someone')).toBe('w');
+    expect(sideOf(linked, 'someone', 'kafka_f0')).toBe('b');
+    expect(sideOf(linked, 'someone', 'else')).toBeNull();
+  });
+
+  it('compares exactly, as libraryReviews does', () => {
+    expect(sideOf(linked, 'KAFKA_F0', 'someone')).toBeNull();
+  });
+
+  it('both linked: the page the member came from wins, else White', () => {
+    expect(sideOf(linked, 'kafka_f0', 'alt_acc')).toBe('w');
+    expect(sideOf(linked, 'kafka_f0', 'alt_acc', 'alt_acc')).toBe('b');
+    expect(sideOf(linked, 'kafka_f0', 'alt_acc', 'kafka_f0')).toBe('w');
+    expect(sideOf(linked, 'kafka_f0', 'alt_acc', 'nobody')).toBe('w');
+  });
+
+  it('a preference never picks a side the member did not play', () => {
+    expect(sideOf(linked, 'someone', 'kafka_f0', 'someone')).toBe('b');
+  });
+
+  it('userSideFor reads the linked accounts', async () => {
+    const u = await makeUser(db);
+    await addAccount(db, u.id, 'kim', { ensurePlayer: fakeEnsure });
+    expect(await userSideFor(db, u.id, { whiteUsername: 'lou', blackUsername: 'kim' })).toBe('b');
+    expect(await userSideFor(db, u.id, { whiteUsername: 'lou', blackUsername: 'max' })).toBeNull();
   });
 });

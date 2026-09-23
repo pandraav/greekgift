@@ -1,9 +1,12 @@
 'use client';
 
-import type { MoveAnalysis } from '@greekgift/engine';
+import type { GameEnding, MoveAnalysis } from '@greekgift/engine';
 import { useEffect, useRef } from 'react';
 
 import { CLASS_STYLE } from '@/components/classification';
+import { durationWords, spentShort } from '@/lib/clock-format';
+
+import { endingShort, resultText } from './ending-copy';
 
 /**
  * The move list, with every move wearing its verdict.
@@ -18,9 +21,13 @@ export interface NotationProps {
   onSeek: (ply: number) => void;
   /** The reader's own line, shown under the move it branched from. */
   variation?: { fromPly: number; sans: string[] } | null;
+  /** Per-ply clock flags from the time report; absent when the game has no clocks. */
+  timeFlags?: ReadonlyMap<number, { inTrouble: boolean; longThink: boolean }>;
+  /** How the game ended: a last row, "0–1 · White lost on time". */
+  ending?: GameEnding | null;
 }
 
-export function Notation({ moves, ply, onSeek, variation = null }: NotationProps) {
+export function Notation({ moves, ply, onSeek, variation = null, timeFlags, ending = null }: NotationProps) {
   const box = useRef<HTMLDivElement>(null);
 
   const pairs: MoveAnalysis[][] = [];
@@ -86,6 +93,14 @@ export function Notation({ moves, ply, onSeek, variation = null }: NotationProps
                       style={{ background: style.color }}
                       dangerouslySetInnerHTML={{ __html: style.glyph }}
                     />
+                    {move.clock ? (
+                      <Spent
+                        spent={move.clock.spent}
+                        left={move.clock.left}
+                        current={current}
+                        flags={timeFlags?.get(move.ply)}
+                      />
+                    ) : null}
                   </button>
                 );
               })}
@@ -95,6 +110,40 @@ export function Notation({ moves, ply, onSeek, variation = null }: NotationProps
           </div>
         );
       })}
+      {ending ? (
+        <div className="border-t border-[rgba(26,21,15,.055)] pt-2 pr-[7px] pb-1 pl-[33px] font-mono text-[12px] text-ink-2">
+          <b className="font-semibold text-ink">{resultText(ending)}</b> · {endingShort(ending)}
+        </div>
+      ) : null}
     </div>
+  );
+}
+
+/** Time spent on a move, right-aligned in its cell: lacquer in time trouble, brass after a long think. */
+function Spent({
+  spent,
+  left,
+  current,
+  flags,
+}: {
+  spent: number;
+  left: number;
+  current: boolean;
+  flags?: { inTrouble: boolean; longThink: boolean };
+}) {
+  const tone = current
+    ? 'text-paper/70'
+    : flags?.inTrouble
+      ? 'text-lacquer'
+      : flags?.longThink
+        ? 'text-brass-lo underline decoration-brass decoration-2 underline-offset-3'
+        : 'text-ink-3';
+  return (
+    <span
+      title={`${durationWords(spent)} spent, ${durationWords(left)} left`}
+      className={`ml-auto pl-1 text-[10.5px] tabular-nums ${tone}`}
+    >
+      {spentShort(spent)}
+    </span>
   );
 }

@@ -11,6 +11,7 @@ import { and, asc, desc, eq, or, sql } from 'drizzle-orm';
 
 import { ChesscomError, isValidUsername, normaliseUsername } from '@/lib/chesscom';
 import { ensurePlayer as realEnsurePlayer, type PlayerSnapshot } from '@/lib/import';
+import { reviewCacheKey } from '@/lib/engine/settings';
 import type { CacheKey } from '@/lib/review-store';
 
 /**
@@ -277,7 +278,7 @@ export async function libraryReviews(db: Db, userId: string, key: CacheKey, limi
       and(
         eq(schema.reviews.gameId, schema.games.id),
         eq(schema.reviews.nodes, key.nodes),
-        eq(schema.reviews.engineBuild, key.engineBuild),
+        eq(schema.reviews.engineBuild, reviewCacheKey(key).engineBuild),
       ),
     )
     .where(
@@ -292,11 +293,7 @@ export async function libraryReviews(db: Db, userId: string, key: CacheKey, limi
   const linked = new Set(await linkedUsernamesFor(db, userId));
 
   return rows.map((r) => {
-    const side: 'w' | 'b' | null = linked.has(r.game.whiteUsername)
-      ? 'w'
-      : linked.has(r.game.blackUsername)
-        ? 'b'
-        : null;
+    const side = sideOf(linked, r.game.whiteUsername, r.game.blackUsername);
     const accuracy =
       side === null || r.white === null || r.black === null
         ? null
@@ -315,6 +312,37 @@ export async function libraryReviews(db: Db, userId: string, key: CacheKey, limi
       at: new Date(r.at),
     };
   });
+}
+
+/**
+ * The member's side in a game, from the usernames their accounts are linked
+ * as. Compared exactly: both sides of the comparison are stored normalised.
+ * When both players are linked, the one the member came from (`prefer`, the
+ * player page they clicked through) wins, else White.
+ */
+export function sideOf(
+  linked: ReadonlySet<string>,
+  white: string,
+  black: string,
+  prefer?: string | null,
+): 'w' | 'b' | null {
+  const w = linked.has(white);
+  const b = linked.has(black);
+  if (w && b) return prefer && prefer === black ? 'b' : 'w';
+  if (w) return 'w';
+  if (b) return 'b';
+  return null;
+}
+
+/** The member's side in this game, from their linked accounts. */
+export async function userSideFor(
+  db: Db,
+  userId: string,
+  game: { whiteUsername: string; blackUsername: string },
+  prefer?: string | null,
+): Promise<'w' | 'b' | null> {
+  const linked = new Set(await linkedUsernamesFor(db, userId));
+  return sideOf(linked, game.whiteUsername, game.blackUsername, prefer);
 }
 
 export function isStale(lastRefreshedAt: Date | null, now: Date = new Date()): boolean {

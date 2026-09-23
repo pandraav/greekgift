@@ -10,8 +10,9 @@ import { Chip, Eyebrow } from '@/components/ui';
 import { db } from '@/lib/db';
 import { ANALYSIS_NODES, ENGINE_BUILD } from '@/lib/engine/settings';
 import { requireApproved } from '@/lib/guards';
-import { canSeeGame, touchOpened } from '@/lib/library';
-import { getReview } from '@/lib/review-store';
+import { normaliseUsername } from '@/lib/chesscom';
+import { canSeeGame, touchOpened, userSideFor } from '@/lib/library';
+import { getOrRebuildReview } from '@/lib/review-store';
 import { hasPendingRequest, shareByToken } from '@/lib/shares';
 
 import { AskToSee } from './ask-to-see';
@@ -57,11 +58,11 @@ export default async function ReviewPage({
   searchParams,
 }: {
   params: Promise<{ gameId: string }>;
-  searchParams: Promise<{ s?: string }>;
+  searchParams: Promise<{ s?: string; from?: string; view?: string }>;
 }) {
   const user = await requireApproved();
   const { gameId } = await params;
-  const { s } = await searchParams;
+  const { s, from, view } = await searchParams;
 
   const [game] = await db
     .select()
@@ -94,11 +95,23 @@ export default async function ReviewPage({
   }
 
   const parsed = parsePgn(game.pgn);
-  const review = await getReview(gameId, {
+  // Rebuilt from cached evals when only the scoring version changed, so the
+  // reader is not asked to run an engine that has nothing new to say.
+  const review = await getOrRebuildReview(game, {
     nodes: ANALYSIS_NODES,
     engineBuild: ENGINE_BUILD,
   });
   if (review) after(() => touchOpened(db, user, gameId));
+
+  // Whose game this is decides the board's orientation and the coach's voice.
+  // `from` is the player page the member clicked through: it only breaks the
+  // tie when both players are the member's own accounts.
+  const userSide = await userSideFor(
+    db,
+    user.id,
+    game,
+    typeof from === 'string' ? normaliseUsername(from) : null,
+  );
 
   const [profile] = await db
     .select({
@@ -131,6 +144,8 @@ export default async function ReviewPage({
         initialReview={review}
         personaId={profile?.personaId ?? DEFAULT_PERSONA_ID}
         audience={profile?.audience ?? 'intermediate'}
+        userSide={userSide}
+        initialView={view === 'moves' ? 'moves' : 'report'}
       />
 
       <p className="mt-4 text-center text-[13px] text-paper/45">
