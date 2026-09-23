@@ -3,9 +3,17 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
+import type { SkippedSummary } from '@/lib/skipped';
+
 export interface RefreshFailedDetail {
   username: string;
   message: string;
+}
+
+/** A background refresh that worked, with the week's unreviewable games for the card to name. */
+export interface RefreshedDetail {
+  username: string;
+  skipped: SkippedSummary | null;
 }
 
 /**
@@ -39,7 +47,7 @@ export function AutoRefresh({ usernames }: { usernames: string[] }) {
         if (cancelled) return;
         const res = await fetch(`/api/me/accounts/${username}/refresh?ifStale=1`, { method: 'POST' }).catch(() => null);
         const body = (await res?.json().catch(() => null)) as
-          | { refreshed?: boolean; error?: string; status?: number; message?: string }
+          | { refreshed?: boolean; error?: string; status?: number; message?: string; skipped?: SkippedSummary }
           | null;
         if (!res?.ok) {
           window.dispatchEvent(
@@ -49,7 +57,14 @@ export function AutoRefresh({ usernames }: { usernames: string[] }) {
           );
           continue;
         }
-        if (body?.refreshed) changed = true;
+        if (body?.refreshed) {
+          changed = true;
+          window.dispatchEvent(
+            new CustomEvent<RefreshedDetail>('greekgift:refreshed', {
+              detail: { username, skipped: body.skipped ?? null },
+            }),
+          );
+        }
       }
       if (changed && !cancelled) {
         window.dispatchEvent(new Event('greekgift:week-changed'));

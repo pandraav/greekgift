@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui';
 import { relativeTime } from '@/lib/relative-time';
+import { skippedLabel, type SkippedSummary } from '@/lib/skipped';
 
 import { useWeekReader } from '../week-reader';
-import type { RefreshFailedDetail } from './auto-refresh';
+import type { RefreshedDetail, RefreshFailedDetail } from './auto-refresh';
 
 /**
  * "refreshed 12 min ago", Refresh, Remove with its inline confirmation, and
@@ -25,6 +26,9 @@ export function AccountCardFoot({
   const reader = useWeekReader();
   const [state, setState] = useState<'idle' | 'refreshing' | 'confirm' | 'removing'>('idle');
   const [note, setNote] = useState<string | null>(null);
+  // The refresh response is the only place the skipped count lives (no column
+  // holds it), so it shows after a refresh in this visit and not on reload.
+  const [skipped, setSkipped] = useState<string | null>(null);
   const confirmRemoveRef = useRef<HTMLButtonElement>(null);
   const removeRef = useRef<HTMLButtonElement>(null);
   // Keep unmounts the confirmation, so the focus can only be returned once
@@ -51,18 +55,25 @@ export function AccountCardFoot({
       const { detail } = event as CustomEvent<RefreshFailedDetail>;
       if (detail.username === username) setNote(detail.message);
     };
+    const onRefreshed = (event: Event) => {
+      const { detail } = event as CustomEvent<RefreshedDetail>;
+      if (detail.username === username) setSkipped(skippedLabel(detail.skipped));
+    };
     window.addEventListener('greekgift:refresh-failed', onFailed);
-    return () => window.removeEventListener('greekgift:refresh-failed', onFailed);
+    window.addEventListener('greekgift:refreshed', onRefreshed);
+    return () => {
+      window.removeEventListener('greekgift:refresh-failed', onFailed);
+      window.removeEventListener('greekgift:refreshed', onRefreshed);
+    };
   }, [username]);
 
   async function refresh() {
     setState('refreshing');
     setNote(null);
-    const res = await fetch(`/api/me/accounts/${username}/refresh`, { method: 'POST' });
-    if (!res.ok) {
-      const body = (await res.json().catch(() => ({}))) as { message?: string };
-      setNote(body.message ?? 'chess.com did not answer.');
-    }
+    const res = await fetch(`/api/me/accounts/${username}/refresh`, { method: 'POST' }).catch(() => null);
+    const body = (await res?.json().catch(() => null)) as { message?: string; skipped?: SkippedSummary } | null;
+    if (!res?.ok) setNote(body?.message ?? 'chess.com did not answer.');
+    else setSkipped(skippedLabel(body?.skipped));
     window.dispatchEvent(new Event('greekgift:week-changed'));
     setState('idle');
     router.refresh();
@@ -88,7 +99,7 @@ export function AccountCardFoot({
             : note
               ? note
               : lastRefreshedAt
-                ? `refreshed ${relativeTime(new Date(lastRefreshedAt))}`
+                ? `refreshed ${relativeTime(new Date(lastRefreshedAt))}${skipped ? ` · ${skipped}` : ''}`
                 : 'not read yet'}
       </span>
       {reading ? (

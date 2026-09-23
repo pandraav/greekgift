@@ -27,6 +27,9 @@ const KEY = { nodes: ANALYSIS_NODES, engineBuild: ENGINE_BUILD };
 /** The three PGN results worth a chip; anything else (`*`) is unfinished. */
 const DECISIVE = new Set(['1-0', '0-1', '1/2-1/2']);
 
+/** Rows a home card shows before it hands the rest of the week to the player page. */
+const WEEK_ROWS = 10;
+
 const initialsOf = (name: string) =>
   name.replace(/[^a-zA-Z0-9]/g, '').slice(0, 2).toUpperCase() || '??';
 
@@ -107,7 +110,9 @@ export default async function Home() {
             <div className="grid items-start gap-4 min-[861px]:grid-cols-2">
               {accounts.map((account) => {
                 const player = playerOf.get(account.username);
-                const week = weekGames(games, account.username, since).slice(0, 10);
+                const allWeek = weekGames(games, account.username, since);
+                const week = allWeek.slice(0, WEEK_ROWS);
+                const more = allWeek.length - week.length;
                 const ratings = [
                   ['rapid', player?.ratingRapid],
                   ['blitz', player?.ratingBlitz],
@@ -151,6 +156,14 @@ export default async function Home() {
                             />
                           );
                         })}
+                        {more > 0 ? (
+                          <Link
+                            href={`/u/${account.username}`}
+                            className="block px-[15px] py-[11px] text-center font-mono text-[11.5px] text-ink-3 no-underline hover:underline"
+                          >
+                            {more} more this week ›
+                          </Link>
+                        ) : null}
                       </div>
                     )}
                     <AccountCardFoot username={account.username} lastRefreshedAt={account.lastRefreshedAt?.toISOString() ?? null} />
