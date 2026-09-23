@@ -1,5 +1,6 @@
 import type {
   Classification,
+  Color,
   Motif,
   MoveFacts,
   PieceRef,
@@ -7,7 +8,15 @@ import type {
   SituationKind,
 } from '@greekgift/engine';
 
-import { SLOTS, type Arg, type Plan, type PropKind, type Proposition, type Slot } from './contracts.ts';
+import {
+  SLOTS,
+  type Arg,
+  type Plan,
+  type PropKind,
+  type Proposition,
+  type Slot,
+  type Voice,
+} from './contracts.ts';
 
 /**
  * The planner, section 7 of docs/superpowers/specs/2026-09-07-deterministic-coach-design.md.
@@ -42,7 +51,26 @@ export type LessonConcept =
   | 'one_defender_two_jobs'
   | 'keep_the_tension'
   | 'book_ends_here'
-  | 'remember_this';
+  | 'remember_this'
+  /** The opponent slipped: the reader's lesson is to make it cost them. */
+  | 'punish_it'
+  // The refutation's tactic, when one is known (§13.2): the lesson follows it.
+  | 'watch_pins'
+  | 'watch_forks'
+  | 'watch_skewers'
+  | 'watch_discoveries'
+  | 'watch_mate'
+  | 'watch_captures';
+
+/** The lesson for each refutation tactic; a bare check has none of its own. */
+export const LESSON_BY_TACTIC: Partial<Record<string, LessonConcept>> = {
+  pin: 'watch_pins',
+  fork: 'watch_forks',
+  skewer: 'watch_skewers',
+  discovered_attack: 'watch_discoveries',
+  mate: 'watch_mate',
+  capture: 'watch_captures',
+};
 
 /** Terms a beginner gets defined the first time a note uses them, section 7. */
 export type DefinedTerm =
@@ -167,8 +195,34 @@ export function isLossMove(classification: Classification): boolean {
 // ---------------------------------------------------------------------------
 // Entry point
 
+/** The reader's side: the facts' perspective, or the mover's colour for legacy facts. */
+export function viewerOf(facts: MoveFacts): Color | null {
+  return facts.perspective === undefined ? facts.color : facts.perspective;
+}
+
+/** How the note addresses the mover, section 6.2 of the review-overhaul design. */
+export function voiceOf(facts: MoveFacts): Voice {
+  const viewer = viewerOf(facts);
+  return viewer === null ? 'neutral' : viewer === facts.color ? 'self' : 'opponent';
+}
+
+/**
+ * The lesson for this note. On the opponent's move the reader did not make
+ * the error: a slip of theirs teaches punishing it, a good move of theirs
+ * teaches seeing their threat.
+ */
+export function lessonFor(facts: MoveFacts, lead: SituationKind, voice: Voice): LessonConcept {
+  if (voice !== 'opponent') {
+    const tactic = isLossMove(facts.classification) ? facts.refutation?.tactic?.type : undefined;
+    return (tactic && LESSON_BY_TACTIC[tactic]) || LESSON_BY_LEAD[lead];
+  }
+  return isLossMove(facts.classification) ? 'punish_it' : 'see_their_threat';
+}
+
 export function plan(facts: MoveFacts, audience: MoveFacts['audience']): Plan {
   const [first, second] = facts.situations;
+  const viewer = viewerOf(facts);
+  const voice = voiceOf(facts);
 
   let lead: SituationKind = first?.kind ?? fallbackLead(facts);
   let leadObservation = observationFor(lead, first, facts, WEIGHT.must);
@@ -197,14 +251,37 @@ export function plan(facts: MoveFacts, audience: MoveFacts['audience']): Plan {
     weight: WEIGHT.must,
   });
 
-  // whatHappened
-  props.push(leadObservation);
+  // whatHappened. For an error the engine's reply line leads (§13.2): it is
+  // the concrete why. The lead observation then supports it, and a "quiet
+  // loss, nothing hangs" observation is dropped, since the line contradicts it.
+  const refutation = isLossMove(facts.classification) ? facts.refutation : undefined;
+  const clock = clockProp(facts);
+  if (refutation) {
+    // A notable clock merges into the refutation: "You spent 1:09 on 22.Nxd4
+    // and still missed 22…cxb3, which uncovered…" — one sentence, never dropped.
+    const clockArgs: Record<string, Arg> = clock
+      ? { clockKind: clock.args.kind!, spent: clock.args.spent!, left: clock.args.left!, leftBefore: clock.args.leftBefore! }
+      : {};
+    props.push({
+      kind: 'refutation',
+      role: 'observation',
+      slot: 'whatHappened',
+      args: { line: refutation.line, moveNumber: refutation.moveNumber, ...clockArgs },
+      weight: WEIGHT.must,
+    });
+    if (lead !== 'quiet_loss') props.push({ ...leadObservation, weight: WEIGHT.supporting });
+  } else {
+    props.push(leadObservation);
+  }
   if (second && second.severity >= 0.5 && second.kind !== lead) {
     const supporting = observationFor(second.kind, second, facts, WEIGHT.supporting, true);
     if (supporting && !sameProp(supporting, leadObservation)) props.push(supporting);
   }
+  if (clock && !refutation) props.push(clock);
 
-  // whyItMatters
+  // whyItMatters: how the game ended leads it on the last ply.
+  const over = gameOverProp(facts);
+  if (over) props.push(over);
   props.push(...consequencesFor(facts, lead));
 
   // betterWas
@@ -215,7 +292,7 @@ export function plan(facts: MoveFacts, audience: MoveFacts['audience']): Plan {
     kind: 'lesson',
     role: 'advice',
     slot: 'lesson',
-    args: { concept: LESSON_BY_LEAD[lead], lead },
+    args: { concept: lessonFor(facts, lead, voice), lead },
     weight: WEIGHT.must,
   });
 
@@ -227,11 +304,48 @@ export function plan(facts: MoveFacts, audience: MoveFacts['audience']): Plan {
 
   return {
     facts,
+    viewer,
+    voice,
     audience,
     classification: facts.classification,
     lead,
     props: orderProps(props),
     epLoss: facts.epLoss,
+  };
+}
+
+/**
+ * Time, only when it explains the move (§14.5): an error played fast, after a
+ * long think, or in time trouble; or a good move found in time trouble. A
+ * quiet good move with time to spare says nothing about the clock.
+ */
+export function clockProp(facts: MoveFacts): Proposition | null {
+  const c = facts.clock;
+  if (!c) return null;
+  const loss = isLossMove(facts.classification);
+  const kind = c.inTrouble ? 'trouble' : loss && c.longThink ? 'long' : loss && c.fast ? 'fast' : null;
+  if (!kind) return null;
+  return {
+    kind: 'clock',
+    role: 'observation',
+    slot: 'whatHappened',
+    args: { kind, spent: c.spent, left: c.left, leftBefore: c.leftBefore, loss },
+    // Mandatory: a notable clock is part of why the move went wrong, and no
+    // voice's budget may drop it (persona filler and the rest go first).
+    weight: WEIGHT.must,
+  };
+}
+
+/** How the game ended, on the last ply, unless a checkmate already says it. */
+export function gameOverProp(facts: MoveFacts): Proposition | null {
+  const e = facts.ending;
+  if (!e || e.kind === 'unknown' || e.kind === 'checkmate') return null;
+  return {
+    kind: 'game_over',
+    role: 'consequence',
+    slot: 'whyItMatters',
+    args: { kind: e.kind },
+    weight: WEIGHT.must,
   };
 }
 
@@ -438,11 +552,11 @@ function observationFor(
     case 'book':
       return say('in_book', openingArgs(facts));
     case 'best':
-      return say('best_does', { ...effectArgs(facts), move: facts.san, played: true });
+      return say('best_does', { ...playedEffectArgs(facts), move: facts.san, played: true });
     case 'good':
       // The same shape as `best`: what the move did, not a second copy of the
       // swing that whyItMatters already carries.
-      return say('best_does', { ...effectArgs(facts), move: facts.san, played: true });
+      return say('best_does', { ...playedEffectArgs(facts), move: facts.san, played: true });
     case 'quiet_loss':
       return say('quiet_loss', {
         ...effectArgs(facts),
@@ -536,6 +650,20 @@ function effectArgs(facts: MoveFacts): Record<string, Arg> {
   return args;
 }
 
+/**
+ * What the played move itself does. The best move's effect describes the
+ * best move, so it is only the played move's when the two are the same move:
+ * a good 8.Nc3 must not inherit "takes the pawn on d5" from the best 8.cxd5.
+ * Otherwise only what the SAN proves is said (a check), with an explicit
+ * `captures: false` so no frame falls back to the best move's capture.
+ */
+export function playedEffectArgs(facts: MoveFacts): Record<string, Arg> {
+  if (stripCheck(facts.san) === stripCheck(facts.bestMove)) return effectArgs(facts);
+  return { check: /\+$/.test(facts.san), line: [], captures: false };
+}
+
+const stripCheck = (san: string): string => san.replace(/[+#]+$/, '');
+
 function effectIsNotable(facts: MoveFacts): boolean {
   const e = facts.bestMoveEffect;
   return Boolean(e.captures) || e.check || e.mateIn !== undefined || (e.forks?.length ?? 0) > 0;
@@ -552,9 +680,12 @@ function consequencesFor(facts: MoveFacts, lead: SituationKind): Proposition[] {
 
   // Material only means something when the move gave some away: on a praise
   // move the best-line-minus-played-line figure is exchange noise, and read
-  // aloud it says "you win a piece" about a move that won nothing.
+  // aloud it says "you win a piece" about a move that won nothing. On a loss
+  // move whose played line ends with *more* material than the best line
+  // (gain < 0), saying "came out three pawns better" contradicts the verdict
+  // the note just gave, so nothing is said about material at all.
   const gain = facts.bestMoveEffect.materialGain;
-  if (isLossMove(facts.classification) && Math.abs(gain) >= 1) {
+  if (isLossMove(facts.classification) && gain >= 1) {
     // A miss did not lose material, it declined to win some: the sentence
     // must say "could have won", not "gone".
     const missed =
@@ -615,14 +746,26 @@ function betterWasFor(
 ): Proposition[] {
   const slot: Slot = 'betterWas';
   const playedBest = facts.san === facts.bestMove;
+  // For an error, the better move with where it would have left the game
+  // (§13.2); otherwise the plain best move.
+  const better =
+    isLossMove(facts.classification) && facts.betterLine && !playedBest ? facts.betterLine : undefined;
   const out: Proposition[] = [
-    {
-      kind: 'best_move',
-      role: 'counterfactual',
-      slot,
-      args: { move: facts.bestMove, san: facts.san, played: playedBest, lead },
-      weight: WEIGHT.must,
-    },
+    better
+      ? {
+          kind: 'better_line',
+          role: 'counterfactual',
+          slot,
+          args: { move: facts.bestMove, line: better.line, moveNumber: better.moveNumber },
+          weight: WEIGHT.must,
+        }
+      : {
+          kind: 'best_move',
+          role: 'counterfactual',
+          slot,
+          args: { move: facts.bestMove, san: facts.san, played: playedBest, lead },
+          weight: WEIGHT.must,
+        },
   ];
 
   // When the played move is the best move the lead observation already says

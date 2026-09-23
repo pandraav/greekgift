@@ -127,10 +127,10 @@ const verdict: Frame = (p, ctx) => {
   const lost = LOSS_CLASSES.has(cls) || (lead ? !PRAISE_LEADS.has(lead as SituationKind) : false);
 
   if (cls === 'brilliant') {
-    return [`Okay, WAIT. ${m}.`, `${m}. That's insane.`, `${m}. Not even joking, that's it.`];
+    return [`Okay, WAIT. ${m}.`, `${m}. That was insane.`, `${m}. Not even joking, that was it.`];
   }
   if (cls === 'great' || cls === 'best' || cls === 'excellent') {
-    return [`Ooh. ${m}. That's the one.`, `${m}. Boom.`, `${m}. Yes. That's the move.`];
+    return [`Ooh. ${m}. That was the one.`, `${m}. Boom.`, `${m}. Yes. That was the move.`];
   }
   if (cls === 'good' || cls === 'book') {
     return [`${m}. Fine. Totally fine.`, `Okay so, ${m}. Sure.`, `${m}. Nothing wrong with that.`];
@@ -142,7 +142,7 @@ const verdict: Frame = (p, ctx) => {
     return [`Eh. ${m}? Not it.`, `${m}. Not that one. Close, but no.`, `Hmm. ${m}? I've seen worse.`];
   }
   if (cls === 'blunder' || lost) {
-    return [`${m}? No no no.`, `Not ${m}. Come on. What is that?`, `${m}. What are you doing?`];
+    return [`${m}? No no no.`, `Not ${m}. Come on. What was that?`, `${m}. What were you doing?`];
   }
   return [`${m}. Okay.`, `Okay so, ${m}.`, `${m}. Look at that.`];
 };
@@ -154,9 +154,9 @@ const forked: Frame = (p, ctx) => {
   const hit = list(ctx, targets);
   const horse = by?.piece === 'N' ? 'The horse.' : 'That piece.';
   return [
-    `${attacker} drops in. Now ${hit}. Both getting hit. Both of them.`,
-    `${attacker} lands. ${horse} Hitting ${hit}. Same time.`,
-    `Look. ${attacker} comes in. Hits ${hit}. Two things at once. Two.`,
+    `${attacker} dropped in. Then ${hit}, both got hit. Both of them.`,
+    `${attacker} landed. ${horse} Hit ${hit}. Same time.`,
+    `Look. ${attacker} came in. Hit ${hit}. Two things at once. Two.`,
   ];
 };
 
@@ -166,9 +166,9 @@ const hangs: Frame = (p, ctx) => {
   const it = piece ? ctx.refer(piece) : 'that piece';
   const taker = attackers[0] ? ctx.refer(attackers[0]) : 'anything';
   return [
-    `${it} is just hanging. Nobody defends it. Nobody.`,
-    `${it}, hung. Free. ${taker} takes it for nothing.`,
-    `Bro. ${it} is sitting there like a parked car. Anyway, ${taker} takes it.`,
+    `${it} was just hanging. Nobody defended it. Nobody.`,
+    `${it}, hung. Free. ${taker} could have taken it for nothing.`,
+    `Bro. ${it} was sitting there like a parked car. Anyway, ${taker} could have taken it.`,
   ];
 };
 
@@ -179,22 +179,22 @@ const swing: Frame = (p) => {
     return [
       `The whole position, gone. Just gone.`,
       `That was the game. Right there.`,
-      `And boom, the evaluation flips. Flips.`,
+      `And boom, the evaluation flipped. Flipped.`,
     ];
   }
   const b = Math.round(before);
   const a = Math.round(after);
   if (a >= b) {
     return [
-      `${b} up to ${a}. Boom.`,
-      `From ${b} to ${a}. That's the move doing that.`,
-      `${b} to ${a}. Up we go. Up.`,
+      `Your winning chances went from ${b}% up to ${a}%. Boom.`,
+      `Your winning chances went from ${b}% to ${a}%. That was the move doing that.`,
+      `Your winning chances, ${b}% to ${a}%. Up we went. Up.`,
     ];
   }
   return [
-    `${b} down to ${a}, gone.`,
-    `From ${b} to ${a}. One move. One.`,
-    `${b} to ${a}. That's the whole game, right there.`,
+    `Your winning chances went from ${b}% down to ${a}%, gone.`,
+    `Your winning chances went from ${b}% to ${a}%. One move. One.`,
+    `Your winning chances went from ${b}% to ${a}%. That was the whole game, right there.`,
   ];
 };
 
@@ -206,18 +206,18 @@ const materialDelta: Frame = (p) => {
   const lost = gain !== undefined ? gain : delta !== undefined ? -delta : 0;
   const amount = materialWords(lost);
   if (lost === 0) {
-    return [`Material stays level. Level.`, `Nothing changes hands. Nothing.`, `Even on material. Still even.`];
+    return [`Material stayed level. Level.`, `Nothing changed hands. Nothing.`, `Even on material. Still even.`];
   }
   if (lost < 0) {
     return [
-      `That's ${amount}. ${capital(amount)}.`,
-      `You pick up ${amount}. For free.`,
+      `That was ${amount}. ${capital(amount)}.`,
+      `You picked up ${amount}. For free.`,
       `${capital(amount)}, just like that.`,
     ];
   }
   return [
-    `That's ${amount}, gone. Gone.`,
-    `You're giving away ${amount}. For nothing.`,
+    `That was ${amount}, gone. Gone.`,
+    `You gave away ${amount}. For nothing.`,
     `${capital(amount)}, straight in the bin. Anyway.`,
   ];
 };
@@ -227,7 +227,7 @@ const capital = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 const bestMove: Frame = (p, ctx) => {
   const san = strArg(p, ['move', 'best', 'san']);
   const m = san ? ctx.move(san) : 'the other move';
-  return [`${m}. That's the move.`, `${m}. Boom. Done.`, `Look. ${m}. Simple.`];
+  return [`${m}. That was the move.`, `${m}. Boom. Done.`, `Look. ${m}. Simple.`];
 };
 
 const bestDoes: Frame = (p, ctx) => {
@@ -239,13 +239,14 @@ const bestDoes: Frame = (p, ctx) => {
   const check = boolArg(p, 'check');
   const gain = numArg(p, ['materialGain', 'delta']);
   let does: string;
-  if (mateIn !== undefined) does = `is mate in ${words(mateIn)}`;
-  else if (captures) does = `takes ${ctx.refer(captures)}`;
-  else if (forks.length > 1) does = `hits ${list(ctx, forks)}`;
-  else if (check) does = `comes with check`;
-  else if (gain !== undefined && gain !== 0) does = `keeps ${materialWords(gain)}`;
-  else does = 'holds everything together';
-  return [`${m} ${does}. That's it.`, `${m} just ${does}. Come on.`, `And ${m} ${does}. Wow.`];
+  if (mateIn !== undefined) does = `been mate in ${words(mateIn)}`;
+  else if (captures) does = `taken ${ctx.refer(captures)}`;
+  else if (forks.length > 1) does = `hit ${list(ctx, forks)}`;
+  else if (check) does = `come with check`;
+  else if (gain !== undefined && gain !== 0) does = `kept ${materialWords(gain)}`;
+  else does = 'held everything together';
+  // The best move was not played: conditional, never live narration.
+  return [`${m} would have ${does}. That was it.`, `${m} would have ${does}. Come on.`, `Look. ${m} would have ${does}. Wow.`];
 };
 
 const LESSONS: Record<string, string[]> = {
@@ -459,24 +460,24 @@ const gothamCloser = (lead: SituationKind): string =>
 
 const EXTRA_EVENTS: Record<Trigger, string[]> = {
   reviewStart: [
-    'Okay so. Ladies and gentlemen, we have a game.',
+    'Okay so. Ladies and gentlemen, we had a game.',
     'Look. Sit down. We are going through this one.',
   ],
-  brilliant: ['Wait. Wait wait wait. That is insane.', 'Bro. BRO. That is the move of the game.'],
-  great: ['Yes. That one. That is exactly the one.', 'Boom. Nice. That is what you play.'],
+  brilliant: ['Wait. Wait wait wait. That was insane.', 'Bro. BRO. That was the move of the game.'],
+  great: ['Yes. That one. That was exactly the one.', 'Boom. Nice. That was the move to play.'],
   blunder: ['Oh my god. Oh my god. What was that?', 'No. No no no. Come on, bro.'],
   mistake: ["Eh. Not it. I'm not insulting you, you did fine.", 'Hmm. Nope. Close, though. Close.'],
   miss: ['It was there. RIGHT there. And you kept walking.', 'Bro. It was free. Free. Come on.'],
-  bookExit: ['Okay so, book is over. Now you have to think.', 'Theory ends here. Now it is just you two.'],
-  comeback: ['Hold on. Hold on. You are back in this? Wow.', 'Wait, this is a game again. This is a game.'],
-  collapse: ['It was winning. It was SO winning. And now.', 'Oh my god. Oh my goodness. Gone. All of it.'],
-  highAccuracy: ['Bro. Genuinely. That is a clean game.', 'Look at that. Look at it. Good game, my man.'],
+  bookExit: ['Okay so, book was over. Then you had to think.', 'Theory ended there. Then it was just you two.'],
+  comeback: ['Hold on. Hold on. You were back in this? Wow.', 'Wait, that was a game again. That was a game.'],
+  collapse: ['It was winning. It was SO winning. And then.', 'Oh my god. Oh my goodness. Gone. All of it.'],
+  highAccuracy: ['Bro. Genuinely. That was a clean game.', 'Look at that. Look at it. Good game, my man.'],
   lowAccuracy: [
     "Rough. It happens. I've done worse, and I'm supposed to be good.",
     'Okay so, that one hurt. It happens to everyone. Everyone.',
   ],
-  longGame: ['Still going. Still. Chess is hard, dude.', 'This game is longer than my videos. Anyway.'],
-  reviewEnd: ["That's it. That's the game. Go play another one.", 'Done. Go queue another one. Come on.'],
+  longGame: ['It kept going. And going. Chess is hard, dude.', 'That game was longer than my videos. Anyway.'],
+  reviewEnd: ["That was it. That was the game. Go play another one.", 'Done. Go queue another one. Come on.'],
   random: ['Chess is hard. Chess is so hard.', 'Anyway. Chess is hard, man.'],
 };
 

@@ -18,6 +18,15 @@ export function pct(x: number): string {
   return `about ${Math.round(Math.max(0, Math.min(100, v)))}%`;
 }
 
+/**
+ * "about 52%" from a value already in percentage points (0..100). Unlike
+ * `pct`, a small value such as 0.4 stays "about 0%" rather than being read as
+ * a fraction, which matters once a win% is restated as 100 − w.
+ */
+export function pctPoints(x: number): string {
+  return `about ${Math.round(Math.max(0, Math.min(100, x)))}%`;
+}
+
 /** "a pawn", "three pawns". */
 export function pawns(n: number): string {
   const r = Math.round(Math.abs(n));

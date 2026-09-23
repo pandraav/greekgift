@@ -84,6 +84,10 @@ const ctx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 const prop = (kind: PropKind, args: Proposition['args'], slot: Slot = 'whatHappened'): Proposition => ({
@@ -253,7 +257,7 @@ describe('finegold grammar', () => {
     const shaped = finegold.shape(
       {
         headline: 'Nd7. Terrible!',
-        whatHappened: 'What were you thinking? The knight is hanging',
+        whatHappened: 'What were you thinking? The knight was hanging',
         whyItMatters: 'Big swing!',
         betterWas: 'Be6!',
         lesson: 'Count the attackers. Okay.',
@@ -265,7 +269,7 @@ describe('finegold grammar', () => {
       expect(text).not.toContain('?');
     }
     expect(shaped.headline).toBe('Nd7. Terrible.');
-    expect(shaped.whatHappened).toBe('What were you thinking. The knight is hanging. Okay.');
+    expect(shaped.whatHappened).toBe('What were you thinking. The knight was hanging. Okay.');
     expect(shaped.lesson).toBe('Count the attackers. Okay.');
     expect(shaped.whyItMatters).toBe('Big swing.');
     expect(shaped.betterWas).toBe('Be6.');

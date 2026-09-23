@@ -1,8 +1,9 @@
 /**
  * The corpus anchor.
  *
- * Renders every ply of every fixture review through every persona and every
- * audience, runs the validator on each note, and writes a report a person can
+ * Renders every ply of every fixture review through every persona, every
+ * audience and every perspective (legacy, White, Black, neutral), runs the
+ * validator on each note, and writes a report a person can
  * read. Exits non-zero on any violation, so CI and the graph's merge step have
  * a ground truth that is not an opinion.
  *
@@ -24,6 +25,10 @@ const reportDir = join(root, 'docs/graphs/2026-09-07-deterministic-coach');
 const reportPath = join(reportDir, 'corpus-report.md');
 
 const AUDIENCES = ['beginner', 'intermediate', 'advanced'];
+/** undefined = legacy (the reader is the mover); 'w' / 'b' = a member's side; null = neutral. */
+const PERSPECTIVES = [undefined, 'w', 'b', null];
+const keyOf = (perspective) => (perspective === undefined ? undefined : perspective ?? 'n');
+const labelOf = (perspective) => (perspective === undefined ? 'legacy' : perspective ?? 'n');
 
 const files = readdirSync(fixturesDir)
   .filter((f) => f.endsWith('.json'))
@@ -33,10 +38,22 @@ if (files.length === 0) {
   process.exit(2);
 }
 
-const reviews = files.map((f) => ({
-  name: f.replace(/\.json$/, ''),
-  review: JSON.parse(readFileSync(join(fixturesDir, f), 'utf8')),
-}));
+// Reviews with clocks and an ending (§14), so the clock and game-over frames
+// run under the validator too.
+const clockedDir = join(root, 'packages/engine/test/fixtures/clocked');
+const reviews = [
+  ...files.map((f) => ({
+    name: f.replace(/\.json$/, ''),
+    review: JSON.parse(readFileSync(join(fixturesDir, f), 'utf8')),
+  })),
+  ...readdirSync(clockedDir)
+    .filter((f) => f.endsWith('.json'))
+    .sort()
+    .map((f) => ({
+      name: `clocked-${f.replace(/\.json$/, '')}`,
+      review: JSON.parse(readFileSync(join(clockedDir, f), 'utf8')),
+    })),
+];
 
 const countWords = (s) => (s.trim() ? s.trim().split(/\s+/).length : 0);
 const slots = ['headline', 'whatHappened', 'whyItMatters', 'betterWas', 'lesson'];
@@ -50,21 +67,26 @@ const samples = new Map(); // persona -> Map(lead -> sample)
 const stable = { checked: 0, mismatched: 0 };
 const errors = [];
 
+const voiceSamples = []; // { fixture, ply, san, perspective, text } for the first praise and loss ply of each fixture
+
 for (const { name, review } of reviews) {
   for (const move of review.moves) {
     for (const audience of AUDIENCES) {
+     for (const perspective of PERSPECTIVES) {
       let facts;
       try {
-        facts = factsFor(review, move.ply, { audience });
+        facts = factsFor(review, move.ply, perspective === undefined ? { audience } : { audience, perspective });
       } catch (err) {
         errors.push(`${name} ply ${move.ply}: factsFor threw: ${err.message}`);
         continue;
       }
       const lead = facts.situations[0]?.kind ?? '(none)';
-      if (audience === 'intermediate') leadCounts.set(lead, (leadCounts.get(lead) ?? 0) + 1);
+      if (audience === 'intermediate' && perspective === undefined) {
+        leadCounts.set(lead, (leadCounts.get(lead) ?? 0) + 1);
+      }
 
       for (const persona of PERSONAS) {
-        const seed = seedFor(review.gameId, move.ply, persona.id);
+        const seed = seedFor(review.gameId, move.ply, persona.id, keyOf(perspective));
         let text;
         try {
           text = renderCoachText(facts, persona, audience, seed);
@@ -80,7 +102,7 @@ for (const { name, review } of reviews) {
 
         const result = validate(text, facts, persona);
         for (const v of result.violations) {
-          violations.push({ fixture: name, ply: move.ply, persona: persona.id, audience, ...v });
+          violations.push({ fixture: name, ply: move.ply, persona: persona.id, audience: `${audience}/${labelOf(perspective)}`, ...v });
           violationsByKind.set(v.kind, (violationsByKind.get(v.kind) ?? 0) + 1);
         }
 
@@ -91,7 +113,17 @@ for (const { name, review } of reviews) {
         w.max = Math.max(w.max, words);
         wordsByPersona.set(persona.id, w);
 
-        if (audience === 'intermediate') {
+        if (
+          audience === 'intermediate' &&
+          perspective !== undefined &&
+          persona.id === PERSONAS[0].id &&
+          ['blunder', 'mistake'].includes(facts.classification) &&
+          !voiceSamples.some((v) => v.fixture === name && v.ply !== move.ply)
+        ) {
+          voiceSamples.push({ fixture: name, ply: move.ply, san: facts.san, color: facts.color, perspective: labelOf(perspective), text });
+        }
+
+        if (audience === 'intermediate' && perspective === undefined) {
           const perPersona = samples.get(persona.id) ?? new Map();
           if (!perPersona.has(lead)) {
             perPersona.set(lead, { fixture: name, ply: move.ply, san: facts.san, classification: facts.classification, text });
@@ -99,6 +131,7 @@ for (const { name, review } of reviews) {
           samples.set(persona.id, perPersona);
         }
       }
+     }
     }
   }
 }
@@ -115,7 +148,7 @@ lines.push('');
 lines.push('| | |');
 lines.push('|---|---|');
 lines.push(`| Fixture reviews | ${reviews.length} (${reviews.map((r) => `${r.name}: ${r.review.moves.length} plies`).join(', ')}) |`);
-lines.push(`| Notes rendered | ${rendered} (plies × 7 personas × 3 audiences) |`);
+lines.push(`| Notes rendered | ${rendered} (plies × 7 personas × 3 audiences × 4 perspectives) |`);
 lines.push(`| Validator violations | **${violations.length}** |`);
 lines.push(`| Determinism | ${stable.mismatched} of ${stable.checked} re-renders differed |`);
 lines.push(`| Render errors | ${errors.length} |`);
@@ -174,7 +207,16 @@ lines.push('|---|---|');
 for (const [lead, n] of [...leadCounts].sort((a, b) => b[1] - a[1])) lines.push(`| ${lead} | ${n} |`);
 lines.push('');
 
-lines.push('## Samples, one per lead situation, per persona (intermediate)');
+lines.push('## One ply, three readers (first persona, intermediate)');
+lines.push('');
+for (const s of voiceSamples) {
+  lines.push(`**${s.fixture} ply ${s.ply}** · ${s.san} by ${s.color === 'w' ? 'White' : 'Black'} · perspective ${s.perspective}`);
+  lines.push('');
+  lines.push(`> **${s.text.headline}** ${s.text.whatHappened} ${s.text.whyItMatters} ${s.text.betterWas} _${s.text.lesson}_`);
+  lines.push('');
+}
+
+lines.push('## Samples, one per lead situation, per persona (intermediate, legacy perspective)');
 lines.push('');
 for (const persona of PERSONAS) {
   const perPersona = samples.get(persona.id) ?? new Map();

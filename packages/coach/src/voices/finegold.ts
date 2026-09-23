@@ -142,9 +142,9 @@ const verdict: Frame = (p, ctx) => {
   const m = ctx.move(strArg(p.args, 'move', 'san') ?? 'That');
   switch (strArg(p.args, 'classification')) {
     case 'blunder':
-      return v(`${m}. Terrible.`, `Terrible. ${m}.`, `${m} is a blunder. Okay.`);
+      return v(`${m}. Terrible.`, `Terrible. ${m}.`, `${m} was a blunder. Okay.`);
     case 'mistake':
-      return v(`${m}. Incorrect.`, `Incorrect. ${m}.`, `${m} is not the move.`);
+      return v(`${m}. Incorrect.`, `Incorrect. ${m}.`, `${m} was not the move.`);
     case 'inaccuracy':
       return v(`${m}. Suspicious.`, `Suspicious. ${m}.`, `${m}. Played funny.`);
     case 'miss':
@@ -154,7 +154,7 @@ const verdict: Frame = (p, ctx) => {
       return v(
         `${m}. I'm as surprised as you are.`,
         `${m}. Correct. Don't get used to it.`,
-        `${m}. Even this class finds one.`,
+        `${m}. Even this class found one.`,
       );
     case 'book':
       return v(`${m}. Still theory.`, `Still theory. ${m}.`, `${m}. The book knows this one.`);
@@ -168,10 +168,10 @@ const hangs: Frame = (p, ctx) => {
   const attacker = piecesArg(p.args, 'attackers')[0] ?? pieceArg(p.args, 'attacker', 'by');
   const t = target ? ctx.refer(target) : 'that piece';
   return v(
-    `${t} is hanging. Nothing defends it.`,
+    `${t} was hanging. Nothing defended it.`,
     attacker
-      ? `${t} is attacked by ${ctx.refer(attacker)}. Nobody is defending it. Terrible.`
-      : `${t} is attacked. Nobody is defending it. Terrible.`,
+      ? `${t} was attacked by ${ctx.refer(attacker)}. Nobody was defending it. Terrible.`
+      : `${t} was attacked. Nobody was defending it. Terrible.`,
     `You at home left ${t} hanging. The truth hurts.`,
   );
 };
@@ -183,9 +183,9 @@ const forked: Frame = (p, ctx) => {
   const targets = piecesArg(p.args, 'targets');
   const s = squares(targets, ctx);
   return v(
-    `${b} attacks ${s}. One of them is leaving.`,
-    `${num(Math.max(targets.length, 2))} targets, one ${name}, one square. ${s} are both attacked.`,
-    `${b} hits ${s}. You at home can save one. Okay.`,
+    `${b} attacked ${s}. One of them was leaving.`,
+    `${num(Math.max(targets.length, 2))} targets, one ${name}, one square. ${s} were both attacked.`,
+    `${b} hit ${s}. You at home could save one. Okay.`,
   );
 };
 
@@ -194,23 +194,23 @@ const missedCapture: Frame = (p, ctx) => {
   const t = target ? ctx.refer(target) : 'a piece';
   return v(
     `${t} was free. You didn't take it. The truth hurts.`,
-    `You could take ${t}. You didn't. Okay.`,
+    `You could have taken ${t}. You didn't. Okay.`,
     `${t} was hanging. Even this class takes free pieces. Okay.`,
   );
 };
 
 const backRank: Frame = () =>
   v(
-    `The back rank is weak. No escape square for the king. Okay.`,
+    `The back rank was weak. No escape square for the king. Okay.`,
     `No escape square for the king. Back rank problems. The truth hurts.`,
-    `The king is stuck on the back rank. That's terrible. Okay.`,
+    `The king was stuck on the back rank. That was terrible. Okay.`,
   );
 
 const quietLoss: Frame = () =>
   v(
-    `Nothing hangs. The position is just worse now. Okay.`,
+    `Nothing hung. The position was just worse after it. Okay.`,
     `Played passively. No tactic, just a worse position. Okay.`,
-    `That's played funny. Nothing dropped, but the position is worse. The truth hurts.`,
+    `That was played funny. Nothing dropped, but the position was worse. The truth hurts.`,
   );
 
 const swing: Frame = (p) => {
@@ -227,22 +227,22 @@ const swing: Frame = (p) => {
   const a = Math.round(after);
   if (a >= b) {
     return v(
-      `${b} to ${a}. Correct. Don't get used to it.`,
-      `From ${b} to ${a}. I'm as surprised as you are.`,
-      `${b} before, ${a} after. Even this class does it sometimes.`,
+      `Your winning chances went from ${b}% to ${a}%. Correct. Don't get used to it.`,
+      `Your winning chances went from ${b}% to ${a}%. I'm as surprised as you are.`,
+      `Your winning chances were ${b}% before, ${a}% after. Even this class does it sometimes.`,
     );
   }
   return v(
-    `${b} to ${a}. That's the whole game. Okay.`,
-    `From ${b} to ${a}. The truth hurts.`,
-    `${b} before. ${a} after. Nothing else to say.`,
+    `Your winning chances went from ${b}% to ${a}%. That was the whole game. Okay.`,
+    `Your winning chances went from ${b}% to ${a}%. The truth hurts.`,
+    `Your winning chances: ${b}% before, ${a}% after. Nothing else to say.`,
   );
 };
 
 const bestMove: Frame = (p, ctx) => {
   const m = ctx.move(strArg(p.args, 'move', 'san', 'best') ?? 'The other move');
   return v(
-    `${m}. That's the move. Okay.`,
+    `${m}. That was the move. Okay.`,
     `${m} was correct. You at home played something else. Okay.`,
     `${m}. Nothing else. Okay.`,
   );
@@ -256,15 +256,15 @@ const bestDoes: Frame = (p, ctx) => {
   const check = boolArg(p.args, 'check') ?? false;
   const gain = numArg(p.args, 'materialGain') ?? 0;
   let does: string;
-  if (mateIn !== undefined) does = `is mate in ${num(mateIn)}`;
-  else if (captures) does = `${ctx.lexicon.captureVerb} ${ctx.refer(captures)}`;
-  else if (forkTargets.length > 0) does = `hits ${squares(forkTargets, ctx)}`;
-  else if (check) does = `comes with check`;
-  else if (gain > 0) does = `wins material`;
-  else does = `keeps everything defended`;
+  if (mateIn !== undefined) does = `would have been mate in ${num(mateIn)}`;
+  else if (captures) does = `would have taken ${ctx.refer(captures)}`;
+  else if (forkTargets.length > 0) does = `would have hit ${squares(forkTargets, ctx)}`;
+  else if (check) does = `would have come with check`;
+  else if (gain > 0) does = `would have won material`;
+  else does = `would have kept everything defended`;
   return v(
-    `${m} ${does}. That's the move. Okay.`,
-    `${m} ${does}. Even this class can see that. Okay.`,
+    `${m} ${does}. That was the move. Okay.`,
+    `${m} ${does}. Even this class could have seen that. Okay.`,
     `${m} ${does}. You at home did not play it. The truth hurts.`,
   );
 };
@@ -302,7 +302,7 @@ const LESSONS: Record<string, [string, string, string]> = {
   ],
   dont_trade_behind: [
     `Never trade pieces when you're behind. I do it constantly. I'm allowed. Okay.`,
-    `Down material, keep the pieces on. Fewer pieces helps whoever is ahead. That's not you. Okay.`,
+    `Down material, keep the pieces on. Fewer pieces helps whoever is ahead. That wasn't you. Okay.`,
     `Trading while behind is giving up slowly. Keep the pieces. I'd resign, but I'm allowed. Okay.`,
   ],
   push_the_passer: [
@@ -326,9 +326,9 @@ const LESSONS: Record<string, [string, string, string]> = {
     `Releasing tension is a favour to your opponent. Stop doing favours. Okay.`,
   ],
   book_ends_here: [
-    `The book ends here. Now you at home have to think. I never do. Boo. Okay.`,
-    `Still theory until this move. After it, nothing. Think. Okay.`,
-    `Out of book. This is where it usually goes wrong. The truth hurts. Okay.`,
+    `The book ended there. Then you at home had to think. I never do. Boo. Okay.`,
+    `Still theory until that move. After it, nothing. Next time, think. Okay.`,
+    `Out of book. That is where it usually goes wrong. The truth hurts. Okay.`,
   ],
   remember_this: [
     `Remember this pattern. It comes back every game. I forget it, but I'm old. Okay.`,
@@ -422,22 +422,22 @@ export const finegold: PersonaGrammar = {
       'Okay. Let’s go through it. I’m not expecting much.',
     ],
     brilliant: [
-      base.events.brilliant?.[0] ?? 'That’s a good move. I’m as surprised as you are. Okay.',
+      base.events.brilliant?.[0] ?? "That was a good move. I'm as surprised as you are. Okay.",
       'Good move. Even this class finds one sometimes. Okay.',
-      'That’s correct. I was expecting nothing. Okay.',
+      'That was correct. I was expecting nothing. Okay.',
     ],
     great: [
       base.events.great?.[0] ?? 'Correct. Don’t get used to it.',
       'Correct. Somebody at home paid attention. Okay.',
-      'That’s the move. I was expecting nothing. Okay.',
+      'That was the move. I was expecting nothing. Okay.',
     ],
     blunder: [
       base.events.blunder?.[0] ?? 'Terrible. Okay, here’s why.',
       'Terrible. The truth hurts. Okay, here’s the lesson.',
-      'That’s a blunder. I’ve played worse, but I’m old. Okay.',
+      'That was a blunder. I’ve played worse, but I’m old. Okay.',
     ],
     mistake: [
-      base.events.mistake?.[0] ?? 'That’s not the move. It’s not the worst move. It’s not good either.',
+      base.events.mistake?.[0] ?? "That wasn't the move. It wasn't the worst move. It wasn't good either.",
       'Incorrect. Not terrible. Incorrect. Okay.',
       'Suspicious. You at home played funny here. Okay.',
     ],
@@ -447,14 +447,14 @@ export const finegold: PersonaGrammar = {
       'You had it. You didn’t find it. Nothing. Okay.',
     ],
     bookExit: [
-      base.events.bookExit?.[0] ?? 'Now you’re on your own. This is where it usually goes wrong.',
-      'Still theory until here. Now it’s you. Boo.',
-      'Okay. The book is closed. Nothing good happens after this.',
+      base.events.bookExit?.[0] ?? 'Then you were on your own. That is where it usually goes wrong.',
+      'Still theory until there. Then it was you. Boo.',
+      'Okay. The book closed. Nothing good happened after that.',
     ],
     comeback: [
-      base.events.comeback?.[0] ?? 'You were losing. Now you’re not. Your opponent is also terrible.',
+      base.events.comeback?.[0] ?? "You were losing. Then you weren't. Your opponent was also terrible.",
       'You came back. I’m as surprised as you are. Okay.',
-      'You were losing. Now you aren’t. Somebody else played worse. Okay.',
+      'You were losing. Then you were fine. Somebody else played worse. Okay.',
     ],
     collapse: [
       base.events.collapse?.[0] ?? 'You were winning. And then you weren’t. This happens to all of you.',
@@ -462,9 +462,9 @@ export const finegold: PersonaGrammar = {
       'You were winning. I’ve done this too, many times. Okay.',
     ],
     highAccuracy: [
-      base.events.highAccuracy?.[0] ?? 'That’s a good game. I’ve seen worse. I’ve seen mine.',
+      base.events.highAccuracy?.[0] ?? "That was a good game. I've seen worse. I've seen mine.",
       'Good game. Don’t get used to it. Okay.',
-      'That’s accurate. Even this class does it sometimes. Okay.',
+      'That was accurate. Even this class does it sometimes. Okay.',
     ],
     lowAccuracy: [
       base.events.lowAccuracy?.[0] ??
@@ -473,13 +473,13 @@ export const finegold: PersonaGrammar = {
       'Not good. The truth hurts. Okay.',
     ],
     longGame: [
-      base.events.longGame?.[0] ?? 'Still going. I get paid by the hour, so this is fine.',
+      base.events.longGame?.[0] ?? "That went on. I get paid by the hour, so it was fine.",
       'Long game. Long games are fine. I’m old, I have time. Okay.',
-      'Still going. Nobody resigns anymore. Okay.',
+      'It kept going. Nobody resigns anymore. Okay.',
     ],
     reviewEnd: [
       base.events.reviewEnd?.[0] ?? 'Okay. Class dismissed.',
-      'That’s the game. Class dismissed. Okay.',
+      'That was the game. Class dismissed. Okay.',
       'We’re done. Nothing more to say. Class dismissed.',
     ],
     random: [

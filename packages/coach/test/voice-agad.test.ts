@@ -40,6 +40,10 @@ const ctx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 const N_C5: PieceRef = { piece: 'N', square: 'c5', color: 'w' };
@@ -341,7 +345,7 @@ describe('agad: frames', () => {
   it('says the swing in words, fifty-two to eighteen', () => {
     const [first] = agad.frames.swing!(prop('swing', 'whyItMatters', { before: 52, after: 18 }), ctx);
     expect(first).toBe(
-      'And it was here that the game effectively turned, the winning chances falling from fifty-two to eighteen, on a single move.',
+      'And it was here that the game effectively turned, your winning chances falling from fifty-two percent to eighteen percent, on a single move.',
     );
     expect(agadInternals.numberWords(40)).toBe('forty');
     expect(agadInternals.numberWords(100)).toBe('one hundred');
@@ -373,7 +377,7 @@ describe('agad: frames', () => {
     const [unsound] = agad.frames.sacrifice!(prop('sacrifice', 'whatHappened', { piece: B_B7, netMaterial: -3, sound: false }), ctx);
     expect(sound).toContain('the bishop on b7');
     expect(sound).toMatch(/exquisite/);
-    expect(unsound).toMatch(/nothing comes back/);
+    expect(unsound).toMatch(/nothing came back/);
   });
 
   it('sets the scene for a definition', () => {
@@ -418,10 +422,10 @@ describe('agad: prosody', () => {
     expect(agad.prosody.reaction(0.01, 'good')).toBe('');
   });
 
-  it('closes lost positions with there is nothing more to be done here, and only those', () => {
+  it('closes lost positions with there was nothing more to be done here, and only those', () => {
     expect(agad.prosody.closer('allowed_mate')).toBe(agadInternals.RESIGNATION);
     expect(agad.prosody.closer('hung_piece')).toBe(agadInternals.RESIGNATION);
-    expect(agadInternals.RESIGNATION).toBe('There is nothing more to be done here.');
+    expect(agadInternals.RESIGNATION).toBe('There was nothing more to be done here.');
     for (const kind of KINDS) {
       if (agadInternals.LOST_LEADS.has(kind)) continue;
       expect(agad.prosody.closer(kind), kind).not.toContain('nothing more to be done');
@@ -472,7 +476,7 @@ describe('agad: the shared example', () => {
     expect(slots.headline).toBe('A quiet square, at move eighteen.');
     expect(slots.whatHappened).toMatch(/^And it was here, uh, that things went wrong\./);
     expect(slots.whatHappened).toContain('d7 and b7');
-    expect(slots.whyItMatters).toContain('fifty-two to eighteen');
+    expect(slots.whyItMatters).toContain('fifty-two percent to eighteen percent');
     expect(slots.betterWas).toContain('Be6');
     expect(slots.lesson).toMatch(/couple of seconds/);
     const all = Object.values(slots).join(' ');

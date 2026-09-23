@@ -57,6 +57,8 @@ const prop = (
 /** The plan the planner would build for the example, by hand. */
 const examplePlan = (over: Partial<Plan> = {}): Plan => ({
   facts: FACTS,
+  viewer: FACTS.color,
+  voice: 'self',
   audience: 'intermediate',
   classification: 'blunder',
   lead: 'walked_into_fork',
@@ -87,7 +89,7 @@ const contextFor = (plan: Plan, g: PersonaGrammar, seed = 1): { ctx: RenderConte
     lexicon: g.lexicon,
     preferHere: g.syntax.preferHere,
     playedSquare: 'd7',
-    moverColor: plan.facts.color,
+    viewer: plan.facts.color,
   });
   const ctx: RenderContext = {
     lexicon: g.lexicon,
@@ -97,6 +99,10 @@ const contextFor = (plan: Plan, g: PersonaGrammar, seed = 1): { ctx: RenderConte
     square: (sq) => referrer.square(sq),
     move: (san) => referrer.move(san),
     pick: makePick(mulberry32(seed)),
+    voice: 'self',
+    mover: () => referrer.mover(),
+    moverPossessive: () => referrer.moverPossessive(),
+    memberWin: (w) => w,
   };
   return { ctx, referrer };
 };
@@ -107,7 +113,7 @@ describe('referring expressions', () => {
       lexicon: neutralGrammar('sagar').lexicon,
       preferHere,
       playedSquare: 'd7',
-      moverColor: 'b',
+      viewer: 'b',
     });
 
   it('names a piece in full the first time and "it" straight after', () => {
@@ -270,6 +276,10 @@ const SAMPLE: Record<Proposition['kind'], Proposition['args']> = {
   quiet_loss: { epLoss: 0.05, bestMove: 'Be6' },
   define: { term: 'fork' },
   lesson: { concept: 'check_landing_square' },
+  refutation: { line: ['Nc5'], moveNumber: 19 },
+  better_line: { move: 'Be6', line: ['Be6'], moveNumber: 18 },
+  clock: { kind: 'fast', spent: 3800, left: 470000, leftBefore: 473800, loss: true },
+  game_over: { kind: 'timeout' },
 };
 
 describe('every proposition kind', () => {

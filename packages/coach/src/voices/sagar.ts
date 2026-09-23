@@ -151,28 +151,28 @@ const PRAISE_LEADS = new Set<SituationKind>([
 const HEADLINES: Partial<Record<SituationKind, string[]>> = {
   walked_into_fork: [
     'One square, two of your pieces.',
-    'What is this position about? One square.',
-    'Notice the square, not only the move.',
+    'What was this position about? One square.',
+    'The square mattered, not only the move.',
   ],
   walked_into_pin: [
-    'A piece that cannot move any more.',
-    'What is happening here? A line, and a pin.',
-    'Look at the line behind this piece.',
+    'A piece that could not move any more.',
+    'What happened here? A line, and a pin.',
+    'The line behind this piece decided it.',
   ],
   walked_into_skewer: [
     'Two pieces on one line, friends.',
-    'What is happening here? The line behind the piece.',
+    'What happened here? The line behind the piece.',
     'One line, two pieces, one attacker.',
   ],
   hung_piece: [
-    'A piece is left without a defender.',
-    'What is happening here? A piece has no guard.',
-    'Notice the piece nobody is protecting.',
+    'A piece was left without a defender.',
+    'What happened here? A piece had no guard.',
+    'Notice the piece nobody was protecting.',
   ],
   under_defended: [
     'More attackers than defenders here.',
-    'What is happening here? The count does not hold.',
-    'One defender fewer than needed.',
+    'What happened here? The count did not hold.',
+    'One defender fewer than was needed.',
   ],
   missed_capture: [
     'There was something to take here.',
@@ -185,9 +185,9 @@ const HEADLINES: Partial<Record<SituationKind, string[]>> = {
     'A forced mate was on the board.',
   ],
   allowed_mate: [
-    'The king comes first here.',
-    'What is this position about? The king.',
-    'Notice the king before anything else.',
+    'The king came first here.',
+    'What was this position about? The king.',
+    'The king mattered before anything else.',
   ],
   ignored_threat: [
     'Your opponent asked a question first.',
@@ -196,23 +196,23 @@ const HEADLINES: Partial<Record<SituationKind, string[]>> = {
   ],
   trapped_piece: [
     'A piece with nowhere to go.',
-    'What is happening here? A piece is short of squares.',
-    'Notice how few squares this piece has.',
+    'What happened here? A piece ran short of squares.',
+    'Notice how few squares this piece had.',
   ],
   traded_behind: [
     'A trade while behind in material.',
-    'What does this trade do for you?',
+    'What did this trade do for you?',
     'Fewer pieces, and the same deficit.',
   ],
   unsound_sacrifice: [
-    'A brave idea that does not quite work.',
-    'What does the sacrifice bring back?',
+    'A brave idea that did not quite work.',
+    'What did the sacrifice bring back?',
     'An interesting sacrifice, friends.',
   ],
   sound_sacrifice: [
     'A beautiful sacrifice!',
     'Look at this idea, friends!',
-    'What a sacrifice this is.',
+    'What a sacrifice this was.',
   ],
   created_fork: [
     'One move, two targets. Very nice!',
@@ -232,12 +232,12 @@ const HEADLINES: Partial<Record<SituationKind, string[]>> = {
   mate_delivered: [
     'Checkmate, friends. Beautiful!',
     'Look at this finish!',
-    'The game ends with a mate.',
+    'The game ended with a mate.',
   ],
   best: [
     'Very nice. Exactly the right idea.',
     'Look at this, friends: the best move.',
-    'This is the move strong players find.',
+    'This was the move strong players find.',
   ],
   good: [
     'A good, healthy move.',
@@ -246,13 +246,13 @@ const HEADLINES: Partial<Record<SituationKind, string[]>> = {
   ],
   book: [
     'Still in known territory.',
-    'This is theory so far, friends.',
+    'This was still theory, friends.',
     'A book position, still.',
   ],
   left_book: [
     'On your own from here, friends.',
-    'Here the theory ends and chess begins.',
-    'The book closes here.',
+    'Here the theory ended and chess began.',
+    'The book closed here.',
   ],
   quiet_loss: [
     'A quiet move, and a quiet cost.',
@@ -260,39 +260,39 @@ const HEADLINES: Partial<Record<SituationKind, string[]>> = {
     'Nothing dramatic, but not the best.',
   ],
   back_rank: [
-    'The back rank is the theme here.',
-    'What is this position about? The king has no air.',
+    'The back rank was the theme here.',
+    'What was this position about? The king had no air.',
     'Notice the king and its back rank.',
   ],
   passed_pawn: [
-    'A passed pawn is the story here.',
-    'What is this position about? The passer.',
+    'A passed pawn was the story here.',
+    'What was this position about? The passer.',
     'Look at this pawn, friends.',
   ],
   promotion: [
-    'A pawn becomes a queen.',
+    'A pawn became a queen.',
     'Look at this pawn, friends!',
-    'The passer arrives.',
+    'The passer arrived.',
   ],
   king_exposed: [
-    'The king is out in the open.',
-    'What is this position about? King safety.',
+    'The king was out in the open.',
+    'What was this position about? King safety.',
     'Notice the king and its shield.',
   ],
   overloaded: [
     'One piece with two jobs.',
-    'What is happening here? A defender is overloaded.',
+    'What happened here? A defender was overloaded.',
     'Notice the piece doing two things.',
   ],
   zugzwang: [
-    'Every move makes it worse.',
-    'What is this position about? Having to move.',
-    'A position where passing would help.',
+    'Every move made it worse.',
+    'What was this position about? Having to move.',
+    'A position where passing would have helped.',
   ],
   fortress: [
-    'A fortress holds here.',
-    'What is this position about? A wall that holds.',
-    'Nothing gets in, friends.',
+    'A fortress held here.',
+    'What was this position about? A wall that held.',
+    'Nothing got in, friends.',
   ],
 };
 
@@ -400,7 +400,7 @@ const verdict: Frame = (p, ctx) => {
   if (authored) return authored;
   const played = move ? ctx.move(move) : 'this move';
   return [
-    `What is this position about after ${played}?`,
+    `What was this position about after ${played}?`,
     `Let’s understand ${played} properly, friends.`,
     `A moment worth a closer look: ${played}.`,
   ];
@@ -412,25 +412,25 @@ const hangs: Frame = (p, ctx) => {
   const defenders = piecesArg(p.args, 'defenders', 'defender');
   if (!target) {
     return [
-      'A piece is left where it can be taken for nothing.',
-      'What is happening here? A piece is attacked and nobody is guarding it.',
-      'Notice the piece with no defender.',
+      'A piece was left where it could be taken for nothing.',
+      'What happened here? A piece was attacked and nobody was guarding it.',
+      'Notice the piece that had no defender.',
     ];
   }
   const t = ctx.refer(target);
-  const guard = defenders.length > 0 ? 'the defence does not hold' : 'nothing defends it';
+  const guard = defenders.length > 0 ? 'the defence did not hold' : 'nothing defended it';
   if (attackers.length === 0) {
     return [
-      `${capitalise(t)} is left where it can be taken, and ${guard}.`,
-      `Notice ${t}: it is attacked, and ${guard}.`,
-      `What is happening to ${t}? It is under attack, and ${guard}.`,
+      `${capitalise(t)} was left where it could be taken, and ${guard}.`,
+      `Notice ${t}: it was attacked, and ${guard}.`,
+      `What happened to ${t}? It was under attack, and ${guard}.`,
     ];
   }
   const a = piecesOf(attackers, ctx);
   return [
-    `${capitalise(t)} is left where ${a} can take it, and ${guard}.`,
-    `Notice ${t}: ${a} attacks it, and ${guard}.`,
-    `What is happening to ${t}? It is attacked by ${a}, and ${guard}.`,
+    `${capitalise(t)} was left where ${a} could take it, and ${guard}.`,
+    `Notice ${t}: ${a} attacked it, and ${guard}.`,
+    `What happened to ${t}? It was attacked by ${a}, and ${guard}.`,
   ];
 };
 
@@ -439,18 +439,18 @@ const forked: Frame = (p, ctx) => {
   const targets = piecesArg(p.args, 'targets', 'target');
   if (!by || targets.length === 0) {
     return [
-      'One piece attacks two of yours at the same time, so only one can be saved.',
-      'What is happening here? Two of your pieces are attacked at once.',
-      'Look at this: a single move hits two pieces together.',
+      'One piece attacked two of yours at the same time, so only one could be saved.',
+      'What happened here? Two of your pieces were attacked at once.',
+      'Look at this: a single move hit two pieces together.',
     ];
   }
   const b = ctx.refer(by);
   const squares = squaresOf(targets, ctx);
-  const one = targets.length === 2 ? 'only one of the two can be saved' : 'only one of them can be saved';
+  const one = targets.length === 2 ? 'only one of the two could be saved' : 'only one of them could be saved';
   return [
-    `${capitalise(b)} attacks ${squares} at the same time, so ${one}.`,
-    `Look at this: ${b} hits ${squares} at once, and you can only move one piece.`,
-    `What is happening here? ${capitalise(b)} is attacking ${piecesOf(targets, ctx)} together, and one of them must fall.`,
+    `${capitalise(b)} attacked ${squares} at the same time, so ${one}.`,
+    `Look at this: ${b} hit ${squares} at once, and you could only move one piece.`,
+    `What happened here? ${capitalise(b)} was attacking ${piecesOf(targets, ctx)} together, and one of them had to fall.`,
   ];
 };
 
@@ -460,7 +460,7 @@ const swing: Frame = (p) => {
   if (before === undefined || after === undefined) {
     return [
       'This one move changed the assessment of the whole game.',
-      'What did this move do to the position? It changed what the game is about.',
+      'What did this move do to the position? It changed what the game was about.',
       'Notice how much the position changed on a single move.',
     ];
   }
@@ -468,14 +468,14 @@ const swing: Frame = (p) => {
   const b = describeWin(after);
   if (a === b) {
     return [
-      `Your winning chances stayed ${a}, so the position is still what it was.`,
+      `Your winning chances stayed ${a}, so the position was still what it had been.`,
       `What did this move change? Very little: you were ${a} before it and ${a} after it.`,
       `Notice that the assessment did not move: ${a}, before and after.`,
     ];
   }
   if (after > before) {
     return [
-      `Your winning chances went from ${a} to ${b}. That is what a good move does.`,
+      `Your winning chances went from ${a} to ${b}. That was a good move doing its job.`,
       `What did this move do? It carried you from ${a} to ${b}.`,
       `Notice the change, friends: from ${a} to ${b}, on one move.`,
     ];
@@ -491,9 +491,9 @@ const materialDelta: Frame = (p) => {
   const gain = numArg(p.args, 'gain', 'materialGain', 'delta', 'units', 'value') ?? 0;
   const m = describeMaterial(gain);
   return [
-    `In material terms, the difference is ${m}.`,
-    `What does it come to? ${capitalise(m)}, on one move.`,
-    `That is ${m}, friends, and a piece is a lot of chess.`,
+    `In material terms, the difference was ${m}.`,
+    `What did it come to? ${capitalise(m)}, on one move.`,
+    `That was ${m}, friends, and a piece is a lot of chess.`,
   ];
 };
 
@@ -509,7 +509,7 @@ const bestMove: Frame = (p, ctx) => {
   const m = ctx.move(move);
   return [
     `${m} was the move here.`,
-    `Better was ${m}, friends.`,
+    `${m} was the better move, friends.`,
     `The move to find was ${m}.`,
   ];
 };
@@ -522,24 +522,24 @@ const bestDoes: Frame = (p, ctx) => {
   const mateIn = numArg(p.args, 'mateIn', 'mate');
   const effects: string[] = [];
   if (mateIn !== undefined && mateIn > 0) {
-    effects.push(mateIn === 1 ? 'mates at once' : `mates in ${inWords(mateIn)}`);
+    effects.push(mateIn === 1 ? 'mated at once' : `mated in ${inWords(mateIn)}`);
   }
-  if (captures) effects.push(`takes ${ctx.refer(captures)}`);
-  if (forks.length > 1) effects.push(`attacks ${squaresOf(forks, ctx)} at the same time`);
-  if (check) effects.push('comes with check');
+  if (captures) effects.push(`taken ${ctx.refer(captures)}`);
+  if (forks.length > 1) effects.push(`attacked ${squaresOf(forks, ctx)} at the same time`);
+  if (check) effects.push('come with check');
   const m = move ? ctx.move(move) : 'the better move';
   if (effects.length === 0) {
     return [
-      `The idea is that ${m} keeps everything protected.`,
-      `Why ${m}? Because it holds the position together.`,
-      `You see, ${m} keeps your pieces safe and your plan alive.`,
+      `The idea was that ${m} would have kept everything protected.`,
+      `Why ${m}? Because it would have held the position together.`,
+      `You see, ${m} would have kept your pieces safe and your plan alive.`,
     ];
   }
   const does = joinList(effects);
   return [
-    `The idea is that ${m} ${does}.`,
-    `Why ${m}? Because it ${does}.`,
-    `You see, ${m} ${does}, and that is what makes it the move.`,
+    `The idea was that ${m} would have ${does}.`,
+    `Why ${m}? Because it would have ${does}.`,
+    `You see, ${m} would have ${does}, and that is what made it the move.`,
   ];
 };
 
@@ -564,13 +564,13 @@ const lesson: Frame = (p) => {
 
 function reaction(epLoss: number, lead: SituationKind): string {
   if (PRAISE_LEADS.has(lead)) {
-    if (lead === 'sound_sacrifice' || lead === 'mate_delivered') return 'Oh, this is beautiful!';
+    if (lead === 'sound_sacrifice' || lead === 'mate_delivered') return 'Oh, this was beautiful!';
     if (lead === 'created_fork' || lead === 'created_discovered' || lead === 'only_move') {
       return 'Very nice.';
     }
     return '';
   }
-  if (epLoss >= 0.2) return 'Ah. Okay, this is an important moment, so let’s understand it properly.';
+  if (epLoss >= 0.2) return 'Ah. Okay, this was an important moment, so let’s understand it properly.';
   if (epLoss >= 0.08) return 'Not the best, but I can see what you were thinking here.';
   if (epLoss >= 0.045) return 'A small slip, and an interesting one.';
   return '';
@@ -589,7 +589,7 @@ const CLOSERS: Partial<Record<SituationKind, string>> = {
   ignored_threat: 'Next game, read the opponent’s last move before you play your own.',
   back_rank: 'Next game, give your king a breathing square early.',
   traded_behind: 'Next game, when behind, keep the pieces on and keep fighting.',
-  left_book: 'From here it is your chess, friends, and that is the interesting part.',
+  left_book: 'From here it was your chess, friends, and that was the interesting part.',
 };
 
 function closer(lead: SituationKind): string {
@@ -654,19 +654,19 @@ const EVENT_EXTRAS: Record<Trigger, string[]> = {
     'Let’s go through the game move by move, friends, and see what was happening.',
   ],
   brilliant: [
-    'Look at this, friends! This is the kind of move that makes you love the game.',
+    'Look at this, friends! This was the kind of move that makes you love the game.',
     'Fantastic. You have to see the idea behind this one.',
   ],
   great: [
-    'Look at this. That is the move strong players find.',
-    'Very nice, friends. This is the right idea, played at the right moment.',
+    'Look at this. That was the move strong players find.',
+    'Very nice, friends. This was the right idea, played at the right moment.',
   ],
   blunder: [
     'Okay. Something interesting happened here, so let’s slow down and see it.',
-    'This is an important moment, friends. Let’s understand what the position wanted.',
+    'This was an important moment, friends. Let’s understand what the position wanted.',
   ],
   mistake: [
-    'Not quite the best, but the idea behind it is a natural one.',
+    'Not quite the best, but the idea behind it was a natural one.',
     'I can see the thought here, friends. There was something better.',
   ],
   miss: [
@@ -674,8 +674,8 @@ const EVENT_EXTRAS: Record<Trigger, string[]> = {
     'Look at this position once more. Something special was waiting.',
   ],
   bookExit: [
-    'The theory ends here, friends, and now it is your chess.',
-    'From this move on you are thinking for yourself, which is the point.',
+    'The theory ended here, friends, and from then on it was your chess.',
+    'From this move on you were thinking for yourself, which is the point.',
   ],
   comeback: [
     'You see what fighting does? The position came back to you.',
@@ -686,7 +686,7 @@ const EVENT_EXTRAS: Record<Trigger, string[]> = {
     'This is the hard part of chess: holding a win. Let’s see where it went.',
   ],
   highAccuracy: [
-    'Friends, this is a well-played game. There is a lot of good chess in it.',
+    'Friends, this was a well-played game. There was a lot of good chess in it.',
     'Very nice. You played this one with real care.',
   ],
   lowAccuracy: [
@@ -694,12 +694,12 @@ const EVENT_EXTRAS: Record<Trigger, string[]> = {
     'There was a lot going on here. Every one of those moments is a lesson.',
   ],
   longGame: [
-    'A long fight, friends. Staying sharp this long is its own skill.',
-    'Games this long ask a lot of you. Well fought.',
+    'A long fight, friends. Staying sharp that long is its own skill.',
+    'A game this long asked a lot of you. Well fought.',
   ],
   reviewEnd: [
-    'That is the game, friends. Keep one pattern from it and practise it.',
-    'And that is where it ends. Take one idea with you into the next game.',
+    'That was the game, friends. Keep one pattern from it and practise it.',
+    'And that was where it ended. Take one idea with you into the next game.',
   ],
   random: [
     'You see, every position has something to notice.',

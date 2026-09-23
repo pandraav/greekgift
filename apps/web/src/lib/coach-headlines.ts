@@ -12,18 +12,23 @@ import { and, eq, or, sql } from 'drizzle-orm';
  *
  * `db` is explicit so this runs on the in-memory PGlite the tests use, the
  * same convention as `library.ts`.
+ *
+ * Each entry names the reader's side for that game ('w' / 'b', or 'n'), and
+ * only notes written from the given review are read: legacy rows, whose
+ * perspective and review key are empty, never match.
  */
 
 export async function getCoachHeadlines(
   db: Db,
-  entries: { gameId: string; ply: number }[],
+  entries: { gameId: string; ply: number; perspective: 'w' | 'b' | 'n' }[],
   personaId: string,
   audience: Audience,
+  reviewKey: string,
 ): Promise<Record<string, string>> {
   if (entries.length === 0) return {};
 
   const found: Record<string, string> = {};
-  // Two bind parameters per entry, so the pair list is chunked rather than
+  // Three bind parameters per entry, so the list is chunked rather than
   // handed two hundred rows at once.
   const CHUNK = 200;
   for (let i = 0; i < entries.length; i += CHUNK) {
@@ -38,9 +43,14 @@ export async function getCoachHeadlines(
         and(
           eq(schema.coachTexts.personaId, personaId),
           eq(schema.coachTexts.audience, audience),
+          eq(schema.coachTexts.reviewKey, reviewKey),
           or(
             ...pairs.map((e) =>
-              and(eq(schema.coachTexts.gameId, e.gameId), eq(schema.coachTexts.ply, e.ply)),
+              and(
+                eq(schema.coachTexts.gameId, e.gameId),
+                eq(schema.coachTexts.ply, e.ply),
+                eq(schema.coachTexts.perspective, e.perspective),
+              ),
             ),
           ),
         ),

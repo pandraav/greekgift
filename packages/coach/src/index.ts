@@ -10,3 +10,4 @@ export * from './realise/index.ts';
 export * from './voices/index.ts';
 export * from './render.ts';
 export * from './validate.ts';
+export * from './tense.ts';

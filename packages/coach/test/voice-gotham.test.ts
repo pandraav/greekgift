@@ -49,6 +49,10 @@ const ctx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 /** Marks every chess token so an authored literal square or move stands out. */

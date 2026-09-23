@@ -141,17 +141,17 @@ const events: Record<Trigger, string[]> = {
   reviewStart: [
     "Okay chat, let's see how bad this is.",
     'Okay. Deep breath. Chat, be nice about this one.',
-    "Right, let's look. If it's bad, that's on chat, not me.",
+    "Right, let's look. If it was bad, that's on chat, not me.",
   ],
   brilliant: [
     'WAIT. You found that? Bro. Okay, respect.',
     'Hold on. Chat, did you see that? Bro. Respect.',
-    "Okay who is this? That's genuinely insane. Clip that.",
+    "Okay who was that? That was genuinely insane. Clip that.",
   ],
   great: [
-    "Oh that's actually good. Look at you.",
-    "Wait, that's good? That's good. Okay, look at you.",
-    "Honestly, that's better than what I would've done. Nice.",
+    "Oh that was actually good. Look at you.",
+    "Wait, that was good? That was good. Okay, look at you.",
+    "Honestly, that was better than what I would've done. Nice.",
   ],
   blunder: [
     'Oh God, oh God, oh God, oh God. Okay. Let me think.',
@@ -161,7 +161,7 @@ const events: Record<Trigger, string[]> = {
   mistake: [
     "Eh. Not great, but I've done way worse literally today.",
     "Okay, not ideal. Honestly, same though. Let's keep going.",
-    "Yeah, that's a bit rough. Bro, I've done that exact thing. Twice.",
+    "Yeah, that was a bit rough. Bro, I've done that exact thing. Twice.",
   ],
   miss: [
     "Bro, it was right there. I'm not even mad, I'm just — it was right there.",
@@ -169,24 +169,24 @@ const events: Record<Trigger, string[]> = {
     "Dude. It was right there. Okay, never mind, forget it, I didn't see it either.",
   ],
   bookExit: [
-    "Okay we're out of book, which honestly is where I live anyway.",
-    "Aaand we're out of book. Welcome to my whole life, chat.",
-    "That's the end of the theory. Now it's just vibes. I love vibes.",
+    "Okay we were out of book, which honestly is where I live anyway.",
+    "Aaand we were out of book. Welcome to my whole life, chat.",
+    "That was the end of the theory. After that it was just vibes. I love vibes.",
   ],
   comeback: [
-    "Wait, we're back?? Chat, we're back.",
-    "Hold on, hold on. Are we okay? We're okay. WE'RE BACK.",
-    'No way. No way. Okay chat, we are so back.',
+    "Wait, we came back?? Chat, we came back.",
+    "Hold on, hold on. Were we okay? We were okay. WE CAME BACK.",
+    'No way. No way. Okay chat, we were so back.',
   ],
   collapse: [
-    "No. NO. Okay that's — yeah. That's the Botez Gambit and I didn't even do it.",
-    "Okay so we're throwing. That's fine. That's — no, it's not fine. Okay.",
-    "This is tilted. Genuinely. Chat, don't clip this.",
+    "No. NO. Okay that was — yeah. That was the Botez Gambit and I didn't even do it.",
+    "Okay so we threw. That was fine. That was — no, it wasn't fine. Okay.",
+    "That was tilted. Genuinely. Chat, don't clip this.",
   ],
   highAccuracy: [
-    "Honestly? That's better than most of my games. Genuinely.",
-    "Okay, that's clean. Like, annoyingly clean. Respect.",
-    "Bro. That's better than I play. Never mind, I didn't say that.",
+    "Honestly? That was better than most of my games. Genuinely.",
+    "Okay, that was clean. Like, annoyingly clean. Respect.",
+    "Bro. That was better than I play. Never mind, I didn't say that.",
   ],
   lowAccuracy: [
     'Okay so that was rough. Same. Every single game, same.',
@@ -194,9 +194,9 @@ const events: Record<Trigger, string[]> = {
     "Rough. But like, relatable rough. Chat, don't look at me like that.",
   ],
   longGame: [
-    'BRO, WHEN IS THIS GOING TO END?',
-    'Is this still going? Chat, is this still going?',
-    "Okay, I've aged. We have all aged. Somebody flag, please.",
+    'BRO, WHEN WAS THIS GOING TO END?',
+    'Was this still going? Chat, was this still going?',
+    "Okay, I aged. We all aged. Somebody should have flagged.",
   ],
   reviewEnd: [
     "All right, that's a wrap. GO AGANE.",
@@ -205,7 +205,7 @@ const events: Record<Trigger, string[]> = {
   ],
   random: [
     "That was chat's fault.",
-    'I was late, okay. That is why.',
+    'I was late, okay. That was why.',
     "Never mind, forget it, I didn't say that.",
   ],
 };
@@ -277,7 +277,7 @@ const verdict: Frame = (p, ctx) => {
   const played = san ? ctx.move(san) : 'that';
 
   if (cls === 'blunder') {
-    const out = [`Okay wait, ${played}? Chat, what?`, `Oh no. Did we just play ${played}?`, `${played}? Bro. Why?`];
+    const out = [`Okay wait, ${played}? Chat, what was that?`, `Oh no. Did we really play ${played}?`, `${played}? Bro. Why?`];
     if (sq) out.unshift(`Okay wait, ${ctx.square(sq)} was open?`);
     return out;
   }
@@ -285,18 +285,18 @@ const verdict: Frame = (p, ctx) => {
     return [`Wait, ${played}? It was right there.`, `${played}? Chat, it was right there.`, `Bro. ${played}? Really?`];
   }
   if (LOSS_CLASSES.has(cls)) {
-    return [`Eh. ${played}? Okay.`, `${played}, hm. Chat, are we okay?`, `Is ${played} fine? It doesn't feel fine.`];
+    return [`Eh. ${played}? Okay.`, `${played}, hm. Chat, were we okay?`, `Was ${played} fine? It didn't feel fine.`];
   }
   if (cls === 'brilliant') {
-    return [`WAIT. ${played}? Bro.`, `${played}?? Okay, respect.`, `Hold on, ${played}? Who are you?`];
+    return [`WAIT. ${played}? Bro.`, `${played}?? Okay, respect.`, `Hold on, ${played}? Who was that?`];
   }
   if (cls === 'great') {
-    return [`Oh, ${played} is actually good.`, `${played}? Look at you.`, `Wait, ${played}? That's good, chat.`];
+    return [`Oh, ${played} was actually good.`, `${played}? Look at you.`, `Wait, ${played}? That was good, chat.`];
   }
   if (cls === 'book') {
-    return [`${played}, still book. Okay.`, `${played}. Yeah, that's theory.`, `Okay, ${played}, we know this one.`];
+    return [`${played}, still book. Okay.`, `${played}. Yeah, that was theory.`, `Okay, ${played}, we knew this one.`];
   }
-  return [`${played}, okay. Fine, honestly.`, `${played}. Good. Look at you.`, `Okay, ${played}. Chat, we're fine.`];
+  return [`${played}, okay. Fine, honestly.`, `${played}. Good. Look at you.`, `Okay, ${played}. Chat, we were fine.`];
 };
 
 const hangs: Frame = (p, ctx) => {
@@ -305,10 +305,10 @@ const hangs: Frame = (p, ctx) => {
   const who = target ? ctx.refer(target) : 'that piece';
   const by = attackers.length > 0 ? ctx.refer(attackers[0]!) : 'they';
   return [
-    `Chat, is ${who} defended? No? Oh no.`,
-    `${who} is just hanging. ${by} takes it for free. Dude.`,
-    `Bro, ${who} is literally free right now.`,
-    `Wait, who's covering ${who}? Nobody? Okay.`,
+    `Chat, was ${who} defended? No? Oh no.`,
+    `${who} was just hanging. ${by} took it for free. Dude.`,
+    `Bro, ${who} was literally free right there.`,
+    `Wait, who was covering ${who}? Nobody? Okay.`,
   ];
 };
 
@@ -318,9 +318,9 @@ const forked: Frame = (p, ctx) => {
   const forker = by ? ctx.refer(by) : 'their piece';
   const hit = list(targets, ctx);
   return [
-    `${forker} hits ${hit} at once.`,
-    `Oh no. ${forker} is hitting ${hit}. Both. Chat, why?`,
-    `Bro, ${forker} forks ${hit}. I have been there.`,
+    `${forker} hit ${hit} at once.`,
+    `Oh no. ${forker} was hitting ${hit}. Both. Chat, why?`,
+    `Bro, ${forker} forked ${hit}. I have been there.`,
   ];
 };
 
@@ -329,7 +329,7 @@ const missedCapture: Frame = (p, ctx) => {
   const who = target ? ctx.refer(target) : 'that piece';
   return [
     `Bro, ${who} was just free. It was right there.`,
-    `Chat, did we not see ${who}? It was literally free.`,
+    `Chat, did we really not see ${who}? It was literally free.`,
     `${who} was hanging and we just walked past it. Same, honestly.`,
   ];
 };
@@ -360,31 +360,31 @@ const swing: Frame = (p, ctx) => {
 
   if (delta <= -20) {
     return [
-      "It was fine, now it's sad. Honestly, we have all done this.",
-      "That's a piece, basically. Same, chat. I do this every single game.",
+      "It was fine, then it got sad. Honestly, we have all done this.",
+      "That was a piece, basically. Same, chat. I do this every single game.",
       "We went from fine to oh no. It's okay. Bro, I do this weekly.",
-      "It was fine and now it's not. That was chat's fault, obviously.",
+      "It was fine and then it wasn't. That was chat's fault, obviously.",
     ];
   }
   if (delta < 0) {
     return [
-      "It was okay and now it's a bit rough. Honestly, I've done way worse.",
-      'Not the end, chat. It just feels worse than it did. Same.',
-      "We're a little sad now. Okay. It happens to me literally daily.",
+      "It was okay and then it got a bit rough. Honestly, I've done way worse.",
+      'Not the end, chat. It just felt worse than before. Same.',
+      "We were a little sad after that. Okay. It happens to me literally daily.",
     ];
   }
   if (delta >= 20) {
     return [
       'We went from okay to actually winning? Chat, clip that.',
-      'Oh, that feels good. That feels really good. Look at you.',
-      "Bro. We're winning now. I didn't think we had it.",
+      'Oh, that felt good. That felt really good. Look at you.',
+      "Bro. We were winning after that. I didn't think we had it.",
     ];
   }
   void ctx;
   return [
-    'Nothing really changed. It just feels a bit better, chat.',
-    "Still fine. Honestly, fine is my favourite. Let's keep it.",
-    "Yeah, that's about where we were. Okay. Chat, we're good.",
+    'Nothing really changed. It just felt a bit better, chat.',
+    "Still fine. Honestly, fine is my favourite. We kept it.",
+    "Yeah, that was about where we were. Okay. Chat, we were good.",
   ];
 };
 
@@ -394,9 +394,9 @@ const bestMove: Frame = (p, ctx) => {
   const best = ctx.move(san);
   return [
     `${best}, chat. It was right there.`,
-    `Honestly, ${best} and we're fine.`,
+    `Honestly, ${best} and we would have been fine.`,
     `${best}, bro. I didn't see it either.`,
-    `${best}. That's the one. Okay.`,
+    `${best}. That was the one. Okay.`,
   ];
 };
 
@@ -409,7 +409,7 @@ const DEFINITIONS: Record<string, string> = {
   zugzwang: 'This is the one where every single move you have makes it worse, and you still have to move',
   fortress: 'A fortress is when you are down material but they literally cannot get in',
   'back rank': 'The back rank thing is a king stuck behind its own pawns with a rook coming to say hi',
-  'passed pawn': 'A passed pawn has no enemy pawns in front of it, so it just keeps walking',
+  'passed pawn': 'A passed pawn is one with no enemy pawns in front of it, so it just keeps walking',
   overloaded: 'An overloaded piece is guarding two things and can only actually do one',
 };
 

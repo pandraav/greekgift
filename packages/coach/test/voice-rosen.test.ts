@@ -81,6 +81,10 @@ const ctx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 const prop = (kind: PropKind, args: Proposition['args'], slot: Slot = 'whatHappened'): Proposition => ({
@@ -235,7 +239,7 @@ describe('rosen grammar', () => {
   });
 
   it('shape splits long sentences at connectives and prefixes one filler at most', () => {
-    const long = 'The knight goes to d7, and suddenly c5 is available, and from there White hits d7 and b7 at the same time.';
+    const long = 'The knight went to d7, and suddenly c5 was available, and from there White hit d7 and b7 at the same time.';
     const shaped = rosen.shape(
       { headline: 'Oh no, Nd7.', whatHappened: long, whyItMatters: 'Wow! Wow! Wow!', betterWas: 'Be6.', lesson: 'x.' },
       ctx,
@@ -243,16 +247,16 @@ describe('rosen grammar', () => {
     for (const s of sentences(shaped.whatHappened)) {
       expect(wordCount(s), JSON.stringify(s)).toBeLessThanOrEqual(12);
     }
-    expect(shaped.whatHappened).toMatch(/^Okay\. The knight goes to d7/);
+    expect(shaped.whatHappened).toMatch(/^Okay\. The knight went to d7/);
     expect(sentences(shaped.whatHappened).length).toBeGreaterThanOrEqual(3);
     expect(shaped.whatHappened).not.toMatch(/\bD7\b|\bC5\b|\bB7\b/);
     expect((Object.values(shaped).join(' ').match(/!/g) ?? []).length).toBe(1);
 
     const already = rosen.shape(
-      { headline: 'h.', whatHappened: 'Oh no. The knight is gone.', whyItMatters: 'w.', betterWas: 'b.', lesson: 'l.' },
+      { headline: 'h.', whatHappened: 'Oh no. The knight was gone.', whyItMatters: 'w.', betterWas: 'b.', lesson: 'l.' },
       ctx,
     );
-    expect(already.whatHappened).toBe('Oh no. The knight is gone.');
+    expect(already.whatHappened).toBe('Oh no. The knight was gone.');
   });
 
   it('renders the shared example (ply 36, Nd7) through its own frames', () => {
@@ -284,7 +288,7 @@ describe('rosen grammar', () => {
     expect(note.headline.length).toBeLessThanOrEqual(60);
     expect(note.headline).toMatch(/^Oh no/);
     expect(note.betterWas).toContain('Be6');
-    expect(note.betterWas).toMatch(/Let's/);
+    expect(note.betterWas).toMatch(/\b(would|should|I'd) have\b/);
     expect(note.whatHappened).toMatch(/^Oh no\./);
     expect(wordCount(Object.values(note).join(' '))).toBeLessThanOrEqual(persona.budgets.words);
     expect((Object.values(note).join(' ').match(/!/g) ?? []).length).toBeLessThanOrEqual(persona.budgets.exclamations);

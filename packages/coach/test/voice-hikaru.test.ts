@@ -49,6 +49,10 @@ const ctx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 /** Marks every chess token so an authored literal square or move stands out. */
@@ -194,6 +198,9 @@ const VERDICT_WORDS = new Set([
   'walks', 'ignores', 'traps', 'trades', 'fork', 'pin', 'skewer', 'threat', 'okay', 'simple', 'theory',
   'only', 'fortress', 'zugzwang', 'sac', 'works', 'not', 'open', 'weak', 'under-defended', 'passed',
   'promotes', 'free', 'defender', 'discovered', 'more', 'leaves', 'still', 'it', 'yeah',
+  // The game is over: the same verdicts in the past tense (design §13.3).
+  'lost', 'missed', 'hung', 'dropped', 'walked', 'ignored', 'trapped', 'traded', 'worked', 'was',
+  'promoted', 'left', 'wasn\'t',
 ]);
 
 const firstWords = (text: string, n: number): string[] =>
@@ -213,7 +220,7 @@ describe('hikaru grammar: identity and budgets', () => {
     expect(hikaru.banned).toEqual(persona.banned);
     expect(hikaru.prosody.exclamations).toBe(persona.budgets.exclamations);
     expect(persona.budgets.exclamations).toBe(0);
-    expect(persona.budgets.words).toBe(45);
+    expect(persona.budgets.words).toBe(55);
   });
 
   it('applies the voice rules to syntax and prosody', () => {
@@ -333,9 +340,9 @@ describe('hikaru frames', () => {
     }
   });
 
-  it('renders the shared example headline as the spec does', () => {
+  it('renders the shared example headline as the spec does, in the past tense', () => {
     const p = prop('verdict', { classification: 'blunder', move: 'Nd7', lead: 'walked_into_fork' }, 'headline');
-    expect(frameFor('verdict')(p, ctx)[0]).toBe('Drops a piece to a fork.');
+    expect(frameFor('verdict')(p, ctx)[0]).toBe('Dropped a piece to a fork.');
   });
 
   it('builds verdicts on "just"', () => {
@@ -357,11 +364,11 @@ describe('hikaru frames', () => {
       prop('best_does', { move: 'Be6', captures: Nc5, check: false, materialGain: 3 }, 'betterWas'),
       ctx,
     );
-    expect(capture[0]).toContain('takes the knight on c5');
+    expect(capture[0]).toContain('would have taken the knight on c5');
     const mate = frameFor('best_does')(prop('best_does', { move: 'Qh7#', mateIn: 2, check: true }, 'betterWas'), ctx);
-    expect(mate[0]).toContain('mate in two');
+    expect(mate[0]).toContain('would have been mate in two');
     const fork = frameFor('best_does')(prop('best_does', { move: 'Nf5', forks: [Nd7, Bb7] }, 'betterWas'), ctx);
-    expect(fork[0]).toContain('hits the knight on d7 and the bishop on b7');
+    expect(fork[0]).toContain('would have hit the knight on d7 and the bishop on b7');
     for (const v of [...capture, ...mate, ...fork]) expect(v).not.toMatch(/\bis when\b|\bmeans\b/i);
   });
 
@@ -395,8 +402,8 @@ describe('hikaru prosody', () => {
 
 describe('hikaru shape', () => {
   const slots = (over: Partial<Record<Slot, string>>): Record<Slot, string> => ({
-    headline: 'Drops a piece to a fork.',
-    whatHappened: 'The knight lands on c5 and hits d7 and b7. One of them survives.',
+    headline: 'Dropped a piece to a fork.',
+    whatHappened: 'The knight landed on c5 and hit d7 and b7. Only one could survive.',
     whyItMatters: '52 to 18. I mean, it was equal before this.',
     betterWas: "Let's go Be6.",
     lesson: 'c5 was available. Worth a look.',
@@ -437,8 +444,8 @@ describe('hikaru shape', () => {
   it('inserts "just" once per note where a verb allows, and only when absent', () => {
     const out = shapeHikaru(
       slots({
-        headline: 'Drops a piece.',
-        whatHappened: 'The knight on c5 hits two pieces.',
+        headline: 'Dropped a piece.',
+        whatHappened: 'The knight on c5 hit two pieces.',
         whyItMatters: '52 to 18. It was equal before this.',
         lesson: 'That square was available.',
       }),
@@ -446,22 +453,34 @@ describe('hikaru shape', () => {
     );
     const all = Object.values(out).join(' ');
     expect(all.match(/\bjust\b/gi)).toHaveLength(1);
-    expect(out.headline).toBe('Drops a piece.');
-    expect(out.whatHappened).toBe('The knight on c5 just hits two pieces.');
+    expect(out.headline).toBe('Dropped a piece.');
+    expect(out.whatHappened).toBe('The knight on c5 just hit two pieces.');
 
     // The headline takes it only when nothing earlier has a verb to carry it.
     const headline = shapeHikaru(
-      slots({ headline: 'Drops a piece.', whatHappened: 'Two pieces.', whyItMatters: '52 to 18.', lesson: 'Count.' }),
+      slots({ headline: 'Dropped a piece.', whatHappened: 'Two pieces.', whyItMatters: '52 to 18.', lesson: 'Count.' }),
       ctx,
     );
-    expect(headline.headline).toBe('Just drops a piece.');
+    expect(headline.headline).toBe('Just dropped a piece.');
     expect(Object.values(headline).join(' ').match(/\bjust\b/gi)).toHaveLength(1);
 
     const after = shapeHikaru(
-      slots({ headline: 'Terrible.', whatHappened: 'The position is lost.', whyItMatters: 'Level before.', lesson: 'Count.' }),
+      slots({ headline: 'Terrible.', whatHappened: 'The position was lost.', whyItMatters: 'Level before.', lesson: 'Count.' }),
       ctx,
     );
-    expect(after.whatHappened).toBe('The position is just lost.');
+    expect(after.whatHappened).toBe('The position was just lost.');
+
+    // "Missed chance" is a noun phrase, not a verb to hang "just" on.
+    const chance = shapeHikaru(
+      slots({ headline: 'Terrible.', whatHappened: 'Missed chance.', whyItMatters: 'Level before.', lesson: 'Count.' }),
+      ctx,
+    );
+    expect(chance.whatHappened).toBe('Missed chance.');
+
+    // A note already at the word budget takes no extra word.
+    const full = slots({ whatHappened: `The knight hit ${'two pieces '.repeat(20).trim()}.` });
+    const shaped = shapeHikaru(full, ctx);
+    expect(Object.values(shaped).join(' ')).not.toMatch(/\bjust\b/i);
 
     const present = slots({ whyItMatters: '52 to 18. It was just equal before this.' });
     expect(shapeHikaru(present, ctx)).toEqual(present);
@@ -478,7 +497,7 @@ describe('hikaru shape', () => {
 describe('hikaru on the shared example', () => {
   it('renders the five slots through its own frames', () => {
     // The planner's budget rule (twelve words a prop) leaves the five
-    // weight-1 props for a forty-five word budget.
+    // weight-1 props for a fifty-five word budget.
     const example: Record<Slot, Proposition[]> = {
       headline: [
         { kind: 'verdict', role: 'reaction', slot: 'headline', weight: 1,
@@ -520,9 +539,9 @@ describe('hikaru on the shared example', () => {
     for (const slot of Object.keys(out) as Slot[]) console.log(`  ${slot}: ${out[slot]}`);
 
     const all = Object.values(out).join(' ');
-    expect(out.headline).toBe('Drops a piece to a fork.');
+    expect(out.headline).toBe('Dropped a piece to a fork.');
     expect(out.whatHappened).toBe(
-      'The knight on c5 just lands, hitting the knight on d7 and the bishop on b7. One of them survives.',
+      'The knight on c5 just landed, hitting the knight on d7 and the bishop on b7. Only one could survive.',
     );
     expect(out.betterWas.toLowerCase()).toContain("let's go be6");
     expect(out.lesson).toBe('c5 was available. Worth a look.');

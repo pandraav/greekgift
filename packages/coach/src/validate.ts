@@ -1,7 +1,10 @@
 import type { CoachText, MoveFacts } from '@greekgift/engine';
+import { formatClock, formatMinutes } from '@greekgift/engine';
 
-import { SLOTS } from './contracts.ts';
+import { SLOTS, type Slot, type Voice } from './contracts.ts';
 import type { Persona } from './personas.ts';
+import { voiceOf } from './plan.ts';
+import { liveNarration } from './tense.ts';
 
 /**
  * The check that makes the coach trustworthy.
@@ -32,7 +35,14 @@ export type Violation =
   | { kind: 'invented_move'; detail: string }
   | { kind: 'identity_claim'; detail: string }
   | { kind: 'empty_slot'; detail: string }
-  | { kind: 'sentence_too_long'; detail: string };
+  | { kind: 'sentence_too_long'; detail: string }
+  | { kind: 'wrong_perspective'; detail: string }
+  | { kind: 'false_capture'; detail: string }
+  | { kind: 'present_tense'; detail: string }
+  | { kind: 'bare_numbers'; detail: string }
+  | { kind: 'fragment'; detail: string }
+  | { kind: 'repeats_label'; detail: string }
+  | { kind: 'invented_time'; detail: string };
 
 export interface ValidationResult {
   ok: boolean;
@@ -137,6 +147,22 @@ export function permittedTokens(facts: MoveFacts): Set<string> {
     }
   }
 
+  // The refutation and the better line are facts (§13.1), and so is every
+  // piece a refutation's tactic names.
+  const r = facts.refutation;
+  if (r) {
+    for (const san of r.line) add(san);
+    add(r.actual);
+    const t = r.tactic;
+    if (t) {
+      for (const v of Object.values(t)) {
+        if (Array.isArray(v)) v.forEach((x) => addRef(x as { square: string }));
+        else if (v && typeof v === 'object' && 'square' in v) addRef(v as { square: string });
+      }
+    }
+  }
+  for (const san of facts.betterLine?.line ?? []) add(san);
+
   // Squares from the best move's own effect are facts too.
   addRef(facts.bestMoveEffect.captures);
   facts.bestMoveEffect.forks?.forEach(addRef);
@@ -165,6 +191,85 @@ export function inventedTokens(text: string, permitted: Set<string>): string[] {
   }
 
   return [...found];
+}
+
+/**
+ * What a note may not say off the mover's side, section 6.7 of the
+ * review-overhaul design. On the opponent's move the reader did not blunder,
+ * and their chances did not fall; for a neutral reader nobody is "you".
+ */
+const WRONG_PERSPECTIVE: Record<Voice, RegExp[]> = {
+  self: [],
+  opponent: [
+    /\byou (blundered|missed|hung|lost|played|found|could have|should have)\b/i,
+    /\byour (winning )?chances (fell|fall|falls|drop|drops|dropped|sank|slipped)\b/i,
+    /\byour (move|mistake|blunder|inaccuracy)\b/i,
+  ],
+  neutral: [/\b(you|your|you're|you’re|yourself)\b/i],
+};
+
+/** The slots the perspective rule covers; the lesson is general advice and may say "you". */
+const PERSPECTIVE_SLOTS: readonly Slot[] = ['headline', 'whatHappened', 'whyItMatters', 'betterWas'];
+
+/** Sentences in a note that address the wrong side, for the facts' perspective. */
+export function wrongPerspective(text: CoachText, facts: MoveFacts): string[] {
+  const rules = WRONG_PERSPECTIVE[voiceOf(facts)];
+  const found: string[] = [];
+  for (const slot of PERSPECTIVE_SLOTS) {
+    for (const sentence of sentencesOf(text[slot] ?? '')) {
+      const hit = rules.find((r) => r.test(sentence));
+      if (hit) found.push(`${slot}: "${sentence}"`);
+    }
+  }
+  return found;
+}
+
+/**
+ * A move whose SAN has no "x" captures nothing, so no sentence may say it
+ * takes something. Guards against a threat, or another move's capture, being
+ * told as a capture the move made.
+ */
+export function falseCaptures(text: CoachText, facts: MoveFacts): string[] {
+  const all = prose(text);
+  const found: string[] = [];
+  for (const san of new Set([facts.san, facts.bestMove])) {
+    const bare = san.replace(/[+#]+$/, '');
+    if (!bare || bare.includes('x')) continue;
+    const said = new RegExp(
+      `(?<![\\w])${escape(bare)}[+#]?\\s+(?:just\\s+|simply\\s+)?(?:takes|captures|grabs|picks up|wins (?:the|a|an)\\b)`,
+      'i',
+    );
+    const m = said.exec(all);
+    if (m) found.push(m[0]);
+  }
+  return found;
+}
+
+/** Time figures a note may say: formatClock / formatMinutes of the clock facts (§14.5). */
+export function permittedTimes(facts: MoveFacts): Set<string> {
+  const out = new Set<string>();
+  const add = (ms: number | undefined) => {
+    if (ms === undefined) return;
+    out.add(formatClock(ms));
+    const m = formatMinutes(ms);
+    if (m) out.add(m);
+  };
+  const c = facts.clock;
+  if (c) [c.spent, c.left, c.leftBefore].forEach(add);
+  const e = facts.ending;
+  if (e) {
+    add(e.finalThink);
+    if (e.clocks) Object.values(e.clocks).forEach(add);
+  }
+  return out;
+}
+
+const TIME_TOKEN = /\b\d+:\d{2}\b|\b\d+ seconds?\b|\b\d+ minutes?\b/g;
+
+/** Time figures in the prose that the facts never gave. */
+export function inventedTimes(text: CoachText, facts: MoveFacts): string[] {
+  const allowed = permittedTimes(facts);
+  return [...new Set(prose(text).match(TIME_TOKEN) ?? [])].filter((t) => !allowed.has(t));
 }
 
 /** Phrases that would have the coach claim to be the real person. */
@@ -247,6 +352,39 @@ export function validate(
   const invented = inventedTokens(all, permittedTokens(facts));
   if (invented.length > 0) {
     violations.push({ kind: 'invented_move', detail: invented.join(', ') });
+  }
+
+  for (const detail of wrongPerspective(text, facts)) {
+    violations.push({ kind: 'wrong_perspective', detail });
+  }
+
+  for (const slot of PERSPECTIVE_SLOTS) {
+    for (const sentence of sentencesOf(text[slot] ?? '')) {
+      const hit = liveNarration(sentence);
+      if (hit) violations.push({ kind: 'present_tense', detail: `${slot}: ${hit.source}: "${sentence}"` });
+    }
+  }
+
+  // Win percentages carry their unit: "44 to 22." says nothing to a reader.
+  for (const slot of SLOTS) {
+    const bare = /\b\d{1,3}%? (?:up |down )?to \d{1,3}\b(?!%| percent)/.exec(text[slot] ?? '');
+    if (bare) violations.push({ kind: 'bare_numbers', detail: `${slot}: "${bare[0]}"` });
+    for (const sentence of sentencesOf(text[slot] ?? '')) {
+      if (/^(?:would|could|should) have\b/i.test(sentence)) {
+        violations.push({ kind: 'fragment', detail: `${slot}: "${sentence}"` });
+      }
+    }
+  }
+  // The card labels the slot "Better was"; the body must not say it again.
+  if (/^better was\b/i.test(text.betterWas.trim())) {
+    violations.push({ kind: 'repeats_label', detail: text.betterWas });
+  }
+
+  const times = inventedTimes(text, facts);
+  if (times.length > 0) violations.push({ kind: 'invented_time', detail: times.join(', ') });
+
+  for (const detail of falseCaptures(text, facts)) {
+    violations.push({ kind: 'false_capture', detail });
   }
 
   for (const pattern of IDENTITY) {

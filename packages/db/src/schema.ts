@@ -348,13 +348,30 @@ export const coachTexts = pgTable(
     })
       .notNull()
       .default('intermediate'),
+    /**
+     * Whose side the note speaks to: 'w' / 'b' for the member's side, 'n'
+     * for a neutral White/Black reader. '' marks a legacy row written in the
+     * old "you are the mover" voice; new code never writes or reads it.
+     */
+    perspective: text('perspective', { enum: ['w', 'b', 'n', ''] })
+      .notNull()
+      .default(''),
+    /**
+     * The review the note was written from, `${nodes}:${engineBuild}`, so a
+     * re-review never serves notes about the old classes. '' = legacy.
+     */
+    reviewKey: text('review_key').notNull().default(''),
     /** The CoachText object. */
     data: jsonb('data').notNull(),
     model: text('model'),
     source: text('source', { enum: ['rules', 'llm', 'template'] }).notNull(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
   },
-  (t) => [primaryKey({ columns: [t.gameId, t.ply, t.personaId, t.audience] })],
+  (t) => [
+    primaryKey({
+      columns: [t.gameId, t.ply, t.personaId, t.audience, t.perspective, t.reviewKey],
+    }),
+  ],
 );
 
 /* ── the library ──────────────────────────────────────────────────────────

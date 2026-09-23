@@ -61,6 +61,10 @@ const fakeCtx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 const N_D7: PieceRef = { piece: 'N', square: 'd7', color: 'b' };
