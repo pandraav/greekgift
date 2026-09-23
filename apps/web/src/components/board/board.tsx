@@ -1,9 +1,11 @@
 'use client';
 
 import { Chess, type Move, type Square } from 'chess.js';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
+import { BOARD_GRID, SQUARE } from './layout';
 import { PIECES, pieceKey } from './pieces';
+import { usePositionState } from './position-state';
 
 /**
  * The board.
@@ -13,7 +15,8 @@ import { PIECES, pieceKey } from './pieces';
  * badge, and the engine's suggestion is drawn over the top — three things a
  * drop-in board would have to be fought about rather than asked for.
  *
- * The position is the caller's; selection, dragging and promotion are ours.
+ * The position is the caller's; selection, dragging and promotion are ours,
+ * and each is dropped the moment the position changes.
  */
 
 const FILES = 'abcdefgh';
@@ -116,9 +119,16 @@ export function Board({
   const ghostRef = useRef<HTMLDivElement>(null);
   const dragFrom = useRef<Square | null>(null);
 
-  const [selected, setSelected] = useState<Square | null>(null);
-  const [dragging, setDragging] = useState<Square | null>(null);
-  const [promotion, setPromotion] = useState<{ from: Square; to: Square } | null>(null);
+  const [selected, setSelected] = usePositionState<Square>(fen);
+  const [dragging, setDragging] = usePositionState<Square>(fen);
+  const [promotion, setPromotion] = usePositionState<{ from: Square; to: Square }>(fen);
+
+  // A drag still in the air when the position changes (an arrow key mid-drag)
+  // belongs to the old position: let go of it rather than drop it on the new.
+  useEffect(() => {
+    dragFrom.current = null;
+    if (ghostRef.current) ghostRef.current.style.display = 'none';
+  }, [fen]);
 
   const position = useMemo(() => new Chess(fen), [fen]);
   const interactive = Boolean(onMove);
@@ -258,7 +268,7 @@ export function Board({
 
       <div
         ref={boardRef}
-        className="relative col-start-2 row-start-1 grid aspect-square w-full touch-none grid-cols-8 rounded-[3px] border-[7px] border-frame select-none [box-shadow:0_0_0_1px_var(--brass-lo),0_3px_0_rgba(0,0,0,.35),0_20px_40px_-16px_rgba(0,0,0,.75)]"
+        className={`${BOARD_GRID} relative col-start-2 row-start-1 aspect-square w-full touch-none rounded-[3px] border-[7px] border-frame select-none [box-shadow:0_0_0_1px_var(--brass-lo),0_3px_0_rgba(0,0,0,.35),0_20px_40px_-16px_rgba(0,0,0,.75)]`}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
@@ -278,7 +288,7 @@ export function Board({
               key={square}
               data-square={square}
               className={[
-                'relative grid place-items-center',
+                SQUARE,
                 light ? 'bg-sq-l' : 'bg-sq-d',
                 piece && interactive ? 'cursor-grab' : '',
               ].join(' ')}
@@ -293,7 +303,7 @@ export function Board({
               {piece ? (
                 <span
                   className={[
-                    'relative z-2 block h-[87%] w-[87%] [&>svg]:h-full [&>svg]:w-full',
+                    'relative z-2 block h-[87%] w-[87%] [&>svg]:block [&>svg]:h-full [&>svg]:w-full',
                     '[filter:drop-shadow(0_2px_1.5px_rgba(30,18,6,.42))]',
                     dragging === square ? 'opacity-25' : '',
                   ].join(' ')}
