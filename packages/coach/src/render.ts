@@ -36,6 +36,8 @@ export function renderCoachText(
  * 5: the clock: fast, long-think and time-trouble errors, and how the game
  *    ended on the last ply (review-overhaul design §14.5).
  * 6: a notable clock is mandatory in every voice.
+ * 7: "The better line was worth …" replaces "There was … of material", which
+ *    read wrongly with plural amounts.
  */
 export const COACH_VERSION = 7;
 
