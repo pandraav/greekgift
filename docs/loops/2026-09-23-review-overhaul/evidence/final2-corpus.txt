@@ -1,0 +1,2 @@
+corpus: 24276 notes, 0 violations, 0 errors, 0 unstable
+report: /Users/euler/Work/projects/greekgift/docs/graphs/2026-09-07-deterministic-coach/corpus-report.md

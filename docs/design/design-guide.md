@@ -22,8 +22,10 @@ Everything else it needs — the pieces, the analysed game it renders — is
 inlined in the file.
 
 Twelve screens: `landing`, `home`, `login`, `request`, `pending`, `admin`,
-`games`, `review`, `share`, `settings`, `credits`, `components`. Navigate with
-the hash router in the harness at the top.
+`games`, `review` (with its `review/report` view), `share`, `settings`,
+`credits`, `components`. Navigate with the hash router in the harness at the
+top; `#/review/report` is the only sub-route, and it opens the review screen
+on its Report view.
 
 `home` is the signed-in front door as redesigned on 2026-09-07: a paste-a-link
 card, one card per linked chess.com account (its last ten games,
@@ -48,13 +50,70 @@ italic "Not read yet." `share` is what a
 member sees when a share link points at a game they do not hold: the header
 only, and one button to ask. The `review` screen carries the Share button and
 the copied-link bar under the header, and its CSS is the `home v2` block near
-the app root. Under the evaluation graph, a flush Engine block
-lists the three stored lines for the shown position with their evals; the first
-line's eval doubles as the numeric readout, and its CSS is the `/* engine
-lines */` block beside the graph's. Best-move arrows are drawn on the
-same board as the verdict badge, for every move where the engine disagreed,
-behind a Show best move toggle. Coloured dots on the graph mark great,
-brilliant, inaccuracy, miss, mistake and blunder.
+the app root. A Report / Moves segmented control sits under the header
+(design spec `docs/superpowers/specs/2026-09-23-review-overhaul-design.md`):
+
+- **Report** (`#/review/report`) is the summary before the moves. On the
+  left: both accuracies (lichess's formula) with a "you" chip on the member's
+  side, the opening with how far book went ("book through 6… c5 · 12
+  plies"), then Start review and Walk the key moments. Below that, accuracy
+  by phase (opening / middlegame / endgame, split by lichess's Divider). On
+  the right: the key moments in move order, each with whose move it was and
+  the member's win% swing, then the class tally. CSS: `/* game report */`.
+- **Moves** (`#/review`) is the board. Under the evaluation graph a flush
+  Engine block shows the readout for the position on the board, then
+  **The move**: the played move with its class and its own score, and
+  under it "Best for White/Black" with the engine's line from the position
+  before (or "…was the engine's choice"). Then **From here**: the three
+  lines for the position on the board. Clicking a line plays it as your
+  line. While you explore, the block runs the engine live ("live · depth
+  N…", three skeleton rows until it has lines). CSS: `/* engine lines */`.
+- The **eval bar** is 22px (18px on a phone) and carries the number, one
+  decimal and no sign, inside the bar at the end of the side that is ahead.
+  The fill hangs from the top when the board is flipped, so White's share
+  always sits on White's side. The board opens from the member's side.
+- **Key moments** (the button in the hint row, or Walk the key moments on
+  the report) steps through every key moment in move order. The hint row
+  becomes a brass "Key moments · 3 of 11" bar with Exit. A card at the top
+  of the aside, with a top rule in the class colour and progress dots,
+  shows the moment. On the member's own error: "12. Ra1 was a blunder.
+  Find a better move for White." The reader drags a move and gets
+  checking → best / better / same / worse, with Try again, Show the answer
+  (both arrows on the position before) and Next moment. On the opponent's
+  error, or a great or brilliant move, it only shows the moment. The coach
+  note is held back until the reader has tried. The card's "states" chips
+  exist only in the prototype, for reviewing each state. CSS:
+  `/* key moments */`.
+
+**Time and termination** (spec §14). The review screen has a prototype game
+switch: **184269442794 · lost on time** (the default) is a real chess.com
+game, KAFKA_F0 vs jakeleupen, 10+0, with its real `%clk` clocks and evals
+from the lite engine at 300k nodes; **London sample** is the older fixture,
+which has no clocks. With clocks:
+
+- the notation shows each move's think time right-aligned in its cell (lacquer
+  in time trouble, underlined brass for a long think) and ends with a
+  "0–1 · White lost on time" row;
+- "The move" in the Engine block adds "· 3.0s · 3:34 left";
+- at the last ply a **game-over card** leads the aside. It has a top rule in
+  lacquer (loss), felt (win) or ink-3 (draw), and gives the title ("You lost
+  on time at move 30."), the verdict sentence ("The position was equal when
+  your clock ran out (+0.02). 30. Ng5 would have held it."), both clocks at
+  the end (the flagged one in lacquer), the eval at the end and the
+  unfinished last think. Then See the report and Walk the key moments;
+- the **report** opens with a Fraunces headline on how the game ended, adds a
+  **Clock** card (both clocks over the moves: White solid ink, Black dashed
+  ink-3, a lacquer time-trouble band under min(30s, 10% of base), and a ✕
+  where the flag fell), and a **Time** card with the findings as sentences
+  (member's first), time used per phase with the median think, and the three
+  longest thinks per side. A game without clocks hides both cards.
+
+CSS: `/* clocks */`, `/* game over */`, `/* time report */`.
+
+Best-move arrows are drawn on the same board as the verdict badge, for every
+move where the engine disagreed, behind a Show best move toggle. Coloured
+dots on the graph mark great, brilliant, inaccuracy, miss, mistake and
+blunder.
 
 Two of them have no route in the app:
 

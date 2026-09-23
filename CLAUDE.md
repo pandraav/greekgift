@@ -41,6 +41,12 @@ references for each item.
 
 ## Ground rules that are easy to trip over
 
+- Stored reviews are keyed by nodes, engine build and `SCORING_VERSION`
+  (`packages/engine/src/version.ts`). Bump the version with any change to
+  classification, book, accuracy, key moments or the report, or already
+  reviewed games keep the old verdicts. Position evals are not versioned, so
+  a bump rebuilds reviews from cache without running the engine.
+
 - The coach is deterministic. No language model anywhere: facts come from the
   engine, prose from `packages/coach`, and the validator proves in tests that
   no note names a move or square outside the facts. Run the corpus after any

@@ -1,0 +1,39 @@
+
+> greekgift@ test /Users/euler/Work/projects/greekgift
+> pnpm -r --parallel test
+
+Scope: 5 of 6 workspace projects
+apps/web test$ vitest run --passWithNoTests
+packages/coach test$ vitest run --passWithNoTests
+packages/db test$ vitest run --passWithNoTests
+packages/engine test$ vitest run --passWithNoTests
+packages/email test$ vitest run --passWithNoTests
+packages/db test:  RUN  v4.1.11 /Users/euler/Work/projects/greekgift/packages/db
+packages/coach test:  RUN  v4.1.11 /Users/euler/Work/projects/greekgift/packages/coach
+packages/email test:  RUN  v4.1.11 /Users/euler/Work/projects/greekgift/packages/email
+packages/db test: No test files found, exiting with code 0
+packages/db test: include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+packages/db test: exclude:  **/node_modules/**, **/.git/**
+packages/db test: Done
+packages/engine test:  RUN  v4.1.11 /Users/euler/Work/projects/greekgift/packages/engine
+apps/web test:  RUN  v4.1.11 /Users/euler/Work/projects/greekgift/apps/web
+packages/email test:  Test Files  1 passed (1)
+packages/email test:       Tests  2 passed (2)
+packages/email test:    Start at  02:01:18
+packages/email test:    Duration  2.31s (transform 247ms, setup 0ms, import 1.68s, tests 184ms, environment 0ms)
+packages/email test: Done
+packages/engine test:  Test Files  27 passed (27)
+packages/engine test:       Tests  481 passed (481)
+packages/engine test:    Start at  02:01:18
+packages/engine test:    Duration  6.71s (transform 5.03s, setup 0ms, import 12.37s, tests 9.20s, environment 8ms)
+packages/engine test: Done
+apps/web test:  Test Files  21 passed (21)
+apps/web test:       Tests  199 passed | 1 skipped (200)
+apps/web test:    Start at  02:01:18
+apps/web test:    Duration  10.89s (transform 8.60s, setup 0ms, import 22.57s, tests 46.33s, environment 2ms)
+apps/web test: Done
+packages/coach test:  Test Files  13 passed (13)
+packages/coach test:       Tests  345 passed (345)
+packages/coach test:    Start at  02:01:18
+packages/coach test:    Duration  27.44s (transform 10.30s, setup 0ms, import 39.15s, tests 9.12s, environment 1ms)
+packages/coach test: Done
