@@ -3,7 +3,7 @@ import { parsePgn } from '@greekgift/engine';
 import { and, asc, eq, gte, inArray, isNull, or } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
-import { ANALYSIS_NODES, ENGINE_BUILD } from '@/lib/engine/settings';
+import { ANALYSIS_NODES, reviewCacheKey } from '@/lib/engine/settings';
 import { guardApproved } from '@/lib/guards';
 import { linkedUsernamesFor } from '@/lib/library';
 import { weekWindow } from '@/lib/week';
@@ -29,7 +29,7 @@ export async function GET() {
       and(
         eq(schema.reviews.gameId, schema.games.id),
         eq(schema.reviews.nodes, ANALYSIS_NODES),
-        eq(schema.reviews.engineBuild, ENGINE_BUILD),
+        eq(schema.reviews.engineBuild, reviewCacheKey().engineBuild),
       ),
     )
     .where(

@@ -118,6 +118,14 @@ function reviewOf(moves: MoveAnalysis[]): Review {
     keyMoments: [],
     white: summary('w'),
     black: summary('b'),
+    ending: {
+      kind: 'unknown',
+      winner: null,
+      onBoard: false,
+      atPly: moves.length,
+      evalAtEnd: { cp: 0 },
+      verdictAtEnd: { w: 'equal', b: 'equal' },
+    },
   };
 }
 
@@ -234,7 +242,7 @@ describe('motifsFor: sacrifices', () => {
       winAfter,
     });
 
-  it('is sound when the win% holds within two points', () => {
+  it('is sound when the move was best or excellent (epLoss < 0.02)', () => {
     const sacrifices = of(motifsFor(capture(55, 54)), 'sacrifice');
     expect(sacrifices).toHaveLength(1);
     expect(sacrifices[0]).toEqual({
@@ -245,11 +253,12 @@ describe('motifsFor: sacrifices', () => {
     });
   });
 
-  it('is exactly sound at a two-point drop', () => {
-    expect(of(motifsFor(capture(55, 53)), 'sacrifice')[0]?.sound).toBe(true);
+  it('is unsound from a two-point drop, the same line as the excellent rung', () => {
+    expect(of(motifsFor(capture(55, 53.1)), 'sacrifice')[0]?.sound).toBe(true);
+    expect(of(motifsFor(capture(55, 53)), 'sacrifice')[0]?.sound).toBe(false);
   });
 
-  it('is unsound when the win% drops by more than two points', () => {
+  it('is unsound when the win% drops further', () => {
     const sacrifices = of(motifsFor(capture(55, 30)), 'sacrifice');
     expect(sacrifices).toHaveLength(1);
     expect(sacrifices[0]).toMatchObject({ netMaterial: -2, sound: false });
@@ -366,16 +375,30 @@ describe('motifsFor: mates', () => {
   it('puts a missed mate before everything else', () => {
     const move = analysis({
       fenBefore: BACK_RANK_MATE,
-      uci: 'g1h1',
+      uci: 'a1a2',
       before: [{ score: { mate: 1 }, pv: ['a1a8'] }],
-      after: [{ score: { mate: 2 }, pv: ['g8h8', 'a1a8'] }],
+      after: [{ score: { cp: 500 }, pv: ['g8f8'] }],
       classification: 'miss',
       winBefore: 100,
-      winAfter: 100,
+      winAfter: 95,
     });
 
     const motifs = motifsFor(move);
     expect(motifs[0]).toEqual({ type: 'missed_mate', line: ['Ra8#'] });
+  });
+
+  it('does not call a longer mate kept a missed one', () => {
+    const move = analysis({
+      fenBefore: BACK_RANK_MATE,
+      uci: 'g1h1',
+      before: [{ score: { mate: 1 }, pv: ['a1a8'] }],
+      after: [{ score: { mate: 2 }, pv: ['g8h8', 'a1a8'] }],
+      classification: 'excellent',
+      winBefore: 100,
+      winAfter: 100,
+    });
+
+    expect(of(motifsFor(move), 'missed_mate')).toEqual([]);
   });
 
   it('puts a mate threat against the mover at the front', () => {
@@ -539,9 +562,10 @@ describe('factsFor', () => {
   it('measures material after both lines from the mover’s side', () => {
     const facts = factsFor(reviewOf([move]), 41);
 
-    // Both lines end with the knight having taken the rook: White is +3.
-    expect(facts.materialAfterBestLine).toBe(3);
-    expect(facts.materialAfterPlayedLine).toBe(3);
+    // Both lines are the same three plies; compared over an even number
+    // (review-overhaul §4.6) they stop after ...Kd7, before Nxa8: White is -2.
+    expect(facts.materialAfterBestLine).toBe(-2);
+    expect(facts.materialAfterPlayedLine).toBe(-2);
     expect(facts.bestMoveEffect).toMatchObject({
       check: true,
       materialGain: 0,

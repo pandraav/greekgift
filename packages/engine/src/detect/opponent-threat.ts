@@ -105,8 +105,11 @@ export function opponentThreat(
     return null;
   }
 
-  const by = pieceRef(after, to);
-  if (!by) return null;
+  // The threat is a move not yet played, so the piece carrying it is named
+  // where it stands now — its origin square. Naming it on the landing square
+  // made a capture read "the knight on e5 taking the knight on e5".
+  if (!pieceRef(after, to)) return null;
+  const by = moved;
 
   const replier: Color = by.color;
   const victimSide = OTHER(replier);

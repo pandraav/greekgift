@@ -2,6 +2,7 @@ import { schema, type Db } from '@greekgift/db';
 import type { KeyMoment } from '@greekgift/engine';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 
+import { reviewCacheKey } from '@/lib/engine/settings';
 import type { CacheKey } from '@/lib/review-store';
 import type { SlimMove, SlimReview } from '@/lib/slim-review';
 
@@ -60,7 +61,7 @@ export async function getMoments(
         and(
           inArray(schema.reviews.gameId, gameIds.slice(i, i + CHUNK)),
           eq(schema.reviews.nodes, key.nodes),
-          eq(schema.reviews.engineBuild, key.engineBuild),
+          eq(schema.reviews.engineBuild, reviewCacheKey(key).engineBuild),
         ),
       );
 

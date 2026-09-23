@@ -150,7 +150,10 @@ describe('gameMoment', () => {
   it('uses the top key moment for the side, with the landing square', () => {
     const review = fixture('review-json-game');
     const m = gameMoment(review, 'b');
-    const km = review.keyMoments.find((k) => review.moves[k.ply - 1]!.color === 'b')!;
+    // Key moments are stored in ply order; the turning point is the most severe.
+    const km = [...review.keyMoments]
+      .sort((a, b) => b.severity - a.severity || a.ply - b.ply)
+      .find((k) => review.moves[k.ply - 1]!.color === 'b')!;
     expect(m.ply).toBe(km.ply);
     expect(m.fen).toBe(review.moves[km.ply - 1]!.fenAfter);
     expect(m.square).toBe(review.moves[km.ply - 1]!.uci.slice(2, 4));

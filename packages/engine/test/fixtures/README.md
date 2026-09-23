@@ -46,6 +46,14 @@ Rebuild after changing a fixture game or the `buildReview`/`Review` contract:
 pnpm --filter @greekgift/engine exec tsx scripts/build-fixtures.mjs
 ```
 
+After a change to classification or scoring alone, rebuild the reviews from
+the evals already stored in the fixtures — no engine needed — and take the
+new expected values from the rebuilt files rather than editing them by hand:
+
+```sh
+pnpm --filter @greekgift/engine exec tsx scripts/build-fixtures.mjs --rebuild
+```
+
 The script resolves `stockfish` from `apps/web`'s `node_modules` (it's a
 dependency of `apps/web`, not of `@greekgift/engine`) via
 `createRequire(.../apps/web/package.json)`, and imports this package's own

@@ -9,7 +9,7 @@ import { guardApproved } from '@/lib/guards';
 import { canSeeGame, touchOpened } from '@/lib/library';
 import {
   getCachedEvals,
-  getReview,
+  getOrRebuildReview,
   ReviewInputError,
   saveReview,
 } from '@/lib/review-store';
@@ -86,7 +86,9 @@ export async function GET(
     return Response.json({ error: 'forbidden' }, { status: 403 });
   }
 
-  const review = await getReview(gameId, key);
+  // A review under the current scoring version, rebuilt from cached evals
+  // when only the rules changed — the browser then has nothing to compute.
+  const review = await getOrRebuildReview(game, key);
   if (review) return Response.json({ review, cached: {}, ...key });
 
   const { fens } = parsePgn(game.pgn);

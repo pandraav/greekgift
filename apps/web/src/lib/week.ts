@@ -206,8 +206,11 @@ export function gameMoment(
   if (review.moves.length === 0) {
     return { ply: null, fen: START_FEN, square: null, classification: null };
   }
+  // Key moments are stored in ply order (review-overhaul §9.1), so the
+  // turning point is picked by severity here, earlier first on a tie.
+  const bySeverity = [...review.keyMoments].sort((a, b) => b.severity - a.severity || a.ply - b.ply);
   const moment =
-    review.keyMoments.find((k) => review.moves[k.ply - 1]?.color === side) ?? review.keyMoments[0];
+    bySeverity.find((k) => review.moves[k.ply - 1]?.color === side) ?? bySeverity[0];
   if (!moment) {
     return { ply: null, fen: review.moves.at(-1)!.fenAfter, square: null, classification: null };
   }

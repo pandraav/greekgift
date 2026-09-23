@@ -50,65 +50,79 @@ export function fromMoverView(score: Score, moverIsWhite: boolean): Score {
 /* ── classification ───────────────────────────────────────────────────── */
 
 /**
- * WintrChess's expected-points ladder, in the mover's view.
+ * The expected-points ladder, in the mover's view (review-overhaul design §4.2).
  *
- * The spec writes the first rung as `best < 0.01`, which read literally would
- * label *any* move losing under 1% as best — including one the engine did not
- * pick, which makes `playedBest` do nothing and puts "Best" on moves that were
- * not. chess.com reserves Best for the engine's own choice and calls an
- * equally-good alternative Excellent, which is both more useful and what a
- * player expects. So: finding the engine move earns `best`, and everything
- * else starts at `excellent`.
+ * chess.com does not publish its thresholds. These are the win%-drop rungs
+ * two open-source reviews converged on as their reading of chess.com's
+ * labels — Chesskit (https://github.com/GuillaumeSD/Chesskit, classification
+ * by win% difference 2/5/10/20) and WintrChess
+ * (https://github.com/wintrcat/wintrchess). They are those projects' reading,
+ * not chess.com's own numbers.
+ *
+ * A move below the first rung is `excellent`, never `best`: Best is decided
+ * by the stored engine lines (see `classify`), because equality can only be
+ * proved inside one search.
  */
-const LADDER: [number, Classification][] = [
-  [0.045, 'excellent'],
-  [0.08, 'good'],
-  [0.12, 'inaccuracy'],
-  [0.22, 'mistake'],
-];
+export const LADDER: readonly [number, Classification][] = [
+  [0.02, 'excellent'],
+  [0.05, 'good'],
+  [0.1, 'inaccuracy'],
+  [0.2, 'mistake'],
+]; // epLoss >= 0.20 → 'blunder'
 
-/**
- * The three labels the ladder cannot reach on its own (design §2). Each is a
- * refinement of a rung, never a replacement for the loss behind it: a
- * brilliant move is still a best or excellent one, a miss is still a mistake.
- */
-/** A "great" move: the second engine line loses at least this many expected points. */
-const GREAT_MARGIN = 0.15;
-/** A "miss": the best move won at least this much material, in pawn units. */
-const MISS_MATERIAL = 3;
+/** "Equal eval": a stored line this close to the top one is also Best (§4.3). */
+export const EQUAL_EP = 0.002;
+/** A "great" move: every other stored line loses at least this many expected points. */
+export const GREAT_MARGIN = 0.15;
+/** A "miss": the best line ends at least this much material ahead, in pawn units. */
+export const MISS_MATERIAL = 3;
+/** A brilliant move gives up at least a minor piece. */
+export const BRILLIANT_MIN_VALUE = 3;
+/** The alternative is "already winning" from this many centipawns (§4.7). */
+export const ALREADY_WINNING_CP = 700;
+/** Win% points of slack when a blunder only returns the opponent's gift (§4.6). */
+export const GIFT_SLACK = 5;
+/** How far both lines are followed when weighing material, in plies (§4.6). */
+export const LINE_PLIES = 6;
+
+/** The ladder alone: the class a loss of `epLoss` expected points earns. */
+export function classifyLoss(epLoss: number): Classification {
+  for (const [threshold, name] of LADDER) {
+    if (epLoss < threshold) return name;
+  }
+  return 'blunder';
+}
 
 export interface ClassifyInput {
-  /** Mover's win% before their move. */
+  /** Mover's win%, from `evalBefore.lines[0]`. */
   winBefore: number;
-  /** Mover's win% after it. */
-  winAfter: number;
-  /** Did they play the engine's first choice? */
-  playedBest: boolean;
+  /** Mover's win% of the move actually played (review.ts `playedMoveScore`). */
+  winPlayed: number;
+  /** Where the played move sits among the stored lines, 0-based, or null. */
+  playedIndex: number | null;
   /** Was it the only legal move? */
   forced: boolean;
   /** Still inside the opening book? */
   inBook: boolean;
   /** Did the move deliver mate? */
   isMate?: boolean;
+  /** The piece given up, from motifs.ts `sacrificeFor`; null when nothing was. */
+  sacrifice?: { value: number; netMaterial: number } | null;
+  /** The best alternative line was neither a mate for the mover nor ≥ 700cp. */
+  notAlreadyWinning: boolean;
   /**
-   * A quiet move that left the moved piece to be taken, with the engine's own
-   * line confirming the material goes, and win% holding within two points of
-   * before. Computed by the caller; it needs the board.
-   */
-  sacrificeSound?: boolean;
-  /**
-   * Expected points between the engine's first and second lines, mover's
-   * view, ≥ 0. Undefined when there was no second line.
+   * Expected points between the played move and the best other stored line,
+   * mover's view, floored at 0. Undefined when there was no other line.
    */
   onlyMoveMargin?: number;
-  /**
-   * Pawn units the best move captured, or the material the best line ends up
-   * ahead of the played line by — whichever is larger. 0 when nothing was
-   * missed.
-   */
-  missedMaterial?: number;
-  /** The engine had a forced mate for the mover and this move was not it. */
-  missedMate?: boolean;
+  /** Pawn units the best line ends ahead of the played one, parity-matched. */
+  missedMaterial: number;
+  /** The mover had a forced mate and the played move no longer does. */
+  missedMate: boolean;
+  /** The played move's score is a forced mate for the opponent. */
+  allowsMate: boolean;
+  /** The opponent's previous move erred and this one only gave the gift back. */
+  opponentGaveChance: boolean;
 }
 
 export interface Classified {
@@ -118,118 +132,208 @@ export interface Classified {
   forced: boolean;
 }
 
+/** Design §4.4: first match wins. */
 export function classify(input: ClassifyInput): Classified {
   // Win% only ever *falls* from the mover's point of view when they err. A
   // rise means the engine liked the position more afterwards, which is not a
   // mistake, so the loss floors at zero.
   const epLoss = Math.max(
     0,
-    expectedPoints(input.winBefore) - expectedPoints(input.winAfter),
+    expectedPoints(input.winBefore) - expectedPoints(input.winPlayed),
   );
   const forced = input.forced;
 
   // Checkmate ends the game; it is not theory, not a sacrifice, and not one
-  // of several good moves. It is best, full stop, and the terminal score
-  // (see review.ts) makes sure it costs nothing.
+  // of several good moves.
   if (input.isMate) return { classification: 'best', epLoss, forced };
 
   if (input.inBook) return { classification: 'book', epLoss, forced };
 
-  // A forced move is displayed as best with a flag, not as an eleventh class:
-  // there was nothing to get right — and so nothing to be great about either.
+  // A forced move is displayed as best with a flag: there was nothing to get
+  // right — and so nothing to be great about either.
   if (forced) return { classification: 'best', epLoss, forced: true };
 
-  const base = ladder(input.playedBest, epLoss);
+  // Best: the engine's own first line, or another stored line of the same
+  // search at an equal score. A move outside the lines is never Best.
+  const k = input.playedIndex;
+  const isBest = k === 0 || (k !== null && k >= 1 && epLoss <= EQUAL_EP);
+  const base: Classification = isBest ? 'best' : classifyLoss(epLoss);
+
   return { classification: refine(base, input), epLoss, forced: false };
 }
 
-function ladder(playedBest: boolean, epLoss: number): Classification {
-  if (playedBest) return 'best';
-  for (const [threshold, name] of LADDER) {
-    if (epLoss < threshold) return name;
-  }
-  return 'blunder';
-}
-
-/** Design §2's three reachable outcomes, checked in the order they outrank each other. */
 function refine(base: Classification, input: ClassifyInput): Classification {
-  // Brilliant: a sound sacrifice that was also, on the numbers, best or
-  // excellent. The soundness test lives in the sacrifice itself; here we only
-  // ask whether the move earned the label on the ladder too.
-  if (input.sacrificeSound && (base === 'best' || base === 'excellent')) {
+  // Brilliant: at least a minor piece really given up, the move still best
+  // or excellent, and not a sacrifice made when everything else won anyway.
+  const sac = input.sacrifice;
+  if (
+    sac &&
+    sac.value >= BRILLIANT_MIN_VALUE &&
+    sac.netMaterial <= -2 &&
+    (base === 'best' || base === 'excellent') &&
+    input.notAlreadyWinning
+  ) {
     return 'brilliant';
   }
 
-  // Great: the engine's move, and the alternative was materially worse. The
+  // Great: the engine's move, and every alternative was materially worse. The
   // margin is expected points so that "0.15" means the same thing at +0.5 as
   // it does at +5.
-  if (base === 'best' && (input.onlyMoveMargin ?? 0) >= GREAT_MARGIN) {
-    return 'great';
-  }
+  if (base === 'best' && (input.onlyMoveMargin ?? 0) >= GREAT_MARGIN) return 'great';
 
-  // Miss: a mistake-sized loss with a concrete thing that was not taken — a
-  // mate, or three pawns' worth of material. A blunder stays a blunder: the
-  // label for throwing the game away is the one it already has.
-  if (base === 'inaccuracy' || base === 'mistake') {
-    if (input.missedMate || (input.missedMaterial ?? 0) >= MISS_MATERIAL) return 'miss';
+  // Missed mate: a forced mate was on the board and the move let it go. A
+  // move that walks into mate itself is a blunder, not a miss.
+  if (input.missedMate && !input.allowsMate) return 'miss';
+
+  // Miss: three pawns of material the best line kept and the played line did
+  // not. At blunder size only when the opponent had just erred and this move
+  // merely gave the gift back; throwing away one's own position stays a
+  // blunder.
+  if (input.missedMaterial >= MISS_MATERIAL) {
+    if (base === 'inaccuracy' || base === 'mistake') return 'miss';
+    if (base === 'blunder' && input.opponentGaveChance) return 'miss';
   }
 
   return base;
 }
 
-/* ── accuracy ─────────────────────────────────────────────────────────── */
+/* ── accuracy: lichess, exactly ───────────────────────────────────────── */
 
 /**
- * lichess's per-move accuracy curve.
- *
- * The `+ 1` is lichess's own: it makes a perfect move score 100 rather than
- * 99.99, which matters only because players notice.
+ * Ported line by line from lichess (review-overhaul design §5):
+ * lila `modules/analyse/src/main/AccuracyPercent.scala`, scalalib
+ * `lila/src/main/scala/Maths.scala`, scalachess `core/src/main/scala/eval.scala`.
+ * The oracle is lila's `AccuracyPercentTest.scala`, ported in scoring.test.ts.
  */
-export function moveAccuracy(winBefore: number, winAfter: number): number {
-  const lost = Math.max(0, winBefore - winAfter);
-  const raw = 103.1668 * Math.exp(-0.04354 * lost) - 3.1669 + 1;
-  return Math.max(0, Math.min(100, raw));
+
+/** scalachess `Cp.CEILING`. */
+const LICHESS_CP_CEILING = 1000;
+/** scalachess `Cp.initial`. */
+export const LICHESS_INITIAL_CP = 15;
+
+/** lichess `forceAsCp`: a mate becomes ±1000, cp is clamped to ±1000. White's view. */
+export function forceCp(score: Score): number {
+  if (score.mate !== undefined) {
+    // Eval.Mate.signum: mate 0 has no sign; treat it as against White, as
+    // winPercent does (terminal positions are stored as ±1 anyway).
+    return score.mate > 0 ? LICHESS_CP_CEILING : -LICHESS_CP_CEILING;
+  }
+  const cp = score.cp ?? 0;
+  return Math.max(-LICHESS_CP_CEILING, Math.min(LICHESS_CP_CEILING, cp));
 }
+
+/** lichess `WinPercent.fromCentiPawns`: no mate case; 1000 cp ≈ 97.5%. */
+export function lichessWinPercent(cp: number): number {
+  const ceiled = Math.max(-LICHESS_CP_CEILING, Math.min(LICHESS_CP_CEILING, cp));
+  const chances = 2 / (1 + Math.exp(-WIN_K * ceiled)) - 1;
+  return 50 + 50 * Math.max(-1, Math.min(1, chances));
+}
+
+/** lichess `AccuracyPercent.fromWinPercents`, on the mover's win% before and after. */
+export function accuracyFromWinPercents(before: number, after: number): number {
+  if (after >= before) return 100;
+  const winDiff = before - after;
+  const raw = 103.1668100711649 * Math.exp(-0.04354415386753951 * winDiff) + -3.166924740191411;
+  return Math.max(0, Math.min(100, raw + 1));
+}
+
+/**
+ * lichess's per-move accuracy curve on the mover's win% (display only).
+ *
+ * The `+ 1` is lichess's own "uncertainty bonus". Game accuracy is not an
+ * average of these: it is lichess's own function of the position evals
+ * (`gameAccuracy`), so the two are not expected to average into each other.
+ */
+export const moveAccuracy = (winBefore: number, winAfter: number): number =>
+  accuracyFromWinPercents(winBefore, winAfter);
 
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
 
-function stdev(xs: number[]): number {
-  if (xs.length < 2) return 0;
+/** scalalib `Maths.standardDeviation`: population variance. */
+function standardDeviation(xs: number[]): number {
   const m = mean(xs);
-  return Math.sqrt(mean(xs.map((x) => (x - m) ** 2)));
+  return Math.sqrt(xs.reduce((a, x) => a + (x - m) ** 2, 0) / xs.length);
 }
 
-function harmonicMean(xs: number[]): number {
-  // Floored so one catastrophe cannot drive the harmonic mean to zero and
-  // swallow an otherwise decent game.
-  return xs.length / xs.reduce((a, x) => a + 1 / Math.max(x, 10), 0);
+/** scalalib `Maths.harmonicMean`. */
+function harmonicMean(xs: number[]): number | null {
+  if (xs.length === 0) return null;
+  return xs.length / xs.reduce((a, v) => a + 1 / Math.max(1, v), 0);
+}
+
+/** scalalib `Maths.weightedMean`. */
+function weightedMean(pairs: [value: number, weight: number][]): number | null {
+  if (pairs.length === 0) return null;
+  let v = 0;
+  let w = 0;
+  for (const [value, weight] of pairs) {
+    v += value * weight;
+    w += weight;
+  }
+  return w !== 0 ? v / w : null;
 }
 
 /**
- * Game accuracy for one player, from their per-move accuracies in order.
+ * lichess `AccuracyPercent.gameAccuracy`: a mean of the volatility-weighted
+ * mean and the harmonic mean of per-move accuracies.
  *
- * lichess's method, and the reason it is not a plain average: a move played in
- * a volatile position deserves more weight than one played in a dead position,
- * so each move is weighted by how much the evaluation was swinging around it.
- * The result is averaged with a harmonic mean, which refuses to let a run of
- * good moves hide a disaster.
+ * `cps`: White-view cp after each ply, in order (null = unknown). When either
+ * colour has no scored move, both are null — lichess returns None for the
+ * whole game (its "single move" test).
  */
-export function gameAccuracy(moveAccuracies: number[]): number {
-  if (moveAccuracies.length === 0) return 0;
-  if (moveAccuracies.length === 1) return moveAccuracies[0]!;
+export function gameAccuracy(
+  cps: (number | null)[],
+  startColor: Color,
+  initialCp: number | null = LICHESS_INITIAL_CP,
+): { w: number | null; b: number | null } {
+  const all = [initialCp, ...cps].map((cp) => (cp === null ? null : lichessWinPercent(cp)));
+  const windowSize = Math.max(2, Math.min(8, Math.floor(cps.length / 10)));
 
-  const window = Math.max(2, Math.min(8, Math.round(moveAccuracies.length / 10)));
+  // Scala's `sliding(n)` yields the whole list once when it is shorter than n.
+  const sliding = <T>(xs: T[], n: number): T[][] => {
+    if (xs.length <= n) return [xs];
+    const out: T[][] = [];
+    for (let i = 0; i + n <= xs.length; i++) out.push(xs.slice(i, i + n));
+    return out;
+  };
 
-  const weights = moveAccuracies.map((_, i) => {
-    const slice = moveAccuracies.slice(Math.max(0, i - window + 1), i + 1);
-    return Math.max(0.5, Math.min(12, stdev(slice)));
-  });
+  const lead = Math.min(windowSize, all.length) - 2;
+  const windows: (number | null)[][] = [
+    ...Array.from({ length: Math.max(0, lead) }, () => all.slice(0, windowSize)),
+    ...sliding(all, windowSize),
+  ];
+  const weights = windows.map((win) =>
+    win.some((x) => x === null)
+      ? null
+      : Math.max(0.5, Math.min(12, standardDeviation(win as number[]))),
+  );
 
-  const totalWeight = weights.reduce((a, b) => a + b, 0);
-  const weighted =
-    moveAccuracies.reduce((a, x, i) => a + x * weights[i]!, 0) / totalWeight;
+  const pairs = sliding(all, 2);
+  const weighted: { acc: number; weight: number; color: Color }[] = [];
+  const n = Math.min(pairs.length, weights.length);
+  for (let i = 0; i < n; i++) {
+    const pair = pairs[i]!;
+    if (pair.length !== 2) continue;
+    const [p, next] = pair;
+    const weight = weights[i];
+    const color: Color = (i % 2 === 0) === (startColor === 'w') ? 'w' : 'b';
+    if (p == null || next == null || weight == null) continue;
+    const acc =
+      color === 'w' ? accuracyFromWinPercents(p, next) : accuracyFromWinPercents(next, p);
+    weighted.push({ acc, weight, color });
+  }
 
-  return Math.max(0, Math.min(100, (weighted + harmonicMean(moveAccuracies) / 1) / 2));
+  const colorAccuracy = (color: Color): number | null => {
+    const mine = weighted.filter((x) => x.color === color);
+    const wm = weightedMean(mine.map((x) => [x.acc, x.weight]));
+    const hm = harmonicMean(mine.map((x) => x.acc));
+    return wm === null || hm === null ? null : (wm + hm) / 2;
+  };
+
+  const w = colorAccuracy('w');
+  const b = colorAccuracy('b');
+  if (w === null || b === null) return { w: null, b: null };
+  return { w, b };
 }
 
 /* ── average centipawn loss and the rating estimate ───────────────────── */

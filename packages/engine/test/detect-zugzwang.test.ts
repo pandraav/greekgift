@@ -211,6 +211,15 @@ function reviewOf(specs: Spec[]): Review {
     keyMoments: [],
     white: player('white', 'w'),
     black: player('black', 'b'),
+
+    ending: {
+      kind: 'unknown',
+      winner: null,
+      onBoard: false,
+      atPly: moves.length,
+      evalAtEnd: { cp: 0 },
+      verdictAtEnd: { w: 'equal', b: 'equal' },
+    },
   };
 }
 

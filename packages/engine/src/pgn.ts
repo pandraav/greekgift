@@ -1,6 +1,7 @@
 import { Chess } from 'chess.js';
 
-import type { Color } from './types.ts';
+import { parseClocks, parseTimeControl } from './clock.ts';
+import type { Color, TimeControl } from './types.ts';
 
 /**
  * PGN in, positions out.
@@ -37,6 +38,11 @@ export interface ParsedMove {
   fenAfter: string;
   captured?: string;
   promotion?: string;
+  /**
+   * Raw `%clk` after this move, ms: the clock left in a live game, the time
+   * taken in a daily one (clock.ts `clocksFor`). Absent when the PGN has none.
+   */
+  clock?: number;
 }
 
 export interface ParsedGame {
@@ -50,6 +56,10 @@ export interface ParsedGame {
   gameId?: string;
   whiteElo?: number;
   blackElo?: number;
+  /** From the TimeControl header; absent when missing or "-". */
+  timeControl?: TimeControl;
+  /** The raw Termination header. */
+  termination?: string;
 }
 
 export class PgnError extends Error {
@@ -77,7 +87,8 @@ export function parsePgn(pgn: string): ParsedGame {
   const chess = new Chess();
 
   try {
-    // chess.js strips the {[%clk …]} annotations chess.com embeds.
+    // chess.js strips the {[%clk …]} annotations chess.com embeds; the
+    // clocks are read separately below (clock.ts).
     chess.loadPgn(pgn);
   } catch (cause) {
     throw new PgnError(
@@ -88,6 +99,12 @@ export function parsePgn(pgn: string): ParsedGame {
   const headers = chess.getHeaders() as PgnHeaders;
   const history = chess.history({ verbose: true });
 
+  // Clocks from the raw movetext: only trusted when there is one entry per
+  // ply, so a PGN the tokenizer misreads loses its clocks, not its moves.
+  const clocks = parseClocks(pgn);
+  const clockFor = (i: number): number | null =>
+    clocks.length === history.length ? (clocks[i] ?? null) : null;
+
   const moves: ParsedMove[] = history.map((m, i) => ({
     ply: i + 1,
     color: m.color as Color,
@@ -97,6 +114,7 @@ export function parsePgn(pgn: string): ParsedGame {
     fenAfter: m.after,
     ...(m.captured ? { captured: m.captured } : {}),
     ...(m.promotion ? { promotion: m.promotion } : {}),
+    ...(clockFor(i) !== null ? { clock: clockFor(i)! } : {}),
   }));
 
   if (moves.length === 0) {
@@ -114,6 +132,8 @@ export function parsePgn(pgn: string): ParsedGame {
     gameId: gameIdFromLink(headers.Link),
     whiteElo: toInt(headers.WhiteElo),
     blackElo: toInt(headers.BlackElo),
+    ...(parseTimeControl(headers.TimeControl) ? { timeControl: parseTimeControl(headers.TimeControl)! } : {}),
+    ...(headers.Termination ? { termination: headers.Termination } : {}),
   };
 }
 

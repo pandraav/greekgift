@@ -9,28 +9,21 @@ import {
   runAnalysis,
   type AnalysisState,
 } from '@/lib/engine/analyse-game';
+import { estimateLabel } from '@/lib/engine/estimate';
 
 /**
  * Where a review comes from.
  *
- * The engine is a 5 MB download and half a minute of everybody's laptop fan,
+ * The engine is a 5 MB download and a minute or more of everybody's laptop fan,
  * so it is never started without being asked. Once it has run once the answer
  * is on the server and nobody is ever asked again.
  */
 
 /**
- * A rough wall-clock guess, before anything has run.
- *
- * Measured: a 60-position game finished in about 15 seconds on four workers
- * at 300k nodes, so roughly a second a position each. Rounded hard, because a
- * figure to the second would be a promise rather than an estimate.
+ * The pool's usual size on a laptop. Fixed rather than read from the browser,
+ * so the server-rendered copy and the hydrated one say the same thing.
  */
-function estimate(positions: number): string {
-  const secs = Math.ceil(positions / 4);
-  if (secs < 10) return 'a few seconds';
-  if (secs < 90) return `${Math.round(secs / 5) * 5} seconds`;
-  return `${Math.round(secs / 30) / 2} minutes`;
-}
+const ESTIMATE_WORKERS = 4;
 
 const seconds = (value: number | null) => {
   if (value === null) return null;
@@ -92,8 +85,8 @@ export function AnalysePanel({
           Review this game
         </h2>
         <p className="mt-0 mb-4 max-w-[58ch] text-[14.5px] text-ink-2">
-          Stockfish runs in this browser, on this machine — {fens.length} positions,
-          around {estimate(fens.length)}. The result is saved, so this only happens
+          Stockfish runs in this browser, on this machine — {fens.length} positions,{' '}
+          {estimateLabel(fens.length, ESTIMATE_WORKERS)}. The result is saved, so this only happens
           once per game, for everyone.
         </p>
 

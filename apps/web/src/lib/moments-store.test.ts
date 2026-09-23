@@ -6,6 +6,7 @@ import type { Review } from '@greekgift/engine';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 import { makeGame, testDb } from '../../test/db';
+import { reviewCacheKey } from './engine/settings';
 import { getMoments } from './moments-store';
 
 const KEY = { nodes: 20_000, engineBuild: 'stockfish-18-lite-single' };
@@ -29,7 +30,7 @@ beforeAll(async () => {
   await db.insert(schema.reviews).values({
     gameId: 'opera-game',
     nodes: KEY.nodes,
-    engineBuild: KEY.engineBuild,
+    engineBuild: reviewCacheKey(KEY).engineBuild,
     data: review,
     whiteAccuracy: review.white.accuracy,
     blackAccuracy: review.black.accuracy,
