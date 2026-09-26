@@ -40,6 +40,10 @@ const ctx: RenderContext = {
   square: (sq) => sq,
   move: (san) => san,
   pick: (variants) => variants[0]!,
+  voice: 'self',
+  mover: () => 'you',
+  moverPossessive: () => 'your',
+  memberWin: (w) => w,
 };
 
 const N_C5: PieceRef = { piece: 'N', square: 'c5', color: 'w' };
@@ -372,8 +376,8 @@ describe('sagar: frames', () => {
       ctx,
     );
     expect(first).toContain('Bxe6');
-    expect(first).toContain('takes the knight on c5');
-    expect(first).toContain('comes with check');
+    expect(first).toContain('would have taken the knight on c5');
+    expect(first).toContain('come with check');
   });
 });
 

@@ -16,7 +16,7 @@ describe('opponentThreat', () => {
     expect(opponentThreat(fen, 'd4e5', ['Bxe5'])).toEqual({
       type: 'opponent_threat',
       kind: 'capture',
-      by: { piece: 'B', square: 'e5', color: 'b' },
+      by: { piece: 'B', square: 'd4', color: 'b' },
       targets: [{ piece: 'N', square: 'e5', color: 'w' }],
       line: ['Bxe5'],
     });
@@ -29,7 +29,7 @@ describe('opponentThreat', () => {
     expect(motif).toMatchObject({
       type: 'opponent_threat',
       kind: 'fork',
-      by: { piece: 'N', square: 'c2', color: 'b' },
+      by: { piece: 'N', square: 'b4', color: 'b' },
       line: ['Nc2+'],
     });
     expect(motif?.type === 'opponent_threat' ? motif.targets : []).toEqual(
@@ -45,7 +45,7 @@ describe('opponentThreat', () => {
     expect(opponentThreat(fen, 'a8a1', ['Ra1#'])).toEqual({
       type: 'opponent_threat',
       kind: 'mate',
-      by: { piece: 'R', square: 'a1', color: 'b' },
+      by: { piece: 'R', square: 'a8', color: 'b' },
       targets: [{ piece: 'K', square: 'g1', color: 'w' }],
       line: ['Ra1#'],
     });
@@ -57,7 +57,7 @@ describe('opponentThreat', () => {
     expect(opponentThreat(fen, 'd8d1', ['Rd1+'])).toEqual({
       type: 'opponent_threat',
       kind: 'check',
-      by: { piece: 'R', square: 'd1', color: 'b' },
+      by: { piece: 'R', square: 'd8', color: 'b' },
       targets: [{ piece: 'K', square: 'g1', color: 'w' }],
       line: ['Rd1+'],
     });
@@ -68,10 +68,22 @@ describe('opponentThreat', () => {
     expect(opponentThreat(fen, 'b3b2', ['b2'])).toEqual({
       type: 'opponent_threat',
       kind: 'promotion',
-      by: { piece: 'P', square: 'b2', color: 'b' },
+      by: { piece: 'P', square: 'b3', color: 'b' },
       targets: [],
       line: ['b2'],
     });
+  });
+
+  it('never names the capturer on its victim’s square (regression)', () => {
+    // review-json-game ply 20, ...Ne5: the engine's reply Nxe5 read "the
+    // knight on e5 taking the knight on e5". The capturer is the f3 knight.
+    const fen = legal('r2q1rk1/pb2bppp/1p2pn2/2ppn3/3P1B2/2PBPN2/PP1NQPPP/4RRK1 w - - 4 11');
+    const motif = opponentThreat(fen, 'f3e5', ['Nxe5']);
+    expect(motif?.type).toBe('opponent_threat');
+    if (motif?.type !== 'opponent_threat') return;
+    expect(motif.kind).toBe('capture');
+    expect(motif.by.square).toBe('f3');
+    for (const t of motif.targets) expect(t.square).not.toBe(motif.by.square);
   });
 
   it('says nothing about an even trade', () => {

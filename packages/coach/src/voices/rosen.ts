@@ -174,12 +174,12 @@ const verdict: Frame = (p, ctx) => {
     case 'blunder':
       return v(`Oh no, ${m}.`, `Oh. ${m} was so so bad.`, `Oh no. Not ${m}.`);
     case 'mistake':
-      return v(`Hmm, ${m}. Maybe not.`, `Hmm. Maybe not ${m}.`, `Okay, ${m} is a little dubious.`);
+      return v(`Hmm, ${m}. Maybe not.`, `Hmm. Maybe not ${m}.`, `Okay, ${m} was a little dubious.`);
     case 'inaccuracy':
       return v(
         `Hmm, ${m}. Not quite.`,
-        `Okay, ${m} is a bit loose.`,
-        `Hmm. ${m} is playable, but not best.`,
+        `Okay, ${m} was a bit loose.`,
+        `Hmm. ${m} was playable, but not best.`,
       );
     case 'miss':
       return v(
@@ -188,13 +188,13 @@ const verdict: Frame = (p, ctx) => {
         `Hmm, ${m}. Someone call an ambulance.`,
       );
     case 'brilliant':
-      return v(`Oh wow, ${m}. That's fun.`, `Ooh. ${m}. That's really nice.`, `Oh yeah, ${m}. No mercy.`);
+      return v(`Oh wow, ${m}. That was fun.`, `Ooh. ${m}. That was really nice.`, `Oh yeah, ${m}. No mercy.`);
     case 'great':
-      return v(`Yeah, ${m}. That's the move.`, `Oh nice, ${m}. Good spot.`, `Yeah, ${m}. Good spot.`);
+      return v(`Yeah, ${m}. That was the move.`, `Oh nice, ${m}. Good spot.`, `Yeah, ${m}. Good spot.`);
     case 'book':
-      return v(`Okay, ${m}. Still book.`, `Yeah, ${m}. Theory so far.`, `Okay, ${m}. We're still in the book.`);
+      return v(`Okay, ${m}. Still book.`, `Yeah, ${m}. Theory so far.`, `Okay, ${m}. We were still in the book.`);
     default:
-      return v(`Yeah, ${m}. Nice.`, `Okay, ${m}. Yeah, that works.`, `Yeah, ${m} is the idea.`);
+      return v(`Yeah, ${m}. Nice.`, `Okay, ${m}. Yeah, that worked.`, `Yeah, ${m} was the idea.`);
   }
 };
 
@@ -203,11 +203,11 @@ const hangs: Frame = (p, ctx) => {
   const attacker = piecesArg(p.args, 'attackers')[0] ?? pieceArg(p.args, 'attacker', 'by');
   const t = target ? ctx.refer(target) : 'that piece';
   return v(
-    `${t} is just hanging now. Poor thing.`,
+    `${t} was just hanging. Poor thing.`,
     attacker
-      ? `Yeah, ${ctx.refer(attacker)} hits ${t}. Nothing defends it.`
-      : `Yeah, ${t} is hanging. Nothing defends it.`,
-    `Hmm. ${t} lived a good life. It's hanging.`,
+      ? `Yeah, ${ctx.refer(attacker)} hit ${t}. Nothing defended it.`
+      : `Yeah, ${t} was hanging. Nothing defended it.`,
+    `Hmm. ${t} lived a good life. It was hanging.`,
   );
 };
 
@@ -216,9 +216,9 @@ const forked: Frame = (p, ctx) => {
   const b = by ? ctx.refer(by) : 'their piece';
   const s = squares(piecesArg(p.args, 'targets'), ctx);
   return v(
-    `${b} hits ${s} at once. Sad for us.`,
-    `Yeah, ${b} is hitting ${s}. Lovely square for them.`,
-    `Hmm. ${b} forks ${s}. Sad for us, but nice by them.`,
+    `${b} hit ${s} at once. Sad for us.`,
+    `Yeah, ${b} was hitting ${s}. Lovely square for them.`,
+    `Hmm. ${b} forked ${s}. Sad for us, but nice by them.`,
   );
 };
 
@@ -227,9 +227,9 @@ const forks: Frame = (p, ctx) => {
   const b = by ? ctx.refer(by) : 'that piece';
   const s = squares(piecesArg(p.args, 'targets'), ctx);
   return v(
-    `Oh nice. ${b} hits ${s}. Fun.`,
-    `Yeah, ${b} forks ${s}. Tricky.`,
-    `Okay, ${b} attacks ${s} at once. Very fun.`,
+    `Oh nice. ${b} hit ${s}. Fun.`,
+    `Yeah, ${b} forked ${s}. Tricky.`,
+    `Okay, ${b} attacked ${s} at once. Very fun.`,
   );
 };
 
@@ -237,9 +237,9 @@ const trapped: Frame = (p, ctx) => {
   const target = pieceArg(p.args, 'target', 'piece');
   const t = target ? ctx.refer(target) : 'that piece';
   return v(
-    `${t} has nowhere to go. Poor thing.`,
-    `Yeah, ${t} is stuck. It lived a good life.`,
-    `Hmm. ${t} is trapped. Sad for us, honestly.`,
+    `${t} had nowhere to go. Poor thing.`,
+    `Yeah, ${t} was stuck. It lived a good life.`,
+    `Hmm. ${t} was trapped. Sad for us, honestly.`,
   );
 };
 
@@ -250,23 +250,23 @@ const sacrifice: Frame = (p, ctx) => {
   const sound = boolArg(p.args, 'sound') ?? true;
   if (sound) {
     return v(
-      `Oh wow. ${t} just goes. That's fun.`,
-      `Yeah, ${t} goes, and it works. Very fun.`,
-      `Okay, so ${t} is a sacrifice. And it's sound. Nice.`,
+      `Oh wow. ${t} just went. That was fun.`,
+      `Yeah, ${t} went, and it worked. Very fun.`,
+      `Okay, so ${t} was a sacrifice. And it was sound. Nice.`,
     );
   }
   return v(
-    `Hmm. ${t} goes, and I think it's dubious.`,
+    `Hmm. ${t} went, and I think it was dubious.`,
     `Oh no. My beautiful ${name}. It lived a good life.`,
-    `Okay, so ${t} is a sacrifice. Yeah, a bit dubious.`,
+    `Okay, so ${t} was a sacrifice. Yeah, a bit dubious.`,
   );
 };
 
 const onlyMove: Frame = () =>
   v(
     `Yeah, this was the only move. Good spot.`,
-    `Okay, so nothing else works here. Nice find.`,
-    `Hmm, everything else loses. Yeah, that's the one.`,
+    `Okay, so nothing else worked there. Nice find.`,
+    `Hmm, everything else lost. Yeah, that was the one.`,
   );
 
 const swing: Frame = (p) => {
@@ -275,32 +275,32 @@ const swing: Frame = (p) => {
   if (before === undefined || after === undefined) {
     return v(
       `Okay, so the evaluation moved a lot. Yeah.`,
-      `That's a big swing. Sad for us.`,
-      `Hmm. The evaluation moved. That one hurts a little.`,
+      `That was a big swing. Sad for us.`,
+      `Hmm. The evaluation moved. That one hurt a little.`,
     );
   }
   const b = Math.round(before);
   const a = Math.round(after);
   if (a >= b) {
     return v(
-      `Oh nice, ${b} up to ${a}. Fun.`,
-      `Yeah, ${b} to ${a}. That's the good stuff.`,
-      `Okay, so ${b} to ${a}. Very fun.`,
+      `Oh nice, our winning chances went from ${b}% up to ${a}%. Fun.`,
+      `Yeah, our winning chances went from ${b}% to ${a}%. That was the good stuff.`,
+      `Okay, so our winning chances went from ${b}% to ${a}%. Very fun.`,
     );
   }
   return v(
-    `Okay, so we go from ${b} to ${a}. Yeah.`,
-    `That's ${b} to ${a}. Sad for us.`,
-    `Hmm. ${b} down to ${a}. That one hurts a little.`,
+    `Okay, so our winning chances went from ${b}% to ${a}%. Yeah.`,
+    `Our winning chances went from ${b}% to ${a}%. Sad for us.`,
+    `Hmm. Our winning chances went from ${b}% down to ${a}%. That one hurt a little.`,
   );
 };
 
 const bestMove: Frame = (p, ctx) => {
   const m = ctx.move(strArg(p.args, 'move', 'san', 'best') ?? 'that');
   return v(
-    `${m}, maybe. Yeah, actually. Let's play ${m}.`,
-    `The idea is ${m}. Yeah, I think so. Let's play ${m}.`,
-    `Hmm, ${m}. Okay, yeah. Let's play ${m}.`,
+    `${m}, maybe. Yeah, actually. ${m} would have been the move.`,
+    `The idea was ${m}. Yeah, I think so. We should have played ${m}.`,
+    `Hmm, ${m}. Okay, yeah. I'd have played ${m}.`,
   );
 };
 
@@ -312,16 +312,16 @@ const bestDoes: Frame = (p, ctx) => {
   const check = boolArg(p.args, 'check') ?? false;
   const gain = numArg(p.args, 'materialGain') ?? 0;
   let does: string;
-  if (mateIn !== undefined) does = `is mate in ${num(mateIn)}`;
-  else if (captures) does = `${ctx.lexicon.captureVerb} ${ctx.refer(captures)}`;
-  else if (forkTargets.length > 0) does = `hits ${squares(forkTargets, ctx)}`;
-  else if (check) does = `comes with check`;
-  else if (gain > 0) does = `wins material`;
-  else does = `keeps everything safe`;
+  if (mateIn !== undefined) does = `would have been mate in ${num(mateIn)}`;
+  else if (captures) does = `would have taken ${ctx.refer(captures)}`;
+  else if (forkTargets.length > 0) does = `would have hit ${squares(forkTargets, ctx)}`;
+  else if (check) does = `would have come with check`;
+  else if (gain > 0) does = `would have won material`;
+  else does = `would have kept everything safe`;
   return v(
-    `${m} ${does}, maybe. Yeah, actually. Let's play ${m}.`,
-    `Considering ${m}. It ${does}. Okay, so yeah. Let's play ${m}.`,
-    `Hmm, ${m} ${does}. Yeah, I think so. Let's play ${m}.`,
+    `${m} ${does}, maybe. Yeah, actually. We should have played ${m}.`,
+    `Considering ${m}. It ${does}. Okay, so yeah. ${m} was the move.`,
+    `Hmm, ${m} ${does}. Yeah, I think so. I'd have played ${m}.`,
   );
 };
 
@@ -382,9 +382,9 @@ const LESSONS: Record<string, [string, string, string]> = {
     `Hmm, let's ask who benefits before we release the tension.`,
   ],
   book_ends_here: [
-    `Okay, this is where the book ends. Now it's fun.`,
-    `Yeah, from here it's just chess. Let's think for ourselves.`,
-    `Hmm, off book now. Let's find good squares for everything.`,
+    `Okay, the book ended there. That's where the fun starts.`,
+    `Yeah, after the book it's just chess. Let's think for ourselves.`,
+    `Hmm, once we're off book, let's find good squares for everything.`,
   ],
   remember_this: [
     `Okay, let's remember this pattern. It comes back a lot.`,
@@ -395,7 +395,7 @@ const LESSONS: Record<string, [string, string, string]> = {
 
 const LESSON_FALLBACK: [string, string, string] = [
   `Okay, let's take the lesson and move on. That's chess.`,
-  `Yeah, that's a learning moment. Let's keep it in mind.`,
+  `Yeah, that was a learning moment. Let's keep it in mind.`,
   `Hmm, chess is tricky. Let's remember this one.`,
 ];
 
@@ -482,24 +482,24 @@ export const rosen: PersonaGrammar = {
       'Yeah, let’s have a look at this one.',
     ],
     brilliant: [
-      base.events.brilliant?.[0] ?? 'Ooh. Oh, that’s nice. That’s really nice.',
-      'Oh wow. Okay, that’s fun. That’s really fun.',
-      'Oh yeah. That’s the kind of move I like.',
+      base.events.brilliant?.[0] ?? 'Ooh. Oh, that was nice. That was really nice.',
+      'Oh wow. Okay, that was fun. That was really fun.',
+      'Oh yeah. That was the kind of move I like.',
     ],
     great: [
-      base.events.great?.[0] ?? 'Yeah, that’s the move. Good spot.',
-      'Yeah, okay. That’s the one. Nice.',
-      'Oh yeah, that’s it. Good spot.',
+      base.events.great?.[0] ?? 'Yeah, that was the move. Good spot.',
+      'Yeah, okay. That was the one. Nice.',
+      'Oh yeah, that was it. Good spot.',
     ],
     blunder: [
       base.events.blunder?.[0] ?? 'Oh no. My beautiful knight.',
       'Oh no. Oh, that was so so bad.',
-      'Oh. Yeah, that one hurts a little.',
+      'Oh. Yeah, that one hurt a little.',
     ],
     mistake: [
-      base.events.mistake?.[0] ?? 'Hmm. Maybe not that one. It’s okay though.',
-      'Hmm. Yeah, I think there was better. It’s okay.',
-      'Okay, so that’s a little dubious. It happens.',
+      base.events.mistake?.[0] ?? 'Hmm. Maybe not that one. It was okay though.',
+      'Hmm. Yeah, I think there was better. It was okay.',
+      'Okay, so that was a little dubious. It happens.',
     ],
     miss: [
       base.events.miss?.[0] ?? 'Oh, there was something here. Someone call an ambulance.',
@@ -507,17 +507,17 @@ export const rosen: PersonaGrammar = {
       'Hmm. Yeah, something got missed here. Let’s see.',
     ],
     bookExit: [
-      base.events.bookExit?.[0] ?? 'Okay, we’re off book now. Fun.',
-      'Okay, so this is where the book ends. Now it’s fun.',
-      'Yeah, we’re on our own now. Let’s see.',
+      base.events.bookExit?.[0] ?? 'Okay, we were off book there. Fun.',
+      'Okay, so that was where the book ended. Then it got fun.',
+      'Yeah, we were on our own from there. Let’s see.',
     ],
     comeback: [
-      base.events.comeback?.[0] ?? 'Oh wow, we’re back. That’s actually amazing.',
-      'Oh yeah. Okay, we’re back in this. Nice.',
-      'Wow. Yeah, we’re actually back. Fun.',
+      base.events.comeback?.[0] ?? 'Oh wow, we came back. That was actually amazing.',
+      'Oh yeah. Okay, we got back into it. Nice.',
+      'Wow. Yeah, we actually came back. Fun.',
     ],
     collapse: [
-      base.events.collapse?.[0] ?? 'Oh no. Oh no. Yeah, that one hurts.',
+      base.events.collapse?.[0] ?? 'Oh no. Oh no. Yeah, that one hurt.',
       'Oh. Oh no. It was going so well.',
       'Oh no. Yeah. That was so so bad.',
     ],
@@ -534,12 +534,12 @@ export const rosen: PersonaGrammar = {
     longGame: [
       base.events.longGame?.[0] ?? 'Long game. Sometimes you have to be patient.',
       'Yeah, long one. Okay, let’s keep going.',
-      'Long game. That’s fine. Patience is a skill.',
+      'Long game. That was fine. Patience is a skill.',
     ],
     reviewEnd: [
-      base.events.reviewEnd?.[0] ?? 'Okay, that’s it. Hope you enjoyed. I’ll see you soon.',
-      'Okay, that’s the game. Hope that was fun.',
-      'Yeah, that’s it. Thanks for hanging out.',
+      base.events.reviewEnd?.[0] ?? 'Okay, that was it. Hope you enjoyed. I’ll see you soon.',
+      'Okay, that was the game. Hope that was fun.',
+      'Yeah, that was it. Thanks for hanging out.',
     ],
     random: [
       base.events.random?.[0] ?? 'Chess is fun.',

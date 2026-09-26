@@ -37,8 +37,10 @@ const button = cva(
   },
 );
 
+// `WithRef`, so a caller can hold the element and move focus to it; React 19
+// passes `ref` through the spread like any other prop.
 export interface ButtonProps
-  extends Omit<React.ComponentPropsWithoutRef<'button'>, 'color'>,
+  extends Omit<React.ComponentPropsWithRef<'button'>, 'color'>,
     VariantProps<typeof button> {}
 
 export function Button({

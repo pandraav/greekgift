@@ -18,7 +18,11 @@ import {
   material,
   pieceRef,
   pinsAgainst,
+  sacrificeFor,
 } from './motifs.ts';
+import { betterLineFor, refutationFor, replyTakes } from './refutation.ts';
+import { moveTimes } from './report.ts';
+import { lineMaterial, playedMoveScore } from './review.ts';
 import { expectedPoints, fromMoverView, winPercent } from './scoring.ts';
 import { rankSituations } from './situations.ts';
 import type {
@@ -147,7 +151,13 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
     if (fork) found.push(fork);
   }
 
-  for (const hanging of hangingPieces(move.fenAfter, mover).slice(0, 2)) found.push(hanging);
+  // Hanging only when the engine's reply takes it (§13.1): a piece whose
+  // capture would lose something bigger is not hanging, it is lost, if at
+  // all, to the refutation line, which the facts carry separately.
+  const hanging = hangingPieces(move.fenAfter, mover).filter(
+    (m) => m.type !== 'hanging_piece' || replyTakes(move, m.target.square),
+  );
+  for (const h of hanging.slice(0, 2)) found.push(h);
   for (const pin of pinsAgainst(move.fenAfter, mover).slice(0, 1)) found.push(pin);
 
   // True on move 10 of almost every castled game, and useless there: the back
@@ -157,26 +167,22 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
     if (weak) found.push(weak);
   }
 
-  // Did the move give something away? A sacrifice is the moved piece left
-  // where it can be taken for less than it is worth, with the engine's own
-  // line confirming the material really goes. Whether it was a good idea is a
-  // different fact, and the eval already says which: sound when the win% did
-  // not drop by more than two points (design §2). A piece dropped for nothing
-  // with no capture and no check behind it, and a worse eval, is not a
-  // sacrifice — it is a hung piece, and `hanging_piece` already says so.
+  // Did the move give something away? `sacrificeFor` is the same test the
+  // Brilliant class uses (review-overhaul §4.7): at least a minor piece left
+  // en prise, the parity-matched line confirming two pawns or more go.
+  // Whether it was a good idea is a different fact, and the eval already
+  // says which: sound when the move was best or excellent (epLoss < 0.02). A
+  // piece dropped for nothing with no capture and no check behind it, and a
+  // worse eval, is not a sacrifice — it is a hung piece, and `hanging_piece`
+  // already says so.
   const gave = captureValue(move.fenBefore, move.uci);
   const materialBefore = moverView(material(move.fenBefore));
-  const materialAfterPlayedLine = moverView(material(fenAfterLine(move.fenAfter, replyLine)));
-  const netMaterial = materialAfterPlayedLine - materialBefore;
-  const moved = pieceRef(new Chess(move.fenAfter), landedOn);
-  const enPrise = hangingPieces(move.fenAfter, mover).some(
-    (m) => m.type === 'hanging_piece' && m.target.square === landedOn,
-  );
-  if (moved && enPrise && netMaterial <= -1) {
-    const sound = move.winAfter >= move.winBefore - 2;
+  const given = sacrificeFor(move, lineMaterial(move));
+  if (given) {
+    const sound = move.epLoss < 0.02;
     const hasPoint = gave > 0 || new Chess(move.fenAfter).inCheck();
     if (sound || hasPoint) {
-      found.push({ type: 'sacrifice', piece: moved, netMaterial, sound });
+      found.push({ type: 'sacrifice', piece: given.piece, netMaterial: given.netMaterial, sound });
     }
   }
 
@@ -195,7 +201,11 @@ export function motifsFor(move: MoveAnalysis): Motif[] {
   if (afterBest?.score.mate !== undefined) {
     const mateForMover =
       mover === 'w' ? afterBest.score.mate > 0 : afterBest.score.mate < 0;
-    if (mateForMover && bestMove !== move.uci) {
+    // A longer mate kept is not a mate missed (§4.8).
+    const played = playedMoveScore(move);
+    const keptMate =
+      played.mate !== undefined && (mover === 'w' ? played.mate > 0 : played.mate < 0);
+    if (mateForMover && bestMove !== move.uci && !keptMate) {
       found.unshift({ type: 'missed_mate', line: toSan(move.fenBefore, afterBest.pv) });
     }
   }
@@ -309,6 +319,8 @@ export interface FactsOptions {
   audience?: MoveFacts['audience'];
   /** The reader's rating, used only when `audience` is not given. */
   rating?: number;
+  /** The member's side. null = neutral. Omitted = legacy: the reader is the mover. */
+  perspective?: Color | null;
 }
 
 /** Assembles the facts for one move of a built review. */
@@ -324,12 +336,10 @@ export function factsFor(
   const bestSan = toSan(move.fenBefore, [bestUci], 1)[0] ?? move.san;
 
   const playedLineUci = move.evalAfter.lines[0]?.pv ?? [];
-  const moverIsWhite = move.color === 'w';
-
-  const afterBest = material(fenAfterLine(move.fenBefore, move.bestLine));
-  const afterPlayed = material(fenAfterLine(move.fenAfter, playedLineUci));
-  const materialAfterBestLine = moverIsWhite ? afterBest : -afterBest;
-  const materialAfterPlayedLine = moverIsWhite ? afterPlayed : -afterPlayed;
+  // Parity-matched, the same numbers the Miss is judged on (§4.6).
+  const lm = lineMaterial(move);
+  const materialAfterBestLine = lm.best;
+  const materialAfterPlayedLine = lm.played;
 
   const motifs = motifsFor(move);
   // Both need the game around the move, not just the move: zugzwang is judged
@@ -361,7 +371,30 @@ export function factsFor(
     ...(move.opening ? { opening: move.opening } : {}),
     leftBook: review.opening ? move.ply === review.opening.lastBookPly + 1 : false,
     audience: options.audience ?? audienceFor(options.rating),
+    ...(options.perspective !== undefined ? { perspective: options.perspective } : {}),
   };
+  const refutation = refutationFor(review, move);
+  if (refutation) base.refutation = refutation;
+  const betterLine = betterLineFor(move);
+  if (betterLine) base.betterLine = betterLine;
+
+  // Time (§14.5): only for a live game with a clock on every move. Daily
+  // "thinks" are hours, and fast / time trouble mean nothing there.
+  const time = moveTimes(review)?.get(move.ply);
+  if (time) {
+    base.clock = {
+      spent: time.spent,
+      left: time.left,
+      leftBefore: time.leftBefore,
+      inTrouble: time.inTrouble,
+      fast: time.fast,
+      longThink: time.longThink,
+    };
+  }
+  // How the game ended, on the last ply only. Legacy reviews have no ending.
+  if (review.ending && move.ply === review.moves.at(-1)?.ply) {
+    base.ending = { ...review.ending, final: true };
+  }
 
   return { ...base, situations: rankSituations(base) };
 }

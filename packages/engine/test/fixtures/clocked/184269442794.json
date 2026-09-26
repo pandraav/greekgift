@@ -1,0 +1,10203 @@
+{
+ "gameId": "184269442794",
+ "engineBuild": "stockfish-18-lite-single",
+ "nodes": 300000,
+ "moves": [
+  {
+   "ply": 1,
+   "color": "w",
+   "san": "e4",
+   "uci": "e2e4",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "e2e4",
+       "e7e6",
+       "d2d4",
+       "d7d5",
+       "e4e5",
+       "c7c5",
+       "c2c3",
+       "c8d7",
+       "g1f3",
+       "b8c6",
+       "f1e2",
+       "c5d4",
+       "c3d4",
+       "g8e7",
+       "a2a3"
+      ],
+      "depth": 15,
+      "nodes": 300225
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 28
+      },
+      "pv": [
+       "e2e3",
+       "d7d5"
+      ],
+      "depth": 15,
+      "nodes": 300225
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "g1f3",
+       "d7d5",
+       "d2d4",
+       "e7e6",
+       "c2c4",
+       "g8f6",
+       "g2g3",
+       "d5c4"
+      ],
+      "depth": 14,
+      "nodes": 300225
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "e7e6",
+       "d2d4",
+       "d7d5",
+       "b1c3",
+       "g8f6",
+       "e4e5",
+       "f6d7",
+       "f2f4",
+       "c7c5",
+       "g1f3",
+       "b8c6",
+       "c1e3",
+       "a7a6",
+       "f1e2",
+       "c5d4",
+       "f3d4",
+       "f8c5",
+       "d4c6",
+       "b7c6",
+       "e3c5",
+       "d7c5",
+       "d1d4"
+      ],
+      "depth": 14,
+      "nodes": 300384
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "c7c5",
+       "g1f3"
+      ],
+      "depth": 14,
+      "nodes": 300384
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "e7e5",
+       "g1f3"
+      ],
+      "depth": 13,
+      "nodes": 300384
+     }
+    ]
+   },
+   "winBefore": 53.21736834106171,
+   "winAfter": 53.21736834106171,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e2e4",
+   "bestLine": [
+    "e2e4",
+    "e7e6",
+    "d2d4",
+    "d7d5",
+    "e4e5",
+    "c7c5",
+    "c2c3",
+    "c8d7",
+    "g1f3",
+    "b8c6",
+    "f1e2",
+    "c5d4",
+    "c3d4",
+    "g8e7",
+    "a2a3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 596600,
+    "spent": 3400
+   }
+  },
+  {
+   "ply": 2,
+   "color": "b",
+   "san": "c5",
+   "uci": "c7c5",
+   "fenBefore": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+   "fenAfter": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "e7e6",
+       "d2d4",
+       "d7d5",
+       "b1c3",
+       "g8f6",
+       "e4e5",
+       "f6d7",
+       "f2f4",
+       "c7c5",
+       "g1f3",
+       "b8c6",
+       "c1e3",
+       "a7a6",
+       "f1e2",
+       "c5d4",
+       "f3d4",
+       "f8c5",
+       "d4c6",
+       "b7c6",
+       "e3c5",
+       "d7c5",
+       "d1d4"
+      ],
+      "depth": 14,
+      "nodes": 300384
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "c7c5",
+       "g1f3"
+      ],
+      "depth": 14,
+      "nodes": 300384
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "e7e5",
+       "g1f3"
+      ],
+      "depth": 13,
+      "nodes": 300384
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "g1f3",
+       "b8c6",
+       "f1b5",
+       "e7e6",
+       "b5c6",
+       "b7c6",
+       "e1g1",
+       "d7d6"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 34
+      },
+      "pv": [
+       "b1c3",
+       "b8c6",
+       "g1e2",
+       "g7g6",
+       "d2d4",
+       "c5d4",
+       "e2d4",
+       "f8g7",
+       "c1e3",
+       "g8f6",
+       "d4c6",
+       "b7c6",
+       "f1e2"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "g1e2",
+       "e7e6"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     }
+    ]
+   },
+   "winBefore": 47.14948226881869,
+   "winAfter": 46.50771960458312,
+   "epLoss": 0.006417626642355623,
+   "moveAccuracy": 98.15679764232426,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "e7e6",
+   "bestLine": [
+    "e7e6",
+    "d2d4",
+    "d7d5",
+    "b1c3",
+    "g8f6",
+    "e4e5",
+    "f6d7",
+    "f2f4",
+    "c7c5",
+    "g1f3",
+    "b8c6",
+    "c1e3",
+    "a7a6",
+    "f1e2",
+    "c5d4",
+    "f3d4",
+    "f8c5",
+    "d4c6",
+    "b7c6",
+    "e3c5",
+    "d7c5",
+    "d1d4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 598400,
+    "spent": 1600
+   }
+  },
+  {
+   "ply": 3,
+   "color": "w",
+   "san": "Nc3",
+   "uci": "b1c3",
+   "fenBefore": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+   "fenAfter": "rnbqkbnr/pp1ppppp/8/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "g1f3",
+       "b8c6",
+       "f1b5",
+       "e7e6",
+       "b5c6",
+       "b7c6",
+       "e1g1",
+       "d7d6"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 34
+      },
+      "pv": [
+       "b1c3",
+       "b8c6",
+       "g1e2",
+       "g7g6",
+       "d2d4",
+       "c5d4",
+       "e2d4",
+       "f8g7",
+       "c1e3",
+       "g8f6",
+       "d4c6",
+       "b7c6",
+       "f1e2"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "g1e2",
+       "e7e6"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "b8c6",
+       "g1e2",
+       "e7e6",
+       "d2d4",
+       "d7d5",
+       "c1e3",
+       "e6e5",
+       "e4d5",
+       "c6d4",
+       "e2g3",
+       "g8f6",
+       "a2a4",
+       "f8e7",
+       "f1c4",
+       "e8g8",
+       "e1g1",
+       "a7a6",
+       "h2h3"
+      ],
+      "depth": 15,
+      "nodes": 300285
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "g7g6",
+       "d2d4",
+       "c5d4",
+       "d1d4",
+       "g8f6",
+       "c1g5",
+       "b8c6",
+       "d4d2",
+       "f8g7",
+       "g1f3",
+       "d8b6"
+      ],
+      "depth": 15,
+      "nodes": 300285
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "d7d6",
+       "g1e2",
+       "e7e5",
+       "c3d5",
+       "g8f6",
+       "e2c3",
+       "f6d5",
+       "c3d5",
+       "g7g6",
+       "b2b4",
+       "f8g7"
+      ],
+      "depth": 14,
+      "nodes": 300285
+     }
+    ]
+   },
+   "winBefore": 53.76698043044984,
+   "winAfter": 53.1256867324871,
+   "epLoss": 0.006412936979627415,
+   "moveAccuracy": 98.15884634784693,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g1f3",
+   "bestLine": [
+    "g1f3",
+    "b8c6",
+    "f1b5",
+    "e7e6",
+    "b5c6",
+    "b7c6",
+    "e1g1",
+    "d7d6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 595700,
+    "spent": 900
+   }
+  },
+  {
+   "ply": 4,
+   "color": "b",
+   "san": "Nc6",
+   "uci": "b8c6",
+   "fenBefore": "rnbqkbnr/pp1ppppp/8/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+   "fenAfter": "r1bqkbnr/pp1ppppp/2n5/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+   "evalBefore": {
+    "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "b8c6",
+       "g1e2",
+       "e7e6",
+       "d2d4",
+       "d7d5",
+       "c1e3",
+       "e6e5",
+       "e4d5",
+       "c6d4",
+       "e2g3",
+       "g8f6",
+       "a2a4",
+       "f8e7",
+       "f1c4",
+       "e8g8",
+       "e1g1",
+       "a7a6",
+       "h2h3"
+      ],
+      "depth": 15,
+      "nodes": 300285
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "g7g6",
+       "d2d4",
+       "c5d4",
+       "d1d4",
+       "g8f6",
+       "c1g5",
+       "b8c6",
+       "d4d2",
+       "f8g7",
+       "g1f3",
+       "d8b6"
+      ],
+      "depth": 15,
+      "nodes": 300285
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 41
+      },
+      "pv": [
+       "d7d6",
+       "g1e2",
+       "e7e5",
+       "c3d5",
+       "g8f6",
+       "e2c3",
+       "f6d5",
+       "c3d5",
+       "g7g6",
+       "b2b4",
+       "f8g7"
+      ],
+      "depth": 14,
+      "nodes": 300285
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkbnr/pp1ppppp/2n5/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "g1e2",
+       "c6d4",
+       "a2a4",
+       "a7a6",
+       "d2d3",
+       "d7d6",
+       "a4a5",
+       "g8f6",
+       "e2d4",
+       "c5d4",
+       "c3d5",
+       "f6d5",
+       "e4d5"
+      ],
+      "depth": 15,
+      "nodes": 300202
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "g1f3",
+       "e7e5",
+       "f1c4",
+       "f8e7",
+       "d2d3",
+       "g8f6",
+       "c3d5",
+       "d7d6",
+       "c2c3",
+       "f6d5",
+       "e4d5",
+       "c6b8",
+       "a2a4",
+       "e8g8",
+       "a4a5",
+       "c8g4"
+      ],
+      "depth": 15,
+      "nodes": 300202
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 13
+      },
+      "pv": [
+       "f1b5",
+       "c6d4",
+       "g1f3",
+       "a7a6",
+       "b5c4",
+       "b7b5",
+       "c4d5",
+       "a8b8",
+       "f3d4",
+       "c5d4",
+       "c3e2",
+       "e7e6",
+       "d5b3",
+       "a6a5",
+       "e2d4"
+      ],
+      "depth": 15,
+      "nodes": 300202
+     }
+    ]
+   },
+   "winBefore": 46.69097177008695,
+   "winAfter": 46.69097177008695,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "b8c6",
+   "bestLine": [
+    "b8c6",
+    "g1e2",
+    "e7e6",
+    "d2d4",
+    "d7d5",
+    "c1e3",
+    "e6e5",
+    "e4d5",
+    "c6d4",
+    "e2g3",
+    "g8f6",
+    "a2a4",
+    "f8e7",
+    "f1c4",
+    "e8g8",
+    "e1g1",
+    "a7a6",
+    "h2h3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 595700,
+    "spent": 2700
+   }
+  },
+  {
+   "ply": 5,
+   "color": "w",
+   "san": "f4",
+   "uci": "f2f4",
+   "fenBefore": "r1bqkbnr/pp1ppppp/2n5/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+   "fenAfter": "r1bqkbnr/pp1ppppp/2n5/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq - 0 3",
+   "evalBefore": {
+    "fen": "r1bqkbnr/pp1ppppp/2n5/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "g1e2",
+       "c6d4",
+       "a2a4",
+       "a7a6",
+       "d2d3",
+       "d7d6",
+       "a4a5",
+       "g8f6",
+       "e2d4",
+       "c5d4",
+       "c3d5",
+       "f6d5",
+       "e4d5"
+      ],
+      "depth": 15,
+      "nodes": 300202
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 31
+      },
+      "pv": [
+       "g1f3",
+       "e7e5",
+       "f1c4",
+       "f8e7",
+       "d2d3",
+       "g8f6",
+       "c3d5",
+       "d7d6",
+       "c2c3",
+       "f6d5",
+       "e4d5",
+       "c6b8",
+       "a2a4",
+       "e8g8",
+       "a4a5",
+       "c8g4"
+      ],
+      "depth": 15,
+      "nodes": 300202
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 13
+      },
+      "pv": [
+       "f1b5",
+       "c6d4",
+       "g1f3",
+       "a7a6",
+       "b5c4",
+       "b7b5",
+       "c4d5",
+       "a8b8",
+       "f3d4",
+       "c5d4",
+       "c3e2",
+       "e7e6",
+       "d5b3",
+       "a6a5",
+       "e2d4"
+      ],
+      "depth": 15,
+      "nodes": 300202
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkbnr/pp1ppppp/2n5/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq - 0 3",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -8
+      },
+      "pv": [
+       "e7e6",
+       "g1f3",
+       "d7d5",
+       "e4d5",
+       "e6d5",
+       "f1b5",
+       "a7a6",
+       "d1e2",
+       "f8e7",
+       "b5c6",
+       "b7c6",
+       "c3a4"
+      ],
+      "depth": 14,
+      "nodes": 300286
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -10
+      },
+      "pv": [
+       "g7g6",
+       "g1f3"
+      ],
+      "depth": 13,
+      "nodes": 300286
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 8
+      },
+      "pv": [
+       "b7b6",
+       "g1f3",
+       "c8b7",
+       "f1b5",
+       "e7e6",
+       "b5c6",
+       "b7c6",
+       "d1e2",
+       "f8e7"
+      ],
+      "depth": 13,
+      "nodes": 300286
+     }
+    ]
+   },
+   "winBefore": 53.400665785633464,
+   "winAfter": 49.26363724400336,
+   "epLoss": 0.041370285416301,
+   "moveAccuracy": 83.9928816812303,
+   "classification": "book",
+   "forced": false,
+   "bestMove": "g1e2",
+   "bestLine": [
+    "g1e2",
+    "c6d4",
+    "a2a4",
+    "a7a6",
+    "d2d3",
+    "d7d6",
+    "a4a5",
+    "g8f6",
+    "e2d4",
+    "c5d4",
+    "c3d5",
+    "f6d5",
+    "e4d5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 594700,
+    "spent": 1000
+   }
+  },
+  {
+   "ply": 6,
+   "color": "b",
+   "san": "e6",
+   "uci": "e7e6",
+   "fenBefore": "r1bqkbnr/pp1ppppp/2n5/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq - 0 3",
+   "fenAfter": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4",
+   "evalBefore": {
+    "fen": "r1bqkbnr/pp1ppppp/2n5/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq - 0 3",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -8
+      },
+      "pv": [
+       "e7e6",
+       "g1f3",
+       "d7d5",
+       "e4d5",
+       "e6d5",
+       "f1b5",
+       "a7a6",
+       "d1e2",
+       "f8e7",
+       "b5c6",
+       "b7c6",
+       "c3a4"
+      ],
+      "depth": 14,
+      "nodes": 300286
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -10
+      },
+      "pv": [
+       "g7g6",
+       "g1f3"
+      ],
+      "depth": 13,
+      "nodes": 300286
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 8
+      },
+      "pv": [
+       "b7b6",
+       "g1f3",
+       "c8b7",
+       "f1b5",
+       "e7e6",
+       "b5c6",
+       "b7c6",
+       "d1e2",
+       "f8e7"
+      ],
+      "depth": 13,
+      "nodes": 300286
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 7
+      },
+      "pv": [
+       "g1f3",
+       "a7a6",
+       "g2g3",
+       "b7b5",
+       "f1g2",
+       "c8b7",
+       "e1g1",
+       "f8e7",
+       "d2d3",
+       "d7d5",
+       "e4d5"
+      ],
+      "depth": 15,
+      "nodes": 300098
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 0
+      },
+      "pv": [
+       "d2d3",
+       "f8e7"
+      ],
+      "depth": 15,
+      "nodes": 300098
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -11
+      },
+      "pv": [
+       "g2g3",
+       "d7d5",
+       "d2d3",
+       "h7h5",
+       "g1f3",
+       "h5h4",
+       "g3g4",
+       "d5d4",
+       "c3e2",
+       "e6e5",
+       "f4f5",
+       "g7g6",
+       "f1h3",
+       "g6f5",
+       "g4f5"
+      ],
+      "depth": 14,
+      "nodes": 300098
+     }
+    ]
+   },
+   "winBefore": 50.73636275599664,
+   "winAfter": 50.73636275599664,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e7e6",
+   "bestLine": [
+    "e7e6",
+    "g1f3",
+    "d7d5",
+    "e4d5",
+    "e6d5",
+    "f1b5",
+    "a7a6",
+    "d1e2",
+    "f8e7",
+    "b5c6",
+    "b7c6",
+    "c3a4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 589300,
+    "spent": 6400
+   }
+  },
+  {
+   "ply": 7,
+   "color": "w",
+   "san": "Nf3",
+   "uci": "g1f3",
+   "fenBefore": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4",
+   "fenAfter": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R b KQkq - 1 4",
+   "evalBefore": {
+    "fen": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 7
+      },
+      "pv": [
+       "g1f3",
+       "a7a6",
+       "g2g3",
+       "b7b5",
+       "f1g2",
+       "c8b7",
+       "e1g1",
+       "f8e7",
+       "d2d3",
+       "d7d5",
+       "e4d5"
+      ],
+      "depth": 15,
+      "nodes": 300098
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 0
+      },
+      "pv": [
+       "d2d3",
+       "f8e7"
+      ],
+      "depth": 15,
+      "nodes": 300098
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -11
+      },
+      "pv": [
+       "g2g3",
+       "d7d5",
+       "d2d3",
+       "h7h5",
+       "g1f3",
+       "h5h4",
+       "g3g4",
+       "d5d4",
+       "c3e2",
+       "e6e5",
+       "f4f5",
+       "g7g6",
+       "f1h3",
+       "g6f5",
+       "g4f5"
+      ],
+      "depth": 14,
+      "nodes": 300098
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R b KQkq - 1 4",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 0
+      },
+      "pv": [
+       "d7d5",
+       "f1b5",
+       "g8e7",
+       "e4d5",
+       "e6d5",
+       "d2d4",
+       "g7g6",
+       "d4c5",
+       "f8g7",
+       "e1g1",
+       "e8g8",
+       "h2h3",
+       "a7a6",
+       "b5c6",
+       "b7c6"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 7
+      },
+      "pv": [
+       "g8h6",
+       "f1c4",
+       "f8e7",
+       "e1g1",
+       "e8g8",
+       "f4f5",
+       "d7d5",
+       "e4d5",
+       "e6d5",
+       "c3d5",
+       "h6f5",
+       "d2d3",
+       "f8e8",
+       "d5e7",
+       "e8e7"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 16
+      },
+      "pv": [
+       "b7b6",
+       "f1c4"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     }
+    ]
+   },
+   "winBefore": 50.644328329952096,
+   "winAfter": 50.644328329952096,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "g1f3",
+   "bestLine": [
+    "g1f3",
+    "a7a6",
+    "g2g3",
+    "b7b5",
+    "f1g2",
+    "c8b7",
+    "e1g1",
+    "f8e7",
+    "d2d3",
+    "d7d5",
+    "e4d5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 590500,
+    "spent": 4200
+   }
+  },
+  {
+   "ply": 8,
+   "color": "b",
+   "san": "Nf6",
+   "uci": "g8f6",
+   "fenBefore": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R b KQkq - 1 4",
+   "fenAfter": "r1bqkb1r/pp1p1ppp/2n1pn2/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R w KQkq - 2 5",
+   "evalBefore": {
+    "fen": "r1bqkbnr/pp1p1ppp/2n1p3/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R b KQkq - 1 4",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 0
+      },
+      "pv": [
+       "d7d5",
+       "f1b5",
+       "g8e7",
+       "e4d5",
+       "e6d5",
+       "d2d4",
+       "g7g6",
+       "d4c5",
+       "f8g7",
+       "e1g1",
+       "e8g8",
+       "h2h3",
+       "a7a6",
+       "b5c6",
+       "b7c6"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 7
+      },
+      "pv": [
+       "g8h6",
+       "f1c4",
+       "f8e7",
+       "e1g1",
+       "e8g8",
+       "f4f5",
+       "d7d5",
+       "e4d5",
+       "e6d5",
+       "c3d5",
+       "h6f5",
+       "d2d3",
+       "f8e8",
+       "d5e7",
+       "e8e7"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 16
+      },
+      "pv": [
+       "b7b6",
+       "f1c4"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkb1r/pp1p1ppp/2n1pn2/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R w KQkq - 2 5",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "f1b5",
+       "c6d4",
+       "e4e5",
+       "d4b5",
+       "c3b5",
+       "a7a6",
+       "b5c3",
+       "f6g4",
+       "d2d4",
+       "b7b5",
+       "d4d5",
+       "c8b7",
+       "h2h3",
+       "g4h6",
+       "d5d6",
+       "h6f5"
+      ],
+      "depth": 13,
+      "nodes": 300516
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 9
+      },
+      "pv": [
+       "e4e5"
+      ],
+      "depth": 13,
+      "nodes": 300516
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 4
+      },
+      "pv": [
+       "d2d4",
+       "d7d5",
+       "e4e5",
+       "f6g4",
+       "h2h3",
+       "c5d4",
+       "h3g4",
+       "d4c3",
+       "b2c3",
+       "c8d7",
+       "f1d3",
+       "d8a5"
+      ],
+      "depth": 12,
+      "nodes": 300516
+     }
+    ]
+   },
+   "winBefore": 50,
+   "winAfter": 46.96601598181785,
+   "epLoss": 0.03033984018182151,
+   "moveAccuracy": 88.23223085231456,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "d7d5",
+   "bestLine": [
+    "d7d5",
+    "f1b5",
+    "g8e7",
+    "e4d5",
+    "e6d5",
+    "d2d4",
+    "g7g6",
+    "d4c5",
+    "f8g7",
+    "e1g1",
+    "e8g8",
+    "h2h3",
+    "a7a6",
+    "b5c6",
+    "b7c6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 588000,
+    "spent": 1300
+   }
+  },
+  {
+   "ply": 9,
+   "color": "w",
+   "san": "Bb5",
+   "uci": "f1b5",
+   "fenBefore": "r1bqkb1r/pp1p1ppp/2n1pn2/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R w KQkq - 2 5",
+   "fenAfter": "r1bqkb1r/pp1p1ppp/2n1pn2/1Bp5/4PP2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 3 5",
+   "evalBefore": {
+    "fen": "r1bqkb1r/pp1p1ppp/2n1pn2/2p5/4PP2/2N2N2/PPPP2PP/R1BQKB1R w KQkq - 2 5",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "f1b5",
+       "c6d4",
+       "e4e5",
+       "d4b5",
+       "c3b5",
+       "a7a6",
+       "b5c3",
+       "f6g4",
+       "d2d4",
+       "b7b5",
+       "d4d5",
+       "c8b7",
+       "h2h3",
+       "g4h6",
+       "d5d6",
+       "h6f5"
+      ],
+      "depth": 13,
+      "nodes": 300516
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 9
+      },
+      "pv": [
+       "e4e5"
+      ],
+      "depth": 13,
+      "nodes": 300516
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 4
+      },
+      "pv": [
+       "d2d4",
+       "d7d5",
+       "e4e5",
+       "f6g4",
+       "h2h3",
+       "c5d4",
+       "h3g4",
+       "d4c3",
+       "b2c3",
+       "c8d7",
+       "f1d3",
+       "d8a5"
+      ],
+      "depth": 12,
+      "nodes": 300516
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkb1r/pp1p1ppp/2n1pn2/1Bp5/4PP2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 3 5",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "c6d4",
+       "e4e5",
+       "d4b5",
+       "c3b5",
+       "f6d5",
+       "c2c4",
+       "d5f4",
+       "d2d4",
+       "a7a6",
+       "b5d6",
+       "f8d6",
+       "c1f4",
+       "d6e7",
+       "d4d5",
+       "d7d6",
+       "d5e6",
+       "c8e6",
+       "e5d6",
+       "e7h4",
+       "g2g3",
+       "h4f6",
+       "e1g1"
+      ],
+      "depth": 14,
+      "nodes": 300310
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "d7d5",
+       "b5c6",
+       "b7c6",
+       "d2d3",
+       "f8e7",
+       "e4e5",
+       "f6d7",
+       "b2b3",
+       "e8g8",
+       "e1g1",
+       "c8a6",
+       "d1e1",
+       "f7f6",
+       "f1f2",
+       "f6e5",
+       "f4e5",
+       "c5c4"
+      ],
+      "depth": 14,
+      "nodes": 300310
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 47
+      },
+      "pv": [
+       "d8b6",
+       "d2d3",
+       "a7a6",
+       "b5a4",
+       "d7d5",
+       "e1g1",
+       "c8d7",
+       "f4f5",
+       "d5d4"
+      ],
+      "depth": 13,
+      "nodes": 300310
+     }
+    ]
+   },
+   "winBefore": 53.03398401818215,
+   "winAfter": 53.03398401818215,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "f1b5",
+   "bestLine": [
+    "f1b5",
+    "c6d4",
+    "e4e5",
+    "d4b5",
+    "c3b5",
+    "a7a6",
+    "b5c3",
+    "f6g4",
+    "d2d4",
+    "b7b5",
+    "d4d5",
+    "c8b7",
+    "h2h3",
+    "g4h6",
+    "d5d6",
+    "h6f5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 585900,
+    "spent": 4600
+   }
+  },
+  {
+   "ply": 10,
+   "color": "b",
+   "san": "d5",
+   "uci": "d7d5",
+   "fenBefore": "r1bqkb1r/pp1p1ppp/2n1pn2/1Bp5/4PP2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 3 5",
+   "fenAfter": "r1bqkb1r/pp3ppp/2n1pn2/1Bpp4/4PP2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 0 6",
+   "evalBefore": {
+    "fen": "r1bqkb1r/pp1p1ppp/2n1pn2/1Bp5/4PP2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 3 5",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 26
+      },
+      "pv": [
+       "c6d4",
+       "e4e5",
+       "d4b5",
+       "c3b5",
+       "f6d5",
+       "c2c4",
+       "d5f4",
+       "d2d4",
+       "a7a6",
+       "b5d6",
+       "f8d6",
+       "c1f4",
+       "d6e7",
+       "d4d5",
+       "d7d6",
+       "d5e6",
+       "c8e6",
+       "e5d6",
+       "e7h4",
+       "g2g3",
+       "h4f6",
+       "e1g1"
+      ],
+      "depth": 14,
+      "nodes": 300310
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 42
+      },
+      "pv": [
+       "d7d5",
+       "b5c6",
+       "b7c6",
+       "d2d3",
+       "f8e7",
+       "e4e5",
+       "f6d7",
+       "b2b3",
+       "e8g8",
+       "e1g1",
+       "c8a6",
+       "d1e1",
+       "f7f6",
+       "f1f2",
+       "f6e5",
+       "f4e5",
+       "c5c4"
+      ],
+      "depth": 14,
+      "nodes": 300310
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 47
+      },
+      "pv": [
+       "d8b6",
+       "d2d3",
+       "a7a6",
+       "b5a4",
+       "d7d5",
+       "e1g1",
+       "c8d7",
+       "f4f5",
+       "d5d4"
+      ],
+      "depth": 13,
+      "nodes": 300310
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkb1r/pp3ppp/2n1pn2/1Bpp4/4PP2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 0 6",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 34
+      },
+      "pv": [
+       "e4e5",
+       "f6d7",
+       "e1g1",
+       "d7b8",
+       "d2d4",
+       "a7a6",
+       "b5c6",
+       "b8c6",
+       "c1e3",
+       "c5d4",
+       "f3d4",
+       "c6d4",
+       "d1d4",
+       "c8d7",
+       "f4f5",
+       "a8c8",
+       "f5f6"
+      ],
+      "depth": 14,
+      "nodes": 300134
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 29
+      },
+      "pv": [
+       "d2d3",
+       "c8d7",
+       "e1g1",
+       "a7a6",
+       "b5c6",
+       "d7c6",
+       "f3e5",
+       "d5e4",
+       "e5c6",
+       "b7c6",
+       "d3e4",
+       "d8d4",
+       "g1h1",
+       "d4d1",
+       "f1d1",
+       "f6g4",
+       "d1d2",
+       "c5c4"
+      ],
+      "depth": 14,
+      "nodes": 300134
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "b5c6",
+       "b7c6"
+      ],
+      "depth": 14,
+      "nodes": 300134
+     }
+    ]
+   },
+   "winBefore": 47.60847425165294,
+   "winAfter": 46.14150285897469,
+   "epLoss": 0.014669713926782513,
+   "moveAccuracy": 94.61586295841175,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c6d4",
+   "bestLine": [
+    "c6d4",
+    "e4e5",
+    "d4b5",
+    "c3b5",
+    "f6d5",
+    "c2c4",
+    "d5f4",
+    "d2d4",
+    "a7a6",
+    "b5d6",
+    "f8d6",
+    "c1f4",
+    "d6e7",
+    "d4d5",
+    "d7d6",
+    "d5e6",
+    "c8e6",
+    "e5d6",
+    "e7h4",
+    "g2g3",
+    "h4f6",
+    "e1g1"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 585900,
+    "spent": 2100
+   }
+  },
+  {
+   "ply": 11,
+   "color": "w",
+   "san": "e5",
+   "uci": "e4e5",
+   "fenBefore": "r1bqkb1r/pp3ppp/2n1pn2/1Bpp4/4PP2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 0 6",
+   "fenAfter": "r1bqkb1r/pp3ppp/2n1pn2/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 0 6",
+   "evalBefore": {
+    "fen": "r1bqkb1r/pp3ppp/2n1pn2/1Bpp4/4PP2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 0 6",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 34
+      },
+      "pv": [
+       "e4e5",
+       "f6d7",
+       "e1g1",
+       "d7b8",
+       "d2d4",
+       "a7a6",
+       "b5c6",
+       "b8c6",
+       "c1e3",
+       "c5d4",
+       "f3d4",
+       "c6d4",
+       "d1d4",
+       "c8d7",
+       "f4f5",
+       "a8c8",
+       "f5f6"
+      ],
+      "depth": 14,
+      "nodes": 300134
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 29
+      },
+      "pv": [
+       "d2d3",
+       "c8d7",
+       "e1g1",
+       "a7a6",
+       "b5c6",
+       "d7c6",
+       "f3e5",
+       "d5e4",
+       "e5c6",
+       "b7c6",
+       "d3e4",
+       "d8d4",
+       "g1h1",
+       "d4d1",
+       "f1d1",
+       "f6g4",
+       "d1d2",
+       "c5c4"
+      ],
+      "depth": 14,
+      "nodes": 300134
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "b5c6",
+       "b7c6"
+      ],
+      "depth": 14,
+      "nodes": 300134
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkb1r/pp3ppp/2n1pn2/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 0 6",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "f6d7",
+       "e1g1",
+       "c6d4",
+       "f3d4",
+       "c5d4",
+       "c3e2",
+       "d8b6",
+       "b5d3",
+       "d7c5",
+       "b2b3",
+       "c5d3",
+       "c2d3",
+       "a7a5",
+       "c1b2",
+       "f8c5",
+       "a1c1",
+       "c8d7",
+       "f4f5",
+       "e6f5",
+       "e2f4",
+       "d7e6",
+       "d1h5",
+       "g7g6",
+       "h5h6",
+       "c5f8",
+       "h6h4"
+      ],
+      "depth": 15,
+      "nodes": 300166
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "f6g4",
+       "b5c6"
+      ],
+      "depth": 15,
+      "nodes": 300166
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "f6g8",
+       "b5c6",
+       "b7c6",
+       "d2d3",
+       "g8h6",
+       "b2b3",
+       "c8a6",
+       "e1g1",
+       "c5c4",
+       "d3c4",
+       "d5c4",
+       "f1e1",
+       "d8b6"
+      ],
+      "depth": 14,
+      "nodes": 300166
+     }
+    ]
+   },
+   "winBefore": 53.1256867324871,
+   "winAfter": 53.1256867324871,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "e4e5",
+   "bestLine": [
+    "e4e5",
+    "f6d7",
+    "e1g1",
+    "d7b8",
+    "d2d4",
+    "a7a6",
+    "b5c6",
+    "b8c6",
+    "c1e3",
+    "c5d4",
+    "f3d4",
+    "c6d4",
+    "d1d4",
+    "c8d7",
+    "f4f5",
+    "a8c8",
+    "f5f6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 579700,
+    "spent": 6200
+   }
+  },
+  {
+   "ply": 12,
+   "color": "b",
+   "san": "Nd7",
+   "uci": "f6d7",
+   "fenBefore": "r1bqkb1r/pp3ppp/2n1pn2/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 0 6",
+   "fenAfter": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 1 7",
+   "evalBefore": {
+    "fen": "r1bqkb1r/pp3ppp/2n1pn2/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R b KQkq - 0 6",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "f6d7",
+       "e1g1",
+       "c6d4",
+       "f3d4",
+       "c5d4",
+       "c3e2",
+       "d8b6",
+       "b5d3",
+       "d7c5",
+       "b2b3",
+       "c5d3",
+       "c2d3",
+       "a7a5",
+       "c1b2",
+       "f8c5",
+       "a1c1",
+       "c8d7",
+       "f4f5",
+       "e6f5",
+       "e2f4",
+       "d7e6",
+       "d1h5",
+       "g7g6",
+       "h5h6",
+       "c5f8",
+       "h6h4"
+      ],
+      "depth": 15,
+      "nodes": 300166
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 35
+      },
+      "pv": [
+       "f6g4",
+       "b5c6"
+      ],
+      "depth": 15,
+      "nodes": 300166
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 36
+      },
+      "pv": [
+       "f6g8",
+       "b5c6",
+       "b7c6",
+       "d2d3",
+       "g8h6",
+       "b2b3",
+       "c8a6",
+       "e1g1",
+       "c5c4",
+       "d3c4",
+       "d5c4",
+       "f1e1",
+       "d8b6"
+      ],
+      "depth": 14,
+      "nodes": 300166
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 1 7",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "b5c6",
+       "b7c6",
+       "e1g1",
+       "c5c4",
+       "b2b3",
+       "c8a6",
+       "b3c4",
+       "d8a5",
+       "c3e2",
+       "d5c4",
+       "a2a4",
+       "f8c5",
+       "g1h1"
+      ],
+      "depth": 13,
+      "nodes": 300222
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "e1g1",
+       "c6d4",
+       "d2d3",
+       "a7a6",
+       "f3d4",
+       "c5d4",
+       "b5d7",
+       "c8d7",
+       "c3e2",
+       "d8b6",
+       "a2a4",
+       "a6a5",
+       "h2h4",
+       "a8c8"
+      ],
+      "depth": 13,
+      "nodes": 300222
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 9
+      },
+      "pv": [
+       "a2a3",
+       "f8e7"
+      ],
+      "depth": 13,
+      "nodes": 300222
+     }
+    ]
+   },
+   "winBefore": 47.24124461074959,
+   "winAfter": 47.24124461074959,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "f6d7",
+   "bestLine": [
+    "f6d7",
+    "e1g1",
+    "c6d4",
+    "f3d4",
+    "c5d4",
+    "c3e2",
+    "d8b6",
+    "b5d3",
+    "d7c5",
+    "b2b3",
+    "c5d3",
+    "c2d3",
+    "a7a5",
+    "c1b2",
+    "f8c5",
+    "a1c1",
+    "c8d7",
+    "f4f5",
+    "e6f5",
+    "e2f4",
+    "d7e6",
+    "d1h5",
+    "g7g6",
+    "h5h6",
+    "c5f8",
+    "h6h4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 585000,
+    "spent": 900
+   }
+  },
+  {
+   "ply": 13,
+   "color": "w",
+   "san": "O-O",
+   "uci": "e1g1",
+   "fenBefore": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 1 7",
+   "fenAfter": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 b kq - 2 7",
+   "evalBefore": {
+    "fen": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 1 7",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "b5c6",
+       "b7c6",
+       "e1g1",
+       "c5c4",
+       "b2b3",
+       "c8a6",
+       "b3c4",
+       "d8a5",
+       "c3e2",
+       "d5c4",
+       "a2a4",
+       "f8c5",
+       "g1h1"
+      ],
+      "depth": 13,
+      "nodes": 300222
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "e1g1",
+       "c6d4",
+       "d2d3",
+       "a7a6",
+       "f3d4",
+       "c5d4",
+       "b5d7",
+       "c8d7",
+       "c3e2",
+       "d8b6",
+       "a2a4",
+       "a6a5",
+       "h2h4",
+       "a8c8"
+      ],
+      "depth": 13,
+      "nodes": 300222
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 9
+      },
+      "pv": [
+       "a2a3",
+       "f8e7"
+      ],
+      "depth": 13,
+      "nodes": 300222
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 b kq - 2 7",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "c6d4",
+       "d2d3",
+       "a7a6",
+       "b5d7",
+       "c8d7",
+       "f3d4",
+       "c5d4",
+       "c3e2",
+       "d8b6",
+       "a2a4",
+       "a6a5",
+       "d1e1",
+       "f8e7",
+       "e1g3"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f8e7",
+       "g1h1",
+       "d7b8",
+       "d2d4",
+       "a7a6",
+       "b5c6",
+       "b8c6",
+       "d4c5",
+       "e7c5",
+       "c3e2",
+       "d8b6",
+       "c2c3",
+       "c5e7",
+       "e2g3"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "d7b8",
+       "d2d4"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     }
+    ]
+   },
+   "winBefore": 51.9321294202434,
+   "winAfter": 51.9321294202434,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "b5c6",
+   "bestLine": [
+    "b5c6",
+    "b7c6",
+    "e1g1",
+    "c5c4",
+    "b2b3",
+    "c8a6",
+    "b3c4",
+    "d8a5",
+    "c3e2",
+    "d5c4",
+    "a2a4",
+    "f8c5",
+    "g1h1"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 571400,
+    "spent": 8300
+   }
+  },
+  {
+   "ply": 14,
+   "color": "b",
+   "san": "Be7",
+   "uci": "f8e7",
+   "fenBefore": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 b kq - 2 7",
+   "fenAfter": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 w kq - 3 8",
+   "evalBefore": {
+    "fen": "r1bqkb1r/pp1n1ppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 b kq - 2 7",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "c6d4",
+       "d2d3",
+       "a7a6",
+       "b5d7",
+       "c8d7",
+       "f3d4",
+       "c5d4",
+       "c3e2",
+       "d8b6",
+       "a2a4",
+       "a6a5",
+       "d1e1",
+       "f8e7",
+       "e1g3"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 25
+      },
+      "pv": [
+       "f8e7",
+       "g1h1",
+       "d7b8",
+       "d2d4",
+       "a7a6",
+       "b5c6",
+       "b8c6",
+       "d4c5",
+       "e7c5",
+       "c3e2",
+       "d8b6",
+       "c2c3",
+       "c5e7",
+       "e2g3"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "d7b8",
+       "d2d4"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 w kq - 3 8",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "b5c6",
+       "b7c6",
+       "d2d3",
+       "e8g8",
+       "d1e1",
+       "c8a6",
+       "b2b3",
+       "c5c4",
+       "d3c4",
+       "d7b6",
+       "e1f2",
+       "d5c4",
+       "f1e1",
+       "b6d5"
+      ],
+      "depth": 13,
+      "nodes": 300176
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "g1h1",
+       "e8g8"
+      ],
+      "depth": 13,
+      "nodes": 300176
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "b2b3",
+       "d7b8"
+      ],
+      "depth": 12,
+      "nodes": 300176
+     }
+    ]
+   },
+   "winBefore": 47.70032364323007,
+   "winAfter": 47.70032364323007,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c6d4",
+   "bestLine": [
+    "c6d4",
+    "d2d3",
+    "a7a6",
+    "b5d7",
+    "c8d7",
+    "f3d4",
+    "c5d4",
+    "c3e2",
+    "d8b6",
+    "a2a4",
+    "a6a5",
+    "d1e1",
+    "f8e7",
+    "e1g3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 571900,
+    "spent": 13100
+   }
+  },
+  {
+   "ply": 15,
+   "color": "w",
+   "san": "Ne2",
+   "uci": "c3e2",
+   "fenBefore": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 w kq - 3 8",
+   "fenAfter": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 b kq - 4 8",
+   "evalBefore": {
+    "fen": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/2N2N2/PPPP2PP/R1BQ1RK1 w kq - 3 8",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "b5c6",
+       "b7c6",
+       "d2d3",
+       "e8g8",
+       "d1e1",
+       "c8a6",
+       "b2b3",
+       "c5c4",
+       "d3c4",
+       "d7b6",
+       "e1f2",
+       "d5c4",
+       "f1e1",
+       "b6d5"
+      ],
+      "depth": 13,
+      "nodes": 300176
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 27
+      },
+      "pv": [
+       "g1h1",
+       "e8g8"
+      ],
+      "depth": 13,
+      "nodes": 300176
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 38
+      },
+      "pv": [
+       "b2b3",
+       "d7b8"
+      ],
+      "depth": 12,
+      "nodes": 300176
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 b kq - 4 8",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "d8b6"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 34
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "a7a6",
+       "b5c6",
+       "b7c6",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "e2g3",
+       "d7b6",
+       "d1e2",
+       "a8b8",
+       "a1b1",
+       "e8g8"
+      ],
+      "depth": 13,
+      "nodes": 300356
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 40
+      },
+      "pv": [
+       "e8g8",
+       "d2d3",
+       "f7f6",
+       "b5c6",
+       "b7c6",
+       "b2b3",
+       "a7a5",
+       "a2a4",
+       "c5c4",
+       "e2d4",
+       "f6e5",
+       "f4e5",
+       "c4b3"
+      ],
+      "depth": 13,
+      "nodes": 300356
+     }
+    ]
+   },
+   "winBefore": 53.400665785633464,
+   "winAfter": 53.03398401818215,
+   "epLoss": 0.0036668176745130454,
+   "moveAccuracy": 99.36571759899599,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "b5c6",
+   "bestLine": [
+    "b5c6",
+    "b7c6",
+    "d2d3",
+    "e8g8",
+    "d1e1",
+    "c8a6",
+    "b2b3",
+    "c5c4",
+    "d3c4",
+    "d7b6",
+    "e1f2",
+    "d5c4",
+    "f1e1",
+    "b6d5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 553800,
+    "spent": 17600
+   }
+  },
+  {
+   "ply": 16,
+   "color": "b",
+   "san": "O-O",
+   "uci": "e8g8",
+   "fenBefore": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 b kq - 4 8",
+   "fenAfter": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 w - - 5 9",
+   "evalBefore": {
+    "fen": "r1bqk2r/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 b kq - 4 8",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 33
+      },
+      "pv": [
+       "d8b6"
+      ],
+      "depth": 14,
+      "nodes": 300356
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 34
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "a7a6",
+       "b5c6",
+       "b7c6",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "e2g3",
+       "d7b6",
+       "d1e2",
+       "a8b8",
+       "a1b1",
+       "e8g8"
+      ],
+      "depth": 13,
+      "nodes": 300356
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 40
+      },
+      "pv": [
+       "e8g8",
+       "d2d3",
+       "f7f6",
+       "b5c6",
+       "b7c6",
+       "b2b3",
+       "a7a5",
+       "a2a4",
+       "c5c4",
+       "e2d4",
+       "f6e5",
+       "f4e5",
+       "c4b3"
+      ],
+      "depth": 13,
+      "nodes": 300356
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 w - - 5 9",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 22
+      },
+      "pv": [
+       "b2b3",
+       "d8b6",
+       "a2a4",
+       "c5c4",
+       "g1h1",
+       "c4b3",
+       "c2b3",
+       "a7a6",
+       "b5c6",
+       "b7c6",
+       "a4a5",
+       "b6b7",
+       "a1b1",
+       "c6c5",
+       "d2d4",
+       "a8b8",
+       "d1c2"
+      ],
+      "depth": 15,
+      "nodes": 300048
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "a2a4",
+       "f7f6",
+       "d2d4",
+       "a7a6",
+       "b5c6",
+       "b7c6",
+       "a4a5",
+       "d8e8",
+       "f1e1",
+       "c5d4",
+       "e2d4",
+       "d7c5",
+       "e5f6"
+      ],
+      "depth": 15,
+      "nodes": 300048
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "d2d3",
+       "d8b6",
+       "a2a4",
+       "f7f6",
+       "e5f6",
+       "d7f6",
+       "c2c3",
+       "e7d6",
+       "d3d4",
+       "c5d4",
+       "e2d4",
+       "f6e4"
+      ],
+      "depth": 15,
+      "nodes": 300048
+     }
+    ]
+   },
+   "winBefore": 46.96601598181785,
+   "winAfter": 46.324561670946,
+   "epLoss": 0.006414543108718529,
+   "moveAccuracy": 98.1581446966152,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "d8b6",
+   "bestLine": [
+    "d8b6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 569500,
+    "spent": 2400
+   }
+  },
+  {
+   "ply": 17,
+   "color": "w",
+   "san": "Qe1",
+   "uci": "d1e1",
+   "fenBefore": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 w - - 5 9",
+   "fenAfter": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 6 9",
+   "evalBefore": {
+    "fen": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1BQ1RK1 w - - 5 9",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 22
+      },
+      "pv": [
+       "b2b3",
+       "d8b6",
+       "a2a4",
+       "c5c4",
+       "g1h1",
+       "c4b3",
+       "c2b3",
+       "a7a6",
+       "b5c6",
+       "b7c6",
+       "a4a5",
+       "b6b7",
+       "a1b1",
+       "c6c5",
+       "d2d4",
+       "a8b8",
+       "d1c2"
+      ],
+      "depth": 15,
+      "nodes": 300048
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 21
+      },
+      "pv": [
+       "a2a4",
+       "f7f6",
+       "d2d4",
+       "a7a6",
+       "b5c6",
+       "b7c6",
+       "a4a5",
+       "d8e8",
+       "f1e1",
+       "c5d4",
+       "e2d4",
+       "d7c5",
+       "e5f6"
+      ],
+      "depth": 15,
+      "nodes": 300048
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "d2d3",
+       "d8b6",
+       "a2a4",
+       "f7f6",
+       "e5f6",
+       "d7f6",
+       "c2c3",
+       "e7d6",
+       "d3d4",
+       "c5d4",
+       "e2d4",
+       "f6e4"
+      ],
+      "depth": 15,
+      "nodes": 300048
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 6 9",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -57
+      },
+      "pv": [
+       "c6b4",
+       "e1d1"
+      ],
+      "depth": 15,
+      "nodes": 300192
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "d8b6",
+       "e2c3",
+       "c6b4",
+       "b5a4",
+       "c5c4",
+       "g1h1",
+       "d7c5",
+       "a2a3",
+       "b4c6"
+      ],
+      "depth": 14,
+      "nodes": 300192
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -25
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "d8b6",
+       "b5c6",
+       "b7c6",
+       "e2g3",
+       "f7f5",
+       "e5f6",
+       "e7f6",
+       "e1e6",
+       "f8f7"
+      ],
+      "depth": 14,
+      "nodes": 300192
+     }
+    ]
+   },
+   "winBefore": 52.02403732122674,
+   "winAfter": 44.772211834228585,
+   "epLoss": 0.07251825486998159,
+   "moveAccuracy": 73.06476803544003,
+   "classification": "inaccuracy",
+   "forced": false,
+   "bestMove": "b2b3",
+   "bestLine": [
+    "b2b3",
+    "d8b6",
+    "a2a4",
+    "c5c4",
+    "g1h1",
+    "c4b3",
+    "c2b3",
+    "a7a6",
+    "b5c6",
+    "b7c6",
+    "a4a5",
+    "b6b7",
+    "a1b1",
+    "c6c5",
+    "d2d4",
+    "a8b8",
+    "d1c2"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 547400,
+    "spent": 6400
+   }
+  },
+  {
+   "ply": 18,
+   "color": "b",
+   "san": "Qb6",
+   "uci": "d8b6",
+   "fenBefore": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 6 9",
+   "fenAfter": "r1b2rk1/pp1nbppp/1qn1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 7 10",
+   "evalBefore": {
+    "fen": "r1bq1rk1/pp1nbppp/2n1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 6 9",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -57
+      },
+      "pv": [
+       "c6b4",
+       "e1d1"
+      ],
+      "depth": 15,
+      "nodes": 300192
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "d8b6",
+       "e2c3",
+       "c6b4",
+       "b5a4",
+       "c5c4",
+       "g1h1",
+       "d7c5",
+       "a2a3",
+       "b4c6"
+      ],
+      "depth": 14,
+      "nodes": 300192
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -25
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "d8b6",
+       "b5c6",
+       "b7c6",
+       "e2g3",
+       "f7f5",
+       "e5f6",
+       "e7f6",
+       "e1e6",
+       "f8f7"
+      ],
+      "depth": 14,
+      "nodes": 300192
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/pp1nbppp/1qn1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 7 10",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -26
+      },
+      "pv": [
+       "b5a4",
+       "c5c4",
+       "g1h1",
+       "f7f6",
+       "e5f6",
+       "e7f6",
+       "e2g3",
+       "c6d4",
+       "f3d4",
+       "f6d4",
+       "c2c3",
+       "d4f6"
+      ],
+      "depth": 14,
+      "nodes": 300190
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -39
+      },
+      "pv": [
+       "b5c6",
+       "c5c4",
+       "g1h1",
+       "b7c6",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "a2a4",
+       "f7f5",
+       "e5f6",
+       "e7f6",
+       "e2c3",
+       "c8b7",
+       "a1b1",
+       "b6c6",
+       "e1e2",
+       "f8f7"
+      ],
+      "depth": 14,
+      "nodes": 300190
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "a2a4",
+       "c6b4"
+      ],
+      "depth": 14,
+      "nodes": 300190
+     }
+    ]
+   },
+   "winBefore": 55.227788165771415,
+   "winAfter": 54.68090461073719,
+   "epLoss": 0.005468835550342277,
+   "moveAccuracy": 98.57213551084793,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c6b4",
+   "bestLine": [
+    "c6b4",
+    "e1d1"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 550000,
+    "spent": 19500
+   }
+  },
+  {
+   "ply": 19,
+   "color": "w",
+   "san": "Bxc6",
+   "uci": "b5c6",
+   "fenBefore": "r1b2rk1/pp1nbppp/1qn1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 7 10",
+   "fenAfter": "r1b2rk1/pp1nbppp/1qB1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 0 10",
+   "evalBefore": {
+    "fen": "r1b2rk1/pp1nbppp/1qn1p3/1BppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 7 10",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -26
+      },
+      "pv": [
+       "b5a4",
+       "c5c4",
+       "g1h1",
+       "f7f6",
+       "e5f6",
+       "e7f6",
+       "e2g3",
+       "c6d4",
+       "f3d4",
+       "f6d4",
+       "c2c3",
+       "d4f6"
+      ],
+      "depth": 14,
+      "nodes": 300190
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -39
+      },
+      "pv": [
+       "b5c6",
+       "c5c4",
+       "g1h1",
+       "b7c6",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "a2a4",
+       "f7f5",
+       "e5f6",
+       "e7f6",
+       "e2c3",
+       "c8b7",
+       "a1b1",
+       "b6c6",
+       "e1e2",
+       "f8f7"
+      ],
+      "depth": 14,
+      "nodes": 300190
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -51
+      },
+      "pv": [
+       "a2a4",
+       "c6b4"
+      ],
+      "depth": 14,
+      "nodes": 300190
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/pp1nbppp/1qB1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 0 10",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -36
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "b7c6",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "a2a4",
+       "b6c6",
+       "e2g3",
+       "d7b6",
+       "g3h5",
+       "b6d5",
+       "c1b2",
+       "a8b8",
+       "b2c3",
+       "c8b7"
+      ],
+      "depth": 14,
+      "nodes": 300107
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -27
+      },
+      "pv": [
+       "b7c6",
+       "d2d3"
+      ],
+      "depth": 14,
+      "nodes": 300107
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -16
+      },
+      "pv": [
+       "b6c6",
+       "d2d3",
+       "b7b6",
+       "e2g3",
+       "f7f5",
+       "e5f6",
+       "d7f6",
+       "a2a4",
+       "e7d6",
+       "c1d2",
+       "a7a5",
+       "f3e5",
+       "c6c7",
+       "f1f3"
+      ],
+      "depth": 13,
+      "nodes": 300107
+     }
+    ]
+   },
+   "winBefore": 47.60847425165294,
+   "winAfter": 46.41612855292491,
+   "epLoss": 0.011923456987280312,
+   "moveAccuracy": 95.78017250792327,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "b5a4",
+   "bestLine": [
+    "b5a4",
+    "c5c4",
+    "g1h1",
+    "f7f6",
+    "e5f6",
+    "e7f6",
+    "e2g3",
+    "c6d4",
+    "f3d4",
+    "f6d4",
+    "c2c3",
+    "d4f6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 528900,
+    "spent": 18500
+   }
+  },
+  {
+   "ply": 20,
+   "color": "b",
+   "san": "bxc6",
+   "uci": "b7c6",
+   "fenBefore": "r1b2rk1/pp1nbppp/1qB1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 0 10",
+   "fenAfter": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 0 11",
+   "evalBefore": {
+    "fen": "r1b2rk1/pp1nbppp/1qB1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 b - - 0 10",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -36
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "b7c6",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "a2a4",
+       "b6c6",
+       "e2g3",
+       "d7b6",
+       "g3h5",
+       "b6d5",
+       "c1b2",
+       "a8b8",
+       "b2c3",
+       "c8b7"
+      ],
+      "depth": 14,
+      "nodes": 300107
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -27
+      },
+      "pv": [
+       "b7c6",
+       "d2d3"
+      ],
+      "depth": 14,
+      "nodes": 300107
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -16
+      },
+      "pv": [
+       "b6c6",
+       "d2d3",
+       "b7b6",
+       "e2g3",
+       "f7f5",
+       "e5f6",
+       "d7f6",
+       "a2a4",
+       "e7d6",
+       "c1d2",
+       "a7a5",
+       "f3e5",
+       "c6c7",
+       "f1f3"
+      ],
+      "depth": 13,
+      "nodes": 300107
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 0 11",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -28
+      },
+      "pv": [
+       "d2d3",
+       "c5c4"
+      ],
+      "depth": 14,
+      "nodes": 300196
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "b2b3",
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "c1a3",
+       "a8b8",
+       "e2g3",
+       "b6a5",
+       "e1e3",
+       "f7f5",
+       "e5f6",
+       "d7f6",
+       "f3e5"
+      ],
+      "depth": 13,
+      "nodes": 300196
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -46
+      },
+      "pv": [
+       "g1h1",
+       "c5c4",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "c1a3",
+       "a8b8",
+       "f4f5",
+       "e6f5",
+       "e2d4",
+       "f8e8",
+       "d4f5",
+       "e7f8",
+       "e1g3",
+       "b6g6",
+       "g3g6",
+       "h7g6",
+       "f5d6",
+       "f8d6"
+      ],
+      "depth": 13,
+      "nodes": 300196
+     }
+    ]
+   },
+   "winBefore": 53.30902822991304,
+   "winAfter": 52.48335896523928,
+   "epLoss": 0.008256692646737562,
+   "moveAccuracy": 97.35660778365767,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c5c4",
+   "bestLine": [
+    "c5c4",
+    "g1h1",
+    "b7c6",
+    "b2b3",
+    "c6c5",
+    "b3c4",
+    "d5c4",
+    "a2a4",
+    "b6c6",
+    "e2g3",
+    "d7b6",
+    "g3h5",
+    "b6d5",
+    "c1b2",
+    "a8b8",
+    "b2c3",
+    "c8b7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 542500,
+    "spent": 7500
+   }
+  },
+  {
+   "ply": 21,
+   "color": "w",
+   "san": "Qg3",
+   "uci": "e1g3",
+   "fenBefore": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 0 11",
+   "fenAfter": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 b - - 1 11",
+   "evalBefore": {
+    "fen": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5N2/PPPPN1PP/R1B1QRK1 w - - 0 11",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -28
+      },
+      "pv": [
+       "d2d3",
+       "c5c4"
+      ],
+      "depth": 14,
+      "nodes": 300196
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "b2b3",
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "c1a3",
+       "a8b8",
+       "e2g3",
+       "b6a5",
+       "e1e3",
+       "f7f5",
+       "e5f6",
+       "d7f6",
+       "f3e5"
+      ],
+      "depth": 13,
+      "nodes": 300196
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -46
+      },
+      "pv": [
+       "g1h1",
+       "c5c4",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "c1a3",
+       "a8b8",
+       "f4f5",
+       "e6f5",
+       "e2d4",
+       "f8e8",
+       "d4f5",
+       "e7f8",
+       "e1g3",
+       "b6g6",
+       "g3g6",
+       "h7g6",
+       "f5d6",
+       "f8d6"
+      ],
+      "depth": 13,
+      "nodes": 300196
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 b - - 1 11",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -97
+      },
+      "pv": [
+       "c8a6",
+       "f1e1",
+       "a6e2",
+       "e1e2",
+       "c5c4",
+       "g1h1",
+       "d7c5",
+       "b2b3",
+       "c5e4",
+       "g3e1",
+       "e7c5",
+       "b3c4",
+       "e4f2",
+       "h1g1"
+      ],
+      "depth": 13,
+      "nodes": 300204
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -77
+      },
+      "pv": [
+       "c5c4",
+       "g1h1"
+      ],
+      "depth": 13,
+      "nodes": 300204
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -24
+      },
+      "pv": [
+       "g8h8",
+       "d2d3",
+       "c5c4",
+       "d3d4",
+       "c6c5",
+       "g1h1",
+       "c5d4",
+       "e2d4",
+       "d7c5",
+       "g3h3",
+       "f7f5"
+      ],
+      "depth": 12,
+      "nodes": 300204
+     }
+    ]
+   },
+   "winBefore": 47.42482461063748,
+   "winAfter": 41.164679702450634,
+   "epLoss": 0.06260144908186843,
+   "moveAccuracy": 76.38457680974088,
+   "classification": "inaccuracy",
+   "forced": false,
+   "bestMove": "d2d3",
+   "bestLine": [
+    "d2d3",
+    "c5c4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 518900,
+    "spent": 10000
+   }
+  },
+  {
+   "ply": 22,
+   "color": "b",
+   "san": "f6",
+   "uci": "f7f6",
+   "fenBefore": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 b - - 1 11",
+   "fenAfter": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 w - - 0 12",
+   "evalBefore": {
+    "fen": "r1b2rk1/p2nbppp/1qp1p3/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 b - - 1 11",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -97
+      },
+      "pv": [
+       "c8a6",
+       "f1e1",
+       "a6e2",
+       "e1e2",
+       "c5c4",
+       "g1h1",
+       "d7c5",
+       "b2b3",
+       "c5e4",
+       "g3e1",
+       "e7c5",
+       "b3c4",
+       "e4f2",
+       "h1g1"
+      ],
+      "depth": 13,
+      "nodes": 300204
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -77
+      },
+      "pv": [
+       "c5c4",
+       "g1h1"
+      ],
+      "depth": 13,
+      "nodes": 300204
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -24
+      },
+      "pv": [
+       "g8h8",
+       "d2d3",
+       "c5c4",
+       "d3d4",
+       "c6c5",
+       "g1h1",
+       "c5d4",
+       "e2d4",
+       "d7c5",
+       "g3h3",
+       "f7f5"
+      ],
+      "depth": 12,
+      "nodes": 300204
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 w - - 0 12",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "d2d3",
+       "c5c4",
+       "d3d4",
+       "c8a6",
+       "f4f5",
+       "f6e5",
+       "f5e6",
+       "c4c3",
+       "c1h6",
+       "e7f6",
+       "f3h4",
+       "c3b2",
+       "a1e1",
+       "a6e2"
+      ],
+      "depth": 13,
+      "nodes": 300006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "g1h1",
+       "c5c4",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "c1a3",
+       "c8b7",
+       "a1b1",
+       "b6a6",
+       "e5f6",
+       "d7f6",
+       "g3h3"
+      ],
+      "depth": 13,
+      "nodes": 300006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -43
+      },
+      "pv": [
+       "b2b3",
+       "c5c4"
+      ],
+      "depth": 13,
+      "nodes": 300006
+     }
+    ]
+   },
+   "winBefore": 58.835320297549366,
+   "winAfter": 48.25172499538834,
+   "epLoss": 0.10583595302161031,
+   "moveAccuracy": 62.90501942864771,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "c8a6",
+   "bestLine": [
+    "c8a6",
+    "f1e1",
+    "a6e2",
+    "e1e2",
+    "c5c4",
+    "g1h1",
+    "d7c5",
+    "b2b3",
+    "c5e4",
+    "g3e1",
+    "e7c5",
+    "b3c4",
+    "e4f2",
+    "h1g1"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 509100,
+    "spent": 33400
+   }
+  },
+  {
+   "ply": 23,
+   "color": "w",
+   "san": "b3",
+   "uci": "b2b3",
+   "fenBefore": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 w - - 0 12",
+   "fenAfter": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 12",
+   "evalBefore": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/5NQ1/PPPPN1PP/R1B2RK1 w - - 0 12",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 19
+      },
+      "pv": [
+       "d2d3",
+       "c5c4",
+       "d3d4",
+       "c8a6",
+       "f4f5",
+       "f6e5",
+       "f5e6",
+       "c4c3",
+       "c1h6",
+       "e7f6",
+       "f3h4",
+       "c3b2",
+       "a1e1",
+       "a6e2"
+      ],
+      "depth": 13,
+      "nodes": 300006
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -40
+      },
+      "pv": [
+       "g1h1",
+       "c5c4",
+       "b2b3",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "c1a3",
+       "c8b7",
+       "a1b1",
+       "b6a6",
+       "e5f6",
+       "d7f6",
+       "g3h3"
+      ],
+      "depth": 13,
+      "nodes": 300006
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -43
+      },
+      "pv": [
+       "b2b3",
+       "c5c4"
+      ],
+      "depth": 13,
+      "nodes": 300006
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 12",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -45
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b3c4",
+       "b6a6",
+       "d2d4",
+       "f6f5",
+       "f1e1",
+       "d5c4",
+       "a2a4",
+       "c8b7",
+       "c1a3",
+       "a8d8",
+       "e2c3",
+       "d7b6"
+      ],
+      "depth": 12,
+      "nodes": 300110
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -30
+      },
+      "pv": [
+       "c8a6",
+       "f1e1"
+      ],
+      "depth": 12,
+      "nodes": 300110
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -9
+      },
+      "pv": [
+       "f6e5",
+       "c1b2",
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b2e5",
+       "d7e5",
+       "f3e5",
+       "e7f6",
+       "b3c4",
+       "f6e5",
+       "f4e5",
+       "c8a6",
+       "f1f8",
+       "a8f8"
+      ],
+      "depth": 11,
+      "nodes": 300110
+     }
+    ]
+   },
+   "winBefore": 51.74827500461166,
+   "winAfter": 46.05001214877426,
+   "epLoss": 0.056982628558374104,
+   "moveAccuracy": 78.33017525818782,
+   "classification": "inaccuracy",
+   "forced": false,
+   "bestMove": "d2d3",
+   "bestLine": [
+    "d2d3",
+    "c5c4",
+    "d3d4",
+    "c8a6",
+    "f4f5",
+    "f6e5",
+    "f5e6",
+    "c4c3",
+    "c1h6",
+    "e7f6",
+    "f3h4",
+    "c3b2",
+    "a1e1",
+    "a6e2"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 512100,
+    "spent": 6800
+   }
+  },
+  {
+   "ply": 24,
+   "color": "b",
+   "san": "fxe5",
+   "uci": "f6e5",
+   "fenBefore": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 12",
+   "fenAfter": "r1b2rk1/p2nb1pp/1qp1p3/2ppp3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 0 13",
+   "evalBefore": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1pp2/2ppP3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 12",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -45
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b3c4",
+       "b6a6",
+       "d2d4",
+       "f6f5",
+       "f1e1",
+       "d5c4",
+       "a2a4",
+       "c8b7",
+       "c1a3",
+       "a8d8",
+       "e2c3",
+       "d7b6"
+      ],
+      "depth": 12,
+      "nodes": 300110
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -30
+      },
+      "pv": [
+       "c8a6",
+       "f1e1"
+      ],
+      "depth": 12,
+      "nodes": 300110
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -9
+      },
+      "pv": [
+       "f6e5",
+       "c1b2",
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b2e5",
+       "d7e5",
+       "f3e5",
+       "e7f6",
+       "b3c4",
+       "f6e5",
+       "f4e5",
+       "c8a6",
+       "f1f8",
+       "a8f8"
+      ],
+      "depth": 11,
+      "nodes": 300110
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1p3/2ppp3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 0 13",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 12
+      },
+      "pv": [
+       "c1b2",
+       "c8a6",
+       "f3e5",
+       "d7e5",
+       "b2e5",
+       "e7f6",
+       "e5f6",
+       "f8f6",
+       "g3e3",
+       "a6e2",
+       "e3e2",
+       "c5c4",
+       "g1h1",
+       "b6d4"
+      ],
+      "depth": 13,
+      "nodes": 300067
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -45
+      },
+      "pv": [
+       "f4e5",
+       "c8a6",
+       "f1f2",
+       "c5c4",
+       "b3c4",
+       "d5c4",
+       "e2f4",
+       "e7c5",
+       "f4e6",
+       "c5f2",
+       "g3f2",
+       "b6f2",
+       "g1f2"
+      ],
+      "depth": 13,
+      "nodes": 300067
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -95
+      },
+      "pv": [
+       "c2c4",
+       "e5e4"
+      ],
+      "depth": 13,
+      "nodes": 300067
+     }
+    ]
+   },
+   "winBefore": 54.13288883579233,
+   "winAfter": 50.82839219143761,
+   "epLoss": 0.03304496644354715,
+   "moveAccuracy": 87.17364410927765,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "c5c4",
+   "bestLine": [
+    "c5c4",
+    "g1h1",
+    "c6c5",
+    "b3c4",
+    "b6a6",
+    "d2d4",
+    "f6f5",
+    "f1e1",
+    "d5c4",
+    "a2a4",
+    "c8b7",
+    "c1a3",
+    "a8d8",
+    "e2c3",
+    "d7b6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 459800,
+    "spent": 49300
+   }
+  },
+  {
+   "ply": 25,
+   "color": "w",
+   "san": "fxe5",
+   "uci": "f4e5",
+   "fenBefore": "r1b2rk1/p2nb1pp/1qp1p3/2ppp3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 0 13",
+   "fenAfter": "r1b2rk1/p2nb1pp/1qp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 13",
+   "evalBefore": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1p3/2ppp3/5P2/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 0 13",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 12
+      },
+      "pv": [
+       "c1b2",
+       "c8a6",
+       "f3e5",
+       "d7e5",
+       "b2e5",
+       "e7f6",
+       "e5f6",
+       "f8f6",
+       "g3e3",
+       "a6e2",
+       "e3e2",
+       "c5c4",
+       "g1h1",
+       "b6d4"
+      ],
+      "depth": 13,
+      "nodes": 300067
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -45
+      },
+      "pv": [
+       "f4e5",
+       "c8a6",
+       "f1f2",
+       "c5c4",
+       "b3c4",
+       "d5c4",
+       "e2f4",
+       "e7c5",
+       "f4e6",
+       "c5f2",
+       "g3f2",
+       "b6f2",
+       "g1f2"
+      ],
+      "depth": 13,
+      "nodes": 300067
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -95
+      },
+      "pv": [
+       "c2c4",
+       "e5e4"
+      ],
+      "depth": 13,
+      "nodes": 300067
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 13",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -44
+      },
+      "pv": [
+       "c8a6",
+       "f1e1",
+       "c5c4",
+       "g1h1",
+       "d7c5",
+       "e2c3",
+       "b6a5",
+       "c1b2",
+       "f8f7",
+       "b3c4",
+       "a8f8",
+       "d2d4",
+       "c5e4",
+       "c3e4",
+       "d5e4"
+      ],
+      "depth": 13,
+      "nodes": 300172
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -26
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "c8a6",
+       "b3c4",
+       "d5c4",
+       "e2f4",
+       "c6c5",
+       "f4h5",
+       "f8f7",
+       "d2d4",
+       "c4d3",
+       "c1h6",
+       "d3d2"
+      ],
+      "depth": 13,
+      "nodes": 300172
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "f8f5"
+      ],
+      "depth": 13,
+      "nodes": 300172
+     }
+    ]
+   },
+   "winBefore": 51.1044443209752,
+   "winAfter": 45.86711116420767,
+   "epLoss": 0.05237333156767526,
+   "moveAccuracy": 79.96213856404644,
+   "classification": "inaccuracy",
+   "forced": false,
+   "bestMove": "c1b2",
+   "bestLine": [
+    "c1b2",
+    "c8a6",
+    "f3e5",
+    "d7e5",
+    "b2e5",
+    "e7f6",
+    "e5f6",
+    "f8f6",
+    "g3e3",
+    "a6e2",
+    "e3e2",
+    "c5c4",
+    "g1h1",
+    "b6d4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 501600,
+    "spent": 10500
+   }
+  },
+  {
+   "ply": 26,
+   "color": "b",
+   "san": "Ba6",
+   "uci": "c8a6",
+   "fenBefore": "r1b2rk1/p2nb1pp/1qp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 13",
+   "fenAfter": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 1 14",
+   "evalBefore": {
+    "fen": "r1b2rk1/p2nb1pp/1qp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 b - - 0 13",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -44
+      },
+      "pv": [
+       "c8a6",
+       "f1e1",
+       "c5c4",
+       "g1h1",
+       "d7c5",
+       "e2c3",
+       "b6a5",
+       "c1b2",
+       "f8f7",
+       "b3c4",
+       "a8f8",
+       "d2d4",
+       "c5e4",
+       "c3e4",
+       "d5e4"
+      ],
+      "depth": 13,
+      "nodes": 300172
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -26
+      },
+      "pv": [
+       "c5c4",
+       "g1h1",
+       "c8a6",
+       "b3c4",
+       "d5c4",
+       "e2f4",
+       "c6c5",
+       "f4h5",
+       "f8f7",
+       "d2d4",
+       "c4d3",
+       "c1h6",
+       "d3d2"
+      ],
+      "depth": 13,
+      "nodes": 300172
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 32
+      },
+      "pv": [
+       "f8f5"
+      ],
+      "depth": 13,
+      "nodes": 300172
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 1 14",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -41
+      },
+      "pv": [
+       "f1e1",
+       "c5c4",
+       "g1h1",
+       "f8f7",
+       "b3c4",
+       "d7c5",
+       "d2d3",
+       "d5c4",
+       "c1e3",
+       "c4d3",
+       "c2d3",
+       "a6d3",
+       "e2f4",
+       "d3f5",
+       "e3g1",
+       "b6a6",
+       "g1c5",
+       "e7c5"
+      ],
+      "depth": 13,
+      "nodes": 300361
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -89
+      },
+      "pv": [
+       "d2d3",
+       "c5c4"
+      ],
+      "depth": 13,
+      "nodes": 300361
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -74
+      },
+      "pv": [
+       "g3e1",
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "e2g3",
+       "a6b7",
+       "e1e2",
+       "b7d5",
+       "a2a4",
+       "b6c6",
+       "c1b2",
+       "f8f7",
+       "b2c3",
+       "a8f8"
+      ],
+      "depth": 12,
+      "nodes": 300361
+     }
+    ]
+   },
+   "winBefore": 54.041451952195146,
+   "winAfter": 54.041451952195146,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c8a6",
+   "bestLine": [
+    "c8a6",
+    "f1e1",
+    "c5c4",
+    "g1h1",
+    "d7c5",
+    "e2c3",
+    "b6a5",
+    "c1b2",
+    "f8f7",
+    "b3c4",
+    "a8f8",
+    "d2d4",
+    "c5e4",
+    "c3e4",
+    "d5e4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 448800,
+    "spent": 11000
+   }
+  },
+  {
+   "ply": 27,
+   "color": "w",
+   "san": "Rf2",
+   "uci": "f1f2",
+   "fenBefore": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 1 14",
+   "fenAfter": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPNRPP/R1B3K1 b - - 2 14",
+   "evalBefore": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPN1PP/R1B2RK1 w - - 1 14",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -41
+      },
+      "pv": [
+       "f1e1",
+       "c5c4",
+       "g1h1",
+       "f8f7",
+       "b3c4",
+       "d7c5",
+       "d2d3",
+       "d5c4",
+       "c1e3",
+       "c4d3",
+       "c2d3",
+       "a6d3",
+       "e2f4",
+       "d3f5",
+       "e3g1",
+       "b6a6",
+       "g1c5",
+       "e7c5"
+      ],
+      "depth": 13,
+      "nodes": 300361
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -89
+      },
+      "pv": [
+       "d2d3",
+       "c5c4"
+      ],
+      "depth": 13,
+      "nodes": 300361
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -74
+      },
+      "pv": [
+       "g3e1",
+       "c5c4",
+       "g1h1",
+       "c6c5",
+       "b3c4",
+       "d5c4",
+       "e2g3",
+       "a6b7",
+       "e1e2",
+       "b7d5",
+       "a2a4",
+       "b6c6",
+       "c1b2",
+       "f8f7",
+       "b2c3",
+       "a8f8"
+      ],
+      "depth": 12,
+      "nodes": 300361
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPNRPP/R1B3K1 b - - 2 14",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -69
+      },
+      "pv": [
+       "c5c4",
+       "e2f4",
+       "d7c5",
+       "d2d3",
+       "c4d3",
+       "c1e3",
+       "c5e4",
+       "e3b6",
+       "e4g3",
+       "h2g3",
+       "a7b6",
+       "f4e6",
+       "f8c8"
+      ],
+      "depth": 14,
+      "nodes": 300017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -42
+      },
+      "pv": [
+       "a6e2",
+       "f2e2"
+      ],
+      "depth": 14,
+      "nodes": 300017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -9
+      },
+      "pv": [
+       "f8f7",
+       "e2f4",
+       "c5c4",
+       "d2d4",
+       "c4d3",
+       "c2d3",
+       "d7c5",
+       "c1e3",
+       "c5e4",
+       "e3b6",
+       "e4g3",
+       "h2g3",
+       "a7b6",
+       "f3d4",
+       "e7c5"
+      ],
+      "depth": 13,
+      "nodes": 300017
+     }
+    ]
+   },
+   "winBefore": 46.23301956955016,
+   "winAfter": 43.68235823566406,
+   "epLoss": 0.025506613338861006,
+   "moveAccuracy": 90.15492178319764,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "f1e1",
+   "bestLine": [
+    "f1e1",
+    "c5c4",
+    "g1h1",
+    "f8f7",
+    "b3c4",
+    "d7c5",
+    "d2d3",
+    "d5c4",
+    "c1e3",
+    "c4d3",
+    "c2d3",
+    "a6d3",
+    "e2f4",
+    "d3f5",
+    "e3g1",
+    "b6a6",
+    "g1c5",
+    "e7c5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 473800,
+    "spent": 27800
+   }
+  },
+  {
+   "ply": 28,
+   "color": "b",
+   "san": "c4",
+   "uci": "c5c4",
+   "fenBefore": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPNRPP/R1B3K1 b - - 2 14",
+   "fenAfter": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/P1PPNRPP/R1B3K1 w - - 0 15",
+   "evalBefore": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/2ppP3/8/1P3NQ1/P1PPNRPP/R1B3K1 b - - 2 14",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -69
+      },
+      "pv": [
+       "c5c4",
+       "e2f4",
+       "d7c5",
+       "d2d3",
+       "c4d3",
+       "c1e3",
+       "c5e4",
+       "e3b6",
+       "e4g3",
+       "h2g3",
+       "a7b6",
+       "f4e6",
+       "f8c8"
+      ],
+      "depth": 14,
+      "nodes": 300017
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -42
+      },
+      "pv": [
+       "a6e2",
+       "f2e2"
+      ],
+      "depth": 14,
+      "nodes": 300017
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -9
+      },
+      "pv": [
+       "f8f7",
+       "e2f4",
+       "c5c4",
+       "d2d4",
+       "c4d3",
+       "c2d3",
+       "d7c5",
+       "c1e3",
+       "c5e4",
+       "e3b6",
+       "e4g3",
+       "h2g3",
+       "a7b6",
+       "f3d4",
+       "e7c5"
+      ],
+      "depth": 13,
+      "nodes": 300017
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/P1PPNRPP/R1B3K1 w - - 0 15",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -75
+      },
+      "pv": [
+       "e2f4",
+       "d7c5",
+       "d2d3",
+       "c4d3",
+       "c1e3",
+       "c5e4",
+       "e3b6",
+       "e4g3",
+       "h2g3",
+       "a7b6",
+       "c2d3",
+       "a6c8",
+       "f2c2",
+       "c6c5",
+       "d3d4"
+      ],
+      "depth": 12,
+      "nodes": 300127
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -90
+      },
+      "pv": [
+       "b3c4",
+       "d5c4"
+      ],
+      "depth": 12,
+      "nodes": 300127
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -134
+      },
+      "pv": [
+       "b3b4",
+       "c6c5",
+       "b4b5",
+       "b6b5",
+       "a2a4",
+       "b5c6"
+      ],
+      "depth": 11,
+      "nodes": 300127
+     }
+    ]
+   },
+   "winBefore": 56.31764176433594,
+   "winAfter": 56.31764176433594,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c5c4",
+   "bestLine": [
+    "c5c4",
+    "e2f4",
+    "d7c5",
+    "d2d3",
+    "c4d3",
+    "c1e3",
+    "c5e4",
+    "e3b6",
+    "e4g3",
+    "h2g3",
+    "a7b6",
+    "f4e6",
+    "f8c8"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 446700,
+    "spent": 2100
+   }
+  },
+  {
+   "ply": 29,
+   "color": "w",
+   "san": "Bb2",
+   "uci": "c1b2",
+   "fenBefore": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/P1PPNRPP/R1B3K1 w - - 0 15",
+   "fenAfter": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/PBPPNRPP/R5K1 b - - 1 15",
+   "evalBefore": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/P1PPNRPP/R1B3K1 w - - 0 15",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -75
+      },
+      "pv": [
+       "e2f4",
+       "d7c5",
+       "d2d3",
+       "c4d3",
+       "c1e3",
+       "c5e4",
+       "e3b6",
+       "e4g3",
+       "h2g3",
+       "a7b6",
+       "c2d3",
+       "a6c8",
+       "f2c2",
+       "c6c5",
+       "d3d4"
+      ],
+      "depth": 12,
+      "nodes": 300127
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -90
+      },
+      "pv": [
+       "b3c4",
+       "d5c4"
+      ],
+      "depth": 12,
+      "nodes": 300127
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -134
+      },
+      "pv": [
+       "b3b4",
+       "c6c5",
+       "b4b5",
+       "b6b5",
+       "a2a4",
+       "b5c6"
+      ],
+      "depth": 11,
+      "nodes": 300127
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/PBPPNRPP/R5K1 b - - 1 15",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -213
+      },
+      "pv": [
+       "c4b3",
+       "g3g4",
+       "a6e2",
+       "g4e6",
+       "g8h8",
+       "e6e7",
+       "b3c2",
+       "e7a3",
+       "e2f3",
+       "g2f3",
+       "c6c5",
+       "a3b3",
+       "c5c4",
+       "b3b6",
+       "a7b6",
+       "a1c1",
+       "d7c5",
+       "c1c2",
+       "c5d3",
+       "f2g2",
+       "d3e1",
+       "e5e6"
+      ],
+      "depth": 15,
+      "nodes": 300071
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -73
+      },
+      "pv": [
+       "d7c5",
+       "b2d4"
+      ],
+      "depth": 15,
+      "nodes": 300071
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -45
+      },
+      "pv": [
+       "f8f7",
+       "b2d4",
+       "c6c5",
+       "d4e3",
+       "a8f8",
+       "c2c3",
+       "f7f5",
+       "b3b4",
+       "b6c7",
+       "a1f1",
+       "f8f7",
+       "f3g5",
+       "f5f2",
+       "e3f2",
+       "e7g5",
+       "g3g5"
+      ],
+      "depth": 14,
+      "nodes": 300071
+     }
+    ]
+   },
+   "winBefore": 43.13964347189121,
+   "winAfter": 31.339752781910246,
+   "epLoss": 0.11799890689980963,
+   "moveAccuracy": 59.54831745848403,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "e2f4",
+   "bestLine": [
+    "e2f4",
+    "d7c5",
+    "d2d3",
+    "c4d3",
+    "c1e3",
+    "c5e4",
+    "e3b6",
+    "e4g3",
+    "h2g3",
+    "a7b6",
+    "c2d3",
+    "a6c8",
+    "f2c2",
+    "c6c5",
+    "d3d4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 470000,
+    "spent": 3800
+   }
+  },
+  {
+   "ply": 30,
+   "color": "b",
+   "san": "Bc5",
+   "uci": "e7c5",
+   "fenBefore": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/PBPPNRPP/R5K1 b - - 1 15",
+   "fenAfter": "r4rk1/p2n2pp/bqp1p3/2bpP3/2p5/1P3NQ1/PBPPNRPP/R5K1 w - - 2 16",
+   "evalBefore": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2p5/1P3NQ1/PBPPNRPP/R5K1 b - - 1 15",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -213
+      },
+      "pv": [
+       "c4b3",
+       "g3g4",
+       "a6e2",
+       "g4e6",
+       "g8h8",
+       "e6e7",
+       "b3c2",
+       "e7a3",
+       "e2f3",
+       "g2f3",
+       "c6c5",
+       "a3b3",
+       "c5c4",
+       "b3b6",
+       "a7b6",
+       "a1c1",
+       "d7c5",
+       "c1c2",
+       "c5d3",
+       "f2g2",
+       "d3e1",
+       "e5e6"
+      ],
+      "depth": 15,
+      "nodes": 300071
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -73
+      },
+      "pv": [
+       "d7c5",
+       "b2d4"
+      ],
+      "depth": 15,
+      "nodes": 300071
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -45
+      },
+      "pv": [
+       "f8f7",
+       "b2d4",
+       "c6c5",
+       "d4e3",
+       "a8f8",
+       "c2c3",
+       "f7f5",
+       "b3b4",
+       "b6c7",
+       "a1f1",
+       "f8f7",
+       "f3g5",
+       "f5f2",
+       "e3f2",
+       "e7g5",
+       "g3g5"
+      ],
+      "depth": 14,
+      "nodes": 300071
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2n2pp/bqp1p3/2bpP3/2p5/1P3NQ1/PBPPNRPP/R5K1 w - - 2 16",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 5
+      },
+      "pv": [
+       "e2d4",
+       "f8f7"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -190
+      },
+      "pv": [
+       "d2d4",
+       "c4d3",
+       "e2d4",
+       "d3c2",
+       "f2d2",
+       "a6e2",
+       "g1h1",
+       "e2f3",
+       "g2f3",
+       "f8f7",
+       "f3f4"
+      ],
+      "depth": 13,
+      "nodes": 300234
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -240
+      },
+      "pv": [
+       "f3d4",
+       "c4b3",
+       "g3b3",
+       "f8f2",
+       "g1f2",
+       "d7e5",
+       "d2d3",
+       "b6c7",
+       "f2e1",
+       "a8e8",
+       "e1d2",
+       "e5g4"
+      ],
+      "depth": 13,
+      "nodes": 300234
+     }
+    ]
+   },
+   "winBefore": 68.66024721808975,
+   "winAfter": 49.53975299971155,
+   "epLoss": 0.19120494218378203,
+   "moveAccuracy": 42.70271770237391,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "c4b3",
+   "bestLine": [
+    "c4b3",
+    "g3g4",
+    "a6e2",
+    "g4e6",
+    "g8h8",
+    "e6e7",
+    "b3c2",
+    "e7a3",
+    "e2f3",
+    "g2f3",
+    "c6c5",
+    "a3b3",
+    "c5c4",
+    "b3b6",
+    "a7b6",
+    "a1c1",
+    "d7c5",
+    "c1c2",
+    "c5d3",
+    "f2g2",
+    "d3e1",
+    "e5e6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 444300,
+    "spent": 2400
+   }
+  },
+  {
+   "ply": 31,
+   "color": "w",
+   "san": "d4",
+   "uci": "d2d4",
+   "fenBefore": "r4rk1/p2n2pp/bqp1p3/2bpP3/2p5/1P3NQ1/PBPPNRPP/R5K1 w - - 2 16",
+   "fenAfter": "r4rk1/p2n2pp/bqp1p3/2bpP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 b - d3 0 16",
+   "evalBefore": {
+    "fen": "r4rk1/p2n2pp/bqp1p3/2bpP3/2p5/1P3NQ1/PBPPNRPP/R5K1 w - - 2 16",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 5
+      },
+      "pv": [
+       "e2d4",
+       "f8f7"
+      ],
+      "depth": 14,
+      "nodes": 300234
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -190
+      },
+      "pv": [
+       "d2d4",
+       "c4d3",
+       "e2d4",
+       "d3c2",
+       "f2d2",
+       "a6e2",
+       "g1h1",
+       "e2f3",
+       "g2f3",
+       "f8f7",
+       "f3f4"
+      ],
+      "depth": 13,
+      "nodes": 300234
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -240
+      },
+      "pv": [
+       "f3d4",
+       "c4b3",
+       "g3b3",
+       "f8f2",
+       "g1f2",
+       "d7e5",
+       "d2d3",
+       "b6c7",
+       "f2e1",
+       "a8e8",
+       "e1d2",
+       "e5g4"
+      ],
+      "depth": 13,
+      "nodes": 300234
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2n2pp/bqp1p3/2bpP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 b - d3 0 16",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -214
+      },
+      "pv": [
+       "c4d3",
+       "e2d4",
+       "d3c2",
+       "f2d2",
+       "c5d4",
+       "f3d4",
+       "f8f7",
+       "d2c2",
+       "a8f8",
+       "h2h4",
+       "c6c5",
+       "d4f3",
+       "f7f5",
+       "a1d1",
+       "d5d4",
+       "b2c1",
+       "a6b7"
+      ],
+      "depth": 17,
+      "nodes": 300203
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "c5e7",
+       "e2f4"
+      ],
+      "depth": 17,
+      "nodes": 300203
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 89
+      },
+      "pv": [
+       "c4c3",
+       "b2c3",
+       "a6e2",
+       "f2e2",
+       "c5e7",
+       "e2f2",
+       "c6c5",
+       "a2a3",
+       "f8f5",
+       "c3d2",
+       "a8f8"
+      ],
+      "depth": 16,
+      "nodes": 300203
+     }
+    ]
+   },
+   "winBefore": 50.46024700028845,
+   "winAfter": 33.19019833124868,
+   "epLoss": 0.17270048669039767,
+   "moveAccuracy": 46.46778834416534,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "e2d4",
+   "bestLine": [
+    "e2d4",
+    "f8f7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 463100,
+    "spent": 6900
+   }
+  },
+  {
+   "ply": 32,
+   "color": "b",
+   "san": "Be7",
+   "uci": "c5e7",
+   "fenBefore": "r4rk1/p2n2pp/bqp1p3/2bpP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 b - d3 0 16",
+   "fenAfter": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 w - - 1 17",
+   "evalBefore": {
+    "fen": "r4rk1/p2n2pp/bqp1p3/2bpP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 b - d3 0 16",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -214
+      },
+      "pv": [
+       "c4d3",
+       "e2d4",
+       "d3c2",
+       "f2d2",
+       "c5d4",
+       "f3d4",
+       "f8f7",
+       "d2c2",
+       "a8f8",
+       "h2h4",
+       "c6c5",
+       "d4f3",
+       "f7f5",
+       "a1d1",
+       "d5d4",
+       "b2c1",
+       "a6b7"
+      ],
+      "depth": 17,
+      "nodes": 300203
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "c5e7",
+       "e2f4"
+      ],
+      "depth": 17,
+      "nodes": 300203
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 89
+      },
+      "pv": [
+       "c4c3",
+       "b2c3",
+       "a6e2",
+       "f2e2",
+       "c5e7",
+       "e2f2",
+       "c6c5",
+       "a2a3",
+       "f8f5",
+       "c3d2",
+       "a8f8"
+      ],
+      "depth": 16,
+      "nodes": 300203
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 w - - 1 17",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 108
+      },
+      "pv": [
+       "g3g4",
+       "c6c5",
+       "e2f4",
+       "f8f7",
+       "g4e6",
+       "b6e6",
+       "f4e6",
+       "a8c8",
+       "a1e1",
+       "c4b3",
+       "a2b3",
+       "c5c4",
+       "g2g3",
+       "c4b3"
+      ],
+      "depth": 14,
+      "nodes": 300372
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 105
+      },
+      "pv": [
+       "e2f4",
+       "c6c5",
+       "g3g4",
+       "f8f7",
+       "g4e6",
+       "b6e6",
+       "f4e6",
+       "a8c8",
+       "a1e1",
+       "c5d4",
+       "b2d4",
+       "d7f8",
+       "e6f8",
+       "c8f8",
+       "c2c3"
+      ],
+      "depth": 14,
+      "nodes": 300372
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "g1h1",
+       "c4b3"
+      ],
+      "depth": 14,
+      "nodes": 300372
+     }
+    ]
+   },
+   "winBefore": 68.73942354748303,
+   "winAfter": 43.863606513198235,
+   "epLoss": 0.24875817034284792,
+   "moveAccuracy": 32.75625514959307,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "c4d3",
+   "bestLine": [
+    "c4d3",
+    "e2d4",
+    "d3c2",
+    "f2d2",
+    "c5d4",
+    "f3d4",
+    "f8f7",
+    "d2c2",
+    "a8f8",
+    "h2h4",
+    "c6c5",
+    "d4f3",
+    "f7f5",
+    "a1d1",
+    "d5d4",
+    "b2c1",
+    "a6b7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 430600,
+    "spent": 13700
+   }
+  },
+  {
+   "ply": 33,
+   "color": "w",
+   "san": "Raf1",
+   "uci": "a1f1",
+   "fenBefore": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 w - - 1 17",
+   "fenAfter": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/5RK1 b - - 2 17",
+   "evalBefore": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/R5K1 w - - 1 17",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 108
+      },
+      "pv": [
+       "g3g4",
+       "c6c5",
+       "e2f4",
+       "f8f7",
+       "g4e6",
+       "b6e6",
+       "f4e6",
+       "a8c8",
+       "a1e1",
+       "c4b3",
+       "a2b3",
+       "c5c4",
+       "g2g3",
+       "c4b3"
+      ],
+      "depth": 14,
+      "nodes": 300372
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 105
+      },
+      "pv": [
+       "e2f4",
+       "c6c5",
+       "g3g4",
+       "f8f7",
+       "g4e6",
+       "b6e6",
+       "f4e6",
+       "a8c8",
+       "a1e1",
+       "c5d4",
+       "b2d4",
+       "d7f8",
+       "e6f8",
+       "c8f8",
+       "c2c3"
+      ],
+      "depth": 14,
+      "nodes": 300372
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 23
+      },
+      "pv": [
+       "g1h1",
+       "c4b3"
+      ],
+      "depth": 14,
+      "nodes": 300372
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/5RK1 b - - 2 17",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -37
+      },
+      "pv": [
+       "c4b3",
+       "a2b3"
+      ],
+      "depth": 14,
+      "nodes": 300118
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -33
+      },
+      "pv": [
+       "c6c5",
+       "b2c1",
+       "c4b3",
+       "c2b3",
+       "a6e2",
+       "c1h6",
+       "f8f7",
+       "f3g5",
+       "f7f2",
+       "f1f2",
+       "b6b4",
+       "h2h3",
+       "b4d4"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -20
+      },
+      "pv": [
+       "f8f5",
+       "b2c1",
+       "c4b3",
+       "a2b3",
+       "d7f8",
+       "c1e3",
+       "c6c5",
+       "d4c5"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     }
+    ]
+   },
+   "winBefore": 59.81264356862744,
+   "winAfter": 46.599334214366536,
+   "epLoss": 0.1321330935426091,
+   "moveAccuracy": 55.864508598731554,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "g3g4",
+   "bestLine": [
+    "g3g4",
+    "c6c5",
+    "e2f4",
+    "f8f7",
+    "g4e6",
+    "b6e6",
+    "f4e6",
+    "a8c8",
+    "a1e1",
+    "c4b3",
+    "a2b3",
+    "c5c4",
+    "g2g3",
+    "c4b3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 458400,
+    "spent": 4700
+   }
+  },
+  {
+   "ply": 34,
+   "color": "b",
+   "san": "Rf5",
+   "uci": "f8f5",
+   "fenBefore": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/5RK1 b - - 2 17",
+   "fenAfter": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP4/1P3NQ1/PBP1NRPP/5RK1 w - - 3 18",
+   "evalBefore": {
+    "fen": "r4rk1/p2nb1pp/bqp1p3/3pP3/2pP4/1P3NQ1/PBP1NRPP/5RK1 b - - 2 17",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -37
+      },
+      "pv": [
+       "c4b3",
+       "a2b3"
+      ],
+      "depth": 14,
+      "nodes": 300118
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -33
+      },
+      "pv": [
+       "c6c5",
+       "b2c1",
+       "c4b3",
+       "c2b3",
+       "a6e2",
+       "c1h6",
+       "f8f7",
+       "f3g5",
+       "f7f2",
+       "f1f2",
+       "b6b4",
+       "h2h3",
+       "b4d4"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -20
+      },
+      "pv": [
+       "f8f5",
+       "b2c1",
+       "c4b3",
+       "a2b3",
+       "d7f8",
+       "c1e3",
+       "c6c5",
+       "d4c5"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP4/1P3NQ1/PBP1NRPP/5RK1 w - - 3 18",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 8
+      },
+      "pv": [
+       "e2f4",
+       "c6c5",
+       "d4c5",
+       "d7c5",
+       "f3d4",
+       "c5e4",
+       "d4f5",
+       "e4g3",
+       "f5e7",
+       "g8h8",
+       "h2g3",
+       "c4c3",
+       "b2c3",
+       "a6f1",
+       "g1f1"
+      ],
+      "depth": 13,
+      "nodes": 300056
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -1
+      },
+      "pv": [
+       "b2c1",
+       "c4b3"
+      ],
+      "depth": 13,
+      "nodes": 300056
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -16
+      },
+      "pv": [
+       "b3b4",
+       "b6b4",
+       "b2c3",
+       "b4a3",
+       "g3g4",
+       "a8f8",
+       "h2h4",
+       "g8h8",
+       "f3g5",
+       "e7g5",
+       "f2f5",
+       "g5e3",
+       "f5f2",
+       "f8f2"
+      ],
+      "depth": 12,
+      "nodes": 300056
+     }
+    ]
+   },
+   "winBefore": 53.400665785633464,
+   "winAfter": 51.840208441219374,
+   "epLoss": 0.015604573444140901,
+   "moveAccuracy": 94.2226836259373,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "c4b3",
+   "bestLine": [
+    "c4b3",
+    "a2b3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 423400,
+    "spent": 7200
+   }
+  },
+  {
+   "ply": 35,
+   "color": "w",
+   "san": "Nh4",
+   "uci": "f3h4",
+   "fenBefore": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP4/1P3NQ1/PBP1NRPP/5RK1 w - - 3 18",
+   "fenAfter": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP3N/1P4Q1/PBP1NRPP/5RK1 b - - 4 18",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP4/1P3NQ1/PBP1NRPP/5RK1 w - - 3 18",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 8
+      },
+      "pv": [
+       "e2f4",
+       "c6c5",
+       "d4c5",
+       "d7c5",
+       "f3d4",
+       "c5e4",
+       "d4f5",
+       "e4g3",
+       "f5e7",
+       "g8h8",
+       "h2g3",
+       "c4c3",
+       "b2c3",
+       "a6f1",
+       "g1f1"
+      ],
+      "depth": 13,
+      "nodes": 300056
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -1
+      },
+      "pv": [
+       "b2c1",
+       "c4b3"
+      ],
+      "depth": 13,
+      "nodes": 300056
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -16
+      },
+      "pv": [
+       "b3b4",
+       "b6b4",
+       "b2c3",
+       "b4a3",
+       "g3g4",
+       "a8f8",
+       "h2h4",
+       "g8h8",
+       "f3g5",
+       "e7g5",
+       "f2f5",
+       "g5e3",
+       "f5f2",
+       "f8f2"
+      ],
+      "depth": 12,
+      "nodes": 300056
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP3N/1P4Q1/PBP1NRPP/5RK1 b - - 4 18",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -16
+      },
+      "pv": [
+       "f5f2",
+       "f1f2",
+       "c4b3",
+       "h4g6",
+       "b6d8",
+       "g6e7",
+       "d8e7",
+       "c2b3",
+       "a6e2",
+       "f2e2",
+       "a7a5",
+       "e2c2",
+       "a5a4",
+       "b3a4"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 15
+      },
+      "pv": [
+       "f5g5",
+       "g3h3"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "e7h4",
+       "g3h4",
+       "c4b3",
+       "a2b3",
+       "a8e8",
+       "e2g3",
+       "f5f2",
+       "f1f2",
+       "b6b4",
+       "g3f1"
+      ],
+      "depth": 12,
+      "nodes": 300118
+     }
+    ]
+   },
+   "winBefore": 50.73636275599663,
+   "winAfter": 48.52759384118717,
+   "epLoss": 0.02208768914809467,
+   "moveAccuracy": 91.53963737126273,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "e2f4",
+   "bestLine": [
+    "e2f4",
+    "c6c5",
+    "d4c5",
+    "d7c5",
+    "f3d4",
+    "c5e4",
+    "d4f5",
+    "e4g3",
+    "f5e7",
+    "g8h8",
+    "h2g3",
+    "c4c3",
+    "b2c3",
+    "a6f1",
+    "g1f1"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 422000,
+    "spent": 36400
+   }
+  },
+  {
+   "ply": 36,
+   "color": "b",
+   "san": "Rg5",
+   "uci": "f5g5",
+   "fenBefore": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP3N/1P4Q1/PBP1NRPP/5RK1 b - - 4 18",
+   "fenAfter": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P4Q1/PBP1NRPP/5RK1 w - - 5 19",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pPr2/2pP3N/1P4Q1/PBP1NRPP/5RK1 b - - 4 18",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -16
+      },
+      "pv": [
+       "f5f2",
+       "f1f2",
+       "c4b3",
+       "h4g6",
+       "b6d8",
+       "g6e7",
+       "d8e7",
+       "c2b3",
+       "a6e2",
+       "f2e2",
+       "a7a5",
+       "e2c2",
+       "a5a4",
+       "b3a4"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 15
+      },
+      "pv": [
+       "f5g5",
+       "g3h3"
+      ],
+      "depth": 13,
+      "nodes": 300118
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 30
+      },
+      "pv": [
+       "e7h4",
+       "g3h4",
+       "c4b3",
+       "a2b3",
+       "a8e8",
+       "e2g3",
+       "f5f2",
+       "f1f2",
+       "b6b4",
+       "g3f1"
+      ],
+      "depth": 12,
+      "nodes": 300118
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P4Q1/PBP1NRPP/5RK1 w - - 5 19",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 69
+      },
+      "pv": [
+       "g3h3",
+       "c6c5",
+       "f2f7",
+       "a8e8",
+       "e2f4",
+       "c4b3",
+       "f4e6",
+       "a6f1",
+       "e6g5",
+       "e7g5",
+       "h3d7"
+      ],
+      "depth": 13,
+      "nodes": 300047
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "g3f3",
+       "a8f8"
+      ],
+      "depth": 13,
+      "nodes": 300047
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "g3f4",
+       "a8f8",
+       "f4e3",
+       "c4b3",
+       "f2f8",
+       "d7f8",
+       "e3f3",
+       "h7h6",
+       "f3f7",
+       "g8h7",
+       "f7e7",
+       "a6e2",
+       "f1f8",
+       "b3c2",
+       "e7e8"
+      ],
+      "depth": 12,
+      "nodes": 300047
+     }
+    ]
+   },
+   "winBefore": 51.47240615881283,
+   "winAfter": 48.619570897068456,
+   "epLoss": 0.028528352617443797,
+   "moveAccuracy": 88.94811634802358,
+   "classification": "good",
+   "forced": false,
+   "bestMove": "f5f2",
+   "bestLine": [
+    "f5f2",
+    "f1f2",
+    "c4b3",
+    "h4g6",
+    "b6d8",
+    "g6e7",
+    "d8e7",
+    "c2b3",
+    "a6e2",
+    "f2e2",
+    "a7a5",
+    "e2c2",
+    "a5a4",
+    "b3a4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 408600,
+    "spent": 14800
+   }
+  },
+  {
+   "ply": 37,
+   "color": "w",
+   "san": "Qh3",
+   "uci": "g3h3",
+   "fenBefore": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P4Q1/PBP1NRPP/5RK1 w - - 5 19",
+   "fenAfter": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 b - - 6 19",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P4Q1/PBP1NRPP/5RK1 w - - 5 19",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 69
+      },
+      "pv": [
+       "g3h3",
+       "c6c5",
+       "f2f7",
+       "a8e8",
+       "e2f4",
+       "c4b3",
+       "f4e6",
+       "a6f1",
+       "e6g5",
+       "e7g5",
+       "h3d7"
+      ],
+      "depth": 13,
+      "nodes": 300047
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "g3f3",
+       "a8f8"
+      ],
+      "depth": 13,
+      "nodes": 300047
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 44
+      },
+      "pv": [
+       "g3f4",
+       "a8f8",
+       "f4e3",
+       "c4b3",
+       "f2f8",
+       "d7f8",
+       "e3f3",
+       "h7h6",
+       "f3f7",
+       "g8h7",
+       "f7e7",
+       "a6e2",
+       "f1f8",
+       "b3c2",
+       "e7e8"
+      ],
+      "depth": 12,
+      "nodes": 300047
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 b - - 6 19",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 154
+      },
+      "pv": [
+       "c6c5",
+       "e2f4",
+       "c4b3",
+       "f4d5",
+       "e6d5",
+       "h3d7",
+       "b6b7",
+       "d7b7",
+       "a6b7",
+       "a2b3",
+       "c5d4",
+       "b2d4",
+       "b7a6",
+       "f1e1",
+       "g7g6",
+       "h2h3",
+       "g5h5",
+       "h4f3",
+       "h5f5",
+       "c2c3",
+       "a6b5"
+      ],
+      "depth": 14,
+      "nodes": 300450
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 185
+      },
+      "pv": [
+       "d7f8",
+       "h3f3"
+      ],
+      "depth": 14,
+      "nodes": 300450
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 241
+      },
+      "pv": [
+       "g8h8",
+       "h3e6",
+       "g5e5",
+       "d4e5",
+       "e7h4",
+       "e6d7",
+       "c4c3",
+       "b2c3",
+       "a6e2"
+      ],
+      "depth": 13,
+      "nodes": 300450
+     }
+    ]
+   },
+   "winBefore": 56.317641764335946,
+   "winAfter": 56.317641764335946,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "g3h3",
+   "bestLine": [
+    "g3h3",
+    "c6c5",
+    "f2f7",
+    "a8e8",
+    "e2f4",
+    "c4b3",
+    "f4e6",
+    "a6f1",
+    "e6g5",
+    "e7g5",
+    "h3d7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 375000,
+    "spent": 47000
+   }
+  },
+  {
+   "ply": 38,
+   "color": "b",
+   "san": "c5",
+   "uci": "c6c5",
+   "fenBefore": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 b - - 6 19",
+   "fenAfter": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 w - - 0 20",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bqp1p3/3pP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 b - - 6 19",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 154
+      },
+      "pv": [
+       "c6c5",
+       "e2f4",
+       "c4b3",
+       "f4d5",
+       "e6d5",
+       "h3d7",
+       "b6b7",
+       "d7b7",
+       "a6b7",
+       "a2b3",
+       "c5d4",
+       "b2d4",
+       "b7a6",
+       "f1e1",
+       "g7g6",
+       "h2h3",
+       "g5h5",
+       "h4f3",
+       "h5f5",
+       "c2c3",
+       "a6b5"
+      ],
+      "depth": 14,
+      "nodes": 300450
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 185
+      },
+      "pv": [
+       "d7f8",
+       "h3f3"
+      ],
+      "depth": 14,
+      "nodes": 300450
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 241
+      },
+      "pv": [
+       "g8h8",
+       "h3e6",
+       "g5e5",
+       "d4e5",
+       "e7h4",
+       "e6d7",
+       "c4c3",
+       "b2c3",
+       "a6e2"
+      ],
+      "depth": 13,
+      "nodes": 300450
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 w - - 0 20",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 73
+      },
+      "pv": [
+       "e2f4",
+       "d7f8",
+       "h4f3",
+       "g5f5",
+       "f4d5",
+       "b6d8",
+       "d5e3",
+       "f5f4",
+       "f1d1",
+       "c4b3",
+       "a2b3",
+       "a6b7",
+       "d4c5",
+       "d8c7",
+       "f3d4",
+       "f4f2",
+       "g1f2",
+       "e7c5",
+       "d4e6",
+       "f8e6",
+       "h3e6",
+       "g8h8"
+      ],
+      "depth": 13,
+      "nodes": 300200
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "b3b4"
+      ],
+      "depth": 13,
+      "nodes": 300200
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "b2a3",
+       "c4b3",
+       "a2b3",
+       "b6c6",
+       "h3e3",
+       "g5h5",
+       "h4f3",
+       "h5f5"
+      ],
+      "depth": 12,
+      "nodes": 300200
+     }
+    ]
+   },
+   "winBefore": 36.19200356575048,
+   "winAfter": 36.19200356575048,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c6c5",
+   "bestLine": [
+    "c6c5",
+    "e2f4",
+    "c4b3",
+    "f4d5",
+    "e6d5",
+    "h3d7",
+    "b6b7",
+    "d7b7",
+    "a6b7",
+    "a2b3",
+    "c5d4",
+    "b2d4",
+    "b7a6",
+    "f1e1",
+    "g7g6",
+    "h2h3",
+    "g5h5",
+    "h4f3",
+    "h5f5",
+    "c2c3",
+    "a6b5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 378300,
+    "spent": 30300
+   }
+  },
+  {
+   "ply": 39,
+   "color": "w",
+   "san": "Bc1",
+   "uci": "b2c1",
+   "fenBefore": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 w - - 0 20",
+   "fenAfter": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/P1P1NRPP/2B2RK1 b - - 1 20",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/PBP1NRPP/5RK1 w - - 0 20",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 73
+      },
+      "pv": [
+       "e2f4",
+       "d7f8",
+       "h4f3",
+       "g5f5",
+       "f4d5",
+       "b6d8",
+       "d5e3",
+       "f5f4",
+       "f1d1",
+       "c4b3",
+       "a2b3",
+       "a6b7",
+       "d4c5",
+       "d8c7",
+       "f3d4",
+       "f4f2",
+       "g1f2",
+       "e7c5",
+       "d4e6",
+       "f8e6",
+       "h3e6",
+       "g8h8"
+      ],
+      "depth": 13,
+      "nodes": 300200
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "b3b4"
+      ],
+      "depth": 13,
+      "nodes": 300200
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 37
+      },
+      "pv": [
+       "b2a3",
+       "c4b3",
+       "a2b3",
+       "b6c6",
+       "h3e3",
+       "g5h5",
+       "h4f3",
+       "h5f5"
+      ],
+      "depth": 12,
+      "nodes": 300200
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/P1P1NRPP/2B2RK1 b - - 1 20",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -53
+      },
+      "pv": [
+       "c5d4",
+       "h4f3",
+       "g5e5",
+       "f3e5",
+       "d7e5",
+       "h3g3",
+       "d4d3",
+       "c1e3",
+       "b6d6",
+       "c2d3",
+       "e5d3",
+       "f2f7",
+       "d6g3",
+       "h2g3",
+       "e7f6",
+       "f1f6",
+       "g7f6",
+       "f7f6",
+       "a8f8",
+       "f6f8",
+       "g8f8",
+       "b3c4",
+       "a6c4"
+      ],
+      "depth": 13,
+      "nodes": 300596
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -4
+      },
+      "pv": [
+       "c4b3",
+       "c1g5",
+       "e7g5",
+       "h3f3",
+       "b6d8",
+       "f3f7",
+       "g8h8",
+       "f7e6",
+       "g5h4",
+       "e6a6",
+       "h4f2",
+       "f1f2",
+       "b3c2",
+       "e5e6"
+      ],
+      "depth": 13,
+      "nodes": 300596
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 89
+      },
+      "pv": [
+       "h7h6",
+       "f2f7"
+      ],
+      "depth": 13,
+      "nodes": 300596
+     }
+    ]
+   },
+   "winBefore": 56.67962794387496,
+   "winAfter": 45.13666864926168,
+   "epLoss": 0.11542959294613286,
+   "moveAccuracy": 60.24265579897014,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "e2f4",
+   "bestLine": [
+    "e2f4",
+    "d7f8",
+    "h4f3",
+    "g5f5",
+    "f4d5",
+    "b6d8",
+    "d5e3",
+    "f5f4",
+    "f1d1",
+    "c4b3",
+    "a2b3",
+    "a6b7",
+    "d4c5",
+    "d8c7",
+    "f3d4",
+    "f4f2",
+    "g1f2",
+    "e7c5",
+    "d4e6",
+    "f8e6",
+    "h3e6",
+    "g8h8"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 358100,
+    "spent": 16900
+   }
+  },
+  {
+   "ply": 40,
+   "color": "b",
+   "san": "Rh5",
+   "uci": "g5h5",
+   "fenBefore": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/P1P1NRPP/2B2RK1 b - - 1 20",
+   "fenAfter": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP3N/1P5Q/P1P1NRPP/2B2RK1 w - - 2 21",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP1r1/2pP3N/1P5Q/P1P1NRPP/2B2RK1 b - - 1 20",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -53
+      },
+      "pv": [
+       "c5d4",
+       "h4f3",
+       "g5e5",
+       "f3e5",
+       "d7e5",
+       "h3g3",
+       "d4d3",
+       "c1e3",
+       "b6d6",
+       "c2d3",
+       "e5d3",
+       "f2f7",
+       "d6g3",
+       "h2g3",
+       "e7f6",
+       "f1f6",
+       "g7f6",
+       "f7f6",
+       "a8f8",
+       "f6f8",
+       "g8f8",
+       "b3c4",
+       "a6c4"
+      ],
+      "depth": 13,
+      "nodes": 300596
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -4
+      },
+      "pv": [
+       "c4b3",
+       "c1g5",
+       "e7g5",
+       "h3f3",
+       "b6d8",
+       "f3f7",
+       "g8h8",
+       "f7e6",
+       "g5h4",
+       "e6a6",
+       "h4f2",
+       "f1f2",
+       "b3c2",
+       "e5e6"
+      ],
+      "depth": 13,
+      "nodes": 300596
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 89
+      },
+      "pv": [
+       "h7h6",
+       "f2f7"
+      ],
+      "depth": 13,
+      "nodes": 300596
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP3N/1P5Q/P1P1NRPP/2B2RK1 w - - 2 21",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 321
+      },
+      "pv": [
+       "h3f3",
+       "c4b3",
+       "f3f7",
+       "g8h8",
+       "f7e7",
+       "b6d8",
+       "e7d8",
+       "a8d8",
+       "a2b3",
+       "h5h4",
+       "c1g5",
+       "h4e4",
+       "g5d8",
+       "h8g8",
+       "e2f4",
+       "a6f1",
+       "g1f1",
+       "e4d4"
+      ],
+      "depth": 14,
+      "nodes": 300272
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 274
+      },
+      "pv": [
+       "f2f7"
+      ],
+      "depth": 14,
+      "nodes": 300272
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -72
+      },
+      "pv": [
+       "g2g3",
+       "c5d4",
+       "e2f4",
+       "h5e5",
+       "h4g6",
+       "e7f6",
+       "g6e5",
+       "d7e5",
+       "h3e6",
+       "b6e6",
+       "f4e6",
+       "c4b3",
+       "a2b3",
+       "a6f1",
+       "f2f1",
+       "d4d3",
+       "c2d3",
+       "e5d3",
+       "c1g5",
+       "a8e8"
+      ],
+      "depth": 13,
+      "nodes": 300272
+     }
+    ]
+   },
+   "winBefore": 54.86333135073832,
+   "winAfter": 23.4702178920234,
+   "epLoss": 0.3139311345871492,
+   "moveAccuracy": 24.127597316090426,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "c5d4",
+   "bestLine": [
+    "c5d4",
+    "h4f3",
+    "g5e5",
+    "f3e5",
+    "d7e5",
+    "h3g3",
+    "d4d3",
+    "c1e3",
+    "b6d6",
+    "c2d3",
+    "e5d3",
+    "f2f7",
+    "d6g3",
+    "h2g3",
+    "e7f6",
+    "f1f6",
+    "g7f6",
+    "f7f6",
+    "a8f8",
+    "f6f8",
+    "g8f8",
+    "b3c4",
+    "a6c4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 366500,
+    "spent": 11800
+   }
+  },
+  {
+   "ply": 41,
+   "color": "w",
+   "san": "Rf4",
+   "uci": "f2f4",
+   "fenBefore": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP3N/1P5Q/P1P1NRPP/2B2RK1 w - - 2 21",
+   "fenAfter": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP1R1N/1P5Q/P1P1N1PP/2B2RK1 b - - 3 21",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP3N/1P5Q/P1P1NRPP/2B2RK1 w - - 2 21",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 321
+      },
+      "pv": [
+       "h3f3",
+       "c4b3",
+       "f3f7",
+       "g8h8",
+       "f7e7",
+       "b6d8",
+       "e7d8",
+       "a8d8",
+       "a2b3",
+       "h5h4",
+       "c1g5",
+       "h4e4",
+       "g5d8",
+       "h8g8",
+       "e2f4",
+       "a6f1",
+       "g1f1",
+       "e4d4"
+      ],
+      "depth": 14,
+      "nodes": 300272
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 274
+      },
+      "pv": [
+       "f2f7"
+      ],
+      "depth": 14,
+      "nodes": 300272
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -72
+      },
+      "pv": [
+       "g2g3",
+       "c5d4",
+       "e2f4",
+       "h5e5",
+       "h4g6",
+       "e7f6",
+       "g6e5",
+       "d7e5",
+       "h3e6",
+       "b6e6",
+       "f4e6",
+       "c4b3",
+       "a2b3",
+       "a6f1",
+       "f2f1",
+       "d4d3",
+       "c2d3",
+       "e5d3",
+       "c1g5",
+       "a8e8"
+      ],
+      "depth": 13,
+      "nodes": 300272
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP1R1N/1P5Q/P1P1N1PP/2B2RK1 b - - 3 21",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -167
+      },
+      "pv": [
+       "c5d4",
+       "e2g3",
+       "d4d3",
+       "g1h1",
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "h3h4",
+       "a8f8",
+       "c2d3",
+       "c4b3",
+       "h4e7",
+       "b3a2",
+       "e7d7",
+       "a2a1r",
+       "f1f8",
+       "g8f8"
+      ],
+      "depth": 14,
+      "nodes": 300242
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -156
+      },
+      "pv": [
+       "c4b3",
+       "f4f7",
+       "e7f8",
+       "h3f3",
+       "a6e2",
+       "f3e2",
+       "h5h4",
+       "e2f2",
+       "b6d8",
+       "c2b3",
+       "c5d4",
+       "f7d7",
+       "d8d7",
+       "f2h4",
+       "d4d3"
+      ],
+      "depth": 14,
+      "nodes": 300242
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -128
+      },
+      "pv": [
+       "h5h4",
+       "f4h4"
+      ],
+      "depth": 14,
+      "nodes": 300242
+     }
+    ]
+   },
+   "winBefore": 76.5297821079766,
+   "winAfter": 35.09405771225878,
+   "epLoss": 0.41435724395717816,
+   "moveAccuracy": 14.813541433424998,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "h3f3",
+   "bestLine": [
+    "h3f3",
+    "c4b3",
+    "f3f7",
+    "g8h8",
+    "f7e7",
+    "b6d8",
+    "e7d8",
+    "a8d8",
+    "a2b3",
+    "h5h4",
+    "c1g5",
+    "h4e4",
+    "g5d8",
+    "h8g8",
+    "e2f4",
+    "a6f1",
+    "g1f1",
+    "e4d4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 299600,
+    "spent": 58500
+   }
+  },
+  {
+   "ply": 42,
+   "color": "b",
+   "san": "cxd4",
+   "uci": "c5d4",
+   "fenBefore": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP1R1N/1P5Q/P1P1N1PP/2B2RK1 b - - 3 21",
+   "fenAfter": "r5k1/p2nb1pp/bq2p3/3pP2r/2pp1R1N/1P5Q/P1P1N1PP/2B2RK1 w - - 0 22",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bq2p3/2ppP2r/2pP1R1N/1P5Q/P1P1N1PP/2B2RK1 b - - 3 21",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -167
+      },
+      "pv": [
+       "c5d4",
+       "e2g3",
+       "d4d3",
+       "g1h1",
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "h3h4",
+       "a8f8",
+       "c2d3",
+       "c4b3",
+       "h4e7",
+       "b3a2",
+       "e7d7",
+       "a2a1r",
+       "f1f8",
+       "g8f8"
+      ],
+      "depth": 14,
+      "nodes": 300242
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -156
+      },
+      "pv": [
+       "c4b3",
+       "f4f7",
+       "e7f8",
+       "h3f3",
+       "a6e2",
+       "f3e2",
+       "h5h4",
+       "e2f2",
+       "b6d8",
+       "c2b3",
+       "c5d4",
+       "f7d7",
+       "d8d7",
+       "f2h4",
+       "d4d3"
+      ],
+      "depth": 14,
+      "nodes": 300242
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -128
+      },
+      "pv": [
+       "h5h4",
+       "f4h4"
+      ],
+      "depth": 14,
+      "nodes": 300242
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bq2p3/3pP2r/2pp1R1N/1P5Q/P1P1N1PP/2B2RK1 w - - 0 22",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -142
+      },
+      "pv": [
+       "e2g3"
+      ],
+      "depth": 13,
+      "nodes": 300431
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -215
+      },
+      "pv": [
+       "a2a4",
+       "d7e5",
+       "a4a5",
+       "b6c6",
+       "e2d4",
+       "c6d7",
+       "f1f2",
+       "c4b3",
+       "c2b3",
+       "a8e8"
+      ],
+      "depth": 12,
+      "nodes": 300431
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -237
+      },
+      "pv": [
+       "h3f3",
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "f3f7",
+       "g8h8",
+       "f1f4",
+       "c4b3",
+       "a2b3",
+       "a6e2",
+       "f7d7",
+       "a8g8"
+      ],
+      "depth": 12,
+      "nodes": 300431
+     }
+    ]
+   },
+   "winBefore": 64.90594228774123,
+   "winAfter": 64.90594228774123,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "c5d4",
+   "bestLine": [
+    "c5d4",
+    "e2g3",
+    "d4d3",
+    "g1h1",
+    "h5h4",
+    "f4h4",
+    "e7h4",
+    "h3h4",
+    "a8f8",
+    "c2d3",
+    "c4b3",
+    "h4e7",
+    "b3a2",
+    "e7d7",
+    "a2a1r",
+    "f1f8",
+    "g8f8"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 331700,
+    "spent": 34800
+   }
+  },
+  {
+   "ply": 43,
+   "color": "w",
+   "san": "Nxd4",
+   "uci": "e2d4",
+   "fenBefore": "r5k1/p2nb1pp/bq2p3/3pP2r/2pp1R1N/1P5Q/P1P1N1PP/2B2RK1 w - - 0 22",
+   "fenAfter": "r5k1/p2nb1pp/bq2p3/3pP2r/2pN1R1N/1P5Q/P1P3PP/2B2RK1 b - - 0 22",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bq2p3/3pP2r/2pp1R1N/1P5Q/P1P1N1PP/2B2RK1 w - - 0 22",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -142
+      },
+      "pv": [
+       "e2g3"
+      ],
+      "depth": 13,
+      "nodes": 300431
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -215
+      },
+      "pv": [
+       "a2a4",
+       "d7e5",
+       "a4a5",
+       "b6c6",
+       "e2d4",
+       "c6d7",
+       "f1f2",
+       "c4b3",
+       "c2b3",
+       "a8e8"
+      ],
+      "depth": 12,
+      "nodes": 300431
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -237
+      },
+      "pv": [
+       "h3f3",
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "f3f7",
+       "g8h8",
+       "f1f4",
+       "c4b3",
+       "a2b3",
+       "a6e2",
+       "f7d7",
+       "a8g8"
+      ],
+      "depth": 12,
+      "nodes": 300431
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2nb1pp/bq2p3/3pP2r/2pN1R1N/1P5Q/P1P3PP/2B2RK1 b - - 0 22",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -303
+      },
+      "pv": [
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "f1d1",
+       "c4b3",
+       "c2b3",
+       "a6e2",
+       "c1e3",
+       "e2d1",
+       "h3h4",
+       "b6c7",
+       "d4b5",
+       "c7e5",
+       "e3d4",
+       "e5e4"
+      ],
+      "depth": 14,
+      "nodes": 300260
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -297
+      },
+      "pv": [
+       "c4b3",
+       "c2c4",
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "c1e3",
+       "b3a2"
+      ],
+      "depth": 14,
+      "nodes": 300260
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -213
+      },
+      "pv": [
+       "e7h4",
+       "h3g4"
+      ],
+      "depth": 14,
+      "nodes": 300260
+     }
+    ]
+   },
+   "winBefore": 37.21847977876407,
+   "winAfter": 24.68152924934873,
+   "epLoss": 0.12536950529415336,
+   "moveAccuracy": 57.599036603730845,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "e2g3",
+   "bestLine": [
+    "e2g3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 230300,
+    "spent": 69300
+   }
+  },
+  {
+   "ply": 44,
+   "color": "b",
+   "san": "Bxh4",
+   "uci": "e7h4",
+   "fenBefore": "r5k1/p2nb1pp/bq2p3/3pP2r/2pN1R1N/1P5Q/P1P3PP/2B2RK1 b - - 0 22",
+   "fenAfter": "r5k1/p2n2pp/bq2p3/3pP2r/2pN1R1b/1P5Q/P1P3PP/2B2RK1 w - - 0 23",
+   "evalBefore": {
+    "fen": "r5k1/p2nb1pp/bq2p3/3pP2r/2pN1R1N/1P5Q/P1P3PP/2B2RK1 b - - 0 22",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -303
+      },
+      "pv": [
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "f1d1",
+       "c4b3",
+       "c2b3",
+       "a6e2",
+       "c1e3",
+       "e2d1",
+       "h3h4",
+       "b6c7",
+       "d4b5",
+       "c7e5",
+       "e3d4",
+       "e5e4"
+      ],
+      "depth": 14,
+      "nodes": 300260
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -297
+      },
+      "pv": [
+       "c4b3",
+       "c2c4",
+       "h5h4",
+       "f4h4",
+       "e7h4",
+       "c1e3",
+       "b3a2"
+      ],
+      "depth": 14,
+      "nodes": 300260
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -213
+      },
+      "pv": [
+       "e7h4",
+       "h3g4"
+      ],
+      "depth": 14,
+      "nodes": 300260
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP2r/2pN1R1b/1P5Q/P1P3PP/2B2RK1 w - - 0 23",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -237
+      },
+      "pv": [
+       "f4h4",
+       "h5h4",
+       "h3h4",
+       "c4b3",
+       "c1e3",
+       "a6f1",
+       "d4f5",
+       "b3a2",
+       "e3b6",
+       "a2a1q",
+       "f5e7",
+       "g8f7",
+       "h4h7",
+       "a7b6"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -280
+      },
+      "pv": [
+       "h3g4",
+       "g7g6"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -325
+      },
+      "pv": [
+       "h3f3",
+       "h5e5",
+       "f4h4",
+       "a8f8",
+       "h4f4",
+       "f8f4",
+       "f3f4",
+       "e5f5",
+       "f4g4",
+       "f5f1",
+       "g1f1",
+       "c4b3",
+       "f1e1",
+       "b3a2",
+       "c1b2",
+       "a2a1q",
+       "b2a1"
+      ],
+      "depth": 12,
+      "nodes": 300276
+     }
+    ]
+   },
+   "winBefore": 75.31847075065127,
+   "winAfter": 68.66024721808975,
+   "epLoss": 0.06658223532561514,
+   "moveAccuracy": 75.03469852004635,
+   "classification": "inaccuracy",
+   "forced": false,
+   "bestMove": "h5h4",
+   "bestLine": [
+    "h5h4",
+    "f4h4",
+    "e7h4",
+    "f1d1",
+    "c4b3",
+    "c2b3",
+    "a6e2",
+    "c1e3",
+    "e2d1",
+    "h3h4",
+    "b6c7",
+    "d4b5",
+    "c7e5",
+    "e3d4",
+    "e5e4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 322100,
+    "spent": 9600
+   }
+  },
+  {
+   "ply": 45,
+   "color": "w",
+   "san": "Rxh4",
+   "uci": "f4h4",
+   "fenBefore": "r5k1/p2n2pp/bq2p3/3pP2r/2pN1R1b/1P5Q/P1P3PP/2B2RK1 w - - 0 23",
+   "fenAfter": "r5k1/p2n2pp/bq2p3/3pP2r/2pN3R/1P5Q/P1P3PP/2B2RK1 b - - 0 23",
+   "evalBefore": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP2r/2pN1R1b/1P5Q/P1P3PP/2B2RK1 w - - 0 23",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -237
+      },
+      "pv": [
+       "f4h4",
+       "h5h4",
+       "h3h4",
+       "c4b3",
+       "c1e3",
+       "a6f1",
+       "d4f5",
+       "b3a2",
+       "e3b6",
+       "a2a1q",
+       "f5e7",
+       "g8f7",
+       "h4h7",
+       "a7b6"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -280
+      },
+      "pv": [
+       "h3g4",
+       "g7g6"
+      ],
+      "depth": 13,
+      "nodes": 300276
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -325
+      },
+      "pv": [
+       "h3f3",
+       "h5e5",
+       "f4h4",
+       "a8f8",
+       "h4f4",
+       "f8f4",
+       "f3f4",
+       "e5f5",
+       "f4g4",
+       "f5f1",
+       "g1f1",
+       "c4b3",
+       "f1e1",
+       "b3a2",
+       "c1b2",
+       "a2a1q",
+       "b2a1"
+      ],
+      "depth": 12,
+      "nodes": 300276
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP2r/2pN3R/1P5Q/P1P3PP/2B2RK1 b - - 0 23",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -339
+      },
+      "pv": [
+       "h5h4"
+      ],
+      "depth": 16,
+      "nodes": 300061
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -158
+      },
+      "pv": [
+       "b6d4",
+       "h4d4",
+       "h5h3",
+       "g2h3",
+       "c4b3",
+       "c2b3",
+       "a6f1",
+       "g1f1",
+       "d7e5",
+       "d4a4",
+       "a7a6",
+       "a4a5"
+      ],
+      "depth": 16,
+      "nodes": 300061
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -42
+      },
+      "pv": [
+       "c4b3",
+       "h4h5",
+       "a6f1",
+       "c1b2",
+       "h7h6",
+       "g1f1",
+       "b3a2",
+       "h3e6",
+       "b6e6",
+       "d4e6",
+       "a8b8",
+       "b2d4",
+       "b8b1",
+       "f1e2"
+      ],
+      "depth": 16,
+      "nodes": 300061
+     }
+    ]
+   },
+   "winBefore": 29.470257622091907,
+   "winAfter": 29.470257622091907,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "f4h4",
+   "bestLine": [
+    "f4h4",
+    "h5h4",
+    "h3h4",
+    "c4b3",
+    "c1e3",
+    "a6f1",
+    "d4f5",
+    "b3a2",
+    "e3b6",
+    "a2a1q",
+    "f5e7",
+    "g8f7",
+    "h4h7",
+    "a7b6"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 216000,
+    "spent": 14300
+   }
+  },
+  {
+   "ply": 46,
+   "color": "b",
+   "san": "Rxh4",
+   "uci": "h5h4",
+   "fenBefore": "r5k1/p2n2pp/bq2p3/3pP2r/2pN3R/1P5Q/P1P3PP/2B2RK1 b - - 0 23",
+   "fenAfter": "r5k1/p2n2pp/bq2p3/3pP3/2pN3r/1P5Q/P1P3PP/2B2RK1 w - - 0 24",
+   "evalBefore": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP2r/2pN3R/1P5Q/P1P3PP/2B2RK1 b - - 0 23",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -339
+      },
+      "pv": [
+       "h5h4"
+      ],
+      "depth": 16,
+      "nodes": 300061
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -158
+      },
+      "pv": [
+       "b6d4",
+       "h4d4",
+       "h5h3",
+       "g2h3",
+       "c4b3",
+       "c2b3",
+       "a6f1",
+       "g1f1",
+       "d7e5",
+       "d4a4",
+       "a7a6",
+       "a4a5"
+      ],
+      "depth": 16,
+      "nodes": 300061
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -42
+      },
+      "pv": [
+       "c4b3",
+       "h4h5",
+       "a6f1",
+       "c1b2",
+       "h7h6",
+       "g1f1",
+       "b3a2",
+       "h3e6",
+       "b6e6",
+       "d4e6",
+       "a8b8",
+       "b2d4",
+       "b8b1",
+       "f1e2"
+      ],
+      "depth": 16,
+      "nodes": 300061
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP3/2pN3r/1P5Q/P1P3PP/2B2RK1 w - - 0 24",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -343
+      },
+      "pv": [
+       "h3h4",
+       "c4b3",
+       "f1e1",
+       "b3a2",
+       "c1e3",
+       "b6b1",
+       "d4c6",
+       "b1c2",
+       "c6e7",
+       "g8h8",
+       "e3d4",
+       "a6c4",
+       "h2h3",
+       "a8f8"
+      ],
+      "depth": 16,
+      "nodes": 300257
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -436
+      },
+      "pv": [
+       "h3e6",
+       "b6e6",
+       "d4e6",
+       "c4b3",
+       "a2b3",
+       "a6f1",
+       "e6g7",
+       "h4g4",
+       "g7f5",
+       "g4g2",
+       "g1f1"
+      ],
+      "depth": 16,
+      "nodes": 300257
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -561
+      },
+      "pv": [
+       "h3f3",
+       "b6d4",
+       "c1e3",
+       "d4e5",
+       "f3f7",
+       "g8h8",
+       "e3f4",
+       "h4f4",
+       "f7f4",
+       "e5f4",
+       "f1f4",
+       "a8g8"
+      ],
+      "depth": 16,
+      "nodes": 300257
+     }
+    ]
+   },
+   "winBefore": 77.69924697409846,
+   "winAfter": 77.69924697409846,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "h5h4",
+   "bestLine": [
+    "h5h4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 318300,
+    "spent": 3800
+   }
+  },
+  {
+   "ply": 47,
+   "color": "w",
+   "san": "Qxh4",
+   "uci": "h3h4",
+   "fenBefore": "r5k1/p2n2pp/bq2p3/3pP3/2pN3r/1P5Q/P1P3PP/2B2RK1 w - - 0 24",
+   "fenAfter": "r5k1/p2n2pp/bq2p3/3pP3/2pN3Q/1P6/P1P3PP/2B2RK1 b - - 0 24",
+   "evalBefore": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP3/2pN3r/1P5Q/P1P3PP/2B2RK1 w - - 0 24",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -343
+      },
+      "pv": [
+       "h3h4",
+       "c4b3",
+       "f1e1",
+       "b3a2",
+       "c1e3",
+       "b6b1",
+       "d4c6",
+       "b1c2",
+       "c6e7",
+       "g8h8",
+       "e3d4",
+       "a6c4",
+       "h2h3",
+       "a8f8"
+      ],
+      "depth": 16,
+      "nodes": 300257
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -436
+      },
+      "pv": [
+       "h3e6",
+       "b6e6",
+       "d4e6",
+       "c4b3",
+       "a2b3",
+       "a6f1",
+       "e6g7",
+       "h4g4",
+       "g7f5",
+       "g4g2",
+       "g1f1"
+      ],
+      "depth": 16,
+      "nodes": 300257
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -561
+      },
+      "pv": [
+       "h3f3",
+       "b6d4",
+       "c1e3",
+       "d4e5",
+       "f3f7",
+       "g8h8",
+       "e3f4",
+       "h4f4",
+       "f7f4",
+       "e5f4",
+       "f1f4",
+       "a8g8"
+      ],
+      "depth": 16,
+      "nodes": 300257
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP3/2pN3Q/1P6/P1P3PP/2B2RK1 b - - 0 24",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -333
+      },
+      "pv": [
+       "c4b3",
+       "f1e1",
+       "b3b2",
+       "c1b2",
+       "b6b2",
+       "d4b3",
+       "d7f8",
+       "h4e7",
+       "b2c2",
+       "b3d4",
+       "c2g6",
+       "e1c1",
+       "a6d3"
+      ],
+      "depth": 16,
+      "nodes": 300137
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -104
+      },
+      "pv": [
+       "d7e5",
+       "f1f2"
+      ],
+      "depth": 16,
+      "nodes": 300137
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 15
+      },
+      "pv": [
+       "a8c8",
+       "f1e1",
+       "c4b3",
+       "a2b3",
+       "c8c2",
+       "c1e3",
+       "c2c3",
+       "d4f5",
+       "b6b3",
+       "h4d8",
+       "d7f8"
+      ],
+      "depth": 15,
+      "nodes": 300137
+     }
+    ]
+   },
+   "winBefore": 22.04658929761425,
+   "winAfter": 22.04658929761425,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": false,
+   "bestMove": "h3h4",
+   "bestLine": [
+    "h3h4",
+    "c4b3",
+    "f1e1",
+    "b3a2",
+    "c1e3",
+    "b6b1",
+    "d4c6",
+    "b1c2",
+    "c6e7",
+    "g8h8",
+    "e3d4",
+    "a6c4",
+    "h2h3",
+    "a8f8"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 215900,
+    "spent": 100
+   }
+  },
+  {
+   "ply": 48,
+   "color": "b",
+   "san": "Nxe5",
+   "uci": "d7e5",
+   "fenBefore": "r5k1/p2n2pp/bq2p3/3pP3/2pN3Q/1P6/P1P3PP/2B2RK1 b - - 0 24",
+   "fenAfter": "r5k1/p5pp/bq2p3/3pn3/2pN3Q/1P6/P1P3PP/2B2RK1 w - - 0 25",
+   "evalBefore": {
+    "fen": "r5k1/p2n2pp/bq2p3/3pP3/2pN3Q/1P6/P1P3PP/2B2RK1 b - - 0 24",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -333
+      },
+      "pv": [
+       "c4b3",
+       "f1e1",
+       "b3b2",
+       "c1b2",
+       "b6b2",
+       "d4b3",
+       "d7f8",
+       "h4e7",
+       "b2c2",
+       "b3d4",
+       "c2g6",
+       "e1c1",
+       "a6d3"
+      ],
+      "depth": 16,
+      "nodes": 300137
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -104
+      },
+      "pv": [
+       "d7e5",
+       "f1f2"
+      ],
+      "depth": 16,
+      "nodes": 300137
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 15
+      },
+      "pv": [
+       "a8c8",
+       "f1e1",
+       "c4b3",
+       "a2b3",
+       "c8c2",
+       "c1e3",
+       "c2c3",
+       "d4f5",
+       "b6b3",
+       "h4d8",
+       "d7f8"
+      ],
+      "depth": 15,
+      "nodes": 300137
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p5pp/bq2p3/3pn3/2pN3Q/1P6/P1P3PP/2B2RK1 w - - 0 25",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -70
+      },
+      "pv": [
+       "f1f2",
+       "e5g6",
+       "h4g4",
+       "c4b3",
+       "a2b3",
+       "e6e5",
+       "d4f5",
+       "a8f8",
+       "c1e3",
+       "d5d4",
+       "e3d2",
+       "g8h8",
+       "h2h4"
+      ],
+      "depth": 13,
+      "nodes": 300089
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -121
+      },
+      "pv": [
+       "f1e1",
+       "e5g6",
+       "h4f2",
+       "e6e5",
+       "d4f3",
+       "b6f2",
+       "g1f2",
+       "a8c8",
+       "b3b4",
+       "c8f8",
+       "f2g3",
+       "f8f5",
+       "h2h4"
+      ],
+      "depth": 13,
+      "nodes": 300089
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -120
+      },
+      "pv": [
+       "f1d1",
+       "e5g6"
+      ],
+      "depth": 12,
+      "nodes": 300089
+     }
+    ]
+   },
+   "winBefore": 77.31409791199124,
+   "winAfter": 59.458111194874505,
+   "epLoss": 0.17855986717116734,
+   "moveAccuracy": 45.24260986192848,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "c4b3",
+   "bestLine": [
+    "c4b3",
+    "f1e1",
+    "b3b2",
+    "c1b2",
+    "b6b2",
+    "d4b3",
+    "d7f8",
+    "h4e7",
+    "b2c2",
+    "b3d4",
+    "c2g6",
+    "e1c1",
+    "a6d3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 303800,
+    "spent": 14500
+   }
+  },
+  {
+   "ply": 49,
+   "color": "w",
+   "san": "Qf4",
+   "uci": "h4f4",
+   "fenBefore": "r5k1/p5pp/bq2p3/3pn3/2pN3Q/1P6/P1P3PP/2B2RK1 w - - 0 25",
+   "fenAfter": "r5k1/p5pp/bq2p3/3pn3/2pN1Q2/1P6/P1P3PP/2B2RK1 b - - 1 25",
+   "evalBefore": {
+    "fen": "r5k1/p5pp/bq2p3/3pn3/2pN3Q/1P6/P1P3PP/2B2RK1 w - - 0 25",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -70
+      },
+      "pv": [
+       "f1f2",
+       "e5g6",
+       "h4g4",
+       "c4b3",
+       "a2b3",
+       "e6e5",
+       "d4f5",
+       "a8f8",
+       "c1e3",
+       "d5d4",
+       "e3d2",
+       "g8h8",
+       "h2h4"
+      ],
+      "depth": 13,
+      "nodes": 300089
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -121
+      },
+      "pv": [
+       "f1e1",
+       "e5g6",
+       "h4f2",
+       "e6e5",
+       "d4f3",
+       "b6f2",
+       "g1f2",
+       "a8c8",
+       "b3b4",
+       "c8f8",
+       "f2g3",
+       "f8f5",
+       "h2h4"
+      ],
+      "depth": 13,
+      "nodes": 300089
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -120
+      },
+      "pv": [
+       "f1d1",
+       "e5g6"
+      ],
+      "depth": 12,
+      "nodes": 300089
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p5pp/bq2p3/3pn3/2pN1Q2/1P6/P1P3PP/2B2RK1 b - - 1 25",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -234
+      },
+      "pv": [
+       "c4b3",
+       "f4e5",
+       "a6f1",
+       "a2b3",
+       "f1b5",
+       "c1e3",
+       "a8f8",
+       "d4f3",
+       "b6c6",
+       "h2h3",
+       "h7h6",
+       "f3d4",
+       "c6d7",
+       "e3h6",
+       "g7h6",
+       "d4e6",
+       "f8f1",
+       "g1h2",
+       "f1f7",
+       "e5b8",
+       "g8h7"
+      ],
+      "depth": 16,
+      "nodes": 300181
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -59
+      },
+      "pv": [
+       "e5g6",
+       "f4f7"
+      ],
+      "depth": 16,
+      "nodes": 300181
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 48
+      },
+      "pv": [
+       "b6d6",
+       "f1e1",
+       "a8f8",
+       "f4g3",
+       "c4b3",
+       "a2b3",
+       "f8f6",
+       "c1b2",
+       "d6b8",
+       "g1h1",
+       "e5d7",
+       "g3b8",
+       "d7b8",
+       "d4e6",
+       "f6f2",
+       "e6g7",
+       "f2c2"
+      ],
+      "depth": 15,
+      "nodes": 300181
+     }
+    ]
+   },
+   "winBefore": 43.59179701815651,
+   "winAfter": 29.700376514354907,
+   "epLoss": 0.13891420503801605,
+   "moveAccuracy": 54.17602074572204,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "f1f2",
+   "bestLine": [
+    "f1f2",
+    "e5g6",
+    "h4g4",
+    "c4b3",
+    "a2b3",
+    "e6e5",
+    "d4f5",
+    "a8f8",
+    "c1e3",
+    "d5d4",
+    "e3d2",
+    "g8h8",
+    "h2h4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 172700,
+    "spent": 43200
+   }
+  },
+  {
+   "ply": 50,
+   "color": "b",
+   "san": "Ng6",
+   "uci": "e5g6",
+   "fenBefore": "r5k1/p5pp/bq2p3/3pn3/2pN1Q2/1P6/P1P3PP/2B2RK1 b - - 1 25",
+   "fenAfter": "r5k1/p5pp/bq2p1n1/3p4/2pN1Q2/1P6/P1P3PP/2B2RK1 w - - 2 26",
+   "evalBefore": {
+    "fen": "r5k1/p5pp/bq2p3/3pn3/2pN1Q2/1P6/P1P3PP/2B2RK1 b - - 1 25",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -234
+      },
+      "pv": [
+       "c4b3",
+       "f4e5",
+       "a6f1",
+       "a2b3",
+       "f1b5",
+       "c1e3",
+       "a8f8",
+       "d4f3",
+       "b6c6",
+       "h2h3",
+       "h7h6",
+       "f3d4",
+       "c6d7",
+       "e3h6",
+       "g7h6",
+       "d4e6",
+       "f8f1",
+       "g1h2",
+       "f1f7",
+       "e5b8",
+       "g8h7"
+      ],
+      "depth": 16,
+      "nodes": 300181
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -59
+      },
+      "pv": [
+       "e5g6",
+       "f4f7"
+      ],
+      "depth": 16,
+      "nodes": 300181
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 48
+      },
+      "pv": [
+       "b6d6",
+       "f1e1",
+       "a8f8",
+       "f4g3",
+       "c4b3",
+       "a2b3",
+       "f8f6",
+       "c1b2",
+       "d6b8",
+       "g1h1",
+       "e5d7",
+       "g3b8",
+       "d7b8",
+       "d4e6",
+       "f6f2",
+       "e6g7",
+       "f2c2"
+      ],
+      "depth": 15,
+      "nodes": 300181
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p5pp/bq2p1n1/3p4/2pN1Q2/1P6/P1P3PP/2B2RK1 w - - 2 26",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -38
+      },
+      "pv": [
+       "f4f7"
+      ],
+      "depth": 15,
+      "nodes": 300251
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -333
+      },
+      "pv": [
+       "f4f2",
+       "c4b3",
+       "f2f7",
+       "g8h8",
+       "c1e3",
+       "e6e5",
+       "c2c4",
+       "e5d4",
+       "e3h6",
+       "g7h6",
+       "c4c5",
+       "b6c6",
+       "a2b3"
+      ],
+      "depth": 15,
+      "nodes": 300251
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -364
+      },
+      "pv": [
+       "f4g4",
+       "c4b3",
+       "f1e1",
+       "b3a2",
+       "c1e3",
+       "a6c4",
+       "h2h3",
+       "a8f8",
+       "g4e6",
+       "b6e6",
+       "d4e6"
+      ],
+      "depth": 15,
+      "nodes": 300251
+     }
+    ]
+   },
+   "winBefore": 70.2996234856451,
+   "winAfter": 55.409808660514884,
+   "epLoss": 0.1488981482513022,
+   "moveAccuracy": 51.77903530998845,
+   "classification": "mistake",
+   "forced": false,
+   "bestMove": "c4b3",
+   "bestLine": [
+    "c4b3",
+    "f4e5",
+    "a6f1",
+    "a2b3",
+    "f1b5",
+    "c1e3",
+    "a8f8",
+    "d4f3",
+    "b6c6",
+    "h2h3",
+    "h7h6",
+    "f3d4",
+    "c6d7",
+    "e3h6",
+    "g7h6",
+    "d4e6",
+    "f8f1",
+    "g1h2",
+    "f1f7",
+    "e5b8",
+    "g8h7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 289800,
+    "spent": 14000
+   }
+  },
+  {
+   "ply": 51,
+   "color": "w",
+   "san": "Qf7+",
+   "uci": "f4f7",
+   "fenBefore": "r5k1/p5pp/bq2p1n1/3p4/2pN1Q2/1P6/P1P3PP/2B2RK1 w - - 2 26",
+   "fenAfter": "r5k1/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 b - - 3 26",
+   "evalBefore": {
+    "fen": "r5k1/p5pp/bq2p1n1/3p4/2pN1Q2/1P6/P1P3PP/2B2RK1 w - - 2 26",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -38
+      },
+      "pv": [
+       "f4f7"
+      ],
+      "depth": 15,
+      "nodes": 300251
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -333
+      },
+      "pv": [
+       "f4f2",
+       "c4b3",
+       "f2f7",
+       "g8h8",
+       "c1e3",
+       "e6e5",
+       "c2c4",
+       "e5d4",
+       "e3h6",
+       "g7h6",
+       "c4c5",
+       "b6c6",
+       "a2b3"
+      ],
+      "depth": 15,
+      "nodes": 300251
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -364
+      },
+      "pv": [
+       "f4g4",
+       "c4b3",
+       "f1e1",
+       "b3a2",
+       "c1e3",
+       "a6c4",
+       "h2h3",
+       "a8f8",
+       "g4e6",
+       "b6e6",
+       "d4e6"
+      ],
+      "depth": 15,
+      "nodes": 300251
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r5k1/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 b - - 3 26",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -55
+      },
+      "pv": [
+       "g8h8"
+      ],
+      "depth": 17,
+      "nodes": 300345
+     }
+    ]
+   },
+   "winBefore": 46.50771960458313,
+   "winAfter": 46.50771960458313,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "f4f7",
+   "bestLine": [
+    "f4f7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 147600,
+    "spent": 25100
+   }
+  },
+  {
+   "ply": 52,
+   "color": "b",
+   "san": "Kh8",
+   "uci": "g8h8",
+   "fenBefore": "r5k1/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 b - - 3 26",
+   "fenAfter": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 w - - 4 27",
+   "evalBefore": {
+    "fen": "r5k1/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 b - - 3 26",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -55
+      },
+      "pv": [
+       "g8h8"
+      ],
+      "depth": 17,
+      "nodes": 300345
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 w - - 4 27",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -34
+      },
+      "pv": [
+       "c1e3"
+      ],
+      "depth": 14,
+      "nodes": 300104
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -271
+      },
+      "pv": [
+       "f1d1",
+       "e6e5",
+       "c1e3",
+       "a8f8",
+       "f7d5",
+       "e5d4",
+       "e3d4",
+       "b6c7",
+       "d4c5"
+      ],
+      "depth": 13,
+      "nodes": 300104
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -312
+      },
+      "pv": [
+       "c2c3",
+       "c4b3",
+       "c1e3",
+       "b3a2",
+       "d4f5",
+       "b6b7",
+       "f7b7",
+       "a6b7",
+       "f5d6",
+       "b7a6",
+       "f1a1",
+       "a8f8",
+       "h2h3",
+       "f8f1",
+       "a1f1",
+       "a6f1"
+      ],
+      "depth": 13,
+      "nodes": 300104
+     }
+    ]
+   },
+   "winBefore": 55.04562746820834,
+   "winAfter": 55.04562746820834,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
+   "forced": true,
+   "bestMove": "g8h8",
+   "bestLine": [
+    "g8h8"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 279500,
+    "spent": 10300
+   }
+  },
+  {
+   "ply": 53,
+   "color": "w",
+   "san": "Be3",
+   "uci": "c1e3",
+   "fenBefore": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 w - - 4 27",
+   "fenAfter": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 b - - 5 27",
+   "evalBefore": {
+    "fen": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P6/P1P3PP/2B2RK1 w - - 4 27",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -34
+      },
+      "pv": [
+       "c1e3"
+      ],
+      "depth": 14,
+      "nodes": 300104
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -271
+      },
+      "pv": [
+       "f1d1",
+       "e6e5",
+       "c1e3",
+       "a8f8",
+       "f7d5",
+       "e5d4",
+       "e3d4",
+       "b6c7",
+       "d4c5"
+      ],
+      "depth": 13,
+      "nodes": 300104
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -312
+      },
+      "pv": [
+       "c2c3",
+       "c4b3",
+       "c1e3",
+       "b3a2",
+       "d4f5",
+       "b6b7",
+       "f7b7",
+       "a6b7",
+       "f5d6",
+       "b7a6",
+       "f1a1",
+       "a8f8",
+       "h2h3",
+       "f8f1",
+       "a1f1",
+       "a6f1"
+      ],
+      "depth": 13,
+      "nodes": 300104
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 b - - 5 27",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -47
+      },
+      "pv": [
+       "e6e5",
+       "d4f5",
+       "b6f6",
+       "f7f6",
+       "g7f6",
+       "f1f2",
+       "h8g8",
+       "f5d6",
+       "g8g7",
+       "b3c4",
+       "d5d4",
+       "e3d2",
+       "a8b8",
+       "h2h3",
+       "a6b7",
+       "g1h2"
+      ],
+      "depth": 13,
+      "nodes": 300066
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -24
+      },
+      "pv": [
+       "c4b3",
+       "a2b3",
+       "a8g8",
+       "d4f5",
+       "b6d8",
+       "f1a1",
+       "e6f5",
+       "a1a6",
+       "d8c8"
+      ],
+      "depth": 12,
+      "nodes": 300066
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 57
+      },
+      "pv": [
+       "a8g8",
+       "d4f5",
+       "b6c6",
+       "f5h6",
+       "g8c8",
+       "b3b4",
+       "e6e5",
+       "a2a4",
+       "d5d4",
+       "e3g5",
+       "g6f4",
+       "g5f4",
+       "e5f4",
+       "h6f5",
+       "c8g8"
+      ],
+      "depth": 12,
+      "nodes": 300066
+     }
+    ]
+   },
+   "winBefore": 46.8743132675129,
+   "winAfter": 46.8743132675129,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "c1e3",
+   "bestLine": [
+    "c1e3"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 129500,
+    "spent": 18100
+   }
+  },
+  {
+   "ply": 54,
+   "color": "b",
+   "san": "Qd6",
+   "uci": "b6d6",
+   "fenBefore": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 b - - 5 27",
+   "fenAfter": "r6k/p4Qpp/b2qp1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 w - - 6 28",
+   "evalBefore": {
+    "fen": "r6k/p4Qpp/bq2p1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 b - - 5 27",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": -47
+      },
+      "pv": [
+       "e6e5",
+       "d4f5",
+       "b6f6",
+       "f7f6",
+       "g7f6",
+       "f1f2",
+       "h8g8",
+       "f5d6",
+       "g8g7",
+       "b3c4",
+       "d5d4",
+       "e3d2",
+       "a8b8",
+       "h2h3",
+       "a6b7",
+       "g1h2"
+      ],
+      "depth": 13,
+      "nodes": 300066
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -24
+      },
+      "pv": [
+       "c4b3",
+       "a2b3",
+       "a8g8",
+       "d4f5",
+       "b6d8",
+       "f1a1",
+       "e6f5",
+       "a1a6",
+       "d8c8"
+      ],
+      "depth": 12,
+      "nodes": 300066
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 57
+      },
+      "pv": [
+       "a8g8",
+       "d4f5",
+       "b6c6",
+       "f5h6",
+       "g8c8",
+       "b3b4",
+       "e6e5",
+       "a2a4",
+       "d5d4",
+       "e3g5",
+       "g6f4",
+       "g5f4",
+       "e5f4",
+       "h6f5",
+       "c8g8"
+      ],
+      "depth": 12,
+      "nodes": 300066
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r6k/p4Qpp/b2qp1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 w - - 6 28",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 496
+      },
+      "pv": [
+       "d4e6",
+       "d6e6",
+       "f7e6",
+       "c4b3",
+       "e6a6",
+       "b3c2",
+       "a6d6",
+       "a7a5",
+       "e3c1",
+       "a8e8",
+       "d6d7"
+      ],
+      "depth": 18,
+      "nodes": 300129
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "f1d1",
+       "g6f8",
+       "b3b4",
+       "d6b4",
+       "d4e6",
+       "f8e6",
+       "f7e6",
+       "b4c3",
+       "e3d4",
+       "c3c2",
+       "d4g7",
+       "h8g7",
+       "e6e5",
+       "g7f8"
+      ],
+      "depth": 18,
+      "nodes": 300129
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 47
+      },
+      "pv": [
+       "b3b4",
+       "a8f8",
+       "f7a7",
+       "f8f1",
+       "g1f1",
+       "e6e5",
+       "b4b5",
+       "a6c8",
+       "d4f3",
+       "d5d4",
+       "e3f2",
+       "c4c3",
+       "a7a8",
+       "d6d7"
+      ],
+      "depth": 18,
+      "nodes": 300129
+     }
+    ]
+   },
+   "winBefore": 54.315678521975045,
+   "winAfter": 13.867824357894335,
+   "epLoss": 0.4044785416408071,
+   "moveAccuracy": 15.559910525669789,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "e6e5",
+   "bestLine": [
+    "e6e5",
+    "d4f5",
+    "b6f6",
+    "f7f6",
+    "g7f6",
+    "f1f2",
+    "h8g8",
+    "f5d6",
+    "g8g7",
+    "b3c4",
+    "d5d4",
+    "e3d2",
+    "a8b8",
+    "h2h3",
+    "a6b7",
+    "g1h2"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 254900,
+    "spent": 24600
+   }
+  },
+  {
+   "ply": 55,
+   "color": "w",
+   "san": "Nxe6",
+   "uci": "d4e6",
+   "fenBefore": "r6k/p4Qpp/b2qp1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 w - - 6 28",
+   "fenAfter": "r6k/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 b - - 0 28",
+   "evalBefore": {
+    "fen": "r6k/p4Qpp/b2qp1n1/3p4/2pN4/1P2B3/P1P3PP/5RK1 w - - 6 28",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 496
+      },
+      "pv": [
+       "d4e6",
+       "d6e6",
+       "f7e6",
+       "c4b3",
+       "e6a6",
+       "b3c2",
+       "a6d6",
+       "a7a5",
+       "e3c1",
+       "a8e8",
+       "d6d7"
+      ],
+      "depth": 18,
+      "nodes": 300129
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 67
+      },
+      "pv": [
+       "f1d1",
+       "g6f8",
+       "b3b4",
+       "d6b4",
+       "d4e6",
+       "f8e6",
+       "f7e6",
+       "b4c3",
+       "e3d4",
+       "c3c2",
+       "d4g7",
+       "h8g7",
+       "e6e5",
+       "g7f8"
+      ],
+      "depth": 18,
+      "nodes": 300129
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 47
+      },
+      "pv": [
+       "b3b4",
+       "a8f8",
+       "f7a7",
+       "f8f1",
+       "g1f1",
+       "e6e5",
+       "b4b5",
+       "a6c8",
+       "d4f3",
+       "d5d4",
+       "e3f2",
+       "c4c3",
+       "a7a8",
+       "d6d7"
+      ],
+      "depth": 18,
+      "nodes": 300129
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "r6k/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 b - - 0 28",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 533
+      },
+      "pv": [
+       "d6f8",
+       "e3d4",
+       "f8f7",
+       "f1f7",
+       "a8e8",
+       "f7g7",
+       "g6e5",
+       "d4e5",
+       "e8e6",
+       "g7g5",
+       "e6e5",
+       "g5e5",
+       "d5d4",
+       "e5d5",
+       "d4d3",
+       "c2d3",
+       "c4d3",
+       "b3b4"
+      ],
+      "depth": 15,
+      "nodes": 300417
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 538
+      },
+      "pv": [
+       "d6e7",
+       "e3d4",
+       "e7f7",
+       "f1f7",
+       "a8e8",
+       "f7g7",
+       "g6e5",
+       "d4e5",
+       "e8e6",
+       "g7g5",
+       "e6e5",
+       "g5e5",
+       "c4b3",
+       "c2b3",
+       "d5d4",
+       "e5d5",
+       "d4d3",
+       "g1f2",
+       "a6b7"
+      ],
+      "depth": 15,
+      "nodes": 300417
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 549
+      },
+      "pv": [
+       "d6e5",
+       "e3d4",
+       "e5d4",
+       "e6d4",
+       "c4b3",
+       "d4f5",
+       "a8g8",
+       "c2b3",
+       "a6f1",
+       "g1f1",
+       "g6e5",
+       "f7c7",
+       "e5c6"
+      ],
+      "depth": 15,
+      "nodes": 300417
+     }
+    ]
+   },
+   "winBefore": 86.13217564210566,
+   "winAfter": 86.13217564210566,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "d4e6",
+   "bestLine": [
+    "d4e6",
+    "d6e6",
+    "f7e6",
+    "c4b3",
+    "e6a6",
+    "b3c2",
+    "a6d6",
+    "a7a5",
+    "e3c1",
+    "a8e8",
+    "d6d7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 88800,
+    "spent": 40700
+   }
+  },
+  {
+   "ply": 56,
+   "color": "b",
+   "san": "Rg8",
+   "uci": "a8g8",
+   "fenBefore": "r6k/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 b - - 0 28",
+   "fenAfter": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 w - - 1 29",
+   "evalBefore": {
+    "fen": "r6k/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 b - - 0 28",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 533
+      },
+      "pv": [
+       "d6f8",
+       "e3d4",
+       "f8f7",
+       "f1f7",
+       "a8e8",
+       "f7g7",
+       "g6e5",
+       "d4e5",
+       "e8e6",
+       "g7g5",
+       "e6e5",
+       "g5e5",
+       "d5d4",
+       "e5d5",
+       "d4d3",
+       "c2d3",
+       "c4d3",
+       "b3b4"
+      ],
+      "depth": 15,
+      "nodes": 300417
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 538
+      },
+      "pv": [
+       "d6e7",
+       "e3d4",
+       "e7f7",
+       "f1f7",
+       "a8e8",
+       "f7g7",
+       "g6e5",
+       "d4e5",
+       "e8e6",
+       "g7g5",
+       "e6e5",
+       "g5e5",
+       "c4b3",
+       "c2b3",
+       "d5d4",
+       "e5d5",
+       "d4d3",
+       "g1f2",
+       "a6b7"
+      ],
+      "depth": 15,
+      "nodes": 300417
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 549
+      },
+      "pv": [
+       "d6e5",
+       "e3d4",
+       "e5d4",
+       "e6d4",
+       "c4b3",
+       "d4f5",
+       "a8g8",
+       "c2b3",
+       "a6f1",
+       "g1f1",
+       "g6e5",
+       "f7c7",
+       "e5c6"
+      ],
+      "depth": 15,
+      "nodes": 300417
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 w - - 1 29",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 570
+      },
+      "pv": [
+       "e3d4",
+       "d6b6",
+       "d4b6",
+       "a7b6",
+       "b3b4",
+       "a6b5",
+       "e6c7",
+       "g6e5",
+       "f7e7"
+      ],
+      "depth": 17,
+      "nodes": 300042
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 529
+      },
+      "pv": [
+       "e3c5",
+       "d6e5",
+       "c5d4",
+       "e5d4",
+       "e6d4",
+       "c4b3",
+       "a2b3",
+       "a6f1",
+       "f7f1",
+       "g8c8",
+       "f1a1",
+       "g6e5",
+       "h2h4",
+       "a7a5",
+       "c2c3",
+       "a5a4"
+      ],
+      "depth": 16,
+      "nodes": 300042
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 164
+      },
+      "pv": [
+       "e3h6",
+       "d6e7",
+       "f7e7",
+       "g6e7",
+       "f1f7",
+       "g7h6",
+       "f7e7",
+       "a6c8",
+       "g1f2",
+       "c4b3",
+       "c2b3",
+       "c8e6",
+       "e7e6",
+       "g8c8",
+       "e6e3"
+      ],
+      "depth": 16,
+      "nodes": 300042
+     }
+    ]
+   },
+   "winBefore": 12.319149084862232,
+   "winAfter": 10.92149104891115,
+   "epLoss": 0.013976580359510826,
+   "moveAccuracy": 94.90841320697632,
+   "classification": "excellent",
+   "forced": false,
+   "bestMove": "d6f8",
+   "bestLine": [
+    "d6f8",
+    "e3d4",
+    "f8f7",
+    "f1f7",
+    "a8e8",
+    "f7g7",
+    "g6e5",
+    "d4e5",
+    "e8e6",
+    "g7g5",
+    "e6e5",
+    "g5e5",
+    "d5d4",
+    "e5d5",
+    "d4d3",
+    "c2d3",
+    "c4d3",
+    "b3b4"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 217700,
+    "spent": 37200
+   }
+  },
+  {
+   "ply": 57,
+   "color": "w",
+   "san": "Rf3",
+   "uci": "f1f3",
+   "fenBefore": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 w - - 1 29",
+   "fenAfter": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2BR2/P1P3PP/6K1 b - - 2 29",
+   "evalBefore": {
+    "fen": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2B3/P1P3PP/5RK1 w - - 1 29",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 570
+      },
+      "pv": [
+       "e3d4",
+       "d6b6",
+       "d4b6",
+       "a7b6",
+       "b3b4",
+       "a6b5",
+       "e6c7",
+       "g6e5",
+       "f7e7"
+      ],
+      "depth": 17,
+      "nodes": 300042
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 529
+      },
+      "pv": [
+       "e3c5",
+       "d6e5",
+       "c5d4",
+       "e5d4",
+       "e6d4",
+       "c4b3",
+       "a2b3",
+       "a6f1",
+       "f7f1",
+       "g8c8",
+       "f1a1",
+       "g6e5",
+       "h2h4",
+       "a7a5",
+       "c2c3",
+       "a5a4"
+      ],
+      "depth": 16,
+      "nodes": 300042
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 164
+      },
+      "pv": [
+       "e3h6",
+       "d6e7",
+       "f7e7",
+       "g6e7",
+       "f1f7",
+       "g7h6",
+       "f7e7",
+       "a6c8",
+       "g1f2",
+       "c4b3",
+       "c2b3",
+       "c8e6",
+       "e7e6",
+       "g8c8",
+       "e6e3"
+      ],
+      "depth": 16,
+      "nodes": 300042
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2BR2/P1P3PP/6K1 b - - 2 29",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 0
+      },
+      "pv": [
+       "g6e5",
+       "e6g5",
+       "h7h6",
+       "f3h3",
+       "a6c8",
+       "h3h4",
+       "d6g6",
+       "f7d5",
+       "e5g4",
+       "g5f7",
+       "h8h7",
+       "f7g5"
+      ],
+      "depth": 15,
+      "nodes": 300314
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 235
+      },
+      "pv": [
+       "g6h4",
+       "e3d4"
+      ],
+      "depth": 15,
+      "nodes": 300314
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 218
+      },
+      "pv": [
+       "a6c8",
+       "e6g7",
+       "d6e5",
+       "g7f5",
+       "c8f5",
+       "f7f5",
+       "g8e8",
+       "f5e5",
+       "g6e5",
+       "e3d4",
+       "h8g8",
+       "f3f1"
+      ],
+      "depth": 14,
+      "nodes": 300314
+     }
+    ]
+   },
+   "winBefore": 89.07850895108885,
+   "winAfter": 50,
+   "epLoss": 0.39078508951088853,
+   "moveAccuracy": 16.649056727686663,
+   "classification": "blunder",
+   "forced": false,
+   "bestMove": "e3d4",
+   "bestLine": [
+    "e3d4",
+    "d6b6",
+    "d4b6",
+    "a7b6",
+    "b3b4",
+    "a6b5",
+    "e6c7",
+    "g6e5",
+    "f7e7"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 48100,
+    "spent": 40700
+   }
+  },
+  {
+   "ply": 58,
+   "color": "b",
+   "san": "Ne5",
+   "uci": "g6e5",
+   "fenBefore": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2BR2/P1P3PP/6K1 b - - 2 29",
+   "fenAfter": "6rk/p4Qpp/b2qN3/3pn3/2p5/1P2BR2/P1P3PP/6K1 w - - 3 30",
+   "evalBefore": {
+    "fen": "6rk/p4Qpp/b2qN1n1/3p4/2p5/1P2BR2/P1P3PP/6K1 b - - 2 29",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 0
+      },
+      "pv": [
+       "g6e5",
+       "e6g5",
+       "h7h6",
+       "f3h3",
+       "a6c8",
+       "h3h4",
+       "d6g6",
+       "f7d5",
+       "e5g4",
+       "g5f7",
+       "h8h7",
+       "f7g5"
+      ],
+      "depth": 15,
+      "nodes": 300314
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": 235
+      },
+      "pv": [
+       "g6h4",
+       "e3d4"
+      ],
+      "depth": 15,
+      "nodes": 300314
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": 218
+      },
+      "pv": [
+       "a6c8",
+       "e6g7",
+       "d6e5",
+       "g7f5",
+       "c8f5",
+       "f7f5",
+       "g8e8",
+       "f5e5",
+       "g6e5",
+       "e3d4",
+       "h8g8",
+       "f3f1"
+      ],
+      "depth": 14,
+      "nodes": 300314
+     }
+    ]
+   },
+   "evalAfter": {
+    "fen": "6rk/p4Qpp/b2qN3/3pn3/2p5/1P2BR2/P1P3PP/6K1 w - - 3 30",
+    "nodes": 300000,
+    "engineBuild": "stockfish-18-lite-single",
+    "lines": [
+     {
+      "multipv": 1,
+      "score": {
+       "cp": 2
+      },
+      "pv": [
+       "e6g5",
+       "h7h6",
+       "f3h3",
+       "a6c8",
+       "h3h4",
+       "d6g6",
+       "f7g6",
+       "e5g6",
+       "g5f7",
+       "h8h7",
+       "h4d4",
+       "g8e8",
+       "e3d2",
+       "e8e2",
+       "f7d6",
+       "c4c3",
+       "d2c3",
+       "e2c2",
+       "d6c8",
+       "c2c3",
+       "c8a7",
+       "c3c1",
+       "g1f2",
+       "c1c2",
+       "f2f3"
+      ],
+      "depth": 15,
+      "nodes": 300364
+     },
+     {
+      "multipv": 2,
+      "score": {
+       "cp": -312
+      },
+      "pv": [
+       "f7f5",
+       "e5f3",
+       "g2f3",
+       "d6d7",
+       "e6d4",
+       "a6c8",
+       "f5f4",
+       "c4b3",
+       "a2b3",
+       "g8e8",
+       "e3f2",
+       "h7h6",
+       "b3b4",
+       "h8h7"
+      ],
+      "depth": 15,
+      "nodes": 300364
+     },
+     {
+      "multipv": 3,
+      "score": {
+       "cp": -358
+      },
+      "pv": [
+       "f7g8",
+       "h8g8",
+       "f3f8",
+       "d6f8",
+       "e6f8",
+       "g8f8",
+       "b3b4",
+       "f8f7",
+       "a2a4",
+       "e5c6"
+      ],
+      "depth": 15,
+      "nodes": 300364
+     }
+    ]
+   },
+   "winBefore": 50,
+   "winAfter": 50,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "great",
+   "forced": false,
+   "bestMove": "g6e5",
+   "bestLine": [
+    "g6e5",
+    "e6g5",
+    "h7h6",
+    "f3h3",
+    "a6c8",
+    "h3h4",
+    "d6g6",
+    "f7d5",
+    "e5g4",
+    "g5f7",
+    "h8h7",
+    "f7g5"
+   ],
+   "opening": {
+    "eco": "B23",
+    "name": "Sicilian Defense: Grand Prix Attack"
+   },
+   "clock": {
+    "left": 214700,
+    "spent": 3000
+   }
+  }
+ ],
+ "keyMoments": [
+  {
+   "ply": 6,
+   "kind": "left_book",
+   "severity": 0.2
+  },
+  {
+   "ply": 30,
+   "kind": "mistake",
+   "severity": 0.4780123554594551
+  },
+  {
+   "ply": 32,
+   "kind": "blunder",
+   "severity": 0.6218954258571198
+  },
+  {
+   "ply": 40,
+   "kind": "blunder",
+   "severity": 0.784827836467873
+  },
+  {
+   "ply": 41,
+   "kind": "blunder",
+   "severity": 1
+  },
+  {
+   "ply": 51,
+   "kind": "great",
+   "severity": 0.45
+  },
+  {
+   "ply": 54,
+   "kind": "blunder",
+   "severity": 1
+  },
+  {
+   "ply": 57,
+   "kind": "blunder",
+   "severity": 0.9769627237772213
+  }
+ ],
+ "white": {
+  "username": "KAFKA_F0",
+  "color": "w",
+  "rating": 1334,
+  "accuracy": 64.5936879858646,
+  "acpl": 95.96153846153847,
+  "estimatedRating": 1259,
+  "estimatedRatingBand": 125,
+  "counts": {
+   "brilliant": 0,
+   "great": 3,
+   "best": 7,
+   "excellent": 2,
+   "good": 2,
+   "book": 3,
+   "inaccuracy": 4,
+   "mistake": 6,
+   "miss": 0,
+   "blunder": 2
+  }
+ },
+ "black": {
+  "username": "jakeleupen",
+  "color": "b",
+  "rating": 1270,
+  "accuracy": 65.9205768628313,
+  "acpl": 91.85185185185185,
+  "estimatedRating": 1254,
+  "estimatedRatingBand": 90,
+  "counts": {
+   "brilliant": 0,
+   "great": 1,
+   "best": 9,
+   "excellent": 6,
+   "good": 3,
+   "book": 2,
+   "inaccuracy": 1,
+   "mistake": 4,
+   "miss": 0,
+   "blunder": 3
+  }
+ },
+ "opening": {
+  "eco": "B23",
+  "name": "Sicilian Defense: Grand Prix Attack",
+  "lastBookPly": 5
+ },
+ "timeControl": {
+  "base": 600000,
+  "increment": 0,
+  "daily": false
+ },
+ "ending": {
+  "kind": "timeout",
+  "winner": "b",
+  "onBoard": false,
+  "atPly": 58,
+  "evalAtEnd": {
+   "cp": 2
+  },
+  "verdictAtEnd": {
+   "w": "equal",
+   "b": "equal"
+  },
+  "finalThink": 48100,
+  "clocks": {
+   "w": 0,
+   "b": 214700
+  }
+ }
+}

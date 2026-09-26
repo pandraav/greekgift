@@ -36,6 +36,20 @@
       "when": 1788728452463,
       "tag": "0004_coach_audience",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1788797961049,
+      "tag": "0005_library_and_shares",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790183683964,
+      "tag": "0006_coach_perspective",
+      "breakpoints": true
     }
   ]
 }

@@ -19,6 +19,8 @@ export function ReviewPanel({
   initialReview,
   personaId,
   audience,
+  userSide,
+  initialView,
 }: {
   gameId: string;
   fens: string[];
@@ -27,11 +29,21 @@ export function ReviewPanel({
   personaId: string;
   /** How much the coach explains, from their profile. */
   audience: Audience;
+  /** The member's side, from their linked accounts; null when they played neither. */
+  userSide: 'w' | 'b' | null;
+  /** Report first (chess.com's order), unless the link asked for the moves. */
+  initialView: 'report' | 'moves';
 }) {
   const [review, setReview] = useState(initialReview);
 
   return review ? (
-    <ReviewScreen review={review} initialPersonaId={personaId} audience={audience} />
+    <ReviewScreen
+      review={review}
+      initialPersonaId={personaId}
+      audience={audience}
+      userSide={userSide}
+      initialView={initialView}
+    />
   ) : (
     <AnalysePanel gameId={gameId} fens={fens} onReview={setReview} />
   );

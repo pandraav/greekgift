@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import {
   boolean,
   index,
@@ -140,9 +140,9 @@ export const userProfiles = pgTable(
     note: text('note'),
 
     /**
-     * Set later in /settings, never at sign-up: reviews are keyed by
-     * chess.com username rather than by account, so this is only a
-     * "my games" shortcut.
+     * Superseded by `user_chesscom_accounts` (migration 0005 copied it across).
+     * Neither read nor written any more; dropped in 0006 once no deployed
+     * code references it.
      */
     chesscomUsername: text('chesscom_username'),
 
@@ -348,14 +348,136 @@ export const coachTexts = pgTable(
     })
       .notNull()
       .default('intermediate'),
+    /**
+     * Whose side the note speaks to: 'w' / 'b' for the member's side, 'n'
+     * for a neutral White/Black reader. '' marks a legacy row written in the
+     * old "you are the mover" voice; new code never writes or reads it.
+     */
+    perspective: text('perspective', { enum: ['w', 'b', 'n', ''] })
+      .notNull()
+      .default(''),
+    /**
+     * The review the note was written from, `${nodes}:${engineBuild}`, so a
+     * re-review never serves notes about the old classes. '' = legacy.
+     */
+    reviewKey: text('review_key').notNull().default(''),
     /** The CoachText object. */
     data: jsonb('data').notNull(),
     model: text('model'),
     source: text('source', { enum: ['rules', 'llm', 'template'] }).notNull(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
   },
-  (t) => [primaryKey({ columns: [t.gameId, t.ply, t.personaId, t.audience] })],
+  (t) => [
+    primaryKey({
+      columns: [t.gameId, t.ply, t.personaId, t.audience, t.perspective, t.reviewKey],
+    }),
+  ],
 );
+
+/* ── the library ──────────────────────────────────────────────────────────
+   What a member can see. A game is visible when a linked account played it,
+   when the member opened it from a player page or a pasted link, or when a
+   share was approved. Account membership is materialised here after every
+   refresh and also checked live against `user_chesscom_accounts`, so a game
+   imported seconds ago is visible before the copy runs.
+   ------------------------------------------------------------------------ */
+
+export const userChesscomAccounts = pgTable(
+  'user_chesscom_accounts',
+  {
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    /** Lowercased. */
+    username: text('username').notNull(),
+    addedAt: timestamp('added_at').notNull().defaultNow(),
+    /** Null until the first refresh completes. A 429 leaves it alone. */
+    lastRefreshedAt: timestamp('last_refreshed_at'),
+  },
+  (t) => [
+    primaryKey({ columns: [t.userId, t.username] }),
+    index('user_chesscom_accounts_username_idx').on(t.username),
+  ],
+);
+
+export const librarySource = ['account', 'link', 'share'] as const;
+
+export const userGames = pgTable(
+  'user_games',
+  {
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    gameId: text('game_id')
+      .notNull()
+      .references(() => games.id, { onDelete: 'cascade' }),
+    source: text('source', { enum: librarySource }).notNull(),
+    /**
+     * Which linked account played it, for `source = 'account'`; for `link`
+     * rows, the player page the game was opened from (null for a pasted link).
+     */
+    accountUsername: text('account_username'),
+    /** Who approved the share, for `source = 'share'`. */
+    sharedBy: text('shared_by').references(() => user.id, { onDelete: 'set null' }),
+    addedAt: timestamp('added_at').notNull().defaultNow(),
+    /** Set when the member opens a visible game that has a review. */
+    openedAt: timestamp('opened_at'),
+  },
+  (t) => [
+    primaryKey({ columns: [t.userId, t.gameId] }),
+    index('user_games_opened_idx').on(t.userId, t.openedAt),
+    index('user_games_account_idx').on(t.userId, t.accountUsername),
+  ],
+);
+
+export const gameShares = pgTable(
+  'game_shares',
+  {
+    /** 16 random bytes, base64url. The whole secret. */
+    token: text('token').primaryKey(),
+    gameId: text('game_id')
+      .notNull()
+      .references(() => games.id, { onDelete: 'cascade' }),
+    ownerUserId: text('owner_user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+  },
+  (t) => [uniqueIndex('game_shares_game_owner_uidx').on(t.gameId, t.ownerUserId)],
+);
+
+export const shareStatus = ['pending', 'approved', 'declined'] as const;
+
+export const shareRequests = pgTable(
+  'share_requests',
+  {
+    id: text('id').primaryKey(),
+    shareToken: text('share_token')
+      .notNull()
+      .references(() => gameShares.token, { onDelete: 'cascade' }),
+    requesterUserId: text('requester_user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    status: text('status', { enum: shareStatus }).notNull().default('pending'),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    decidedAt: timestamp('decided_at'),
+  },
+  (t) => [
+    // One open request per person per share; a declined one can be asked again.
+    uniqueIndex('share_requests_pending_uidx')
+      .on(t.shareToken, t.requesterUserId)
+      .where(sql`${t.status} = 'pending'`),
+    index('share_requests_token_idx').on(t.shareToken),
+    index('share_requests_requester_idx').on(t.requesterUserId),
+  ],
+);
+
+export type UserChesscomAccount = typeof userChesscomAccounts.$inferSelect;
+export type UserGame = typeof userGames.$inferSelect;
+export type GameShare = typeof gameShares.$inferSelect;
+export type ShareRequest = typeof shareRequests.$inferSelect;
+export type LibrarySource = (typeof librarySource)[number];
+export type ShareStatus = (typeof shareStatus)[number];
 
 export type PositionEvalRow = typeof positionEvals.$inferSelect;
 export type ReviewRow = typeof reviews.$inferSelect;

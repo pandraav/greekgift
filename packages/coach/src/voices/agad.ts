@@ -186,7 +186,7 @@ const HEADLINES: Partial<Record<SituationKind, (at: string) => string[]>> = {
   ],
   walked_into_pin: (at) => [
     `A pin${at}.`,
-    `And here${at}, a piece stops moving.`,
+    `And here${at}, a piece stopped moving.`,
     `One line, one pin${at}.`,
   ],
   walked_into_skewer: (at) => [
@@ -196,52 +196,52 @@ const HEADLINES: Partial<Record<SituationKind, (at: string) => string[]>> = {
   ],
   hung_piece: (at) => [
     `A piece left hanging${at}.`,
-    `And here${at}, a piece is loose.`,
-    `Nothing defends it${at}.`,
+    `And here${at}, a piece was loose.`,
+    `Nothing defended it${at}.`,
   ],
   under_defended: (at) => [
     `One defender short${at}.`,
-    `And here${at}, the count does not hold.`,
+    `And here${at}, the count did not hold.`,
     `More attackers than defenders${at}.`,
   ],
   missed_capture: (at) => [
-    `A capture goes unplayed${at}.`,
+    `A capture went unplayed${at}.`,
     `And here${at}, something was free.`,
     `A free piece${at}.`,
   ],
   missed_mate: (at) => [
     `A mate was there${at}.`,
-    `And here${at}, a mate goes unplayed.`,
+    `And here${at}, a mate went unplayed.`,
     `Feel free to pause${at}.`,
   ],
   allowed_mate: (at) => [
-    `And here${at}, the king falls.`,
+    `And here${at}, the king fell.`,
     `A mating net${at}.`,
-    `The end arrives${at}.`,
+    `The end arrived${at}.`,
   ],
   ignored_threat: (at) => [
-    `A threat goes unanswered${at}.`,
+    `A threat went unanswered${at}.`,
     `And here${at}, the reply was missed.`,
     `The other side had a threat${at}.`,
   ],
   trapped_piece: (at) => [
     `A piece with no squares${at}.`,
-    `And here${at}, a piece is trapped.`,
+    `And here${at}, a piece was trapped.`,
     `Nowhere to go${at}.`,
   ],
   traded_behind: (at) => [
     `A trade while behind${at}.`,
-    `And here${at}, pieces come off.`,
+    `And here${at}, pieces came off.`,
     `Fewer pieces, same deficit${at}.`,
   ],
   unsound_sacrifice: (at) => [
-    `A sacrifice that does not work${at}.`,
-    `And here${at}, a piece is given away.`,
+    `A sacrifice that did not work${at}.`,
+    `And here${at}, a piece was given away.`,
     `A brave piece${at}.`,
   ],
   sound_sacrifice: (at) => [
     `An exquisite sacrifice${at}.`,
-    `And here${at}, a piece is offered.`,
+    `And here${at}, a piece was offered.`,
     `A remarkable idea${at}.`,
   ],
   created_fork: (at) => [
@@ -252,17 +252,17 @@ const HEADLINES: Partial<Record<SituationKind, (at: string) => string[]>> = {
   created_discovered: (at) => [
     `A discovered attack${at}.`,
     `And here${at}, one move, two threats.`,
-    `The piece behind speaks${at}.`,
+    `The piece behind spoke${at}.`,
   ],
   only_move: (at) => [
     `The one and only move${at}.`,
     `And here${at}, the only move.`,
-    `Nothing else works${at}.`,
+    `Nothing else worked${at}.`,
   ],
   mate_delivered: (at) => [
     `Checkmate${at}.`,
-    `And here${at}, the game ends.`,
-    `The king has no squares${at}.`,
+    `And here${at}, the game ended.`,
+    `The king had no squares${at}.`,
   ],
   best: (at) => [
     `An exquisite move${at}.`,
@@ -281,8 +281,8 @@ const HEADLINES: Partial<Record<SituationKind, (at: string) => string[]>> = {
   ],
   left_book: (at) => [
     `Out of theory${at}.`,
-    `And here${at}, theory ends.`,
-    `The real game begins${at}.`,
+    `And here${at}, theory ended.`,
+    `The real game began${at}.`,
   ],
   quiet_loss: (at) => [
     `A quiet move, a quiet cost${at}.`,
@@ -291,38 +291,38 @@ const HEADLINES: Partial<Record<SituationKind, (at: string) => string[]>> = {
   ],
   back_rank: (at) => [
     `The back rank${at}.`,
-    `And here${at}, the king has no air.`,
+    `And here${at}, the king had no air.`,
     `A weak back rank${at}.`,
   ],
   passed_pawn: (at) => [
     `A passed pawn${at}.`,
-    `And here${at}, a pawn starts running.`,
+    `And here${at}, a pawn started running.`,
     `The passer${at}.`,
   ],
   promotion: (at) => [
     `A new queen${at}.`,
-    `And here${at}, the pawn arrives.`,
+    `And here${at}, the pawn arrived.`,
     `Promotion${at}.`,
   ],
   king_exposed: (at) => [
     `A king in the open${at}.`,
-    `And here${at}, the shield is gone.`,
+    `And here${at}, the shield was gone.`,
     `King safety${at}.`,
   ],
   overloaded: (at) => [
     `One piece, two jobs${at}.`,
-    `And here${at}, a defender is overloaded.`,
+    `And here${at}, a defender was overloaded.`,
     `Too much to defend${at}.`,
   ],
   zugzwang: (at) => [
     `Zugzwang${at}.`,
-    `And here${at}, every move hurts.`,
-    `Nobody wants to move${at}.`,
+    `And here${at}, every move hurt.`,
+    `Nobody wanted to move${at}.`,
   ],
   fortress: (at) => [
     `A fortress${at}.`,
-    `And here${at}, the wall holds.`,
-    `Nothing gets in${at}.`,
+    `And here${at}, the wall held.`,
+    `Nothing got in${at}.`,
   ],
 };
 
@@ -386,21 +386,21 @@ const LESSONS: Record<string, string[]> = {
     'For those of you wondering, a capture that gains nothing concrete simply hands the choice to the other side.',
   ],
   book_ends_here: [
-    'Theory ends here, and of course the pawn structure now says which side of the board the game is on.',
+    'Theory ended here, and of course from then on the pawn structure said which side of the board the game was on.',
     'Out of book, the structure is the plan, and, you know, the structure is right there on the board.',
     'For those of you wondering, leaving theory is not a problem, it is simply where the game begins.',
   ],
   remember_this: [
     'One idea, seen properly once, is worth, you know, a hundred half-remembered ones.',
     'This is a pattern that comes back, and of course it is worth a couple of seconds now so it is recognised later.',
-    'For those of you wondering, this is the moment to keep, and the rest of the game is context.',
+    'For those of you wondering, this was the moment to keep, and the rest of the game was context.',
   ],
 };
 
 const LESSON_DEFAULT = [
   'One idea from this position is worth keeping, and, you know, it will come back.',
   'It is always worth a couple of seconds on a moment like this, because the pattern returns.',
-  'For those of you wondering, this is the moment to remember from the game.',
+  'For those of you wondering, this was the moment to remember from the game.',
 ];
 
 // ---------------------------------------------------------------------------
@@ -451,26 +451,26 @@ const hangs: Frame = (p, ctx) => {
   const defenders = piecesArg(p.args, 'defenders', 'defender');
   if (!target) {
     return [
-      'And here a piece is left hanging, and nothing is defending it.',
-      'A piece is loose, and, you know, nobody is looking after it.',
-      'And here a piece is protected by absolutely nothing.',
+      'And here a piece was left hanging, and nothing was defending it.',
+      'A piece was loose, and, you know, nobody was looking after it.',
+      'And here a piece was protected by absolutely nothing.',
     ];
   }
   const t = ctx.refer(target);
   const sq = ctx.square(target.square);
-  const guard = defenders.length > 0 ? 'the defence does not hold' : 'nothing is defending it';
+  const guard = defenders.length > 0 ? 'the defence did not hold' : 'nothing was defending it';
   if (attackers.length === 0) {
     return [
-      `${capitalise(t)} is left hanging, and ${guard}.`,
-      `And here ${t} is loose, and, you know, ${guard}.`,
-      `${capitalise(t)} is protected by absolutely nothing, and it is attacked.`,
+      `${capitalise(t)} was left hanging, and ${guard}.`,
+      `And here ${t} was loose, and, you know, ${guard}.`,
+      `${capitalise(t)} was protected by absolutely nothing, and it was attacked.`,
     ];
   }
   const a = piecesOf(attackers, ctx);
   return [
-    `${capitalise(t)} is left where ${a} can capture on ${sq}, and ${guard}.`,
-    `And here ${t} is hanging, ${a} can simply capture on ${sq}, and ${guard}.`,
-    `${capitalise(t)} is protected by absolutely nothing, and ${a} sees it.`,
+    `${capitalise(t)} was left where ${a} could capture on ${sq}, and ${guard}.`,
+    `And here ${t} was hanging, ${a} could simply capture on ${sq}, and ${guard}.`,
+    `${capitalise(t)} was protected by absolutely nothing, and ${a} saw it.`,
   ];
 };
 
@@ -479,18 +479,18 @@ const forked: Frame = (p, ctx) => {
   const targets = piecesArg(p.args, 'targets', 'target');
   if (!by || targets.length === 0) {
     return [
-      'And here one piece attacks two at the same moment, and only one of them can be saved.',
-      'A fork, and, you know, one of the two pieces is simply lost.',
-      'And here a single move touches two pieces at once, and there is no move that saves both.',
+      'And here one piece attacked two at the same moment, and only one of them could be saved.',
+      'A fork, and, you know, one of the two pieces was simply lost.',
+      'And here a single move touched two pieces at once, and there was no move that saved both.',
     ];
   }
   const b = ctx.refer(by);
   const squares = squaresOf(targets, ctx);
-  const one = targets.length === 2 ? 'only one of the two can be saved' : 'only one of them can be saved';
+  const one = targets.length === 2 ? 'only one of the two could be saved' : 'only one of them could be saved';
   return [
-    `${capitalise(b)} attacks ${squares} at the same moment, and ${one}.`,
-    `And here ${b} touches ${squares} at once, and, you know, one of them is simply lost.`,
-    `None other than ${b} attacks ${piecesOf(targets, ctx)} together, and there is no move that saves both.`,
+    `${capitalise(b)} attacked ${squares} at the same moment, and ${one}.`,
+    `And here ${b} touched ${squares} at once, and, you know, one of them was simply lost.`,
+    `None other than ${b} attacked ${piecesOf(targets, ctx)} together, and there was no move that saved both.`,
   ];
 };
 
@@ -501,29 +501,29 @@ const swing: Frame = (p) => {
     return [
       'And it was here that the game effectively turned, on a single move.',
       'The assessment changed here, and, you know, it changed quite a lot.',
-      'And here the whole game turns, and of course the pieces have hardly moved.',
+      'And here the whole game turned, and of course the pieces had hardly moved.',
     ];
   }
   const a = numberWords(before);
   const b = numberWords(after);
   if (after > before) {
     return [
-      `And here the winning chances rise from ${a} to ${b}, and the position is, you know, quite pleasant.`,
-      `From ${a} to ${b}, and of course that is what a good move does.`,
-      `The position was ${a} before this and ${b} after it, and the pieces have hardly moved.`,
+      `And here your winning chances rose from ${a} percent to ${b} percent, and the position was, you know, quite pleasant.`,
+      `Your winning chances went from ${a} percent to ${b} percent, and of course that was what a good move did.`,
+      `Your winning chances were ${a} percent before this and ${b} percent after it, and the pieces had hardly moved.`,
     ];
   }
   if (after === before) {
     return [
-      `The winning chances stay at ${a}, and, you know, nothing has really changed.`,
-      `From ${a} to ${a}, and of course the position is what it was.`,
-      `And here nothing moves, ${a} before and ${a} after.`,
+      `Your winning chances stayed at ${a} percent, and, you know, nothing had really changed.`,
+      `Your winning chances stayed at ${a} percent, and of course the position was what it had been.`,
+      `And here nothing moved, your winning chances ${a} percent before and ${a} percent after.`,
     ];
   }
   return [
-    `And it was here that the game effectively turned, the winning chances falling from ${a} to ${b}, on a single move.`,
-    `The position was ${a} before this, you know, and ${b} after it, and that is the whole story.`,
-    `From ${a} to ${b}, and of course the pieces did not move much, but the assessment did.`,
+    `And it was here that the game effectively turned, your winning chances falling from ${a} percent to ${b} percent, on a single move.`,
+    `Your winning chances were ${a} percent before this, you know, and ${b} percent after it, and that was the whole story.`,
+    `Your winning chances went from ${a} percent to ${b} percent, and of course the pieces did not move much, but the assessment did.`,
   ];
 };
 
@@ -531,8 +531,8 @@ const materialDelta: Frame = (p) => {
   const gain = numArg(p.args, 'gain', 'materialGain', 'delta', 'units', 'value') ?? 0;
   const m = describeMaterial(gain);
   return [
-    `And that is ${m}, gone.`,
-    `In material, that is ${m}, and of course that is the game at this level.`,
+    `And that was ${m}, gone.`,
+    `In material, that was ${m}, and of course at this level that was the game.`,
     `${capitalise(m)}, for those of you counting.`,
   ];
 };
@@ -541,15 +541,15 @@ const bestMove: Frame = (p, ctx) => {
   const move = strArg(p.args, 'move', 'san', 'best', 'bestMove');
   if (!move) {
     return [
-      'And here there was a better move, and the position would hold.',
+      'And here there was a better move, and the position would have held.',
       'A better move was available, and, you know, a quieter one.',
       'Something better was there, of course.',
     ];
   }
   const m = ctx.move(move);
   return [
-    `Better was ${m}, and here the position holds.`,
-    `${m}, of course, and there is nothing to worry about.`,
+    `${m} was better, and here the position would have held.`,
+    `${m}, of course, and there would have been nothing to worry about.`,
     `And here ${m} was available, the one and only move.`,
   ];
 };
@@ -558,16 +558,16 @@ const bestLine: Frame = (p, ctx) => {
   const line = lineArg(p.args, 'line', 'moves', 'bestLine');
   if (line.length === 0) {
     return [
-      'The line holds, and of course the position stays together.',
-      'For those of you who want the whole line, it simply holds.',
-      'The line is quiet, and, you know, that is the point of it.',
+      'The line would have held, and of course the position would have stayed together.',
+      'For those of you who want the whole line, it would simply have held.',
+      'The line was quiet, and, you know, that was the point of it.',
     ];
   }
   const c = chant(line, ctx);
   return [
-    `The line was ${c}, and the position holds.`,
+    `The line was ${c}, and the position would have held.`,
     `For those of you who want the whole line: ${c}.`,
-    `${capitalise(c)}, and of course everything is fine.`,
+    `${capitalise(c)}, and of course everything would have been fine.`,
   ];
 };
 
@@ -577,15 +577,15 @@ const sacrifice: Frame = (p, ctx) => {
   const ref = piece ? ctx.refer(piece) : 'a piece';
   if (sound) {
     return [
-      `And here ${ref} is given away, and of course it is not a mistake, it is an exquisite sacrifice.`,
-      `${capitalise(ref)} goes, and for those of you wondering, it comes back with interest.`,
-      `A sacrifice: ${ref} is offered, and the position, you know, simply opens up.`,
+      `And here ${ref} was given away, and of course it was not a mistake, it was an exquisite sacrifice.`,
+      `${capitalise(ref)} went, and for those of you wondering, it came back with interest.`,
+      `A sacrifice: ${ref} was offered, and the position, you know, simply opened up.`,
     ];
   }
   return [
-    `And here ${ref} is given away, and, uh, nothing comes back for it.`,
-    `${capitalise(ref)} goes, and for those of you wondering, it does not return.`,
-    `A sacrifice in name only: ${ref} is lost, and the attack is not there.`,
+    `And here ${ref} was given away, and, uh, nothing came back for it.`,
+    `${capitalise(ref)} went, and for those of you wondering, it did not return.`,
+    `A sacrifice in name only: ${ref} was lost, and the attack was not there.`,
   ];
 };
 
@@ -595,14 +595,14 @@ const missedMate: Frame = (p, ctx) => {
     return [
       'Feel free to pause here and find the mate, because it was there.',
       'I would ask you to pause and find the mate, but you guys already see it.',
-      'And here there was a mate, and it goes unplayed.',
+      'And here there was a mate, and it went unplayed.',
     ];
   }
   const c = chant(line, ctx);
   return [
-    `Feel free to pause here and find the mate. ${capitalise(c)}, and it is over.`,
+    `Feel free to pause here and find the mate. ${capitalise(c)}, and it would have been over.`,
     `I would ask you to pause and find it, but you guys already see it: ${c}.`,
-    `And here there was a mate, ${c}, and there would be nothing more to be done.`,
+    `And here there was a mate, ${c}, and there would have been nothing more to be done.`,
   ];
 };
 
@@ -610,16 +610,16 @@ const mateAllowed: Frame = (p, ctx) => {
   const line = lineArg(p.args, 'line', 'moves', 'mateLine');
   if (line.length === 0) {
     return [
-      'And here, uh, the king cannot escape, and there is nothing more to be done here.',
-      'The mating net closes, and of course there is no way out.',
-      'And here the king falls, and that is the game.',
+      'And here, uh, the king could not escape, and there was nothing more to be done here.',
+      'The mating net closed, and of course there was no way out.',
+      'And here the king fell, and that was the game.',
     ];
   }
   const c = chant(line, ctx);
   return [
-    `And here, uh, ${c}, and the king cannot escape.`,
-    `${capitalise(c)}, and there is nothing more to be done here.`,
-    `The mating net closes: ${c}.`,
+    `And here, uh, ${c}, and the king could not escape.`,
+    `${capitalise(c)}, and there was nothing more to be done here.`,
+    `The mating net closed: ${c}.`,
   ];
 };
 
@@ -647,7 +647,7 @@ function reaction(epLoss: number, lead: SituationKind): string {
     if (lead === 'sound_sacrifice' || lead === 'mate_delivered') {
       return 'And here, an absolutely spectacular move.';
     }
-    if (lead === 'only_move') return 'A very fine move, and of course the only one that works.';
+    if (lead === 'only_move') return 'A very fine move, and of course the only one that worked.';
     if (lead === 'created_fork' || lead === 'created_discovered') return 'And here, a very fine move.';
     return '';
   }
@@ -657,12 +657,12 @@ function reaction(epLoss: number, lead: SituationKind): string {
   return '';
 }
 
-const RESIGNATION = 'There is nothing more to be done here.';
+const RESIGNATION = 'There was nothing more to be done here.';
 
 function closer(lead: SituationKind): string {
   if (LOST_LEADS.has(lead)) return RESIGNATION;
   if (lead === 'missed_mate') return 'I would ask you to pause and find it, but you guys already see it.';
-  if (lead === 'left_book') return 'And from here, the real game begins.';
+  if (lead === 'left_book') return 'And from there, the real game began.';
   return '';
 }
 
@@ -690,9 +690,10 @@ function captureVerbs(text: string): string {
 /** "Nxe6" becomes "knight captures on e6"; the square stays sayable. */
 function sanCaptures(text: string, ctx: RenderContext): string {
   return text
-    .replace(/\b([KQRBN])x([a-h][1-8])(?:=[QRBN])?[+#]?/g, (_m, piece: string, sq: string) =>
+    // A numbered move ("25.exd5", "24…Kxd5") is a line being quoted, and stays SAN.
+    .replace(/(?<![\d.…])\b([KQRBN])x([a-h][1-8])(?:=[QRBN])?[+#]?/g, (_m, piece: string, sq: string) =>
       `${ctx.lexicon.pieceNames[piece as PieceRef['piece']]} captures on ${sq}`)
-    .replace(/\b([a-h])x([a-h][1-8])(?:=[QRBN])?[+#]?/g, (_m, _file: string, sq: string) =>
+    .replace(/(?<![\d.…])\b([a-h])x([a-h][1-8])(?:=[QRBN])?[+#]?/g, (_m, _file: string, sq: string) =>
       `${ctx.lexicon.pieceNames.P} captures on ${sq}`);
 }
 
@@ -750,32 +751,32 @@ const EVENT_EXTRAS: Record<Trigger, string[]> = {
     'I would ask you to pause and find this, but you guys already see it. Incredible.',
   ],
   great: [
-    'And here, a very fine move, and of course the position demands it.',
-    'A remarkable choice, and, you know, the only one that holds.',
+    'And here, a very fine move, and of course the position demanded it.',
+    'A remarkable choice, and, you know, the only one that held.',
   ],
   blunder: [
-    'And here, uh, the position turns, and not for the better.',
+    'And here, uh, the position turned, and not for the better.',
     'It was in this position that things, you know, started to go wrong.',
   ],
   mistake: [
     'Not the most precise, but of course a very human choice.',
-    'And here, a small slip, and the position, uh, notices.',
+    'And here, a small slip, and the position, uh, noticed.',
   ],
   miss: [
     'While I give you a couple of seconds, there was something exquisite here.',
     'And here, for those of you looking, something remarkable was available.',
   ],
   bookExit: [
-    'And here, as usual, theory ends and the players are on their own.',
-    'This is where the book closes, and, you know, the real game begins.',
+    'And here, as usual, theory ended and the players were on their own.',
+    'This was where the book closed, and, you know, the real game began.',
   ],
   comeback: [
-    'And here, incredibly, the position is a game once more.',
-    'Remarkable. The position was gone, and now, of course, it is not.',
+    'And here, incredibly, the position was a game once more.',
+    'Remarkable. The position was gone, and then, of course, it was not.',
   ],
   collapse: [
     'And it was here that a winning position, uh, slipped away entirely.',
-    'The position was won, and here it is not, and there is nothing more to be done.',
+    'The position was won, and here it was not, and there was nothing more to be done.',
   ],
   highAccuracy: [
     'A very fine game, and of course very few slips in it.',
@@ -787,11 +788,11 @@ const EVENT_EXTRAS: Record<Trigger, string[]> = {
   ],
   longGame: [
     'A very long battle, and, you know, both sides earned the rest.',
-    'A long, long game, and of course the pieces are as tired as the players.',
+    'A long, long game, and of course the pieces were as tired as the players.',
   ],
   reviewEnd: [
-    'So that is the game. Thank you all, and see you soon.',
-    'And that is where it ends. Thank you all, as usual, and have a pleasant day.',
+    'So that was the game. Thank you all, and see you soon.',
+    'And that was where it ended. Thank you all, as usual, and have a pleasant day.',
   ],
   random: [
     'As usual, sorry about that.',

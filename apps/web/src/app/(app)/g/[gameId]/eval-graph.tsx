@@ -20,9 +20,11 @@ export interface EvalGraphProps {
   onSeek: (ply: number) => void;
   /** Dimmed while the reader is off in a line of their own. */
   idle?: boolean;
+  /** One dot per move worth a second look, at the position it produced. */
+  marks?: { ply: number; color: string }[];
 }
 
-export function EvalGraph({ winPercents, ply, onSeek, idle = false }: EvalGraphProps) {
+export function EvalGraph({ winPercents, ply, onSeek, idle = false, marks = [] }: EvalGraphProps) {
   const n = winPercents.length;
   if (n < 2) return null;
 
@@ -77,6 +79,17 @@ export function EvalGraph({ winPercents, ply, onSeek, idle = false }: EvalGraphP
           strokeWidth={1.5}
           strokeLinejoin="round"
         />
+        {marks.map((m) => (
+          <circle
+            key={m.ply}
+            cx={x(m.ply)}
+            cy={y(winPercents[m.ply] ?? 50)}
+            r={3.2}
+            fill={m.color}
+            stroke="#FBF7EC"
+            strokeWidth={1}
+          />
+        ))}
         <line x1={mark} y1={0} x2={mark} y2={HEIGHT} stroke="#9E2B20" strokeWidth={1.5} opacity="0.9" />
         <circle
           cx={mark}

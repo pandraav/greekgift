@@ -16,6 +16,19 @@
  *
  *   pnpm --filter @greekgift/engine exec tsx scripts/build-fixtures.mjs
  *
+ * `--rebuild` needs no engine: it reads each committed fixture's evals
+ * (every `evalBefore`, plus the last `evalAfter`), runs the current
+ * `buildReview` over them, and writes the result back. Use it after a change
+ * to classification or scoring, so expected values come from the rebuilt
+ * files rather than from hand edits:
+ *
+ *   pnpm --filter @greekgift/engine exec tsx scripts/build-fixtures.mjs --rebuild
+ *
+ * `--clocked` analyses the real chess.com games listed in CLOCKED (from
+ * `test/fixtures/chesscom-games.json`, clocks and headers intact) at 300,000
+ * nodes and writes `test/fixtures/clocked/<id>.json`. `--rebuild` rebuilds
+ * those too, with the games' result codes.
+ *
  * `tsx` is what lets this plain `.mjs` entry point import the package's
  * `.ts` sources directly (`parsePgn`, `buildReview`, `toWhiteView`) without a
  * build step — it patches Node's loader for every subsequent import in the
@@ -23,7 +36,7 @@
  */
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { parsePgn } from '../src/pgn.ts';
@@ -189,8 +202,21 @@ function startEngine(engine) {
   });
 }
 
+/** The client's per-search reset: new game, cleared hash, then `readyok`. */
+function reset(engine) {
+  return new Promise((resolve) => {
+    engine.listener = (line) => {
+      if (line === 'readyok') resolve();
+    };
+    engine.sendCommand('ucinewgame');
+    engine.sendCommand('setoption name Clear Hash');
+    engine.sendCommand('isready');
+  });
+}
+
 /** Evaluates one position at a fixed node budget. Serial — one at a time. */
-function analyse(engine, fen, nodes, multipv) {
+async function analyse(engine, fen, nodes, multipv) {
+  await reset(engine);
   return new Promise((resolve) => {
     const whiteToMove = fen.split(' ')[1] === 'w';
     const best = new Map();
@@ -225,6 +251,89 @@ function analyse(engine, fen, nodes, multipv) {
 
 /* ── build ────────────────────────────────────────────────────────────── */
 
+/* ── clocked fixtures: real chess.com games with %clk ──────────────────── */
+
+const CLOCKED = ['184269442794'];
+const CLOCKED_NODES = 300_000;
+const clockedDir = path.join(__dirname, '../test/fixtures/clocked');
+
+async function chesscomGames() {
+  return JSON.parse(
+    await readFile(path.join(__dirname, '../test/fixtures/chesscom-games.json'), 'utf-8'),
+  );
+}
+
+function clockedReview(g, evals, nodes, engineBuild) {
+  const game = parsePgn(g.pgn);
+  return buildReview({
+    gameId: g.id,
+    game,
+    evals,
+    whiteUsername: g.white.username,
+    blackUsername: g.black.username,
+    ...(game.whiteElo !== undefined ? { whiteRating: game.whiteElo } : {}),
+    ...(game.blackElo !== undefined ? { blackRating: game.blackElo } : {}),
+    nodes,
+    engineBuild,
+    results: { white: g.white.result, black: g.black.result },
+  });
+}
+
+async function clocked() {
+  await mkdir(clockedDir, { recursive: true });
+  const engine = await loadStockfish();
+  await startEngine(engine);
+  const games = await chesscomGames();
+  for (const id of CLOCKED) {
+    const g = games.find((x) => x.id === id);
+    const game = parsePgn(g.pgn);
+    const evals = [];
+    for (const fen of game.fens) evals.push(await analyse(engine, fen, CLOCKED_NODES, MULTIPV));
+    const review = clockedReview(g, evals, CLOCKED_NODES, ENGINE_BUILD);
+    await writeFile(path.join(clockedDir, `${id}.json`), JSON.stringify(review, null, 1));
+    console.log(`  ${id}: ${game.fens.length} positions at ${CLOCKED_NODES} nodes`);
+  }
+  process.exit(0);
+}
+
+async function rebuildClocked() {
+  const games = await chesscomGames();
+  for (const id of CLOCKED) {
+    const outPath = path.join(clockedDir, `${id}.json`);
+    const old = JSON.parse(await readFile(outPath, 'utf-8'));
+    const evals = [...old.moves.map((m) => m.evalBefore), old.moves.at(-1).evalAfter];
+    const review = clockedReview(games.find((x) => x.id === id), evals, old.nodes, old.engineBuild);
+    await writeFile(outPath, JSON.stringify(review, null, 1));
+    console.log(`  ${id}: rebuilt ${review.moves.length} plies from stored evals`);
+  }
+}
+
+/** Re-runs `buildReview` over the evals already stored in each fixture. */
+async function rebuild() {
+  await rebuildClocked();
+  for (const { id, pgn, whiteUsername, blackUsername, whiteRating, blackRating } of GAMES) {
+    const outPath = path.join(outDir, `${id}.json`);
+    const old = JSON.parse(await readFile(outPath, 'utf-8'));
+    const game = parsePgn(pgn);
+    const evals = [...old.moves.map((m) => m.evalBefore), old.moves.at(-1).evalAfter];
+
+    const review = buildReview({
+      gameId: id,
+      game,
+      evals,
+      whiteUsername,
+      blackUsername,
+      ...(whiteRating !== undefined ? { whiteRating } : {}),
+      ...(blackRating !== undefined ? { blackRating } : {}),
+      nodes: old.nodes,
+      engineBuild: old.engineBuild,
+    });
+
+    await writeFile(outPath, JSON.stringify(review, null, 1));
+    console.log(`  ${id}: rebuilt ${review.moves.length} plies from stored evals`);
+  }
+}
+
 async function main() {
   await mkdir(outDir, { recursive: true });
 
@@ -236,8 +345,6 @@ async function main() {
   for (const { id, pgn, whiteUsername, blackUsername, whiteRating, blackRating } of GAMES) {
     const gameStarted = Date.now();
     const game = parsePgn(pgn);
-
-    engine.sendCommand('ucinewgame');
 
     const evals = [];
     for (const fen of game.fens) {
@@ -272,7 +379,12 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((err) => {
+(process.argv.includes('--rebuild')
+  ? rebuild()
+  : process.argv.includes('--clocked')
+    ? clocked()
+    : main()
+).catch((err) => {
   console.error(err);
   process.exit(1);
 });

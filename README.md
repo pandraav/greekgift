@@ -77,6 +77,14 @@ so it always has an answer.
 
 So `pnpm dev` works with an empty `.env`. Production hard-requires all nine.
 
+**In practice local dev and the deploy share one database.** `apps/web/.env.local`
+carries the production Neon `DATABASE_URL`, so `pnpm dev` reads and writes real
+rows, and a new migration has to be applied with `pnpm db:migrate` before the
+dev server can serve the pages that need it (the deploy runs the same command
+and finds it already applied). For throwaway work, run
+`DATABASE_URL=pglite://.pglite pnpm dev`: instrumentation migrates the store at
+boot and closes it on SIGINT, SIGTERM and exit, so it survives restarts.
+
 **PGlite is single-process.** Querying it from a second terminal while `pnpm dev`
 is running does not block — it corrupts `.pglite/`. Delete the directory and
 re-migrate if that happens.
@@ -118,6 +126,17 @@ An email listed in `ADMIN_EMAILS` is promoted to admin on first sign-in.
 `src/proxy.ts` redirects unapproved traffic, but **every route handler
 re-checks the session server-side** — the proxy is a convenience, the handler
 is the security boundary.
+
+Once in, what a member can open is decided by their **library**: a game is
+visible when one of their linked chess.com accounts played it, when they
+opened it from a player page or a pasted link, or when another member shared
+it with them. Admins see everything. `canSeeGame` in `apps/web/src/lib/library.ts`
+is the one place that rule lives, and every game route and the game page ask it.
+
+Sharing is a link. The owner presses Share on a review, sends the URL, and the
+recipient — who sees only the header — asks to see it. The owner approves or
+declines from the bell in the topbar; both sides get an email. Nothing is
+revoked afterwards.
 
 ## Third-party
 

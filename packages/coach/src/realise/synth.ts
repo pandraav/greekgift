@@ -1,6 +1,7 @@
 import type { Motif } from '@greekgift/engine';
 
 import { SLOTS, type Plan, type PropKind, type Proposition, type Slot } from '../contracts.ts';
+import { isLossMove } from '../plan.ts';
 import { conceptFor } from './frames.ts';
 
 /**
@@ -99,7 +100,8 @@ export function synthesiseSlot(plan: Plan, slot: Slot): Proposition[] {
           weight: 1,
         },
       ];
-      if (Math.abs(facts.bestMoveEffect.materialGain) >= 1) {
+      // As the planner: material is said only when the move gave some away.
+      if (isLossMove(plan.classification) && facts.bestMoveEffect.materialGain >= 1) {
         props.push({
           kind: 'material_delta',
           role: 'consequence',

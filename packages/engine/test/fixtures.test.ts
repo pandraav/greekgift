@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
+import { positionScore } from '../src/review.ts';
+import { forceCp, gameAccuracy, winPercent } from '../src/scoring.ts';
 import type { Classification, Review } from '../src/types.ts';
 
 /**
@@ -102,5 +104,39 @@ describe('summary', () => {
       );
     }
     expect(true).toBe(true);
+  });
+});
+
+describe('rebuilt fixtures under the review-overhaul rules', () => {
+  it('the two famous queen sacrifices are brilliant, and nothing else is', () => {
+    const opera = loadFixture('opera-game');
+    const evergreen = loadFixture('evergreen-game');
+    const brilliant = (r: Review) =>
+      r.moves.filter((m) => m.classification === 'brilliant').map((m) => m.san);
+    expect(brilliant(opera)).toEqual(['Qb8+']);
+    expect(brilliant(evergreen)).toEqual(['Qxd7+']);
+  });
+
+  it('a recapture in a lost position is not a sacrifice (Opera 13...Rxd7)', () => {
+    const move = loadFixture('opera-game').moves[25]!;
+    expect(move.san).toBe('Rxd7');
+    expect(move.classification).not.toBe('brilliant');
+  });
+
+  it('rule h: a game ending in mate ends the graph at 100', () => {
+    const last = loadFixture('opera-game').moves.at(-1)!;
+    expect(last.evalAfter.lines).toEqual([]);
+    expect(winPercent(positionScore(last.evalAfter))).toBe(100);
+  });
+
+  it('accuracy is lichess gameAccuracy over every ply, book included', () => {
+    const review = loadFixture('opera-game');
+    const acc = gameAccuracy(
+      review.moves.map((m) => forceCp(positionScore(m.evalAfter))),
+      'w',
+      forceCp(positionScore(review.moves[0]!.evalBefore)),
+    );
+    expect(review.white.accuracy).toBe(acc.w);
+    expect(review.black.accuracy).toBe(acc.b);
   });
 });

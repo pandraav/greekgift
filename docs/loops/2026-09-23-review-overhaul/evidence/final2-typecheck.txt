@@ -1,0 +1,17 @@
+
+> greekgift@ typecheck /Users/euler/Work/projects/greekgift
+> pnpm -r --parallel typecheck
+
+Scope: 5 of 6 workspace projects
+apps/web typecheck$ next typegen && tsc --noEmit
+packages/coach typecheck$ tsc --noEmit
+packages/db typecheck$ tsc --noEmit
+packages/email typecheck$ tsc --noEmit
+packages/engine typecheck$ tsc --noEmit
+apps/web typecheck: Generating route types...
+apps/web typecheck: ✓ Types generated successfully
+packages/email typecheck: Done
+packages/engine typecheck: Done
+packages/db typecheck: Done
+packages/coach typecheck: Done
+apps/web typecheck: Done

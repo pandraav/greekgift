@@ -50,15 +50,9 @@ async function save(request: Request) {
   if ('response' in guarded) return guarded.response;
 
   const body = (await request.json().catch(() => ({}))) as {
-    chesscomUsername?: unknown;
     audience?: unknown;
     personaId?: unknown;
   };
-
-  const username =
-    typeof body.chesscomUsername === 'string'
-      ? body.chesscomUsername.trim().slice(0, 60) || null
-      : undefined;
 
   const levels = ['beginner', 'intermediate', 'advanced'] as const;
   const audience = levels.find((l) => l === body.audience);
@@ -70,7 +64,6 @@ async function save(request: Request) {
   const [updated] = await db
     .update(schema.userProfiles)
     .set({
-      ...(username !== undefined ? { chesscomUsername: username } : {}),
       ...(audience ? { audience } : {}),
       ...(personaId ? { personaId } : {}),
     })

@@ -10,6 +10,7 @@ import {
 import { and, eq, inArray } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
+import { reviewCacheKey } from '@/lib/engine/settings';
 
 /**
  * Reading and writing the analysis cache.
@@ -19,6 +20,11 @@ import { db } from '@/lib/db';
  * waits for a database round-trip, not for Stockfish.
  */
 
+/**
+ * The engine settings a game was analysed at: `engineBuild` is the plain
+ * engine build, the `position_evals` key. Every `reviews` query here maps it
+ * through `reviewCacheKey`, which adds the scoring version.
+ */
 export interface CacheKey {
   nodes: number;
   engineBuild: string;
@@ -29,14 +35,15 @@ export async function getReview(
   gameId: string,
   key: CacheKey,
 ): Promise<Review | null> {
+  const reviewKey = reviewCacheKey(key);
   const [row] = await db
     .select({ data: schema.reviews.data })
     .from(schema.reviews)
     .where(
       and(
         eq(schema.reviews.gameId, gameId),
-        eq(schema.reviews.nodes, key.nodes),
-        eq(schema.reviews.engineBuild, key.engineBuild),
+        eq(schema.reviews.nodes, reviewKey.nodes),
+        eq(schema.reviews.engineBuild, reviewKey.engineBuild),
       ),
     )
     .limit(1);
@@ -133,8 +140,13 @@ export async function saveReview(
     ...(game.eco && game.opening
       ? { opening: { eco: game.eco, name: game.opening } }
       : {}),
+    // chess.com's result codes decide how the game ended (§14.3); the clocks
+    // and TimeControl come from the stored PGN itself.
+    results: { white: game.whiteResult, black: game.blackResult },
     nodes: key.nodes,
-    engineBuild: key.engineBuild,
+    // The review carries its scoring version, so coach notes (keyed by
+    // `reviewKeyOf(review)`) follow a rescore too.
+    engineBuild: reviewCacheKey(key).engineBuild,
   });
 
   // Positions first: if the review write fails, the expensive part survives
@@ -160,7 +172,7 @@ export async function saveReview(
     .values({
       gameId: game.id,
       nodes: key.nodes,
-      engineBuild: key.engineBuild,
+      engineBuild: reviewCacheKey(key).engineBuild,
       data: review,
       whiteAccuracy: review.white.accuracy,
       blackAccuracy: review.black.accuracy,
@@ -183,6 +195,25 @@ export async function saveReview(
  * Denormalised onto the review row precisely so a list of sixty games costs
  * one small query rather than sixty JSON blobs.
  */
+/** Whole reviews for a batch of games, keyed by id. The week card needs the blobs, not just the accuracies. */
+export async function getReviews(
+  gameIds: string[],
+  key: CacheKey,
+): Promise<Record<string, Review>> {
+  if (gameIds.length === 0) return {};
+  const rows = await db
+    .select({ gameId: schema.reviews.gameId, data: schema.reviews.data })
+    .from(schema.reviews)
+    .where(
+      and(
+        inArray(schema.reviews.gameId, gameIds),
+        eq(schema.reviews.nodes, key.nodes),
+        eq(schema.reviews.engineBuild, reviewCacheKey(key).engineBuild),
+      ),
+    );
+  return Object.fromEntries(rows.map((r) => [r.gameId, r.data as Review]));
+}
+
 export async function getAccuracies(
   gameIds: string[],
   key: CacheKey,
@@ -200,11 +231,41 @@ export async function getAccuracies(
       and(
         inArray(schema.reviews.gameId, gameIds),
         eq(schema.reviews.nodes, key.nodes),
-        eq(schema.reviews.engineBuild, key.engineBuild),
+        eq(schema.reviews.engineBuild, reviewCacheKey(key).engineBuild),
       ),
     );
 
   return Object.fromEntries(
     rows.map((r) => [r.gameId, { white: r.white, black: r.black }]),
+  );
+}
+
+/**
+ * The stored review under the current rules, or — when there is none but
+ * every position is already evaluated at these settings — a review rebuilt
+ * from those cached evals and stored. No engine runs: a `SCORING_VERSION`
+ * bump costs the reader a database round-trip, not a "Run the review".
+ * Null when some position still needs the engine.
+ */
+export async function getOrRebuildReview(
+  game: typeof schema.games.$inferSelect,
+  key: CacheKey,
+): Promise<Review | null> {
+  const stored = await getReview(game.id, key);
+  if (stored) return stored;
+
+  let fens: string[];
+  try {
+    fens = parsePgn(game.pgn).fens;
+  } catch {
+    return null;
+  }
+  const cached = await getCachedEvals(fens, key);
+  if (!fens.every((fen) => cached[fen])) return null;
+
+  return saveReview(
+    game,
+    fens.map((fen) => cached[fen]!),
+    key,
   );
 }

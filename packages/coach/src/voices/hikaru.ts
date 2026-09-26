@@ -114,35 +114,35 @@ const LOSS_CLASSES = new Set(['inaccuracy', 'mistake', 'miss', 'blunder']);
 
 /** Rule 2: the lead situation, said as a verdict, in four words or fewer. */
 const LEAD_VERDICTS: Partial<Record<SituationKind, string>> = {
-  allowed_mate: "That's just mate.",
-  missed_mate: 'Misses a mate.',
-  hung_piece: 'Just hangs a piece.',
-  under_defended: 'Leaves it under-defended.',
-  walked_into_fork: 'Drops a piece to a fork.',
-  walked_into_pin: 'Walks into a pin.',
-  walked_into_skewer: 'Walks into a skewer.',
-  missed_capture: 'Misses a free piece.',
-  ignored_threat: 'Ignores the threat.',
-  trapped_piece: 'Traps its own piece.',
-  traded_behind: 'Trades while behind.',
-  unsound_sacrifice: 'That sac just loses.',
-  quiet_loss: 'Just slightly worse now.',
-  back_rank: 'Back rank is weak.',
-  king_exposed: 'King is just open.',
+  allowed_mate: 'That was just mate.',
+  missed_mate: 'Missed a mate.',
+  hung_piece: 'Just hung a piece.',
+  under_defended: 'Left it under-defended.',
+  walked_into_fork: 'Dropped a piece to a fork.',
+  walked_into_pin: 'Walked into a pin.',
+  walked_into_skewer: 'Walked into a skewer.',
+  missed_capture: 'Missed a free piece.',
+  ignored_threat: 'Ignored the threat.',
+  trapped_piece: 'Trapped its own piece.',
+  traded_behind: 'Traded while behind.',
+  unsound_sacrifice: 'That sac just lost.',
+  quiet_loss: 'Just slightly worse after.',
+  back_rank: 'Back rank was weak.',
+  king_exposed: 'King was just open.',
   overloaded: 'One defender, two jobs.',
-  zugzwang: "That's just zugzwang.",
-  sound_sacrifice: 'The sac just works.',
-  created_fork: "That's a fork. Simple.",
+  zugzwang: 'That was just zugzwang.',
+  sound_sacrifice: 'The sac just worked.',
+  created_fork: 'That was a fork. Simple.',
   created_discovered: 'Discovered attack. Simple.',
   only_move: 'The only move. Okay.',
-  mate_delivered: "That's mate. GG.",
-  passed_pawn: 'Passed pawn. Push it.',
-  promotion: 'Promotes. Simple.',
-  book: 'Still theory.',
-  left_book: 'Out of theory now.',
-  best: "That's the move.",
-  good: "That's fine.",
-  fortress: "It's just a fortress.",
+  mate_delivered: 'That was mate. GG.',
+  passed_pawn: 'Passed pawn. It ran.',
+  promotion: 'Promoted. Simple.',
+  book: 'Still theory there.',
+  left_book: 'Out of theory there.',
+  best: 'That was the move.',
+  good: 'That was fine.',
+  fortress: 'It was just a fortress.',
 };
 
 const verdict: Frame = (p, ctx) => {
@@ -153,19 +153,19 @@ const verdict: Frame = (p, ctx) => {
   const fromLead = lead ? LEAD_VERDICTS[lead] : undefined;
 
   if (cls === 'brilliant' || cls === 'great') {
-    return [fromLead ?? "That's the move. Obviously.", `${m} is just winning.`, `${m}. Yeah, that's it.`];
+    return [fromLead ?? 'That was the move. Obviously.', `${m} was just winning.`, `${m}. Yeah, that was it.`];
   }
   if (cls === 'best' || cls === 'excellent' || cls === 'good' || cls === 'book') {
-    return [fromLead ?? "That's fine.", `${m} is fine.`, `${m}. Simple.`];
+    return [fromLead ?? 'That was fine.', `${m} was fine.`, `${m}. Simple.`];
   }
   if (cls === 'miss') {
-    return [fromLead ?? 'Misses the win.', `${m} just misses it.`, `${m}. There was more.`];
+    return [fromLead ?? 'Missed the win.', `${m} just missed it.`, `${m}. There was more.`];
   }
   if (cls === 'mistake' || cls === 'inaccuracy') {
-    return [fromLead ?? "It's not great.", `${m} is just worse.`, `${m}. I mean, not that.`];
+    return [fromLead ?? "It wasn't great.", `${m} was just worse.`, `${m}. I mean, not that.`];
   }
   if (cls === 'blunder' || LOSS_CLASSES.has(cls)) {
-    return [fromLead ?? "That's just losing.", `${m} is just losing.`, `${m}. That's just bad.`];
+    return [fromLead ?? 'That was just losing.', `${m} was just losing.`, `${m}. That was just bad.`];
   }
   return [fromLead ?? 'Okay. Fine.', `${m}. Okay.`, `${m}. Fine, basically.`];
 };
@@ -176,9 +176,9 @@ const hangs: Frame = (p, ctx) => {
   const it = piece ? ctx.refer(piece) : 'the piece';
   const taker = attackers[0] ? ctx.refer(attackers[0]) : 'anything';
   return [
-    `${it} is just hanging. ${taker} takes it.`,
-    `${it} just drops. Nobody is defending it.`,
-    `Basically ${it} is gone. ${taker} takes, and that's it.`,
+    `${it} was just hanging. ${taker} could take it.`,
+    `${it} just dropped. Nobody was defending it.`,
+    `Basically ${it} was gone. ${taker} could take, and that was it.`,
   ];
 };
 
@@ -188,9 +188,9 @@ const forked: Frame = (p, ctx) => {
   const attacker = by ? ctx.refer(by) : 'their piece';
   const hit = list(ctx, targets);
   return [
-    `${attacker} lands, hitting ${hit}. One of them survives.`,
-    `${attacker} hits ${hit}. That's just a fork.`,
-    `I mean, ${attacker} hits ${hit}. You lose one.`,
+    `${attacker} landed, hitting ${hit}. Only one could survive.`,
+    `${attacker} hit ${hit}. That was just a fork.`,
+    `I mean, ${attacker} hit ${hit}. One was going.`,
   ];
 };
 
@@ -200,7 +200,7 @@ const missedCapture: Frame = (p, ctx) => {
   return [
     `${it} was just free. Takes takes takes.`,
     `I mean, ${it} was hanging. You didn't take it.`,
-    `${it} was free here. Simple.`,
+    `${it} was free there. Simple.`,
   ];
 };
 
@@ -208,14 +208,15 @@ const swing: Frame = (p) => {
   const before = numArg(p, ['before', 'winBefore', 'from']);
   const after = numArg(p, ['after', 'winAfter', 'to']);
   if (before === undefined || after === undefined) {
-    return [`The eval just flips.`, `I mean, that's the game.`, `It's just worse now.`];
+    return [`The eval just flipped.`, `I mean, that was the game.`, `It was just worse after.`];
   }
   const b = Math.round(before);
   const a = Math.round(after);
   return [
-    `${b} to ${a}. I mean, it was ${standing(b)} before this.`,
-    `${b} to ${a}. That's just a reality.`,
-    `${b} to ${a}. It is what it is.`,
+    `Your winning chances: ${b}% to ${a}%. I mean, it was ${standing(b)} before this.`,
+    `Your winning chances: ${b}% to ${a}%. That was just a reality.`,
+    `Your winning chances: ${b}% to ${a}%. It is what it is.`,
+    `Your winning chances: ${b}% to ${a}%.`,
   ];
 };
 
@@ -227,19 +228,19 @@ const materialDelta: Frame = (p) => {
   const lost = gain !== undefined ? gain : delta !== undefined ? -delta : 0;
   const amount = materialWords(lost);
   if (lost === 0) {
-    return [`Material is level.`, `Nothing changes hands.`, `Still even on material.`];
+    return [`Material stayed level.`, `Nothing changed hands.`, `Still even on material.`];
   }
   if (lost < 0) {
-    return [`That's ${amount}. Simple.`, `You just win ${amount}.`, `Up ${amount}. Okay.`];
+    return [`That was ${amount}. Simple.`, `You just won ${amount}.`, `Up ${amount}. Okay.`];
   }
-  return [`That's ${amount}, gone.`, `You just lose ${amount}.`, `Down ${amount}. It is what it is.`];
+  return [`That was ${amount}, gone.`, `You just lost ${amount}.`, `Down ${amount}. It is what it is.`];
 };
 
 /** Rule 1: the best move is announced with "let's go". */
 const bestMove: Frame = (p, ctx) => {
   const san = strArg(p, ['move', 'best', 'san']);
   const m = san ? ctx.move(san) : 'the other move';
-  return [`Let's go ${m}.`, `Let's go ${m}. Simple.`, `Let's go ${m} here. Basically.`];
+  return [`Let's go ${m}. That was the move.`, `Let's go ${m} there. Simple.`, `It should have been let's go ${m}. Basically.`];
 };
 
 const bestDoes: Frame = (p, ctx) => {
@@ -249,13 +250,13 @@ const bestDoes: Frame = (p, ctx) => {
   const check = boolArg(p, 'check');
   const gain = numArg(p, ['materialGain', 'delta']);
   let does: string;
-  if (mateIn !== undefined) does = `is mate in ${words(mateIn)}`;
-  else if (captures) does = `takes ${ctx.refer(captures)}`;
-  else if (forks.length > 1) does = `hits ${list(ctx, forks)}`;
-  else if (check) does = `comes with check`;
-  else if (gain !== undefined && gain !== 0) does = `keeps ${materialWords(gain)}`;
-  else does = 'just holds';
-  return [`It ${does}. Simple.`, `That ${does}. That's just a reality.`, `I mean, it ${does}. Of course.`];
+  if (mateIn !== undefined) does = `would have been mate in ${words(mateIn)}`;
+  else if (captures) does = `would have taken ${ctx.refer(captures)}`;
+  else if (forks.length > 1) does = `would have hit ${list(ctx, forks)}`;
+  else if (check) does = `would have come with check`;
+  else if (gain !== undefined && gain !== 0) does = `would have kept ${materialWords(gain)}`;
+  else does = 'would have just held';
+  return [`It ${does}. Simple.`, `That ${does}. That was just a reality.`, `I mean, it ${does}. Of course.`];
 };
 
 const LESSONS: Record<string, string[]> = {
@@ -282,7 +283,7 @@ const LESSONS: Record<string, string[]> = {
   defend_back_rank: [
     'Give the king a square. Simple.',
     'Back rank needs a hole. Make one.',
-    'I mean, one pawn move fixes this.',
+    'I mean, one pawn move would have fixed this.',
   ],
   see_their_threat: [
     'Look at what they want first. Then play.',
@@ -297,7 +298,7 @@ const LESSONS: Record<string, string[]> = {
   push_the_passer: [
     'Push the passed pawn. Simple.',
     'Passed pawns run. Let it run.',
-    'I mean, the pawn is the whole game here.',
+    'I mean, the pawn was the whole game here.',
   ],
   keep_the_shield: [
     "Don't move the pawns in front of the king.",
@@ -347,7 +348,8 @@ const lesson: Frame = (p, ctx) => {
 const SENTENCE_END = /(?<=[.!?])\s+/;
 const INTENSIFIER = /\b(?:very|really|extremely|incredibly|super|totally|absolutely)\s+/gi;
 const JUST_AFTER = /\b(is|was|are|were)\b(?!\s+just\b)(?!\s*$)/;
-const JUST_BEFORE = /\b(drops|loses|hangs|wins|takes|lands|hits|leaves|walks|misses|gives|blunders)\b/i;
+const JUST_BEFORE =
+  /\b(dropped|lost|hung|won|took|landed|hit|left|walked|missed(?!\s+chance)|gave|blundered|drops|loses|wins|takes|lands|hits|leaves|walks|misses|gives|blunders)\b/i;
 
 /** Rule 10: no exclamation marks, no questions. */
 const flatten = (text: string): string => text.replace(/[!?]+/g, '.').replace(/\.{2,}/g, '.');
@@ -365,11 +367,14 @@ function twoSentences(text: string): string {
  * Rule 3: a flat declarative built on "just" — inserted once per note, where a
  * verb allows. The observation and consequence slots are tried before the
  * headline so a four-word verdict such as "Drops a piece to a fork." keeps its
- * shape; the best move is never touched.
+ * shape; the best move is never touched. A note already at its word budget
+ * is left alone.
  */
-function insertJust(slots: Record<Slot, string>): void {
+function insertJust(slots: Record<Slot, string>, budget: number): void {
   const all = Object.values(slots).join(' ');
   if (/\bjust\b/i.test(all)) return;
+  // The word budget outranks the tic: a full note takes no extra word.
+  if (all.split(/\s+/).filter(Boolean).length >= budget) return;
   for (const slot of ['whatHappened', 'whyItMatters', 'headline', 'lesson'] as Slot[]) {
     const text = slots[slot];
     const before = text.match(JUST_BEFORE);
@@ -406,7 +411,7 @@ export function shapeHikaru(
     betterWas: pass(slots.betterWas),
     lesson: pass(slots.lesson),
   };
-  insertJust(shaped);
+  insertJust(shaped, hikaru.budgets.words);
   return shaped;
 }
 
@@ -416,18 +421,18 @@ export function shapeHikaru(
 
 const EXTRA_EVENTS: Record<Trigger, string[]> = {
   reviewStart: ["Okay. Let's go.", "Let's see. Okay."],
-  brilliant: ["Yeah, that's it. I'm impressed. Or I was, until the next move.", "Okay, that's the move. Simple."],
-  great: ["Yeah, that's the move. Of course.", 'Fine. Actually that is the only move.'],
-  blunder: ["That's just losing.", 'I mean, that just hangs everything. It is what it is.'],
-  mistake: ["Yeah, that's not it.", 'I mean, it is worse now. Who cares, keep going.'],
+  brilliant: ['Yeah, that was it. I was impressed, until the next move.', 'Okay, that was the move. Simple.'],
+  great: ['Yeah, that was the move. Of course.', 'Fine. Actually that was the only move.'],
+  blunder: ['That was just bad.', 'I mean, that just hung everything. It is what it is.'],
+  mistake: ["Yeah, that wasn't it.", 'I mean, it was worse after that. Who cares, keep going.'],
   miss: ['There was a win. It happens.', 'I mean, you had it. You just did not play it.'],
-  bookExit: ['Okay, out of theory.', 'Theory is done. Now it is just chess.'],
-  comeback: ["Okay. It's a game again, actually.", 'I mean, somehow this is back to equal. Sure.'],
-  collapse: ['This was winning. Now it is not.', 'I mean, it was completely winning. And then it just was not.'],
-  highAccuracy: ['Clean game. Okay.', 'Yeah, that is basically clean. Fine.'],
-  lowAccuracy: ["It's fine. It happens.", 'I mean, everyone has these games. Who cares.'],
-  longGame: ['Still going.', 'Yeah, this one is long. Okay.'],
-  reviewEnd: ["That's it. Next.", 'Okay, done. Next game.'],
+  bookExit: ['Okay, out of theory there.', 'Theory was done. Then it was just chess.'],
+  comeback: ['Okay. It was a game again, actually.', 'I mean, somehow it got back to equal. Sure.'],
+  collapse: ['This was winning. Then it was not.', 'I mean, it was completely winning. And then it just was not.'],
+  highAccuracy: ['Clean game. Okay.', 'Yeah, that was basically clean. Fine.'],
+  lowAccuracy: ['It was fine. It happens.', 'I mean, everyone has these games. Who cares.'],
+  longGame: ['That went long.', 'Yeah, this one was long. Okay.'],
+  reviewEnd: ['That was it. Next.', 'Okay, done. Next game.'],
   random: ['So what. Keep going.', 'Nobody cares. Next move.'],
 };
 

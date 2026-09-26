@@ -8,6 +8,7 @@ import {
   type RenderContext,
   type Slot,
 } from '../contracts.ts';
+import { isLossMove } from '../plan.ts';
 import { neutralFrames, verdictWord } from './frames.ts';
 import { Referrer } from './refer.ts';
 import { makePick, mulberry32 } from './seed.ts';
@@ -45,6 +46,45 @@ export interface Rendered {
 }
 
 const HEADLINE_MAX = 60;
+
+/**
+ * Words that put the reader on the mover's side. A persona's own frames were
+ * written for the reader who made the move; when the reader did not, a
+ * variant that says "you", "we" or "my" about the move is wrong, so it is set
+ * aside and the neutral frame, which knows the voice, speaks instead.
+ */
+const READER_IS_MOVER =
+  /\b(?:you|your|yours|yourself|you['’](?:re|ve|ll|d)|we|we['’](?:re|ve|ll|d)|our|ours|us|me)\b|(?<!\boh )\bmy\b/i;
+/** On the opponent's move, "they" and "their" in a persona frame mean the reader. */
+const MOVERS_OPPONENT = /\b(?:they|them|their|theirs|they['’](?:re|ve|ll|d)|opponent)\b/i;
+
+/**
+ * Kinds whose persona frames narrate numbers or advice from the mover's
+ * side. Off the mover's side, the neutral frame restates them for the reader.
+ */
+/**
+ * Lessons the persona grammars do not carry: punishing the opponent's slip,
+ * and the lessons that follow a refutation's tactic (§13.2). The neutral
+ * frame says them, so the lesson always matches the tactic.
+ */
+const TACTIC_LESSONS: ReadonlySet<string> = new Set([
+  'punish_it',
+  'watch_pins',
+  'watch_forks',
+  'watch_skewers',
+  'watch_discoveries',
+  'watch_mate',
+  'watch_captures',
+]);
+
+const MOVER_NUMBERS: ReadonlySet<string> = new Set(['swing', 'material_delta', 'best_move']);
+
+/** Whether a persona's variant can be said in this voice. */
+export function sayableIn(voice: Plan['voice'], text: string): boolean {
+  if (voice === 'self') return true;
+  if (READER_IS_MOVER.test(text)) return false;
+  return voice === 'neutral' || !MOVERS_OPPONENT.test(text);
+}
 
 type Unit = { kind: 'one'; prop: Proposition } | { kind: 'joined'; props: [Proposition, Proposition] };
 
@@ -129,7 +169,9 @@ export function renderOnce(
     lexicon,
     preferHere: syntax.preferHere,
     playedSquare: destinationOf(facts.san),
+    viewer: plan.viewer,
     moverColor: facts.color,
+    voice: plan.voice,
   });
   const limit = Math.min(
     syntax.maxSentenceWords > 0 ? syntax.maxSentenceWords : Infinity,
@@ -155,7 +197,12 @@ export function renderOnce(
     square: (sq) => referrer.square(sq),
     move: (san) => referrer.move(san),
     pick,
+    voice: plan.voice,
+    mover: () => referrer.mover(),
+    moverPossessive: () => referrer.moverPossessive(),
+    memberWin: (w) => (plan.voice === 'opponent' ? 100 - w : w),
   };
+  const self = plan.voice === 'self';
 
   const neutral = neutralFrames(plan, grammar);
 
@@ -164,12 +211,22 @@ export function renderOnce(
     // frames narrate a change, and there is none to narrate.
     const neutralOnly =
       (p.kind === 'swing' && p.args.held === true) ||
-      (p.kind === 'material_delta' && p.args.missed === true);
+      (p.kind === 'material_delta' && p.args.missed === true) ||
+      // Off the mover's side: numbers and advice are restated for the reader,
+      // and the lesson on an opponent's slip is the reader's own concept.
+      (!self && MOVER_NUMBERS.has(p.kind)) ||
+      (p.kind === 'lesson' && TACTIC_LESSONS.has(String(p.args.concept)));
     const persona = neutralOnly ? undefined : grammar.frames[p.kind];
     let variants: string[] = [];
     if (persona) {
       try {
-        variants = (persona(p, ctx) ?? []).filter((v) => typeof v === 'string' && v.trim());
+        variants = (persona(p, ctx) ?? []).filter(
+          (v) =>
+            typeof v === 'string' &&
+            v.trim() &&
+            // The lesson is advice to the reader and may say "you".
+            (p.kind === 'lesson' || sayableIn(plan.voice, v)),
+        );
       } catch {
         variants = [];
       }
@@ -198,7 +255,13 @@ export function renderOnce(
   /** Choose a variant within the sentence limit, then resolve it. */
   const renderProp = (p: Proposition, ref: Referrer): string => {
     const pool = poolFor(p);
-    const measured = pool.map((v) => ({ v, words: countWords(ref.clone().resolve(v)) }));
+    // A refutation is written as several short sentences on purpose, so it is
+    // measured by its longest sentence against the per-sentence limit.
+    const size = (text: string) =>
+      p.kind === 'refutation' || p.kind === 'game_over'
+        ? Math.max(...text.split(/(?<=[.!?])\s+/).map(countWords))
+        : countWords(text);
+    const measured = pool.map((v) => ({ v, words: size(ref.clone().resolve(v)) }));
     const fits = measured.filter((m) => m.words <= limit).map((m) => m.v);
     const chosen =
       fits.length > 0 ? choose(fits) : measured.reduce((b, m) => (m.words < b.words ? m : b)).v;
@@ -206,7 +269,9 @@ export function renderOnce(
   };
 
   const connective = (): string => {
-    const c = pick(lexicon.connectives.length > 0 ? lexicon.connectives : ['and']);
+    // "you see" joins two sentences in the reader's voice only.
+    const sayable = lexicon.connectives.filter((c) => sayableIn(plan.voice, c));
+    const c = pick(sayable.length > 0 ? sayable : ['and']);
     return c === '—' || c === '–' ? ' — ' : `, ${c} `;
   };
 
@@ -294,7 +359,13 @@ export function renderOnce(
   const what = chain(renderSlot('whatHappened'));
   // A reaction and a verdict word both open the slot; together they read as
   // "Terrible. Blunder." The reaction wins when the voice has one.
-  const reaction = opts.reaction ? safe(() => prosody.reaction(plan.epLoss, plan.lead), '') : '';
+  // The reaction is the persona reacting to the reader's own move; the
+  // opponent's blunder or a neutral reader's game gets none.
+  // An error explained by its refutation opens with the line, not a
+  // reaction (§13.2).
+  const explained = props.some((p) => p.kind === 'refutation');
+  const reaction =
+    opts.reaction && self && !explained ? safe(() => prosody.reaction(plan.epLoss, plan.lead), '') : '';
   if (reaction.trim()) what.unshift(finishSentence(reaction));
   else if (syntax.verdictFirst) what.unshift(`${verdictWord(plan.classification, grammar.banned)}.`);
   raw.whatHappened = what.join(' ');
@@ -303,7 +374,10 @@ export function renderOnce(
   raw.betterWas = chain(renderSlot('betterWas')).join(' ');
 
   const lesson = renderSlot('lesson');
-  if (opts.closer) {
+  // A closer on a losing move commiserates with the mover; on the opponent's
+  // slip that is the wrong side's sympathy.
+  const commiserates = plan.voice === 'opponent' && isLossMove(plan.classification);
+  if (opts.closer && !commiserates) {
     const closer = safe(() => prosody.closer(plan.lead), '');
     // Never say the closer twice: a lesson that already ends with it is done.
     const norm = (t: string) => stripTerminal(t).trim().toLowerCase();

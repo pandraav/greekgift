@@ -1,5 +1,6 @@
 import type {
   Classification,
+  Color,
   MoveFacts,
   PieceRef,
   SituationKind,
@@ -70,7 +71,15 @@ export type PropKind =
   | 'traded_behind'
   | 'quiet_loss'
   | 'define'
-  | 'lesson';
+  | 'lesson'
+  /** The opponent's best reply to an error, from the stored line (§13.2). */
+  | 'refutation'
+  /** The best move and where it would have left the game (§13.2). */
+  | 'better_line'
+  /** How long the move took, when that explains it (§14.5). */
+  | 'clock'
+  /** How the game ended, on the last ply, when the board did not end it (§14.5). */
+  | 'game_over';
 
 export type Arg = PieceRef | PieceRef[] | string | string[] | number | boolean;
 
@@ -83,8 +92,18 @@ export interface Proposition {
   weight: number;
 }
 
+/**
+ * Who the note speaks to, relative to the mover. `self`: the reader played
+ * the move ("you"). `opponent`: the reader's opponent played it ("your
+ * opponent", "they"). `neutral`: nobody's side ("White", "Black").
+ */
+export type Voice = 'self' | 'opponent' | 'neutral';
+
 export interface Plan {
   facts: MoveFacts;
+  /** Whose side the reader is on; the mover's colour for legacy facts. */
+  viewer: Color | null;
+  voice: Voice;
   audience: MoveFacts['audience'];
   classification: Classification;
   /** The lead situation kind, for persona event lines and lesson choice. */
@@ -145,6 +164,18 @@ export interface RenderContext {
   move: (san: string) => string;
   /** Seeded. */
   pick: <T>(variants: T[]) => T;
+  voice: Voice;
+  /**
+   * Subject for the mover: "you" (self, or the persona's address) | "your
+   * opponent" on first mention then "they" | "White"/"Black". Follow it with
+   * a past tense or a modal, never a present-tense verb, so the agreement
+   * holds for all three.
+   */
+  mover: () => string;
+  /** "your" | "their" | "White's"/"Black's". */
+  moverPossessive: () => string;
+  /** A mover's win% restated for the reader: w for self, 100 − w for opponent, w for neutral. */
+  memberWin: (moverWin: number) => number;
 }
 
 /** A frame renders one proposition kind to sentence variants; the realiser picks one. */

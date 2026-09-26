@@ -3,7 +3,17 @@ import { describe, expect, it } from 'vitest';
 
 import { findOpening, openingCount, toEpd } from '../src/openings.ts';
 import { parsePgn } from '../src/pgn.ts';
-import { buildReview, terminalScore, toWhiteView } from '../src/review.ts';
+import { sacrificeFor } from '../src/motifs.ts';
+import {
+  buildReview,
+  lineMaterial,
+  playedLineIndex,
+  playedMoveScore,
+  positionScore,
+  terminalScore,
+  toWhiteView,
+} from '../src/review.ts';
+import { winPercent } from '../src/scoring.ts';
 import type { PositionEval, Score } from '../src/types.ts';
 
 const PGN = `[White "alice"]
@@ -146,11 +156,11 @@ describe('buildReview', () => {
     expect(review.black.accuracy).toBeGreaterThan(80);
   });
 
-  it('orders key moments by how much was thrown away', () => {
+  it('returns key moments in ply order, the blunder among them', () => {
     expect(review.keyMoments.length).toBeGreaterThan(0);
-    const severities = review.keyMoments.map((k) => k.severity);
-    expect([...severities].sort((a, b) => b - a)).toEqual(severities);
-    expect(review.keyMoments[0]!.kind).toBe('blunder');
+    const plies = review.keyMoments.map((k) => k.ply);
+    expect([...plies].sort((a, b) => a - b)).toEqual(plies);
+    expect(review.keyMoments.some((k) => k.kind === 'blunder')).toBe(true);
   });
 
   it('marks a game down against the rating we already knew', () => {
@@ -385,16 +395,24 @@ describe('brilliant', () => {
   const game = parsePgn(KNIGHT_SAC);
   const nf5 = game.moves.length - 1;
 
-  /** Level game; after Nf5 the engine says gxf5 exf5 and the eval barely moves. */
-  const specs = (cpAfter: number) =>
-    game.fens.map((_, i): LineSpec[] =>
-      i === game.fens.length - 1
-        ? [{ score: { cp: cpAfter }, pv: ['g6f5', 'e4f5'] }]
-        : [{ score: { cp: 40 }, pv: [game.moves[i]!.uci] }],
-    );
+  /**
+   * Level game; Nf5 is the engine's move, its line gxf5 exf5 gives a knight
+   * for a pawn, and the alternative (castling) is merely level.
+   */
+  const specs = (cpPlayed: number) =>
+    game.fens.map((_, i): LineSpec[] => {
+      if (i === nf5) {
+        return [
+          { score: { cp: cpPlayed }, pv: ['d4f5', 'g6f5', 'e4f5', 'e8g8'] },
+          { score: { cp: 20 }, pv: ['f1e2'] },
+        ];
+      }
+      if (i === game.fens.length - 1) return [{ score: { cp: 30 }, pv: ['g6f5', 'e4f5'] }];
+      return [{ score: { cp: 40 }, pv: [game.moves[i]!.uci] }];
+    });
 
-  it('is a quiet move that gives up a piece and keeps the evaluation', () => {
-    const review = plain('sac', game, evalsFrom(game.fens, specs(30)));
+  it('is a knight given up for a pawn that keeps the evaluation', () => {
+    const review = plain('sac', game, evalsFrom(game.fens, specs(40)));
     const move = review.moves[nf5]!;
     expect(move.san).toBe('Nf5');
     expect(move.classification).toBe('brilliant');
@@ -403,26 +421,88 @@ describe('brilliant', () => {
   });
 
   it('is a key moment, ranked as one', () => {
-    const review = plain('sac', game, evalsFrom(game.fens, specs(30)));
+    const review = plain('sac', game, evalsFrom(game.fens, specs(40)));
     const moment = review.keyMoments.find((k) => k.kind === 'brilliant');
     expect(moment?.ply).toBe(review.moves[nf5]!.ply);
     expect(moment!.severity).toBeGreaterThan(0.2);
   });
 
-  it('is not brilliant when the sacrifice costs more than two points', () => {
-    // +40 → 0 is nearly four points of win chance: the engine move, but a
-    // sacrifice that did not hold up.
-    const review = plain('unsound', game, evalsFrom(game.fens, specs(0)));
-    expect(review.moves[nf5]!.classification).toBe('best');
-  });
-
   it('is not brilliant when the piece is not really given up', () => {
     // The engine's line has Black declining the knight: nothing was sacrificed.
-    const declined = specs(30).map((lines, i) =>
-      i === game.fens.length - 1 ? [{ score: { cp: 30 }, pv: ['d7d6'] }] : lines,
+    const declined = specs(40).map((lines, i) =>
+      i === nf5
+        ? [{ score: { cp: 40 }, pv: ['d4f5', 'd7d6', 'f5e3', 'e8g8'] }, lines[1]!]
+        : lines,
     );
     const review = plain('declined', game, evalsFrom(game.fens, declined));
     expect(review.moves[nf5]!.classification).toBe('best');
+  });
+});
+
+/* ── rule f: Brilliant (criterion 7f) ─────────────────────────────────── */
+
+/** The fixture game up to 11.Bxh7+: a bishop for a pawn, with a check. */
+const GREEK_GIFT = `[White "a"]
+[Black "b"]
+[Result "*"]
+
+1. d4 d5 2. Bf4 Nf6 3. e3 e6 4. Nf3 Be7 5. Bd3 O-O 6. Nbd2 c5 7. c3 Nc6 8. O-O b6
+9. Qe2 Bb7 10. Rae1 Ne5 11. Bxh7+ *`;
+
+describe('rule f: brilliant needs a real sacrifice, not already winning', () => {
+  const game = parsePgn(GREEK_GIFT);
+  const BXH7 = game.moves.length - 1;
+  const SAC_LINE = ['d3h7', 'g8h7', 'f3g5', 'h7g8'];
+
+  const specs = (at: LineSpec[]) =>
+    game.fens.map((_, i): LineSpec[] => {
+      if (i === BXH7) return at;
+      if (i === game.fens.length - 1) return [{ score: { cp: 300 }, pv: ['g8h7', 'f3g5'] }];
+      return [{ score: { cp: 20 }, pv: [game.moves[i]!.uci] }];
+    });
+  const run = (at: LineSpec[]) => plain('greek', game, evalsFrom(game.fens, specs(at))).moves[BXH7]!;
+
+  it('a capture sacrifice (Bxh7+: pawn taken, bishop given) is brilliant', () => {
+    const move = run([
+      { score: { cp: 300 }, pv: SAC_LINE },
+      { score: { cp: 150 }, pv: ['f3e5'] },
+    ]);
+    expect(move.san).toBe('Bxh7+');
+    expect(move.classification).toBe('brilliant');
+  });
+
+  it('is not brilliant when the alternative is already +8', () => {
+    const move = run([
+      { score: { cp: 900 }, pv: SAC_LINE },
+      { score: { cp: 800 }, pv: ['f3e5'] },
+    ]);
+    expect(move.classification).toBe('best');
+  });
+
+  it('is not brilliant when unsound', () => {
+    const move = run([
+      { score: { cp: 300 }, pv: ['f3e5', 'e7d6'] },
+      { score: { cp: -150 }, pv: SAC_LINE },
+    ]);
+    expect(move.classification).not.toBe('brilliant');
+    expect(move.epLoss).toBeGreaterThan(0.1);
+  });
+
+  it('a pawn sacrifice is never one', () => {
+    const gambit = parsePgn(`[White "a"]
+[Black "b"]
+[SetUp "1"]
+[FEN "4k3/8/8/4p3/8/8/5P2/4K3 w - - 0 1"]
+
+1. f4 *`);
+    const move = gambit.moves[0]!;
+    const evalBefore = evalsFrom([move.fenBefore], [[{ score: { cp: 0 }, pv: ['f2f4', 'e5f4', 'e1f2', 'e8e7'] }]])[0]!;
+    const evalAfter = evalsFrom([move.fenAfter], [[{ score: { cp: 0 }, pv: ['e5f4'] }]])[0]!;
+    const subject = { ...move, evalBefore, evalAfter };
+    const lm = lineMaterial(subject);
+    expect(lm.plies).toBe(4);
+    expect(lm.played - lm.before).toBe(-1);
+    expect(sacrificeFor(subject, lm)).toBeNull();
   });
 });
 
@@ -457,44 +537,200 @@ describe('great', () => {
   });
 });
 
-describe('miss', () => {
-  const game = parsePgn(PGN);
-  const NH4 = 8;
+/* ── rules b, c: Best and the played move's score (criteria 7b, 7c) ───── */
 
-  /**
-   * At move 5 White was well on top (+600) and Bxc6 won a knight; Nh4 keeps
-   * an edge (+300) but not that one. +600 → +300 is 0.15 expected points: a
-   * mistake, with a piece left behind.
-   */
-  const specs = (best: string, reply: string[]) =>
-    game.fens.map((_, i): LineSpec[] => {
-      if (i === NH4) return [{ score: { cp: 600 }, pv: [best] }];
-      if (i === NH4 + 1) return [{ score: { cp: 300 }, pv: reply }];
-      return [{ score: { cp: 20 }, pv: [game.moves[i]?.uci ?? 'a2a3'] }];
+const fromFen = (fen: string, moves: string) =>
+  parsePgn(`[White "a"]
+[Black "b"]
+[SetUp "1"]
+[FEN "${fen}"]
+
+${moves} *`);
+
+describe('rules b, c: Best is judged inside one search', () => {
+  const KINGS = '4k3/8/8/8/8/8/4P3/4K3 w - - 0 1';
+  const game = fromFen(KINGS, '1. Kd2');
+
+  const run = (before: LineSpec[], after: LineSpec[]) =>
+    plain('b', game, evalsFrom(game.fens, [before, after])).moves[0]!;
+
+  it('a stored second line at an equal score is best, scored from that line', () => {
+    const move = run(
+      [
+        { score: { cp: 100 }, pv: ['e1f2'] },
+        { score: { cp: 100 }, pv: ['e1d2'] },
+      ],
+      // A different search after the move disagrees; the line score wins.
+      [{ score: { cp: -50 }, pv: ['e8d7'] }],
+    );
+    expect(playedLineIndex(move)).toBe(1);
+    expect(move.classification).toBe('best');
+    expect(move.epLoss).toBe(0);
+    expect(move.winAfter).toBe(winPercent({ cp: 100 }));
+  });
+
+  it('a stored second line 0.01 EP worse is excellent', () => {
+    const move = run(
+      [
+        { score: { cp: 100 }, pv: ['e1f2'] },
+        { score: { cp: 90 }, pv: ['e1d2'] },
+      ],
+      [{ score: { cp: 100 }, pv: ['e8d7'] }],
+    );
+    expect(move.epLoss).toBeGreaterThan(0.002);
+    expect(move.epLoss).toBeLessThan(0.02);
+    expect(move.classification).toBe('excellent');
+  });
+
+  it('a move outside the stored lines is never best, even at no loss', () => {
+    const outside = fromFen(KINGS, '1. Kf1');
+    const move = plain(
+      'c',
+      outside,
+      evalsFrom(outside.fens, [
+        [
+          { score: { cp: 100 }, pv: ['e1f2'] },
+          { score: { cp: 100 }, pv: ['e1d2'] },
+        ],
+        [{ score: { cp: 100 }, pv: ['e8d7'] }],
+      ]),
+    ).moves[0]!;
+    expect(playedLineIndex(move)).toBeNull();
+    expect(move.epLoss).toBe(0);
+    expect(move.classification).toBe('excellent');
+  });
+
+  it('playedMoveScore falls back to the position after, then to the board', () => {
+    const move = run([{ score: { cp: 100 }, pv: ['e1f2'] }], [{ score: { cp: 42 }, pv: ['e8d7'] }]);
+    expect(playedMoveScore(move)).toEqual({ cp: 42 });
+  });
+});
+
+/* ── rule d: Miss, parity-matched (criterion 7d) ──────────────────────── */
+
+describe('rule d: miss compares lines over the same even number of plies', () => {
+  // White rook b1, Black knight b8 undefended.
+  const FEN = '1n2k3/8/8/8/8/8/7P/1R2K3 w - - 0 1';
+  const game = fromFen(FEN, '1. Ke2');
+
+  const run = (bestLine: string[]) =>
+    plain(
+      'd',
+      game,
+      evalsFrom(game.fens, [
+        [{ score: { cp: 100 }, pv: bestLine }],
+        [{ score: { cp: 30 }, pv: ['e8d7', 'h2h3', 'd7c7'] }],
+      ]),
+    ).moves[0]!;
+
+  it('a best line ending on an unanswered capture does not count', () => {
+    const move = run(['h2h3', 'e8d7', 'b1b8']);
+    expect(lineMaterial(move)).toMatchObject({ plies: 2, before: 3, best: 3, played: 3 });
+    expect(move.classification).toBe('inaccuracy');
+  });
+
+  it('a capture the opponent has answered does', () => {
+    const move = run(['h2h3', 'e8d7', 'b1b8', 'd7c7']);
+    expect(lineMaterial(move)).toMatchObject({ plies: 4, before: 3, best: 6, played: 3 });
+    expect(move.classification).toBe('miss');
+  });
+
+  it('no capture-value term: a capture taken straight back is no miss', () => {
+    // Rxb8+ "takes a knight", but ...Nxb8 takes the rook back.
+    const traded = fromFen('1n2k3/3n4/8/8/8/8/7P/1R2K3 w - - 0 1', '1. Ke2');
+    const move = plain(
+      'd2',
+      traded,
+      evalsFrom(traded.fens, [
+        [{ score: { cp: 100 }, pv: ['b1b8', 'd7b8', 'e1e2', 'e8e7'] }],
+        [{ score: { cp: 30 }, pv: ['e8e7', 'h2h3', 'e7e6'] }],
+      ]),
+    ).moves[0]!;
+    expect(lineMaterial(move).plies).toBe(4);
+    expect(lineMaterial(move).best).toBeLessThan(lineMaterial(move).played);
+    expect(move.classification).toBe('inaccuracy');
+  });
+
+  describe('at blunder size', () => {
+    // Black to move; ...Kd7 leaves the knight on b8 to the rook.
+    const FEN_B = '1n2k3/8/8/8/8/8/7P/1R2K3 b - - 0 1';
+    const pair = fromFen(FEN_B, '1... Kd7 2. Ke2');
+    const WHITE_BEST = ['b1b8', 'd7c6', 'b8b1', 'c6d5'];
+
+    const run2 = (blackLines: LineSpec[]) =>
+      plain(
+        'gift',
+        pair,
+        evalsFrom(pair.fens, [
+          blackLines,
+          [{ score: { cp: 400 }, pv: WHITE_BEST }],
+          [{ score: { cp: 0 }, pv: ['b8c6', 'h2h4', 'c6e5'] }],
+        ]),
+      ).moves;
+
+    it('a blunder that only returns the opponent’s gift is a miss', () => {
+      const [black, white] = run2([{ score: { cp: 0 }, pv: ['b8c6'] }]);
+      expect(black!.classification).toBe('blunder');
+      expect(white!.epLoss).toBeGreaterThanOrEqual(0.2);
+      expect(lineMaterial(white!).best - lineMaterial(white!).played).toBe(3);
+      expect(white!.classification).toBe('miss');
     });
 
-  it('is a mistake that left a piece on the board', () => {
-    const review = plain('miss', game, evalsFrom(game.fens, specs('a4c6', ['f6e4'])));
-    const move = review.moves[NH4]!;
-    expect(move.san).toBe('Nh4');
-    expect(move.epLoss).toBeGreaterThanOrEqual(0.12);
-    expect(move.epLoss).toBeLessThan(0.22);
-    expect(move.classification).toBe('miss');
-    expect(review.white.counts.miss).toBe(1);
-    expect(review.white.counts.mistake).toBe(0);
+    it('the same blunder without the prior error stays a blunder', () => {
+      const [black, white] = run2([{ score: { cp: 400 }, pv: ['e8d7'] }]);
+      expect(black!.classification).toBe('best');
+      expect(white!.classification).toBe('blunder');
+    });
+  });
+});
+
+/* ── rule e: missed mate (criterion 7e) ───────────────────────────────── */
+
+describe('rule e: missed mate', () => {
+  const FEN = '6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1';
+  const run = (sans: string, after: Score) => {
+    const game = fromFen(FEN, sans);
+    return plain(
+      'e',
+      game,
+      evalsFrom(game.fens, [
+        [{ score: { mate: 2 }, pv: ['a1a8'] }],
+        [{ score: after, pv: ['g8h8'] }],
+      ]),
+    ).moves[0]!;
+  };
+
+  it('keeping a longer mate is not a miss', () => {
+    const move = run('1. Kf1', { mate: 4 });
+    expect(move.classification).not.toBe('miss');
+    expect(move.epLoss).toBe(0);
   });
 
-  it('is a key moment, weighed by what it cost', () => {
-    const review = plain('miss', game, evalsFrom(game.fens, specs('a4c6', ['f6e4'])));
-    const moment = review.keyMoments.find((k) => k.kind === 'miss')!;
-    expect(moment.ply).toBe(review.moves[NH4]!.ply);
-    expect(moment.severity).toBeCloseTo(review.moves[NH4]!.epLoss / 0.4, 6);
+  it('letting the mate go is a miss', () => {
+    expect(run('1. Ra2', { cp: 500 }).classification).toBe('miss');
   });
 
-  it('stays a mistake when nothing concrete was missed', () => {
-    // Same loss, but the engine wanted to castle: no capture, and the line
-    // only drops a pawn.
-    const review = plain('mistake', game, evalsFrom(game.fens, specs('e1g1', ['f6e4'])));
-    expect(review.moves[NH4]!.classification).toBe('mistake');
+  it('walking into mate is a blunder, not a miss', () => {
+    expect(run('1. Ra2', { mate: -2 }).classification).toBe('blunder');
+  });
+});
+
+/* ── rule h: terminal scores (criterion 7h) ───────────────────────────── */
+
+describe('rule h: positionScore reads mate at the end', () => {
+  it('scores a mated final position as ±1 mate, so the graph reads 100 or 0', () => {
+    const game = parsePgn(SCHOLARS);
+    const last = evalsFrom([game.fens.at(-1)!], [null])[0]!;
+    expect(positionScore(last)).toEqual({ mate: 1 });
+    expect(winPercent(positionScore(last))).toBe(100);
+
+    const fools = parsePgn(FOOLS);
+    const end = evalsFrom([fools.fens.at(-1)!], [null])[0]!;
+    expect(winPercent(positionScore(end))).toBe(0);
+  });
+
+  it('otherwise reads the best line', () => {
+    const e = evalsFrom(['4k3/8/8/8/8/8/4P3/4K3 w - - 0 1'], [[{ score: { cp: 77 }, pv: ['e1d2'] }]])[0]!;
+    expect(positionScore(e)).toEqual({ cp: 77 });
   });
 });

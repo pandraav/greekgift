@@ -4,9 +4,14 @@ import 'server-only';
  * chess.com's public read-only API.
  *
  * No key, no auth, no rate-limit header — the documented rule is simply to
- * identify yourself and not hammer it in parallel. Requests are serial and
- * every response is cached, because the archive for a finished month never
- * changes.
+ * identify yourself and not hammer it in parallel. Requests are serial.
+ *
+ * Only what cannot change is cached: a finished month's archive, a profile,
+ * the stats. The archives list and any month still accruing games are fetched
+ * with `cache: 'no-store'`. Next's data cache is stale-while-revalidate — the
+ * first request after expiry gets the old body and refreshes in the
+ * background — so a cached current month handed a refresh whatever was
+ * stored last time, which could be weeks old (the "0 of 26 games" bug).
  *
  * https://www.chess.com/news/view/published-data-api
  */
@@ -27,15 +32,13 @@ export class ChesscomError extends Error {
   }
 }
 
-interface FetchOptions {
-  /** Seconds. A finished month is immutable; the current one is not. */
-  revalidate: number;
-}
+/** Seconds in Next's data cache, or `'no-store'` to always ask chess.com. */
+type Freshness = { revalidate: number } | 'no-store';
 
-async function get<T>(path: string, { revalidate }: FetchOptions): Promise<T> {
+async function get<T>(path: string, freshness: Freshness): Promise<T> {
   const response = await fetch(`${BASE}${path}`, {
     headers: { 'User-Agent': UA, Accept: 'application/json' },
-    next: { revalidate },
+    ...(freshness === 'no-store' ? { cache: 'no-store' as const } : { next: { revalidate: freshness.revalidate } }),
   });
 
   if (response.status === 404) {
@@ -148,11 +151,11 @@ export function stats(username: string): Promise<ChesscomStats> {
   });
 }
 
-/** Newest last. Each entry is a full URL ending `/YYYY/MM`. */
+/** Newest last. Each entry is a full URL ending `/YYYY/MM`. Never cached: a new month appears in it the moment a game ends. */
 export async function archives(username: string): Promise<string[]> {
   const data = await get<{ archives: string[] }>(
     `/player/${normaliseUsername(username)}/games/archives`,
-    { revalidate: 60 * 60 },
+    'no-store',
   );
   return data.archives;
 }
@@ -169,27 +172,46 @@ export function monthOf(archiveUrl: string): ArchiveMonth {
 }
 
 /**
- * One month of games.
- *
- * A month that has ended is frozen, so it is cached for a week. The current
- * month is still accruing games and gets five minutes.
+ * How long after a month ends its archive is still treated as open. chess.com
+ * files a game under the month it ended in, and a game ending at 23:59 UTC can
+ * take a while to appear, so a month is only frozen once it is two days gone.
  */
-export async function monthGames(
+const SETTLE_MS = 2 * DAY * 1000;
+
+/** True while a month can still gain games: the current month, and the last one for two days. */
+export function isOpenMonth({ year, month }: ArchiveMonth, now: Date = new Date()): boolean {
+  const end = Date.UTC(year, month, 1); // the first instant of the next month
+  return now.getTime() < end + SETTLE_MS;
+}
+
+/**
+ * One month of games, exactly as chess.com lists them — variants and all.
+ *
+ * A settled month is frozen, so it is cached for a week. An open month is
+ * never cached (see the file comment). A 404 for a month means it has no
+ * games; chess.com answers an empty month with `{"games":[]}`, but a month it
+ * has never heard of is not an error worth failing a refresh over.
+ */
+export async function monthArchive(
   username: string,
-  { year, month }: ArchiveMonth,
+  month: ArchiveMonth,
+  now: Date = new Date(),
 ): Promise<ChesscomGame[]> {
-  const now = new Date();
-  const isCurrent =
-    year === now.getUTCFullYear() && month === now.getUTCMonth() + 1;
+  try {
+    const data = await get<{ games: ChesscomGame[] }>(
+      `/player/${normaliseUsername(username)}/games/${month.year}/${String(month.month).padStart(2, '0')}`,
+      isOpenMonth(month, now) ? 'no-store' : { revalidate: DAY * 7 },
+    );
+    return data.games;
+  } catch (error) {
+    if (error instanceof ChesscomError && error.status === 404) return [];
+    throw error;
+  }
+}
 
-  const data = await get<{ games: ChesscomGame[] }>(
-    `/player/${normaliseUsername(username)}/games/${year}/${String(month).padStart(2, '0')}`,
-    { revalidate: isCurrent ? 300 : DAY * 7 },
-  );
-
-  // Variants share the endpoint. Only standard chess can be reviewed, and a
-  // game without a PGN cannot be replayed at all.
-  return data.games.filter((g) => g.rules === 'chess' && Boolean(g.pgn));
+/** A month's standard-chess games that carry a PGN: the ones a link can open. */
+export async function monthGames(username: string, month: ArchiveMonth): Promise<ChesscomGame[]> {
+  return (await monthArchive(username, month)).filter((g) => g.rules === 'chess' && Boolean(g.pgn));
 }
 
 export function bestRating(s: ChesscomStats): {

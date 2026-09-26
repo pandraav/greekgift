@@ -1,0 +1,19 @@
+
+> greekgift@ lint /Users/euler/Work/projects/greekgift
+> pnpm -r --parallel lint
+
+Scope: 5 of 6 workspace projects
+apps/web lint$ eslint .
+packages/coach lint$ echo "no lint" && exit 0
+packages/db lint$ echo "no lint" && exit 0
+packages/engine lint$ echo "no lint" && exit 0
+packages/email lint$ echo "no lint" && exit 0
+packages/coach lint: no lint
+packages/engine lint: no lint
+packages/email lint: no lint
+packages/engine lint: Done
+packages/coach lint: Done
+packages/db lint: no lint
+packages/email lint: Done
+packages/db lint: Done
+apps/web lint: Done

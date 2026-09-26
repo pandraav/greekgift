@@ -170,6 +170,10 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    /* Room for the scrollbar is kept whether or not the page scrolls, so a
+       page that grows past the fold does not narrow by its width — on the
+       review that rescales the board. */
+    scrollbar-gutter: stable;
   }
 
   /* The wood ground is painted, never inherited. */

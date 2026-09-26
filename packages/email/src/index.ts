@@ -3,13 +3,15 @@ import { brevoTransport } from './brevo.ts';
 import {
   approvedEmail,
   resetEmail,
+  shareApprovedEmail,
+  shareRequestedEmail,
   verifyEmail,
   type Creator,
 } from './templates/index.ts';
 import type { RenderedEmail, Sender, Transport } from './types.ts';
 
 export * from './types.ts';
-export { approvedEmail, resetEmail, verifyEmail, type Creator };
+export { approvedEmail, resetEmail, shareApprovedEmail, shareRequestedEmail, verifyEmail, type Creator };
 
 export interface MailerConfig {
   /** Brevo API key. Anything falsy or placeholder-shaped falls back to console. */
@@ -26,6 +28,8 @@ export interface Mailer {
   sendVerify(to: string, name: string, url: string): Promise<void>;
   sendApproved(to: string, name: string): Promise<void>;
   sendReset(to: string, name: string, url: string): Promise<void>;
+  sendShareRequested(to: string, name: string, opts: { requesterName: string; gameTitle: string }): Promise<void>;
+  sendShareApproved(to: string, name: string, opts: { ownerName: string; gameTitle: string; gameId: string }): Promise<void>;
 }
 
 /**
@@ -92,5 +96,9 @@ export function createMailer(config: MailerConfig): Mailer {
       ),
     sendReset: (to, name, url) =>
       deliver(to, name, resetEmail({ name, url, creator: config.creator })),
+    sendShareRequested: (to, name, opts) =>
+      deliver(to, name, shareRequestedEmail({ name, url: `${config.appUrl}/`, creator: config.creator, ...opts })),
+    sendShareApproved: (to, name, { gameId, ...opts }) =>
+      deliver(to, name, shareApprovedEmail({ name, url: `${config.appUrl}/g/${gameId}`, creator: config.creator, ...opts })),
   };
 }

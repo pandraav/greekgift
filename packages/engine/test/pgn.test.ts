@@ -80,6 +80,14 @@ describe('gameIdFromLink', () => {
     expect(gameIdFromLink(undefined)).toBeUndefined();
     expect(gameIdFromLink('https://www.chess.com/openings/Sicilian')).toBeUndefined();
   });
+
+  it('ignores a query string', () => {
+    expect(gameIdFromLink('https://www.chess.com/game/live/97878070965?tab=review&move=4')).toBe('97878070965');
+  });
+
+  it('ignores a fragment', () => {
+    expect(gameIdFromLink('https://www.chess.com/game/live/97878070965#analysis')).toBe('97878070965');
+  });
 });
 
 describe('moveLabel', () => {

@@ -1,6 +1,6 @@
 import type { Color, PieceRef } from '@greekgift/engine';
 
-import type { Lexicon } from '../contracts.ts';
+import type { Lexicon, Voice } from '../contracts.ts';
 
 /**
  * Referring expressions.
@@ -14,15 +14,22 @@ import type { Lexicon } from '../contracts.ts';
  */
 
 const MARK = '';
-const PLACEHOLDER = /([RSM])\|([^]*)/g;
+const PLACEHOLDER = /([RSMV])\|([^]*)/g;
 
 export interface ReferrerOptions {
   lexicon: Lexicon;
   preferHere: boolean;
   /** Destination square of the played move, for `preferHere`. */
   playedSquare?: string;
-  moverColor: Color;
+  /** The reader's side; null for a neutral reader who owns nothing. */
+  viewer: Color | null;
+  /** Who moved; needed only to name the mover (`mover()`). Defaults to the viewer. */
+  moverColor?: Color;
+  /** How the mover is addressed; 'self' when not given. */
+  voice?: Voice;
 }
+
+const colorName = (c: Color): string => (c === 'w' ? 'White' : 'Black');
 
 const keyOf = (p: PieceRef): string => `${p.color}${p.piece}${p.square}`;
 
@@ -31,6 +38,8 @@ export class Referrer {
   private byType = new Map<string, Map<string, PieceRef>>();
   private squares = new Set<string>();
   private last: string | null = null;
+  /** Whether "your opponent" has been said, so later mentions are "they". */
+  private moverNamed = false;
   private readonly opts: ReferrerOptions;
 
   constructor(opts: ReferrerOptions) {
@@ -50,6 +59,22 @@ export class Referrer {
     return `${MARK}M|${san}${MARK}`;
   }
 
+  /**
+   * A placeholder for the mover as a subject: "you" (or the persona's
+   * address), "your opponent" then "they", or "White"/"Black".
+   */
+  mover(): string {
+    return `${MARK}V|mover${MARK}`;
+  }
+
+  /** The mover's possessive: "your", "their", or "White's"/"Black's". */
+  moverPossessive(): string {
+    const voice = this.opts.voice ?? 'self';
+    if (voice === 'self') return 'your';
+    if (voice === 'opponent') return 'their';
+    return `${colorName(this.opts.moverColor ?? 'w')}'s`;
+  }
+
   /** Start of a new slot: a pronoun may not reach back across the gap. */
   newSlot(): void {
     this.last = null;
@@ -61,6 +86,7 @@ export class Referrer {
     c.byType = new Map([...this.byType].map(([k, v]) => [k, new Map(v)]));
     c.squares = new Set(this.squares);
     c.last = this.last;
+    c.moverNamed = this.moverNamed;
     return c;
   }
 
@@ -79,6 +105,8 @@ export class Referrer {
         }
         case 'S':
           return this.resolveSquare(payload.toLowerCase());
+        case 'V':
+          return this.resolveMover();
         default:
           return payload;
       }
@@ -90,7 +118,18 @@ export class Referrer {
   }
 
   private owner(piece: PieceRef): string {
-    return piece.color === this.opts.moverColor ? 'your' : 'their';
+    const viewer = this.opts.viewer;
+    if (viewer === null) return `${colorName(piece.color)}'s`;
+    return piece.color === viewer ? 'your' : 'their';
+  }
+
+  private resolveMover(): string {
+    const voice = this.opts.voice ?? 'self';
+    if (voice === 'self') return this.opts.lexicon.address || 'you';
+    if (voice === 'neutral') return colorName(this.opts.moverColor ?? 'w');
+    if (this.moverNamed) return 'they';
+    this.moverNamed = true;
+    return 'your opponent';
   }
 
   private resolvePiece(piece: PieceRef): string {

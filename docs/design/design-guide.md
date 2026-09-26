@@ -22,15 +22,19 @@ Everything else it needs — the pieces, the analysed game it renders — is
 inlined in the file.
 
 Twelve screens: `landing`, `home`, `login`, `request`, `pending`, `admin`,
-`games`, `review`, `share`, `settings`, `credits`, `components`. Navigate with
-the hash router in the harness at the top.
+`games`, `review` (with its `review/report` view), `share`, `settings`,
+`credits`, `components`. Navigate with the hash router in the harness at the
+top; `#/review/report` is the only sub-route, and it opens the review screen
+on its Report view.
 
 `home` is the signed-in front door as redesigned on 2026-09-07: a paste-a-link
 card, one card per linked chess.com account (its last ten games,
 "refreshed N ago", refresh and an inline remove confirmation), a dashed
 add-account card, and "My reviews" — every game you reviewed or opened after
-review, plus games shared with you, tagged "shared by". Requests do not live on the
-page: a bell in the topbar carries a count and opens the Notifications modal
+review, plus games shared with you, tagged "shared by". With no games opened yet,
+'My reviews' shows a single line, 'Nothing yet. Open a game, or paste a link above.'
+Rows for games the member did not play carry the result chip, both accuracies, and how the game arrived.
+Requests do not live on the page: a bell in the topbar carries a count and opens the Notifications modal
 (requests on your shares with Approve and Decline, games shared with you, and
 earlier decisions). `games` is one linked account's page. Pill tabs above the header switch
 between linked accounts (each with its games-this-week count) and end in an
@@ -45,8 +49,71 @@ the rating change under the date. Unread games show a dimmed board and an
 italic "Not read yet." `share` is what a
 member sees when a share link points at a game they do not hold: the header
 only, and one button to ask. The `review` screen carries the Share button and
-the copied-link bar under the header. The CSS for all of it is the
-`home v2` block near the app root.
+the copied-link bar under the header, and its CSS is the `home v2` block near
+the app root. A Report / Moves segmented control sits under the header
+(design spec `docs/superpowers/specs/2026-09-23-review-overhaul-design.md`):
+
+- **Report** (`#/review/report`) is the summary before the moves. On the
+  left: both accuracies (lichess's formula) with a "you" chip on the member's
+  side, the opening with how far book went ("book through 6… c5 · 12
+  plies"), then Start review and Walk the key moments. Below that, accuracy
+  by phase (opening / middlegame / endgame, split by lichess's Divider). On
+  the right: the key moments in move order, each with whose move it was and
+  the member's win% swing, then the class tally. CSS: `/* game report */`.
+- **Moves** (`#/review`) is the board. Under the evaluation graph a flush
+  Engine block shows the readout for the position on the board, then
+  **The move**: the played move with its class and its own score, and
+  under it "Best for White/Black" with the engine's line from the position
+  before (or "…was the engine's choice"). Then **From here**: the three
+  lines for the position on the board. Clicking a line plays it as your
+  line. While you explore, the block runs the engine live ("live · depth
+  N…", three skeleton rows until it has lines). CSS: `/* engine lines */`.
+- The **eval bar** is 22px (18px on a phone) and carries the number, one
+  decimal and no sign, inside the bar at the end of the side that is ahead.
+  The fill hangs from the top when the board is flipped, so White's share
+  always sits on White's side. The board opens from the member's side.
+- **Key moments** (the button in the hint row, or Walk the key moments on
+  the report) steps through every key moment in move order. The hint row
+  becomes a brass "Key moments · 3 of 11" bar with Exit. A card at the top
+  of the aside, with a top rule in the class colour and progress dots,
+  shows the moment. On the member's own error: "12. Ra1 was a blunder.
+  Find a better move for White." The reader drags a move and gets
+  checking → best / better / same / worse, with Try again, Show the answer
+  (both arrows on the position before) and Next moment. On the opponent's
+  error, or a great or brilliant move, it only shows the moment. The coach
+  note is held back until the reader has tried. The card's "states" chips
+  exist only in the prototype, for reviewing each state. CSS:
+  `/* key moments */`.
+
+**Time and termination** (spec §14). The review screen has a prototype game
+switch: **184269442794 · lost on time** (the default) is a real chess.com
+game, KAFKA_F0 vs jakeleupen, 10+0, with its real `%clk` clocks and evals
+from the lite engine at 300k nodes; **London sample** is the older fixture,
+which has no clocks. With clocks:
+
+- the notation shows each move's think time right-aligned in its cell (lacquer
+  in time trouble, underlined brass for a long think) and ends with a
+  "0–1 · White lost on time" row;
+- "The move" in the Engine block adds "· 3.0s · 3:34 left";
+- at the last ply a **game-over card** leads the aside. It has a top rule in
+  lacquer (loss), felt (win) or ink-3 (draw), and gives the title ("You lost
+  on time at move 30."), the verdict sentence ("The position was equal when
+  your clock ran out (+0.02). 30. Ng5 would have held it."), both clocks at
+  the end (the flagged one in lacquer), the eval at the end and the
+  unfinished last think. Then See the report and Walk the key moments;
+- the **report** opens with a Fraunces headline on how the game ended, adds a
+  **Clock** card (both clocks over the moves: White solid ink, Black dashed
+  ink-3, a lacquer time-trouble band under min(30s, 10% of base), and a ✕
+  where the flag fell), and a **Time** card with the findings as sentences
+  (member's first), time used per phase with the median think, and the three
+  longest thinks per side. A game without clocks hides both cards.
+
+CSS: `/* clocks */`, `/* game over */`, `/* time report */`.
+
+Best-move arrows are drawn on the same board as the verdict badge, for every
+move where the engine disagreed, behind a Show best move toggle. Coloured
+dots on the graph mark great, brilliant, inaccuracy, miss, mistake and
+blunder.
 
 Two of them have no route in the app:
 
@@ -59,12 +126,11 @@ Two of them have no route in the app:
 
 ### `app.html` is the reference for *look*, not behaviour
 
-The app moved on in five places, each on purpose:
+The app moved on in four places, each on purpose:
 
 | | prototype | app |
 |---|---|---|
 | promotion | auto-queens | a picker — guessing a queen loses games |
-| engine arrows | drawn on the position *after* the move | on the position *before*, where the recommendation actually applies |
 | coach text | one hardcoded paragraph for one move | generated per move, per persona, from verified facts |
 | board | rebuilt with `innerHTML` on every change | React, with the ghost piece written straight to the node |
 | the game | a fixed fixture, `data/review.json` | whatever chess.com returns |
@@ -332,10 +398,12 @@ Details that were arrived at, not assumed:
 
 ### Arrows
 
-Green (`--felt`) is what should have been played, red (`--lacquer`) is what
-was. Both are drawn on the position **before** the move — a recommendation
-only exists on the board it was recommended for, and drawn a ply later it
-points at a square the piece has already left.
+Green (`--felt`) is the engine's move, red (`--lacquer`) is what was played.
+Both are drawn on the position **after** the move — the same board the verdict
+badge is on, so the judgement and the evidence for it are read together. They
+appear for every classification where the two moves differ, the Show best move
+toggle hides them, and there are none at the starting position or while
+exploring a line of your own.
 
 ## Layout and responsiveness
 
@@ -360,6 +428,9 @@ Rules that keep it honest:
   scrolls inside its own `overflow-x: auto` container. **The page body never
   scrolls sideways.**
 - Every flex child that holds text carries `min-w-0`.
+- The app's `max-[N]`/`min-[N+1]` pairs compile to `width < N`, so the exact-N
+  pixel belongs to the wider layout — unlike the prototype's `max-width:N`,
+  which still matches at N.
 - Font sizes and grid templates live in classes, never inline. An inline
   `font-size` cannot be overridden by a media query, which broke the home
   grid and the landing headings once each.

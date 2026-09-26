@@ -3,7 +3,7 @@
 import type { Persona } from '@greekgift/coach';
 import type { Audience } from '@greekgift/db';
 import type { CoachText, MoveAnalysis } from '@greekgift/engine';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Avatar, Button } from '@/components/ui';
 
@@ -14,6 +14,10 @@ import { Avatar, Button } from '@/components/ui';
  * so stepping through the moves never waits and switching voice re-reads the
  * game rather than one move. There is nothing to ask for: the note is simply
  * there.
+ *
+ * The card stays mounted for the whole review, at the starting position and
+ * off the game too, so the notes already read are never thrown away, and the
+ * note sits in a box of one fixed height so stepping never moves the page.
  */
 
 const SLOT_ORDER = ['whatHappened', 'whyItMatters', 'lesson'] as const;
@@ -25,13 +29,21 @@ export function CoachCard({
   move,
   persona,
   audience,
+  perspective = null,
   onChangePersona,
 }: {
   gameId: string;
-  move: MoveAnalysis;
+  /** Null at the starting position, where there is no move to talk about. */
+  move: MoveAnalysis | null;
   persona: Persona;
   /** The reader's saved depth, from their profile. */
   audience: Audience;
+  /**
+   * The member's side in this game, from their linked accounts: their moves
+   * read as "you", the opponent's as "your opponent". Null reads neutrally,
+   * as White and Black.
+   */
+  perspective?: 'w' | 'b' | null;
   onChangePersona: () => void;
 }) {
   const [texts, setTexts] = useState<Record<string, CoachText>>({});
@@ -39,17 +51,25 @@ export function CoachCard({
   const [loads, setLoads] = useState<Record<string, Status>>({});
   const [attempt, setAttempt] = useState(0);
 
-  const prefix = `${persona.id}:${audience}:`;
-  const text = texts[`${prefix}${move.ply}`];
+  const side = perspective ?? 'n';
+  const prefix = `${persona.id}:${audience}:${side}:`;
+  const text = move ? texts[`${prefix}${move.ply}`] : undefined;
+  const note = useRef<HTMLDivElement>(null);
+
+  // A new move's note starts at its headline, not where the last one was left.
+  const shownPly = move?.ply;
+  useEffect(() => {
+    if (note.current) note.current.scrollTop = 0;
+  }, [shownPly]);
   const status: Status = loads[prefix] ?? 'loading';
 
-  // One read per game, voice and depth. Notes are keyed by all three, so
+  // One read per game, voice, depth and side. Notes are keyed by all four, so
   // switching voice and switching back costs nothing the second time.
   useEffect(() => {
     if (loads[prefix] === 'ready') return;
     const controller = new AbortController();
 
-    fetch(`/api/games/${gameId}/coach?persona=${persona.id}&audience=${audience}`, {
+    fetch(`/api/games/${gameId}/coach?persona=${persona.id}&audience=${audience}&perspective=${side}`, {
       signal: controller.signal,
     })
       .then(async (response) => {
@@ -73,7 +93,7 @@ export function CoachCard({
     return () => controller.abort();
     // `loads` is read, not depended on: a completed read must not refetch.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameId, persona.id, audience, prefix, attempt]);
+  }, [gameId, persona.id, audience, side, prefix, attempt]);
 
   return (
     <div className="border-l-[3px] border-lacquer pl-4">
@@ -90,54 +110,56 @@ export function CoachCard({
         </Button>
       </div>
 
-      {text ? (
-        <>
-          <h3 className="m-0 mb-2.5 font-display text-[20px] leading-tight font-semibold">
-            {text.headline}
-          </h3>
-          {SLOT_ORDER.map((slot) => (
-            <p key={slot} className="m-0 mb-2.5 max-w-[42ch] text-[15px] leading-relaxed text-ink-2">
-              {text[slot]}
+      <div ref={note} className="h-[320px] overflow-y-auto overscroll-contain pr-1">
+        {text ? (
+          <>
+            <h3 className="m-0 mb-2.5 font-display text-[20px] leading-tight font-semibold">
+              {text.headline}
+            </h3>
+            {SLOT_ORDER.map((slot) => (
+              <p key={slot} className="m-0 mb-2.5 max-w-[42ch] text-[15px] leading-relaxed text-ink-2">
+                {text[slot]}
+              </p>
+            ))}
+            <div className="mt-3 max-w-[44ch] rounded-[var(--r)] border border-felt/50 bg-felt/9 px-3.5 py-2.5">
+              <span className="block font-mono text-[10.5px] tracking-[0.13em] text-felt uppercase">
+                Better was
+              </span>
+              <span className="mt-1 block text-[14.5px] leading-relaxed text-felt">
+                {text.betterWas}
+              </span>
+            </div>
+          </>
+        ) : status === 'error' ? (
+          <>
+            <p className="mt-0 mb-3 max-w-[42ch] text-[14.5px] text-ink-2">
+              {persona.label} could not be reached.
             </p>
-          ))}
-          <div className="mt-3 max-w-[44ch] rounded-[var(--r)] border border-felt/50 bg-felt/9 px-3.5 py-2.5">
-            <span className="block font-mono text-[10.5px] tracking-[0.13em] text-felt uppercase">
-              Better was
-            </span>
-            <span className="mt-1 block text-[14.5px] leading-relaxed text-felt">
-              {text.betterWas}
-            </span>
-          </div>
-        </>
-      ) : status === 'error' ? (
-        <>
-          <p className="mt-0 mb-3 max-w-[42ch] text-[14.5px] text-ink-2">
-            {persona.label} could not be reached.
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setLoads((current) => {
+                  const next = { ...current };
+                  delete next[prefix];
+                  return next;
+                });
+                setAttempt((n) => n + 1);
+              }}
+            >
+              Try again
+            </Button>
+          </>
+        ) : status === 'unreviewed' ? (
+          <p className="mt-0 max-w-[42ch] text-[14.5px] text-ink-2">
+            Run the analysis and {persona.label} will read the whole game.
           </p>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => {
-              setLoads((current) => {
-                const next = { ...current };
-                delete next[prefix];
-                return next;
-              });
-              setAttempt((n) => n + 1);
-            }}
-          >
-            Try again
-          </Button>
-        </>
-      ) : status === 'unreviewed' ? (
-        <p className="mt-0 max-w-[42ch] text-[14.5px] text-ink-2">
-          Run the analysis and {persona.label} will read the whole game.
-        </p>
-      ) : (
-        <p className="mt-0 max-w-[42ch] text-[14.5px] text-ink-3">
-          {persona.label} is reading the game…
-        </p>
-      )}
+        ) : (
+          <p className="mt-0 max-w-[42ch] text-[14.5px] text-ink-3">
+            {persona.label} is reading the game…
+          </p>
+        )}
+      </div>
     </div>
   );
 }

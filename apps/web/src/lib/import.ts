@@ -1,11 +1,11 @@
 import 'server-only';
 
-import { schema, type NewGame } from '@greekgift/db';
+import { schema, type Db, type NewGame } from '@greekgift/db';
 import { gameIdFromLink, openingName, parsePgn } from '@greekgift/engine';
 import { sql } from 'drizzle-orm';
 
 import * as cc from '@/lib/chesscom';
-import { db } from '@/lib/db';
+import type { SkipReason } from '@/lib/skipped';
 
 /**
  * Pulls games from chess.com into our own tables.
@@ -38,7 +38,7 @@ export interface PlayerSnapshot {
  * Profiles are refetched at most once an hour; chess.com caches its own
  * responses anyway, and a rating that is sixty minutes stale costs nothing.
  */
-export async function ensurePlayer(rawUsername: string): Promise<PlayerSnapshot> {
+export async function ensurePlayer(db: Db, rawUsername: string): Promise<PlayerSnapshot> {
   const username = cc.normaliseUsername(rawUsername);
 
   const [profile, stats, archives] = await Promise.all([
@@ -81,9 +81,20 @@ export async function ensurePlayer(rawUsername: string): Promise<PlayerSnapshot>
   };
 }
 
-/** Turns one API game into a row, or null if it cannot be reviewed. */
-function toRow(game: cc.ChesscomGame): NewGame | null {
-  if (!game.pgn) return null;
+export type { SkipReason };
+
+export type Classified = { row: NewGame } | { skip: SkipReason };
+
+/**
+ * Sorts one API game into a row or a named reason it cannot be reviewed.
+ * Nothing is dropped without a reason, so the refresh can say how many games
+ * it left out and why.
+ */
+export function classifyGame(game: cc.ChesscomGame): Classified {
+  // Variants share the endpoint; only standard chess can be reviewed.
+  if (game.rules !== 'chess') return { skip: 'variant' };
+  // An aborted game has no moves, so chess.com sends no PGN.
+  if (!game.pgn) return { skip: 'no_moves' };
 
   let parsed;
   try {
@@ -91,16 +102,25 @@ function toRow(game: cc.ChesscomGame): NewGame | null {
   } catch {
     // A PGN we cannot read is a game we cannot review. Skip it rather than
     // failing the whole month.
-    return null;
+    return { skip: 'unparseable' };
   }
+  return { row: toRow(game, game.pgn, parsed) };
+}
 
+/** Turns one API game into a row, or null if it cannot be reviewed. */
+export function gameToRow(game: cc.ChesscomGame): NewGame | null {
+  const c = classifyGame(game);
+  return 'row' in c ? c.row : null;
+}
+
+function toRow(game: cc.ChesscomGame, pgn: string, parsed: ReturnType<typeof parsePgn>): NewGame {
   const id = parsed.gameId ?? gameIdFromLink(game.url) ?? game.uuid;
 
   return {
     id,
     uuid: game.uuid,
     url: game.url,
-    pgn: game.pgn,
+    pgn,
     timeClass: game.time_class,
     timeControl: game.time_control,
     rated: game.rated,
@@ -136,15 +156,24 @@ export interface ImportResult {
   fetched: number;
   stored: number;
   skipped: number;
+  /** One entry per game left out, so a caller can count the ones in its own window. */
+  skips: { reason: SkipReason; endTime: Date }[];
 }
 
 /** Imports one archive month. Idempotent — re-running updates in place. */
 export async function importMonth(
+  db: Db,
   username: string,
   month: cc.ArchiveMonth,
 ): Promise<ImportResult> {
-  const games = await cc.monthGames(username, month);
-  const rows = games.map(toRow).filter((r): r is NewGame => r !== null);
+  const games = await cc.monthArchive(username, month);
+  const rows: NewGame[] = [];
+  const skips: ImportResult['skips'] = [];
+  for (const game of games) {
+    const c = classifyGame(game);
+    if ('row' in c) rows.push(c.row);
+    else skips.push({ reason: c.skip, endTime: new Date(game.end_time * 1000) });
+  }
   const label = `${month.year}-${String(month.month).padStart(2, '0')}`;
 
   if (rows.length > 0) {
@@ -171,7 +200,8 @@ export async function importMonth(
     month: label,
     fetched: games.length,
     stored: rows.length,
-    skipped: games.length - rows.length,
+    skipped: skips.length,
+    skips,
   };
 }
 
@@ -182,17 +212,18 @@ export async function importMonth(
  * has no reason to be the one that gets rate-limited.
  */
 export async function importRecent(
+  db: Db,
   rawUsername: string,
   months = 1,
 ): Promise<{ player: PlayerSnapshot; imported: ImportResult[] }> {
   const username = cc.normaliseUsername(rawUsername);
-  const player = await ensurePlayer(username);
+  const player = await ensurePlayer(db, username);
   const all = await cc.archives(username);
   const recent = all.slice(-Math.max(1, months)).reverse();
 
   const imported: ImportResult[] = [];
   for (const url of recent) {
-    imported.push(await importMonth(username, cc.monthOf(url)));
+    imported.push(await importMonth(db, username, cc.monthOf(url)));
   }
 
   if (imported[0]) {

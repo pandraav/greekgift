@@ -276,9 +276,9 @@
     ]
    },
    "winBefore": 46.50771960458312,
-   "winAfter": 46.14150285897469,
-   "epLoss": 0.003662167456084331,
-   "moveAccuracy": 99.36794283717593,
+   "winAfter": 46.50771960458312,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "book",
    "forced": false,
    "bestMove": "e7e5",
@@ -424,9 +424,9 @@
     ]
    },
    "winBefore": 53.85849714102531,
-   "winAfter": 53.03398401818215,
-   "epLoss": 0.008245131228431513,
-   "moveAccuracy": 97.36197414652176,
+   "winAfter": 53.85849714102531,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "book",
    "forced": false,
    "bestMove": "g1f3",
@@ -572,9 +572,9 @@
     ]
    },
    "winBefore": 46.96601598181785,
-   "winAfter": 46.69097177008695,
-   "epLoss": 0.00275044211730896,
-   "moveAccuracy": 99.77180190146655,
+   "winAfter": 46.96601598181785,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "book",
    "forced": false,
    "bestMove": "b8c6",
@@ -714,7 +714,7 @@
    "winBefore": 53.30902822991305,
    "winAfter": 50.82839219143761,
    "epLoss": 0.024806360384754367,
-   "moveAccuracy": 90.43782837815664,
+   "moveAccuracy": 90.43685846213552,
    "classification": "book",
    "forced": false,
    "bestMove": "f1b5",
@@ -855,9 +855,9 @@
     ]
    },
    "winBefore": 49.17160780856239,
-   "winAfter": 44.772211834228585,
-   "epLoss": 0.04399395974333803,
-   "moveAccuracy": 83.01571767658388,
+   "winAfter": 44.86327495624492,
+   "epLoss": 0.0430833285231747,
+   "moveAccuracy": 83.35258079591615,
    "classification": "book",
    "forced": false,
    "bestMove": "g8f6",
@@ -1007,7 +1007,7 @@
    "winBefore": 55.227788165771415,
    "winAfter": 47.42482461063748,
    "epLoss": 0.0780296355513394,
-   "moveAccuracy": 71.28318520589794,
+   "moveAccuracy": 71.28078697506966,
    "classification": "book",
    "forced": false,
    "bestMove": "c2c3",
@@ -1143,7 +1143,7 @@
     ]
    },
    "winBefore": 52.57517538936252,
-   "winAfter": 53.675438329054,
+   "winAfter": 52.57517538936252,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "book",
@@ -1288,7 +1288,7 @@
     ]
    },
    "winBefore": 46.324561670946,
-   "winAfter": 46.69097177008696,
+   "winAfter": 46.324561670946,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "book",
@@ -1430,9 +1430,9 @@
     ]
    },
    "winBefore": 53.30902822991304,
-   "winAfter": 52.48335896523928,
-   "epLoss": 0.008256692646737562,
-   "moveAccuracy": 97.35696414681898,
+   "winAfter": 52.75875538925041,
+   "epLoss": 0.005502728406626245,
+   "moveAccuracy": 98.55726917724391,
    "classification": "book",
    "forced": false,
    "bestMove": "b4e7",
@@ -1571,7 +1571,7 @@
     ]
    },
    "winBefore": 47.51664103476072,
-   "winAfter": 47.97596267877326,
+   "winAfter": 47.51664103476072,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "book",
@@ -1698,9 +1698,9 @@
     ]
    },
    "winBefore": 52.02403732122674,
-   "winAfter": 50.644328329952096,
-   "epLoss": 0.01379708991274653,
-   "moveAccuracy": 94.98488665926156,
+   "winAfter": 52.02403732122674,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "book",
    "forced": false,
    "bestMove": "e5d4",
@@ -1837,9 +1837,9 @@
     ]
    },
    "winBefore": 49.355671670047904,
-   "winAfter": 47.05773918729125,
-   "epLoss": 0.022979324827566594,
-   "moveAccuracy": 91.17742874678493,
+   "winAfter": 46.41612855292491,
+   "epLoss": 0.029395431171229947,
+   "moveAccuracy": 88.60474917862963,
    "classification": "book",
    "forced": false,
    "bestMove": "d1b3",
@@ -1978,9 +1978,9 @@
     ]
    },
    "winBefore": 52.94226081270875,
-   "winAfter": 50.644328329952096,
-   "epLoss": 0.022979324827566594,
-   "moveAccuracy": 91.17742874678493,
+   "winAfter": 50.82839219143761,
+   "epLoss": 0.02113868621271142,
+   "moveAccuracy": 91.92766714864261,
    "classification": "book",
    "forced": false,
    "bestMove": "g8f6",
@@ -2116,9 +2116,9 @@
     ]
    },
    "winBefore": 49.355671670047904,
-   "winAfter": 47.33302559691369,
-   "epLoss": 0.020226460731342155,
-   "moveAccuracy": 92.30298305164513,
+   "winAfter": 49.355671670047904,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
    "bestMove": "d1b3",
@@ -2247,9 +2247,9 @@
     ]
    },
    "winBefore": 52.66697440308631,
-   "winAfter": 48.80355243833374,
-   "epLoss": 0.03863421964752567,
-   "moveAccuracy": 85.02694150842433,
+   "winAfter": 52.66697440308631,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
    "bestMove": "d8f6",
@@ -2380,7 +2380,7 @@
     ]
    },
    "winBefore": 51.19644756166626,
-   "winAfter": 52.57517538936253,
+   "winAfter": 51.19644756166626,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "best",
@@ -2522,9 +2522,9 @@
     ]
    },
    "winBefore": 47.42482461063747,
-   "winAfter": 47.42482461063747,
-   "epLoss": 0,
-   "moveAccuracy": 100,
+   "winAfter": 47.14948226881869,
+   "epLoss": 0.0027534234181878503,
+   "moveAccuracy": 99.77034730777083,
    "classification": "excellent",
    "forced": false,
    "bestMove": "f6f5",
@@ -2673,8 +2673,8 @@
    "winBefore": 52.57517538936253,
    "winAfter": 46.8743132675129,
    "epLoss": 0.05700862121849626,
-   "moveAccuracy": 78.32298779475153,
-   "classification": "good",
+   "moveAccuracy": 78.32106488344314,
+   "classification": "inaccuracy",
    "forced": false,
    "bestMove": "f1d1",
    "bestLine": [
@@ -2809,7 +2809,7 @@
     ]
    },
    "winBefore": 53.1256867324871,
-   "winAfter": 53.49228039541687,
+   "winAfter": 53.1256867324871,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "best",
@@ -2941,9 +2941,9 @@
     ]
    },
    "winBefore": 46.50771960458313,
-   "winAfter": 44.590191339485116,
-   "epLoss": 0.01917528265098012,
-   "moveAccuracy": 92.73634654510633,
+   "winAfter": 46.50771960458313,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
    "bestMove": "c1a3",
@@ -3075,7 +3075,7 @@
    "winBefore": 55.409808660514884,
    "winAfter": 47.05773918729125,
    "epLoss": 0.08352069473223633,
-   "moveAccuracy": 69.54796089114156,
+   "moveAccuracy": 69.5454551630286,
    "classification": "inaccuracy",
    "forced": false,
    "bestMove": "e8g8",
@@ -3205,7 +3205,7 @@
     ]
    },
    "winBefore": 52.94226081270875,
-   "winAfter": 53.21736834106171,
+   "winAfter": 52.94226081270875,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "best",
@@ -3348,9 +3348,9 @@
     ]
    },
    "winBefore": 46.78263165893829,
-   "winAfter": 44.772211834228585,
-   "epLoss": 0.020104198247097083,
-   "moveAccuracy": 92.35328567302517,
+   "winAfter": 46.78263165893829,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
    "bestMove": "a8b8",
@@ -3493,9 +3493,9 @@
     ]
    },
    "winBefore": 55.227788165771415,
-   "winAfter": 54.95449603745888,
-   "epLoss": 0.0027329212831254113,
-   "moveAccuracy": 99.77957866454925,
+   "winAfter": 55.227788165771415,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "great",
    "forced": false,
    "bestMove": "b5a4",
@@ -3631,10 +3631,10 @@
     ]
    },
    "winBefore": 45.04550396254112,
-   "winAfter": 39.56940733829889,
-   "epLoss": 0.05476096624242227,
-   "moveAccuracy": 79.11455208123834,
-   "classification": "good",
+   "winAfter": 43.229985238261435,
+   "epLoss": 0.0181551872427968,
+   "moveAccuracy": 93.15806201535025,
+   "classification": "excellent",
    "forced": false,
    "bestMove": "c8b7",
    "bestLine": [
@@ -3768,9 +3768,9 @@
     ]
    },
    "winBefore": 60.43059266170111,
-   "winAfter": 58.746113715199876,
-   "epLoss": 0.016844789465012333,
-   "moveAccuracy": 93.70422891839065,
+   "winAfter": 60.43059266170111,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
    "bestMove": "b1d2",
@@ -3909,9 +3909,9 @@
     ]
    },
    "winBefore": 41.253886284800124,
-   "winAfter": 35.346082798513365,
-   "epLoss": 0.05907803486286756,
-   "moveAccuracy": 77.60101309627301,
+   "winAfter": 38.77979496486411,
+   "epLoss": 0.024740913199360115,
+   "moveAccuracy": 90.46325284090067,
    "classification": "good",
    "forced": false,
    "bestMove": "e8g8",
@@ -4044,9 +4044,9 @@
     ]
    },
    "winBefore": 64.65391720148664,
-   "winAfter": 59.280471943277114,
-   "epLoss": 0.053734452582095193,
-   "moveAccuracy": 79.47864773904544,
+   "winAfter": 64.65391720148664,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
    "bestMove": "d2e4",
@@ -4184,7 +4184,7 @@
    "winBefore": 40.719528056722886,
    "winAfter": 27.44682748668538,
    "epLoss": 0.1327270057003751,
-   "moveAccuracy": 55.717835430595244,
+   "moveAccuracy": 55.71462506734824,
    "classification": "mistake",
    "forced": false,
    "bestMove": "d3d2",
@@ -4323,7 +4323,7 @@
     ]
    },
    "winBefore": 72.55317251331462,
-   "winAfter": 74.20703085283178,
+   "winAfter": 72.55317251331462,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "best",
@@ -4470,10 +4470,10 @@
     ]
    },
    "winBefore": 25.792969147168222,
-   "winAfter": 24.95634485736778,
-   "epLoss": 0.008366242898004389,
-   "moveAccuracy": 97.3095043951694,
-   "classification": "excellent",
+   "winAfter": 25.792969147168222,
+   "epLoss": 0,
+   "moveAccuracy": 100,
+   "classification": "best",
    "forced": false,
    "bestMove": "f5e6",
    "bestLine": [
@@ -4615,8 +4615,8 @@
    "winBefore": 75.04365514263222,
    "winAfter": 54.132888835792336,
    "epLoss": 0.20910766306839879,
-   "moveAccuracy": 39.341355321473124,
-   "classification": "mistake",
+   "moveAccuracy": 39.337729359527344,
+   "classification": "blunder",
    "forced": false,
    "bestMove": "e4g3",
    "bestLine": [
@@ -4751,9 +4751,9 @@
     ]
    },
    "winBefore": 45.867111164207664,
-   "winAfter": 45.13666864926168,
-   "epLoss": 0.007304425149459837,
-   "moveAccuracy": 97.77046390199648,
+   "winAfter": 45.867111164207664,
+   "epLoss": 0,
+   "moveAccuracy": 100,
    "classification": "great",
    "forced": false,
    "bestMove": "g7f6",
@@ -4885,7 +4885,7 @@
     ]
    },
    "winBefore": 54.86333135073832,
-   "winAfter": 54.95449603745888,
+   "winAfter": 54.86333135073832,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "great",
@@ -5030,8 +5030,8 @@
     ]
    },
    "winBefore": 45.04550396254112,
-   "winAfter": 44.86327495624492,
-   "epLoss": 0.0018222900629619732,
+   "winAfter": 45.04550396254112,
+   "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "best",
    "forced": false,
@@ -5182,7 +5182,7 @@
    "winBefore": 55.13672504375508,
    "winAfter": 28.861716692764805,
    "epLoss": 0.2627500835099027,
-   "moveAccuracy": 30.695634249469734,
+   "moveAccuracy": 30.69202620027047,
    "classification": "blunder",
    "forced": false,
    "bestMove": "d3e4",
@@ -5327,10 +5327,10 @@
     ]
    },
    "winBefore": 71.1382833072352,
-   "winAfter": 48.43562675785791,
-   "epLoss": 0.22702656549377287,
-   "moveAccuracy": 36.22603390240157,
-   "classification": "blunder",
+   "winAfter": 65.90564612649169,
+   "epLoss": 0.052326371807435046,
+   "moveAccuracy": 79.9789342211658,
+   "classification": "inaccuracy",
    "forced": false,
    "bestMove": "c6e5",
    "bestLine": [
@@ -5477,7 +5477,7 @@
     ]
    },
    "winBefore": 51.56437324214209,
-   "winAfter": 71.06262503410557,
+   "winAfter": 51.56437324214209,
    "epLoss": 0,
    "moveAccuracy": 100,
    "classification": "great",
@@ -5623,7 +5623,7 @@
    "winBefore": 28.937374965894435,
    "winAfter": 0,
    "epLoss": 0.28937374965894436,
-   "moveAccuracy": 27.098729997496704,
+   "moveAccuracy": 27.095190537376176,
    "classification": "blunder",
    "forced": false,
    "bestMove": "e8d8",
@@ -5738,7 +5738,7 @@
    "winAfter": 100,
    "epLoss": 0,
    "moveAccuracy": 100,
-   "classification": "great",
+   "classification": "brilliant",
    "forced": false,
    "bestMove": "a4d7",
    "bestLine": [
@@ -6402,29 +6402,19 @@
  ],
  "keyMoments": [
   {
-   "ply": 40,
-   "kind": "blunder",
-   "severity": 0.7234343741473609
-  },
-  {
-   "ply": 37,
-   "kind": "blunder",
-   "severity": 0.6568752087747567
-  },
-  {
-   "ply": 38,
-   "kind": "blunder",
-   "severity": 0.5675664137344322
-  },
-  {
-   "ply": 33,
-   "kind": "mistake",
-   "severity": 0.522769157670997
+   "ply": 15,
+   "kind": "left_book",
+   "severity": 0.2
   },
   {
    "ply": 25,
    "kind": "great",
    "severity": 0.45
+  },
+  {
+   "ply": 33,
+   "kind": "blunder",
+   "severity": 0.522769157670997
   },
   {
    "ply": 34,
@@ -6437,79 +6427,77 @@
    "severity": 0.45
   },
   {
-   "ply": 39,
-   "kind": "great",
-   "severity": 0.45
+   "ply": 37,
+   "kind": "blunder",
+   "severity": 0.6568752087747567
+  },
+  {
+   "ply": 40,
+   "kind": "blunder",
+   "severity": 0.7234343741473609
   },
   {
    "ply": 41,
-   "kind": "great",
-   "severity": 0.45
-  },
-  {
-   "ply": 43,
-   "kind": "great",
-   "severity": 0.45
-  },
-  {
-   "ply": 45,
-   "kind": "great",
-   "severity": 0.45
-  },
-  {
-   "ply": 30,
-   "kind": "mistake",
-   "severity": 0.33181751425093775
-  },
-  {
-   "ply": 15,
-   "kind": "left_book",
-   "severity": 0.2
+   "kind": "brilliant",
+   "severity": 0.75
   }
  ],
  "white": {
   "username": "Adolf Anderssen",
   "color": "w",
-  "accuracy": 79.01639091980152,
+  "accuracy": 82.31076824972013,
   "acpl": 43.76470588235294,
   "estimatedRating": 2001,
   "estimatedRatingBand": 250,
   "counts": {
-   "brilliant": 0,
-   "great": 6,
+   "brilliant": 1,
+   "great": 5,
    "best": 8,
    "excellent": 0,
-   "good": 1,
+   "good": 0,
    "book": 7,
-   "inaccuracy": 0,
-   "mistake": 1,
+   "inaccuracy": 1,
+   "mistake": 0,
    "miss": 0,
-   "blunder": 1
+   "blunder": 2
   }
  },
  "black": {
   "username": "Jean Dufresne",
   "color": "b",
-  "accuracy": 73.53796389174985,
+  "accuracy": 76.54263117737193,
   "acpl": 92.875,
   "estimatedRating": 1225,
   "estimatedRatingBand": 250,
   "counts": {
    "brilliant": 0,
    "great": 1,
-   "best": 7,
+   "best": 8,
    "excellent": 2,
-   "good": 2,
+   "good": 1,
    "book": 7,
-   "inaccuracy": 1,
+   "inaccuracy": 2,
    "mistake": 1,
    "miss": 0,
-   "blunder": 2
+   "blunder": 1
   }
  },
  "opening": {
   "eco": "C52",
   "name": "Italian Game: Evans Gambit, Dufresne Defense",
   "lastBookPly": 14
+ },
+ "ending": {
+  "kind": "checkmate",
+  "winner": "w",
+  "onBoard": true,
+  "atPly": 47,
+  "evalAtEnd": {
+   "mate": 1
+  },
+  "verdictAtEnd": {
+   "w": "winning",
+   "b": "losing"
+  }
  }
 }

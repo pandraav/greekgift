@@ -14,6 +14,7 @@
     "prepare:engine": "node scripts/prepare-engine.mjs"
   },
   "dependencies": {
+    "@greekgift/coach": "workspace:*",
     "@greekgift/db": "workspace:*",
     "@greekgift/email": "workspace:*",
     "@greekgift/engine": "workspace:*",
@@ -30,10 +31,10 @@
     "server-only": "^0.0.1",
     "stockfish": "18.0.8",
     "tailwind-merge": "3.6.0",
-    "zod": "4.5.4",
-    "@greekgift/coach": "workspace:*"
+    "zod": "4.5.4"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "^22.10.2",
     "@types/react": "^19.2.0",

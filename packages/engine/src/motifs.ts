@@ -1,6 +1,7 @@
 import { Chess, type Color as ChessColor, type Square } from 'chess.js';
 
-import type { Color, Motif, PieceRef } from './types.ts';
+import type { LineMaterial } from './review.ts';
+import type { Color, MoveAnalysis, Motif, PieceRef } from './types.ts';
 
 /**
  * What is actually true about a position, found by looking rather than asking.
@@ -246,4 +247,78 @@ export function captureValue(fenBefore: string, uci: string): number {
   const mover = chess.get(from);
   if (mover?.type === 'p' && from[0] !== to[0]) return 1;
   return 0;
+}
+
+/**
+ * The piece a move gives up, when it gives one up (review-overhaul design §4.7).
+ *
+ * Shared by `buildReview` (the Brilliant class) and facts.ts (the `sacrifice`
+ * motif), so the two never disagree. The moved piece is worth at least a
+ * minor piece, it is en prise where it landed — hanging, or attacked by
+ * something cheaper — and the engine's own line (parity-matched, see
+ * review.ts `lineMaterial`) confirms at least two pawns of material go.
+ * Captures count: 11.Bxh7+ takes a pawn and gives a bishop. Promotions never
+ * do.
+ */
+export function sacrificeFor(
+  move: Pick<MoveAnalysis, 'color' | 'uci' | 'fenBefore' | 'fenAfter' | 'evalBefore' | 'evalAfter'>,
+  lm: LineMaterial,
+): { piece: PieceRef; value: number; netMaterial: number } | null {
+  if (move.uci.length === 5) return null;
+
+  const landedOn = move.uci.slice(2, 4) as Square;
+  const after = new Chess(move.fenAfter);
+  const piece = pieceRef(after, landedOn);
+  if (!piece || piece.color !== move.color) return null;
+
+  const value = pieceValue(piece);
+  if (value < 3) return null;
+
+  const enemy: Color = move.color === 'w' ? 'b' : 'w';
+  const attackers = attackersOf(after, landedOn, enemy);
+  const enPrise =
+    hangingPieces(move.fenAfter, move.color).some(
+      (m) => m.type === 'hanging_piece' && m.target.square === landedOn,
+    ) ||
+    (attackers.length > 0 && pieceValue(attackers[0]!) < value);
+  if (!enPrise) return null;
+
+  if (lm.plies < 2) return null;
+  const netMaterial = lm.played - lm.before;
+  if (netMaterial > -2) return null;
+
+  // The material that goes must be the piece itself: the played line takes
+  // it on its landing square within the compared plies. Otherwise a
+  // recapture in a lost position, whose line drops something else later,
+  // would read as a sacrifice.
+  if (!takenInLine(move, landedOn, lm.plies)) return null;
+
+  return { piece, value, netMaterial };
+}
+
+/** Does the opponent capture on `square` within the first `plies` plies of the played line? */
+function takenInLine(
+  move: Pick<MoveAnalysis, 'color' | 'uci' | 'fenBefore' | 'evalBefore' | 'evalAfter'>,
+  square: Square,
+  plies: number,
+): boolean {
+  const lines = move.evalBefore.lines;
+  const k = lines.findIndex((line) => line.pv[0] === move.uci);
+  const line = k !== -1 ? lines[k]!.pv : [move.uci, ...(move.evalAfter.lines[0]?.pv ?? [])];
+
+  const chess = new Chess(move.fenBefore);
+  for (const uci of line.slice(0, plies)) {
+    let played;
+    try {
+      played = chess.move({
+        from: uci.slice(0, 2),
+        to: uci.slice(2, 4),
+        ...(uci.length > 4 ? { promotion: uci[4] } : {}),
+      });
+    } catch {
+      return false;
+    }
+    if (played.color !== move.color && played.to === square && played.captured) return true;
+  }
+  return false;
 }

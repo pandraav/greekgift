@@ -25,12 +25,12 @@ export function ImportMore({ username }: { username: string }) {
   }
 
   return (
-    <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-      <Button variant="onwood" size="sm" disabled={pending} onClick={() => load(3)}>
-        {pending ? 'Reading chess.com…' : 'Load 3 more months'}
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <Button variant="ghost" size="sm" disabled={pending} onClick={() => load(3)}>
+        {pending ? 'Reading chess.com…' : 'Show older games'}
       </Button>
       {message ? (
-        <span className="text-[13px] text-paper/50">{message}</span>
+        <span className="text-[13px] text-ink-3">{message}</span>
       ) : null}
     </div>
   );
