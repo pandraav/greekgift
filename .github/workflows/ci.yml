@@ -68,7 +68,7 @@ jobs:
     timeout-minutes: 15
     environment:
       name: production
-      url: https://greekgift-pnd4.vercel.app
+      url: https://greekgift.vercel.app
     env:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -148,4 +148,4 @@ jobs:
             echo "::error::Vercel blocked the production deployment."
             exit 1
           fi
-          echo "### Production: https://greekgift-pnd4.vercel.app" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Production: https://greekgift.vercel.app" >> "$GITHUB_STEP_SUMMARY"

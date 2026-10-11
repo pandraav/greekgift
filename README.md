@@ -165,7 +165,7 @@ A push to `main` runs [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 2. **Deploy** (push to `main` only) — sync env → `vercel pull` →
    `vercel build --prod` → `pnpm db:migrate` → `vercel deploy --prebuilt --prod`.
 
-Production: <https://greekgift-pnd4.vercel.app>.
+Production: <https://greekgift.vercel.app>.
 
 ### Where values live
 
@@ -177,7 +177,7 @@ changing one means redeploying.
 
 | GitHub secret | GitHub variable |
 |---|---|
-| `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` (both `https://greekgift-pnd4.vercel.app`) |
+| `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` (both `https://greekgift.vercel.app`) |
 | `DATABASE_URL` (Neon, pooled) | `ADMIN_EMAILS`, `EMAIL_FROM` |
 | `BETTER_AUTH_SECRET` | `NEXT_PUBLIC_ENGINE_NODES`, `NEXT_PUBLIC_ENGINE_BUILD` |
 | `BREVO_API_KEY` | |
