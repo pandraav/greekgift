@@ -1,6 +1,8 @@
 import { getCookieCache, getSessionCookie } from 'better-auth/cookies';
 import { NextResponse, type NextRequest } from 'next/server';
 
+import { canonicalRedirect } from '@/lib/canonical-host';
+
 /**
  * Next 16 renamed `middleware.ts` to `proxy.ts` and the exported function
  * with it. Runs on the Node runtime; the runtime is not configurable here.
@@ -36,6 +38,15 @@ interface Cached {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // One host in production, before anything else, auth endpoints included.
+  // 308 keeps the method, so a stray POST is not turned into a GET.
+  const canonical = canonicalRedirect(
+    request.nextUrl,
+    process.env.BETTER_AUTH_URL,
+    process.env.VERCEL_ENV,
+  );
+  if (canonical) return NextResponse.redirect(canonical, 308);
 
   // Better Auth's own endpoints must never be gated.
   if (under(pathname, ['/api/auth'])) return NextResponse.next();
