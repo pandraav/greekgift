@@ -5,6 +5,7 @@ import { createMailer } from '@greekgift/email';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { nextCookies } from 'better-auth/next-js';
+import { after } from 'next/server';
 
 import { creator } from '@/lib/creator';
 
@@ -42,10 +43,9 @@ export const auth = betterAuth({
     maxPasswordLength: 128,
     autoSignIn: false,
     revokeSessionsOnPasswordReset: true,
-    sendResetPassword: async ({ user, url }) => {
-      // Not awaited: awaiting a mail send here is a timing-attack vector.
-      void mailer.sendReset(user.email, user.name, url);
-    },
+    // Returned, not awaited: backgroundTasks below runs it after the response.
+    sendResetPassword: ({ user, url }) =>
+      mailer.sendReset(user.email, user.name, url),
   },
 
   emailVerification: {
@@ -54,9 +54,8 @@ export const auth = betterAuth({
     sendOnSignIn: true,
     autoSignInAfterVerification: true,
     expiresIn: 60 * 60 * 24,
-    sendVerificationEmail: async ({ user, url }) => {
-      void mailer.sendVerify(user.email, user.name, url);
-    },
+    sendVerificationEmail: ({ user, url }) =>
+      mailer.sendVerify(user.email, user.name, url),
   },
 
   /**
@@ -166,7 +165,17 @@ export const auth = betterAuth({
     },
   },
 
-  advanced: { database: { generateId: () => crypto.randomUUID() } },
+  advanced: {
+    database: { generateId: () => crypto.randomUUID() },
+    /**
+     * Mail sends run after the response: awaiting one inside the request is a
+     * timing-attack vector. A bare `void` is not enough on Vercel, where the
+     * instance can freeze at the response and drop the send; that is how
+     * reset mail went missing. `after` keeps the function alive until it is
+     * done. The mailer never rejects.
+     */
+    backgroundTasks: { handler: (task) => after(task) },
+  },
 
   plugins: [nextCookies()],
 });
