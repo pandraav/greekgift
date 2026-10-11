@@ -1,5 +1,6 @@
 import { schema } from '@greekgift/db';
 import { and, eq } from 'drizzle-orm';
+import { after } from 'next/server';
 
 import { mailer } from '@/lib/auth';
 import { db } from '@/lib/db';
@@ -34,6 +35,7 @@ export async function POST(
     return Response.json({ error: 'not_pending' }, { status: 404 });
   }
 
-  void mailer.sendApproved(updated.email, updated.name);
+  // `after`, not `void`: a frozen instance would drop the send.
+  after(() => mailer.sendApproved(updated.email, updated.name));
   return Response.json({ ok: true, user: updated });
 }
